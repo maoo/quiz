@@ -1,0 +1,67 @@
+<svg width="500" height="500" xmlns="http://www.w3.org/2000/svg">
+  <!-- Central question -->
+  <text x="250" y="234" font-size="10px" text-anchor="middle">What are the best practices</text>
+  <text x="250" y="246" font-size="10px" text-anchor="middle">for implementing an effective</text>
+  <text x="250" y="258" font-size="10px" text-anchor="middle">Continuous Integration and</text>
+  <text x="250" y="270" font-size="10px" text-anchor="middle">Continuous Deployment (CI/CD) pipeline?</text>
+  
+  <!-- Options circle -->
+  <circle cx="250" cy="250" r="100" fill="none" stroke="grey" stroke-dasharray="5,5"/>
+  
+  <!-- Answers circle -->
+  <circle cx="250" cy="250" r="150" fill="none" stroke="grey" stroke-dasharray="5,5"/>
+  
+  <!-- Answer text circle -->
+  <circle cx="250" cy="250" r="180" fill="none" stroke="grey" stroke-dasharray="5,5"/>
+  
+  <!-- Options and Answers -->
+  <!-- Position 1 -->
+  <text x="250" y="144" font-size="10px" text-anchor="middle">Automate all</text>
+  <text x="250" y="156" font-size="10px" text-anchor="middle">tests and deployments</text>
+  <text x="250" y="70" font-size="10px" text-anchor="middle">TRUE</text>
+  
+  <!-- Position 2 -->
+  <text x="314" y="167" font-size="10px" text-anchor="middle">Deploy directly to</text>
+  <text x="314" y="179" font-size="10px" text-anchor="middle">production</text>
+  <text x="346" y="113" font-size="10px" text-anchor="middle">FALSE</text>
+  
+  <!-- Position 3 -->
+  <text x="346" y="227" font-size="10px" text-anchor="middle">Use trunk-based</text>
+  <text x="346" y="239" font-size="10px" text-anchor="middle">development</text>
+  <text x="400" y="214" font-size="10px" text-anchor="middle">TRUE</text>
+  
+  <!-- Position 4 -->
+  <text x="327" y="304" font-size="10px" text-anchor="middle">Run security</text>
+  <text x="327" y="316" font-size="10px" text-anchor="middle">scans on each build</text>
+  <text x="375" y="340" font-size="10px" text-anchor="middle">TRUE</text>
+  
+  <!-- Position 5 -->
+  <text x="271" y="344" font-size="10px" text-anchor="middle">Implement manual</text>
+  <text x="271" y="356" font-size="10px" text-anchor="middle">approvals</text>
+  <text x="295" y="410" font-size="10px" text-anchor="middle">FALSE</text>
+  
+  <!-- Position 6 -->
+  <text x="200" y="344" font-size="10px" text-anchor="middle">Keep configuration</text>
+  <text x="200" y="356" font-size="10px" text-anchor="middle">in code</text>
+  <text x="160" y="410" font-size="10px" text-anchor="middle">TRUE</text>
+  
+  <!-- Position 7 -->
+  <text x="155" y="289" font-size="10px" text-anchor="middle">Skip tests for</text>
+  <text x="155" y="301" font-size="10px" text-anchor="middle">emergency fixes</text>
+  <text x="90" y="325" font-size="10px" text-anchor="middle">FALSE</text>
+  
+  <!-- Position 8 -->
+  <text x="155" y="199" font-size="10px" text-anchor="middle">Maintain separate</text>
+  <text x="155" y="211" font-size="10px" text-anchor="middle">environments</text>
+  <text x="90" y="170" font-size="10px" text-anchor="middle">TRUE</text>
+  
+  <!-- Position 9 -->
+  <text x="200" y="144" font-size="10px" text-anchor="middle">Encourage lengthy</text>
+  <text x="200" y="156" font-size="10px" text-anchor="middle">builds</text>
+  <text x="160" y="90" font-size="10px" text-anchor="middle">FALSE</text>
+  
+  <!-- Position 10 -->
+  <text x="250" y="180" font-size="10px" text-anchor="middle">Use immutable</text>
+  <text x="250" y="192" font-size="10px" text-anchor="middle">artifacts</text>
+  <text x="250" y="125" font-size="10px" text-anchor="middle">TRUE</text>
+</svg>

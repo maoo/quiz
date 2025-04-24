@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
+  <!-- Background -->
+  <rect width="1000" height="1000" fill="white"/>
+  
+  <!-- Question ring (visible) -->
+  <circle cx="500" cy="500" r="100" fill="none" stroke="#888888" stroke-width="1" stroke-dasharray="5,5"/>
+  
+  <!-- Central question with word wrapping in fixed-width text box -->
+  <foreignObject x="420" y="430" width="160" height="140">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 160px; height: 140px; display: flex; align-items: center; justify-content: center; text-align: center; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+      Which of the following practices improve Docker container security?
+    </div>
+  </foreignObject>
+  
+  <!-- Options positioned on a regular decagon on the option ring -->
+  <!-- Position 1 (top) -->
+  <foreignObject x="440" y="145" width="120" height="50">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 120px; height: 50px; display: flex; align-items: center; justify-content: center; text-align: center; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+      Run as
+      root user
+    </div>
+  </foreignObject>
+  
+  <!-- Position 2 -->
+  <foreignObject x="655" y="209" width="120" height="50">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 120px; height: 50px; display: flex; align-items: center; justify-content: center; text-align: center; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+      Use --no-new-
+      privileges
+    </div>
+  </foreignObject>
+  
+  <!-- Position 3 -->
+  <foreignObject x="750" y="370" width="120" height="50">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 120px; height: 50px; display: flex; align-items: center; justify-content: center; text-align: center; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+      Remove
+      setuid/setgid
+    </div>
+  </foreignObject>
+  
+  <!-- Position 4 -->
+  <foreignObject x="750" y="580" width="120" height="50">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 120px; height: 50px; display: flex; align-items: center; justify-content: center; text-align: center; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+      Mount
+      filesystems RW
+    </div>
+  </foreignObject>
+  
+  <!-- Position 5 -->
+  <foreignObject x="655" y="741" width="120" height="50">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 120px; height: 50px; display: flex; align-items: center; justify-content: center; text-align: center; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+      Use
+      latest tag
+    </div>
+  </foreignObject>
+  
+  <!-- Position 6 -->
+  <foreignObject x="440" y="805" width="120" height="50">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 120px; height: 50px; display: flex; align-items: center; justify-content: center; text-align: center; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+      Use
+      rootless mode
+    </div>
+  </foreignObject>
+  
+  <!-- Position 7 -->
+  <foreignObject x="225" y="741" width="120" height="50">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 120px; height: 50px; display: flex; align-items: center; justify-content: center; text-align: center; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+      Skip image
+      scanning
+    </div>
+  </foreignObject>
+  
+  <!-- Position 8 -->
+  <foreignObject x="130" y="580" width="120" height="50">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 120px; height: 50px; display: flex; align-items: center; justify-content: center; text-align: center; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+      Use scratch
+      images
+    </div>
+  </foreignObject>
+  
+  <!-- Position 9 -->
+  <foreignObject x="130" y="370" width="120" height="50">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 120px; height: 50px; display: flex; align-items: center; justify-content: center; text-align: center; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+      Disable
+      seccomp
+    </div>
+  </foreignObject>
+  
+  <!-- Position 10 -->
+  <foreignObject x="225" y="209" width="120" height="50">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 120px; height: 50px; display: flex; align-items: center; justify-content: center; text-align: center; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+      Check image
+      signatures
+    </div>
+  </foreignObject>
+  
+  <!-- Answers positioned on a regular decagon on the answer ring -->
+  <!-- Answer 1 -->
+  <foreignObject x="487.5" y="95" width="25" height="25">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; text-align: center; font-family: Arial, sans-serif; font-size: 12px; line-height: 12px;">
+      FALSE
+    </div>
+  </foreignObject>
+  
+  <!-- Answer 2 -->
+  <foreignObject x="715" y="169" width="25" height="25">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; text-align: center; font-family: Arial, sans-serif; font-size: 12px; line-height: 12px;">
+      TRUE
+    </div>
+  </foreignObject>
+  
+  <!-- Answer 3 -->
+  <foreignObject x="843" y="355" width="25" height="25">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; text-align: center; font-family: Arial, sans-serif; font-size: 12px; line-height: 12px;">
+      TRUE
+    </div>
+  </foreignObject>
+  
+  <!-- Answer 4 -->
+  <foreignObject x="843" y="620" width="25" height="25">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; text-align: center; font-family: Arial, sans-serif; font-size: 12px; line-height: 12px;">
+      FALSE
+    </div>
+  </foreignObject>
+  
+  <!-- Answer 5 -->
+  <foreignObject x="715" y="806" width="25" height="25">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; text-align: center; font-family: Arial, sans-serif; font-size: 12px; line-height: 12px;">
+      FALSE
+    </div>
+  </foreignObject>
+  
+  <!-- Answer 6 -->
+  <foreignObject x="487.5" y="880" width="25" height="25">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; text-align: center; font-family: Arial, sans-serif; font-size: 12px; line-height: 12px;">
+      TRUE
+    </div>
+  </foreignObject>
+  
+  <!-- Answer 7 -->
+  <foreignObject x="260" y="806" width="25" height="25">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; text-align: center; font-family: Arial, sans-serif; font-size: 12px; line-height: 12px;">
+      FALSE
+    </div>
+  </foreignObject>
+  
+  <!-- Answer 8 -->
+  <foreignObject x="132" y="620" width="25" height="25">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; text-align: center; font-family: Arial, sans-serif; font-size: 12px; line-height: 12px;">
+      TRUE
+    </div>
+  </foreignObject>
+  
+  <!-- Answer 9 -->
+  <foreignObject x="132" y="355" width="25" height="25">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; text-align: center; font-family: Arial, sans-serif; font-size: 12px; line-height: 12px;">
+      FALSE
+    </div>
+  </foreignObject>
+  
+  <!-- Answer 10 -->
+  <foreignObject x="260" y="169" width="25" height="25">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; text-align: center; font-family: Arial, sans-serif; font-size: 12px; line-height: 12px;">
+      TRUE
+    </div>
+  </foreignObject>
+</svg>
