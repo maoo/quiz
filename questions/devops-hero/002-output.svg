@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="1100" height="1100" viewBox="0 0 1100 1100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Background -->
+  <rect width="1100" height="1100" fill="white"/>
+  
+  <g transform="translate(550,550)">
+    <!-- Question ring (330px diameter) - visible -->
+    <circle cx="0" cy="0" r="165" fill="none" stroke="#888888" stroke-width="2" stroke-dasharray="5,5"/>
+    
+    <!-- Option ring (700px diameter) - not visible based on requirements -->
+    <!-- <circle cx="0" cy="0" r="350" fill="none" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="5,5"/> -->
+    
+    <!-- Answer ring (900px diameter) - not visible based on requirements -->
+    <!-- <circle cx="0" cy="0" r="450" fill="none" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="5,5"/> -->
+    
+    <!-- Question text (within the question ring) -->
+    <g>
+      <text x="0" y="-30" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" dominant-baseline="middle">Which of these tools</text>
+      <text x="0" y="0" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" dominant-baseline="middle">are primarily used for</text>
+      <text x="0" y="30" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" dominant-baseline="middle">Kubernetes security?</text>
+    </g>
+    
+    <!-- Options on regular decagon -->
+    <!-- Option 1 (top) -->
+    <g transform="translate(0,-260)">
+      <text x="0" y="0" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" dominant-baseline="middle">Falco</text>
+    </g>
+    
+    <!-- Option 2 -->
+    <g transform="translate(161,-219)">
+      <text x="0" y="0" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" dominant-baseline="middle">Istio</text>
+    </g>
+    
+    <!-- Option 3 -->
+    <g transform="translate(260,-84)">
+      <text x="0" y="0" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" dominant-baseline="middle">Kyverno</text>
+    </g>
+    
+    <!-- Option 4 -->
+    <g transform="translate(260,84)">
+      <text x="0" y="0" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" dominant-baseline="middle">Prometheus</text>
+    </g>
+    
+    <!-- Option 5 -->
+    <g transform="translate(161,219)">
+      <text x="0" y="-15" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" dominant-baseline="middle">OPA/</text>
+      <text x="0" y="15" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" dominant-baseline="middle">Gatekeeper</text>
+    </g>
+    
+    <!-- Option 6 -->
+    <g transform="translate(0,260)">
+      <text x="0" y="0" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" dominant-baseline="middle">Fluentd</text>
+    </g>
+    
+    <!-- Option 7 -->
+    <g transform="translate(-161,219)">
+      <text x="0" y="0" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" dominant-baseline="middle">Trivy</text>
+    </g>
+    
+    <!-- Option 8 -->
+    <g transform="translate(-260,84)">
+      <text x="0" y="0" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" dominant-baseline="middle">Grafana</text>
+    </g>
+    
+    <!-- Option 9 -->
+    <g transform="translate(-260,-84)">
+      <text x="0" y="0" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" dominant-baseline="middle">Kubescape</text>
+    </g>
+    
+    <!-- Option 10 -->
+    <g transform="translate(-161,-219)">
+      <text x="0" y="0" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" dominant-baseline="middle">Jaeger</text>
+    </g>
+    
+    <!-- Answers on regular decagon -->
+    <!-- Answer 1 -->
+    <g transform="translate(0,-450)">
+      <text x="0" y="0" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" dominant-baseline="middle">TRUE</text>
+    </g>
+    
+    <!-- Answer 2 -->
+    <g transform="translate(278,-348)">
+      <text x="0" y="0" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" dominant-baseline="middle">TRUE</text>
+    </g>
+    
+    <!-- Answer 3 -->
+    <g transform="translate(450,-146)">
+      <text x="0" y="0" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" dominant-baseline="middle">TRUE</text>
+    </g>
+    
+    <!-- Answer 4 -->
+    <g transform="translate(450,146)">
+      <text x="0" y="0" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" dominant-baseline="middle">FALSE</text>
+    </g>
+    
+    <!-- Answer 5 -->
+    <g transform="translate(278,348)">
+      <text x="0" y="0" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" dominant-baseline="middle">TRUE</text>
+    </g>
+    
+    <!-- Answer 6 -->
+    <g transform="translate(0,450)">
+      <text x="0" y="0" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" dominant-baseline="middle">FALSE</text>
+    </g>
+    
+    <!-- Answer 7 -->
+    <g transform="translate(-278,348)">
+      <text x="0" y="0" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" dominant-baseline="middle">TRUE</text>
+    </g>
+    
+    <!-- Answer 8 -->
+    <g transform="translate(-450,146)">
+      <text x="0" y="0" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" dominant-baseline="middle">FALSE</text>
+    </g>
+    
+    <!-- Answer 9 -->
+    <g transform="translate(-450,-146)">
+      <text x="0" y="0" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" dominant-baseline="middle">TRUE</text>
+    </g>
+    
+    <!-- Answer 10 -->
+    <g transform="translate(-278,-348)">
+      <text x="0" y="0" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" dominant-baseline="middle">FALSE</text>
+    </g>
+  </g>
+</svg>

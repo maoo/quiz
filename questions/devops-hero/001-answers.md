@@ -1,14 +1,14 @@
 # Answers to Question 001 - DevOps Hero
 
-Which of the following practices improve Docker container security?
+Which of the following statements about this Terraform configuration are correct?
 
-1. Run as root user - FALSE
-2. Use --no-new-privileges - TRUE
-3. Remove setuid/setgid - TRUE
-4. Mount filesystems RW - FALSE
-5. Use latest tag - FALSE
-6. Use rootless mode - TRUE
-7. Skip image scanning - FALSE
-8. Use scratch images - TRUE
-9. Disable seccomp - FALSE
-10. Check image signatures - TRUE
+1. Uses AWS provider - TRUE
+2. Restricts SSH access - TRUE
+3. Opens HTTP globally - TRUE
+4. Uses latest AMI - FALSE
+5. t2.micro instance - TRUE
+6. Creates load balancer - FALSE
+7. Uses user_data - TRUE
+8. Unrestricted egress - TRUE
+9. Uses variables - TRUE
+10. Auto-healing setup - FALSE
