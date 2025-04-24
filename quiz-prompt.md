@@ -2,24 +2,24 @@
 
 I am building a high-quality, professional quiz designed for both digital and physical use. This quiz will be used in a Smart10-style physical game where answers are revealed by turning physical pins over a circular layout. Because of this, the SVG output must be extremely precise and readable.
 
-Each deck file (in "decks/<deck id>.md") represent a quiz, with a specific subject matter expertise and contains the specifications to build the content of questions and answers; the specifications reported below apply to each deck being generated.
+Each deck file (in `decks/<deck id>.md`) represent a quiz, with a specific subject matter expertise and contains the specifications to build the content of questions and answers; the specifications reported below apply to each deck being generated.
 
 Each quiz should include 200 questions, each with 10 options and 10 answers.
 
 📁 Output File Structure
 
-For each question generated, create the following files in the "questions" directory:
-1. <deck id>/<question id>-question.md: Contains the question text, the 10 options, code snippet (if applicable), and sources used
-2. <deck id>/<question id>-output.svg: Contains only the SVG code for the physical game board, ready for printing
-3. <deck id>/<question id>-answers.md: Contains the list of options with their answers
+For each question generated, create the following files in the `questions` directory:
+1. `<deck id>/<question id>-question.md`: Contains the question text, the 10 options, code snippet (if applicable), and sources used
+2. `<deck id>/<question id>-output.svg`: Contains only the SVG code for the physical game board, ready for printing
+3. `<deck id>/<question id>-answers.md`: Contains the list of options with their answers
 
-Where <id> is a unique numeric identifier for each question (e.g., "001", "042", "123", etc.). Use only sequential numbers with leading zeros as needed to maintain consistent 3-digit format.
+Where `<id>` is a unique numeric identifier for each question (e.g., "001", "042", "123", etc.). Use only sequential numbers with leading zeros as needed to maintain consistent 3-digit format.
 
-Each <id>-question.md should include:
+Each `<id>-question.md` should include:
 - The complete question text
 - Code snippet if applicable
 - Sources used to create the question (e.g., documentation URLs, certification guides)
-- The URL to github.com/maoo/quiz/... that points to the <id>-question.md file
+- The URL to github.com/maoo/quiz/... that points to the `<id>-question.md` file
 
 🎯 Objective
 
@@ -44,11 +44,11 @@ Each <id>-question.md should include:
 Each question must be accompanied by a square SVG graphic. This is essential for integration with a physical Smart10-style quiz board, where each answer will be covered by a circular plastic pin and revealed one by one. 
 
 The SVG layout must match the Smart10 game board design with:
-- Optimised for 11x11 cm size
+- Optimised for 110x110 millimiters size
 - A central area for the question
-- A "question ring", 33mm diameter, around the question; the question must be place inside this ring
-- An "option ring", 70mm diameter
-- An "answer ring", 90mm diameter; this circle does not need to be shown
+- A "question ring", 33 millimeters diameter, around the question; the question must be place inside this ring
+- An "option ring", 70 millimeters diameter
+- An "answer ring", 90 millimeters diameter; this circle does not need to be shown
 - All option texts must overlap with a regular decagon and placed between the question ring and the option ring (But closer to the question ring, than the option ring); this will ensure that all option texts are equidistant
 - All answer texts must overlap with a regular decagon and stay on top of the answer ring; this will ensure that all answer texts are equidistant
 - The position of answer text boxes must be exact and consistent across all diagrams and decks.
@@ -68,7 +68,7 @@ The SVG layout must match the Smart10 game board design with:
   - Properly spaced to avoid overlap
 - Option texts in the SVG should NOT include the number prefix (e.g., use "Kubernetes" not "1. Kubernetes").
 - Do not include difficulty level indicators (e.g., "Easy", "Medium", "Hard") in the SVG output.
-- All texts must be placed to ensure ABSOLUTELY NO OVERLAP with texts. Text overlap makes the game unplayable and is an immediate rejection criteria.
+- All texts must be placed to ensure ABSOLUTELY NO OVERLAP with texts. Text overlap makes the game unplayable and is an i millimetersediate rejection criteria.
 - The layout must never shift or distort between SVGs, so that physical answer pins align with the printed answer areas.
 
 ✅ Final Checklist per Question
