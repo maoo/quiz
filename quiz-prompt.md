@@ -44,8 +44,10 @@ Each question must be accompanied by a square SVG graphic. This is essential for
 
 The SVG layout must match the Smart10 game board design with:
 - Optimised for 1100x1100 pixels size (equivalent to 110mm)
+- Add a background square of 1110x1110 pixels, color very light grey, with rounded corners of radius 50 pixels for the top-right and bottom-right corners and 250 pixels for the top-left and bottom-left corners
+- Any other element in the SVG that is not the background square should have a transparent background
 - A central area for the question
-- A "question ring", 330 pixels diameter, around the question; the question must be placed inside this ring
+- A "question ring", 330 pixels diameter, around the question; the question must be placed inside this ring, and the background color should be a slighly less light grey (than the background)
 - An "option ring", 700 pixels diameter (not visible in final output)
 - An "answer ring", 900 pixels diameter (not visible in final output)
 - All option texts must be positioned on a regular decagon and placed between the question ring and the option ring (but closer to the question ring); this will ensure that all option texts are equidistant
@@ -96,6 +98,7 @@ The SVG layout must match the Smart10 game board design with:
   - Text positioned with ABSOLUTELY NO OVERLAP between any text elements?
   - For questions >200 characters (or with code snippet), has the QR code been generated with qrencode and properly referenced in the SVG?
   - Are option texts formatted to display in 3-4 lines where needed?
+  - All elements (except the background square) have a transparent background?
 
 ### ✅ Text layout validation
 

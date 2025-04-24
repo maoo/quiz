@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="1100" height="1100" viewBox="0 0 1100 1100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <!-- Background -->
-  <rect width="1100" height="1100" fill="white"/>
+<svg width="1110" height="1110" viewBox="0 0 1110 1110" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Background with different corner radii -->
+  <path d="M 250,0 
+           L 1060,0 
+           Q 1110,0 1110,50 
+           L 1110,1060 
+           Q 1110,1110 1060,1110 
+           L 250,1110 
+           Q 0,1110 0,860 
+           L 0,250 
+           Q 0,0 250,0 Z" 
+        fill="#f0f0f0"/>
   
-  <g transform="translate(550,550)">
-    <!-- Question ring (330px diameter) is hidden for code-based questions -->
-    
-    <!-- Option ring (700px diameter) - not visible based on requirements -->
-    <!-- <circle cx="0" cy="0" r="350" fill="none" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="5,5"/> -->
-    
-    <!-- Answer ring (900px diameter) - not visible based on requirements -->
-    <!-- <circle cx="0" cy="0" r="450" fill="none" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="5,5"/> -->
+  <g transform="translate(555,555)">
+    <!-- Question ring is hidden for code-based questions -->
     
     <!-- Direct QR code image reference -->
     <image x="-100" y="-100" width="200" height="200" xlink:href="001-qr.png" />
