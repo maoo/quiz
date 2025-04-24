@@ -1,10 +1,10 @@
-# 🏆 DevOps Quiz Generation Prompt (Production-Ready Edition)
+# 🏆 DevOps Quiz Generation Prompt
 
-I am building a high-quality, professional quiz designed for both digital and physical use. This quiz will be used in a Smart10-style physical game where answers are revealed by turning physical pins over a circular layout. Because of this, the SVG output must be extremely precise and readable.
+I am building a high-quality, professional, production-ready quiz designed primarily for physical use. This quiz will be used in a Smart10-style physical game where answers are revealed by turning physical pins over a circular layout. Because of this, the SVG output must be extremely precise and readable.
 
 Each deck file (in `decks/<deck id>.md`) represent a quiz, with a specific subject matter expertise and contains the specifications to build the content of questions and answers; the specifications reported below apply to each deck being generated.
 
-Each quiz should include 200 questions, each with 10 options and 10 answers.
+Each quiz should include 200 questions, each with 10 options and 10 answers; the quality of content, style (font style and size, layout and spacing) must be well thought and precise, in order to send the produced assets for printing.
 
 ## 🎯 Objective
 
