@@ -5,73 +5,73 @@
   <path d="M 860,0 L 1110,0 L 1110,250 Q 1060,50 860,0 Z" fill="#f5f5f5"/>
   <path d="M 860,1110 L 1110,1110 L 1110,860 Q 1060,1060 860,1110 Z" fill="#f5f5f5"/>
   <circle cx="555" cy="555" fill="#dcdcdc" r="165"/>
-  <image height="200" width="200" x="455" xlink:href="https://blog.session.it/quiz/old/5/002-qr.png" y="455"/>
+  <image height="200" width="200" x="455" xlink:href="https://blog.session.it/quiz/decks/devops-hero/questions/004-qr.png" y="455"/>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="555.0" y="265.0">Label</text>
-    <text x="555.0" y="295.0">mismatch exists</text>
+    <text x="555.0" y="265.0">Uses</text>
+    <text x="555.0" y="295.0">latest tag</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="555.0" y="105.0">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="716.6409443804301" y="317.52032654688946">No image</text>
-    <text x="716.6409443804301" y="347.52032654688946">tag specified</text>
+    <text x="716.6409443804301" y="317.52032654688946">Has</text>
+    <text x="716.6409443804301" y="347.52032654688946">network policy</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="819.5033635316129" y="190.94235253127363">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="816.5405419811673" y="455.02032654688946">CPU limit</text>
-    <text x="816.5405419811673" y="485.02032654688946">is missing</text>
+    <text x="816.5405419811673" y="455.02032654688946">Has</text>
+    <text x="816.5405419811673" y="485.02032654688946">liveness probe</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="982.9754323328191" y="415.9423525312737">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="816.5405419811673" y="624.9796734531105">Wrong</text>
-    <text x="816.5405419811673" y="654.9796734531105">probe port</text>
+    <text x="816.5405419811673" y="624.9796734531105">Sets</text>
+    <text x="816.5405419811673" y="654.9796734531105">resource limits</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="982.9754323328191" y="694.0576474687264">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="716.6409443804301" y="762.4796734531105">More</text>
-    <text x="716.6409443804301" y="792.4796734531105">replicas needed</text>
+    <text x="716.6409443804301" y="762.4796734531105">Uses</text>
+    <text x="716.6409443804301" y="792.4796734531105">StatefulSet</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="819.5033635316129" y="919.0576474687264">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="555.0" y="815.0">No</text>
-    <text x="555.0" y="845.0">readiness probe</text>
+    <text x="555.0" y="815.0">Has</text>
+    <text x="555.0" y="845.0">PodDisruptionBudget</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="555.0" y="1005.0">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="393.3590556195699" y="762.4796734531105">Port</text>
-    <text x="393.3590556195699" y="792.4796734531105">mismatch exists</text>
+    <text x="393.3590556195699" y="762.4796734531105">Enables</text>
+    <text x="393.3590556195699" y="792.4796734531105">auto-scaling</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="290.4966364683871" y="919.0576474687264">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="293.4594580188328" y="624.9796734531105">Missing</text>
-    <text x="293.4594580188328" y="654.9796734531105">memory limit</text>
+    <text x="293.4594580188328" y="624.9796734531105">Runs</text>
+    <text x="293.4594580188328" y="654.9796734531105">in production</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="127.02456766718092" y="694.0576474687264">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="293.4594580188327" y="455.02032654688946">Wrong</text>
-    <text x="293.4594580188327" y="485.02032654688946">API version</text>
+    <text x="293.4594580188327" y="455.02032654688946">Uses</text>
+    <text x="293.4594580188327" y="485.02032654688946">3 replicas</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="127.02456766718086" y="415.94235253127374">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="393.35905561956986" y="317.52032654688946">Needs</text>
-    <text x="393.35905561956986" y="347.52032654688946">imagePullPolicy</text>
+    <text x="393.35905561956986" y="317.52032654688946">Has</text>
+    <text x="393.35905561956986" y="347.52032654688946">pod security</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="290.49663646838707" y="190.94235253127368">FALSE</text>
