@@ -34,6 +34,12 @@ jobs:
           echo "all_changed_files=$(find decks/${{ github.event.inputs.deck_name }} -name '*.svg' | tr '\n' ' ')" >> $GITHUB_OUTPUT
           echo "any_changed=true" >> $GITHUB_OUTPUT
 
+      - name: Install librsvg
+        if: steps.files-to-process.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y librsvg2-bin
+
       - name: Convert SVG to PDF
         if: steps.files-to-process.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
         run: |
