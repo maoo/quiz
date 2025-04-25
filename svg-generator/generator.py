@@ -85,12 +85,6 @@ class QuizSVGGenerator:
             qr_x = self.center_x - qr_size // 2
             qr_y = self.center_y - qr_size // 2
             
-            # Add title above QR code
-            title_parts = title.split()
-            title_group = dwg.g(font_family="Arial", font_size=24, text_anchor="middle", dominant_baseline="middle")
-            title_group.add(dwg.text(title, insert=(self.center_x, self.center_y - qr_size // 2 - 20)))
-            dwg.add(title_group)
-            
             # Add QR code as image - strip "../" from the path
             clean_qr_path = qr_path.replace('../', '')
             dwg.add(dwg.image(href=f"https://blog.session.it/quiz/{clean_qr_path}", insert=(qr_x, qr_y), size=(qr_size, qr_size)))
