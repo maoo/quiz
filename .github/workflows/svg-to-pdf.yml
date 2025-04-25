@@ -3,7 +3,7 @@ name: Convert SVG to PDF
 on:
   push:
     paths:
-      - 'questions/**/*.svg'
+      - '**/*.svg'
 
 jobs:
   convert-svg:
