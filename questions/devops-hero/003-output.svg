@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1100" height="1100" viewBox="-550 -550 1100 1100">
+  <!-- Background square with rounded corners -->
+  <rect x="-555" y="-555" width="1110" height="1110" fill="#f5f5f5" rx="250" ry="250" />
+  
+  <!-- Question ring -->
+  <circle cx="0" cy="0" r="165" fill="#dcdcdc" />
+  
+  <!-- Question text -->
+  <text x="0" y="-30" font-family="Arial" font-size="24" text-anchor="middle" dominant-baseline="middle">Which of the following</text>
+  <text x="0" y="0" font-family="Arial" font-size="24" text-anchor="middle" dominant-baseline="middle">are official CNCF</text>
+  <text x="0" y="30" font-family="Arial" font-size="24" text-anchor="middle" dominant-baseline="middle">graduated projects?</text>
+  
+  <!-- Options (10) positioned in a decagon around the center -->
+  <!-- Option 1 -->
+  <text x="0" y="-285" font-family="Arial" font-size="24" text-anchor="middle" dominant-baseline="middle">Kubernetes</text>
+  
+  <!-- Option 2 -->
+  <text x="176" y="-241" font-family="Arial" font-size="24" text-anchor="middle" dominant-baseline="middle">Istio</text>
+  
+  <!-- Option 3 -->
+  <text x="285" y="-93" font-family="Arial" font-size="24" text-anchor="middle" dominant-baseline="middle">Prometheus</text>
+  
+  <!-- Option 4 -->
+  <text x="285" y="93" font-family="Arial" font-size="24" text-anchor="middle" dominant-baseline="middle">Jenkins</text>
+  
+  <!-- Option 5 -->
+  <text x="176" y="241" font-family="Arial" font-size="24" text-anchor="middle" dominant-baseline="middle">Helm</text>
+  
+  <!-- Option 6 -->
+  <text x="0" y="285" font-family="Arial" font-size="24" text-anchor="middle" dominant-baseline="middle">Ansible</text>
+  
+  <!-- Option 7 -->
+  <text x="-176" y="241" font-family="Arial" font-size="24" text-anchor="middle" dominant-baseline="middle">Envoy</text>
+  
+  <!-- Option 8 -->
+  <text x="-285" y="93" font-family="Arial" font-size="24" text-anchor="middle" dominant-baseline="middle">GitLab</text>
+  
+  <!-- Option 9 -->
+  <text x="-285" y="-93" font-family="Arial" font-size="24" text-anchor="middle" dominant-baseline="middle">Fluentd</text>
+  
+  <!-- Option 10 -->
+  <text x="-176" y="-241" font-family="Arial" font-size="24" text-anchor="middle" dominant-baseline="middle">Docker</text>
+  
+  <!-- Answers (10) positioned in a decagon further from the center -->
+  <!-- Answer 1 -->
+  <text x="0" y="-450" font-family="Arial" font-size="18" text-anchor="middle" dominant-baseline="middle">TRUE</text>
+  
+  <!-- Answer 2 -->
+  <text x="278" y="-382" font-family="Arial" font-size="18" text-anchor="middle" dominant-baseline="middle">FALSE</text>
+  
+  <!-- Answer 3 -->
+  <text x="450" y="-146" font-family="Arial" font-size="18" text-anchor="middle" dominant-baseline="middle">TRUE</text>
+  
+  <!-- Answer 4 -->
+  <text x="450" y="146" font-family="Arial" font-size="18" text-anchor="middle" dominant-baseline="middle">FALSE</text>
+  
+  <!-- Answer 5 -->
+  <text x="278" y="382" font-family="Arial" font-size="18" text-anchor="middle" dominant-baseline="middle">TRUE</text>
+  
+  <!-- Answer 6 -->
+  <text x="0" y="450" font-family="Arial" font-size="18" text-anchor="middle" dominant-baseline="middle">FALSE</text>
+  
+  <!-- Answer 7 -->
+  <text x="-278" y="382" font-family="Arial" font-size="18" text-anchor="middle" dominant-baseline="middle">TRUE</text>
+  
+  <!-- Answer 8 -->
+  <text x="-450" y="146" font-family="Arial" font-size="18" text-anchor="middle" dominant-baseline="middle">FALSE</text>
+  
+  <!-- Answer 9 -->
+  <text x="-450" y="-146" font-family="Arial" font-size="18" text-anchor="middle" dominant-baseline="middle">TRUE</text>
+  
+  <!-- Answer 10 -->
+  <text x="-278" y="-382" font-family="Arial" font-size="18" text-anchor="middle" dominant-baseline="middle">FALSE</text>
+</svg>
