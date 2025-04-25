@@ -8,7 +8,7 @@
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
     <text x="555" y="435">Kubernetes Deployment Analysis</text>
   </g>
-  <image height="200" width="200" x="455" xlink:href="https://blog.session.it/quiz/../decks/devops-hero/questions/004-qr.png" y="455"/>
+  <image height="200" width="200" x="455" xlink:href="https://blog.session.it/quiz/decks/devops-hero/questions/004-qr.png" y="455"/>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
     <text x="555.0" y="265.0">Wrong</text>
     <text x="555.0" y="295.0">API version</text>
