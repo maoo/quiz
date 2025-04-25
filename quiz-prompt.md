@@ -27,8 +27,9 @@ Each quiz should include 200 questions, each with 10 options and 10 answers; the
 
 For each question generated, create the following files in the `questions` directory:
 1. `<deck id>/<question id>-question.md`: Contains the question text, the 10 options, code snippet (if applicable), sources used and URL to the question (using the template `https://blog.session.it/quiz/questions/<deck id>/<question id>-question`)
-2. `<deck id>/<question id>-output.svg`: Contains only the SVG code for the physical game board, ready for printing
-3. `<deck id>/<question id>-answers.md`: Contains the list of options with their answers
+2. `<deck id>/<question id>-output.svg`: Contains only the SVG code for the physical game board, ready for publication
+3. `<deck id>/<question id>-output.pdf`: Contains only the PDF version of the SVG image, sized 11x11 centimeters, ready for printing, using the command `rsvg-convert -f pdf -o <deck id>/<question id>-output.pdf -w 416 -h 416 <deck id>/<question id>-output.svg`
+4. `<deck id>/<question id>-answers.md`: Contains the list of options with their answers
 
 Where `<question id>` is a unique numeric identifier for each question (e.g., "001", "042", "123", etc.). Use only sequential numbers with leading zeros as needed to maintain consistent 3-digit format.
 
