@@ -14,11 +14,14 @@ on:
 jobs:
   convert-svg:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get files to process
         id: files-to-process
@@ -34,12 +37,6 @@ jobs:
           echo "all_changed_files=$(find decks/${{ github.event.inputs.deck_name }} -name '*.svg' | tr '\n' ' ')" >> $GITHUB_OUTPUT
           echo "any_changed=true" >> $GITHUB_OUTPUT
 
-      - name: Install librsvg
-        if: steps.files-to-process.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y librsvg2-bin
-
       - name: Convert SVG to PDF
         if: steps.files-to-process.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
         run: |
@@ -52,7 +49,7 @@ jobs:
           for svg_file in $svg_files; do
             if [ -f "$svg_file" ] && [[ "$svg_file" == *.svg ]]; then
               filename=$(basename "$svg_file" .svg)
-              rsvg-convert -f pdf -o "$(dirname "$svg_file")/${filename}-output.pdf" -w 416 -h 416 "$svg_file"
+              docker run --rm -v "$PWD:/work" -w /work minidocks/librsvg rsvg-convert -f pdf -o "$(dirname "$svg_file")/${filename}-output.pdf" -w 416 -h 416 "$svg_file"
             fi
           done
 
@@ -63,4 +60,4 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add decks/*.pdf
           git commit -m "Convert SVG to PDF" || exit 0
-          git push 
+          git push origin HEAD:${{ github.ref }} 
