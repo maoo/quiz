@@ -16,7 +16,7 @@
     <!-- Question ring is hidden for code-based questions -->
     
     <!-- Direct QR code image reference -->
-    <image x="-100" y="-100" width="200" height="200" xlink:href="001-qr.png" />
+    <image x="-100" y="-100" width="200" height="200" xlink:href="https://blog.session.it/quiz/questions/devops-hero/001-qr.png" />
     
     <!-- Options on regular decagon -->
     <!-- Option 1 (top) -->

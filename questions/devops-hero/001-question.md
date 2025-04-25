@@ -80,4 +80,4 @@ Which of the following statements about this Terraform configuration are correct
 - AWS Solutions Architect Certification Guide: https://d1.awsstatic.com/training-and-certification/docs-sa-assoc/AWS-Certified-Solutions-Architect-Associate_Exam-Guide.pdf
 
 ## URL
-[github.com/maoo/quiz/blob/main/questions/devops-hero/001-question.md](https://github.com/maoo/quiz/blob/main/questions/devops-hero/001-question.md)
+[devops-hero/001](https://blog.session.it/quiz/questions/devops-hero/001-question)

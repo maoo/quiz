@@ -26,7 +26,7 @@ Each quiz should include 200 questions, each with 10 options and 10 answers; the
 ## 📁 Output File Structure
 
 For each question generated, create the following files in the `questions` directory:
-1. `<deck id>/<question id>-question.md`: Contains the question text, the 10 options, code snippet (if applicable), and sources used
+1. `<deck id>/<question id>-question.md`: Contains the question text, the 10 options, code snippet (if applicable), sources used and URL to the question (using the template `https://blog.session.it/quiz/questions/<deck id>/<question id>-question`)
 2. `<deck id>/<question id>-output.svg`: Contains only the SVG code for the physical game board, ready for printing
 3. `<deck id>/<question id>-answers.md`: Contains the list of options with their answers
 
@@ -62,9 +62,9 @@ The SVG layout must match the Smart10 game board design with:
   - If the text of the question is bigger than 200 chars OR there is a `code snippet` included in the question, then do the following:
     - First, generate a QR code using the qrencode command:
       ```
-      qrencode -o questions/<deck id>/<question id>-qr.png "https://github.com/maoo/quiz/blob/main/questions/<deck id>/<question id>-question.md"
+      qrencode -o questions/<deck id>/<question id>-qr.png "https://blog.session.it/quiz/questions/<deck id>/<question id>-question"
       ```
-    - Then, embed the QR code file in the SVG by directly referencing the image file:
+    - Then, embed the QR code file in the SVG by directly referencing the link to the QR code image, using "https://blog.session.it/quiz/questions/" as prefix:
       ```xml
       <!-- Direct QR code image reference -->
       <image x="-100" y="-100" width="200" height="200" xlink:href="https://blog.session.it/quiz/questions/<question id>-qr.png" />
@@ -99,6 +99,7 @@ The SVG layout must match the Smart10 game board design with:
   - For questions >200 characters (or with code snippet), has the QR code been generated with qrencode and properly referenced in the SVG?
   - Are option texts formatted to display in 3-4 lines where needed?
   - All elements (except the background square) have a transparent background?
+- Can QR code image links in SVG files (that is, the `xlink:href` attribute in the `<image>` element) can be resolved with `curl` (or similar command) ?
 
 ### ✅ Text layout validation
 

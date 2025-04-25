@@ -23,4 +23,4 @@ Which of these tools are primarily used for Kubernetes security?
 - Kubernetes Security Best Practices: https://kubernetes.io/blog/2016/08/security-best-practices-kubernetes-deployment/
 
 ## URL
-[github.com/maoo/quiz/blob/main/questions/devops-hero/002-question.md](https://github.com/maoo/quiz/blob/main/questions/devops-hero/002-question.md)
+[devops-hero/002](https://blog.session.it/quiz/questions/devops-hero/002-question)
