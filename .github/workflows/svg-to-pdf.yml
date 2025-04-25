@@ -3,7 +3,7 @@ name: Convert SVG to PDF
 on:
   push:
     paths:
-      - '**/*.svg'
+      - 'decks/**/*.svg'
   workflow_dispatch:
     inputs:
       deck_name:
@@ -26,7 +26,7 @@ jobs:
         uses: tj-actions/changed-files@v46
         with:
           files: |
-            questions/**/*.svg
+            decks/**/*.svg
 
       - name: Set files to process for manual run
         if: github.event_name == 'workflow_dispatch'

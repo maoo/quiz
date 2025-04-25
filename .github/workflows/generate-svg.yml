@@ -3,10 +3,10 @@ name: Generate SVG from Markdown
 on:
   push:
     paths:
-      - '**/*-question.md'
+      - 'decks/**/*-question.md'
   pull_request:
     paths:
-      - '**/*-question.md'
+      - 'decks/**/*-question.md'
 
 permissions:
   contents: write
