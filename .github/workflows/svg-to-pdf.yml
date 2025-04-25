@@ -27,9 +27,9 @@ jobs:
         with:
           args: |
             for svg_file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-              if [ -f "$svg_file" ]; then
+              if [ -f "$svg_file" ] && [[ "$svg_file" == *.svg ]]; then
                 filename=$(basename "$svg_file" .svg)
-                rsvg-convert -f pdf -o "questions/${filename}-output.pdf" -w 416 -h 416 "$svg_file"
+                rsvg-convert -f pdf -o "$(dirname "$svg_file")/${filename}-output.pdf" -w 416 -h 416 "$svg_file"
               fi
             done
 
