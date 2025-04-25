@@ -1,0 +1,43 @@
+name: Convert SVG to PDF
+
+on:
+  push:
+    paths:
+      - 'questions/**/*.svg'
+
+jobs:
+  convert-svg:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v46
+        with:
+          files: |
+            questions/**/*.svg
+
+      - name: Convert SVG to PDF
+        if: steps.changed-files.outputs.any_changed == 'true'
+        uses: docker://minidocks/librsvg
+        with:
+          args: |
+            for svg_file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+              if [ -f "$svg_file" ]; then
+                filename=$(basename "$svg_file" .svg)
+                rsvg-convert -f pdf -o "questions/${filename}-output.pdf" -w 416 -h 416 "$svg_file"
+              fi
+            done
+
+      - name: Commit and push changes
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add questions/*.pdf
+          git commit -m "Convert SVG to PDF" || exit 0
+          git push 
