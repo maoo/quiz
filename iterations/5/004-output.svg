@@ -5,7 +5,7 @@
   <path d="M 860,0 L 1110,0 L 1110,250 Q 1060,50 860,0 Z" fill="#f5f5f5"/>
   <path d="M 860,1110 L 1110,1110 L 1110,860 Q 1060,1060 860,1110 Z" fill="#f5f5f5"/>
   <circle cx="555" cy="555" fill="#dcdcdc" r="165"/>
-  <image height="200" width="200" x="455" xlink:href="https://blog.session.it/quiz/old/5/004-qr.png" y="455"/>
+  <image height="200" width="200" x="455" xlink:href="https://blog.session.it/quiz/iterations/5/004-qr.png" y="455"/>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
     <text x="555.0" y="265.0">Wrong</text>
     <text x="555.0" y="295.0">API version</text>
