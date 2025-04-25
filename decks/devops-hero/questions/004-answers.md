@@ -1,4 +1,4 @@
-# What's wrong with this Kubernetes manifest?
+# DevOps Hero Question 004 - Answers
 
 1. Wrong API version - FALSE
 2. Missing strategy - TRUE

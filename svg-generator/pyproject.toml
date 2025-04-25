@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "svg-generator"
+version = "0.1.0"
+description = "SVG generator for quiz questions"
+authors = ["Your Name"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.9"
+markdown = "^3.8"
+svgwrite = "^1.4.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

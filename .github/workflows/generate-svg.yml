@@ -1,0 +1,61 @@
+name: Generate SVG from Markdown
+
+on:
+  push:
+    paths:
+      - '**/*-question.md'
+  pull_request:
+    paths:
+      - '**/*-question.md'
+
+permissions:
+  contents: write
+
+jobs:
+  generate-svg:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          
+      - name: Install dependencies
+        run: |
+          cd svg-generator
+          poetry install
+          
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v46
+        with:
+          files: |
+            **/*-question.md
+
+      - name: Generate SVG files
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          cd svg-generator
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            if [ -f "../$file" ]; then
+              output_file="${file%-question.md}-output.svg"
+              poetry run python generator.py "../$file" "../$output_file"
+              echo "Generated SVG for $file"
+            fi
+          done
+          
+      - name: Commit and push if changed
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add "**/*-output.svg"
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update SVG files" && git push) 
