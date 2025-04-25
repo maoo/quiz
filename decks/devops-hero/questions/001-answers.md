@@ -1,18 +1,18 @@
 # DevOps Hero Question 001 - Answers ✅
 
-## Container Security Best Practices
+## CNCF Graduated Projects
 
 ### Correct Answers
-1. ✅ Use minimal base images
-2. ✅ Run as non-root user
-3. ✅ Set --read-only flag
-4. ✅ Scan images regularly
-5. ❌ Use latest tag always
-6. ❌ Trust all registries
-7. ❌ Share host namespaces
-8. ✅ Set resource limits
-9. ✅ Sign container images
-10. ❌ Disable SELinux
+1. ✅ Kubernetes
+2. ❌ Istio
+3. ✅ Prometheus
+4. ❌ Docker
+5. ✅ Envoy
+6. ❌ Jenkins
+7. ✅ Helm
+8. ❌ Traefik
+9. ✅ Fluentd
+10. ❌ OpenShift
 
 ## Explanation
-This question tests knowledge of container security best practices. The correct answers align with industry standards and security recommendations for containerized applications.
+This question tests knowledge of which projects have officially graduated from the CNCF incubation process. Graduated projects have demonstrated widespread adoption, a healthy contributor base, and commitment to the CNCF principles. Istio is a service mesh project maintained by Google, not a CNCF project. Docker donated containerd to CNCF but Docker itself is not a CNCF project. Jenkins is a CI/CD tool maintained by the Jenkins project, not CNCF. Traefik is an open-source project but not part of CNCF. OpenShift is Red Hat's Kubernetes platform, not a CNCF project.

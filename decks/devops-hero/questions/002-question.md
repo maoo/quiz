@@ -1,55 +1,35 @@
-# DevOps Hero Question 002
+# DevOps Hero Question 002 🐳
 
-## Kubernetes Deployment Troubleshooting
+## Dockerfile Best Practices
 
-Analyze the following Kubernetes deployment manifest and determine which statements are TRUE about potential issues:
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: app-deployment
-spec:
-  selector:
-    matchLabels:
-      app: myapp
-  replicas: 3
-  template:
-    metadata:
-      labels:
-        app: frontend
-    spec:
-      containers:
-      - name: app-container
-        image: myregistry.com/myapp
-        resources:
-          requests:
-            memory: "64Mi"
-            cpu: "250m"
-        ports:
-        - containerPort: 8080
-        livenessProbe:
-          httpGet:
-            path: /healthz
-            port: 80
-          initialDelaySeconds: 3
-          periodSeconds: 3
+```dockerfile
+FROM ubuntu:latest
+RUN apt-get update && \
+    apt-get install -y nginx
+COPY . /app
+USER root
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
 ```
 
-1. Label mismatch exists
-2. No image tag specified
-3. CPU limit is missing
-4. Wrong probe port
-5. More replicas needed
-6. No readiness probe
-7. Port mismatch exists
-8. Missing memory limit
-9. Wrong API version
-10. Needs imagePullPolicy
+Which of these statements are TRUE about this Dockerfile?
 
-## Sources
-- Kubernetes Deployments Documentation: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
-- Kubernetes Probes: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+### Options
+1. Uses pinned version
+2. Has multi-stage build
+3. Runs as non-root
+4. Has cache efficiency
+5. Creates large image
+6. Uses HEALTHCHECK
+7. Has layer reduction
+8. Includes .dockerignore
+9. Uses best practices
+10. Has proper cleanup
 
-## URL
-https://blog.session.it/quiz/decks/devops-hero/questions/002-question
+## References 📚
+- [Docker Best Practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
+- [Dockerfile Reference](https://docs.docker.com/engine/reference/builder/)
+- [Container Security Best Practices](https://sysdig.com/blog/dockerfile-best-practices/)
+
+## Question URL 🔗
+[View Question Online](https://blog.session.it/quiz/decks/devops-hero/questions/002-question)

@@ -1,54 +1,55 @@
-# DevOps Hero Question 004
+# DevOps Hero Question 004 ⚙️
 
-## Kubernetes Deployment Analysis
-
-Examine the following YAML manifest for a Kubernetes Deployment and determine if each statement about it is TRUE or FALSE.
+## Kubernetes YAML Analysis
 
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
-  namespace: web-apps
+  name: web-app
+  namespace: production
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: web-frontend
+      app: web
   template:
     metadata:
-      name: frontend-pod
       labels:
-        app: frontend-web
+        app: web
     spec:
       containers:
       - name: nginx
-        image: nginx:1.19
+        image: nginx:latest
         ports:
         - containerPort: 80
         resources:
           requests:
-            cpu: 100m
-            memory: 128Mi
+            memory: "64Mi"
+            cpu: "250m"
           limits:
-            cpu: 200m
-            memory: 256Mi
+            memory: "128Mi"
+            cpu: "500m"
 ```
 
-1. Wrong API version
-2. Missing strategy
-3. Label mismatch
-4. Port is invalid
-5. Replicas too low
-6. Wrong image tag
-7. Missing readiness
-8. Low memory limit
-9. Missing namespace
-10. Spec is complete
+Which statements are TRUE about this YAML manifest?
 
-## Sources
-- Kubernetes Deployments: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
-- Kubernetes Labels and Selectors: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+### Options
+1. Uses latest tag
+2. Has network policy
+3. Has liveness probe
+4. Sets resource limits
+5. Uses StatefulSet
+6. Has PodDisruptionBudget
+7. Enables auto-scaling
+8. Runs in production
+9. Uses 3 replicas
+10. Has pod security
 
-## URL
-https://blog.session.it/quiz/decks/devops-hero/questions/004-question
+## References 📚
+- [Kubernetes Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
+- [Kubernetes Best Practices](https://kubernetes.io/docs/concepts/configuration/overview/)
+- [Kubernetes Resource Management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+
+## Question URL 🔗
+[View Question Online](https://blog.session.it/quiz/decks/devops-hero/questions/004-question)

@@ -1,5 +1,47 @@
 # Project Documentation 📚
 
+## Project Overview 🎯
+
+This project is an AI-powered quiz generation system that creates high-quality, visually appealing quiz cards for various learning and assessment purposes. The system combines the power of AI language models (Claude and ChatGPT) with automated image generation to create engaging educational content.
+
+### Use Cases 🎓
+- **Professional Certification Preparation**: Create study materials for technical certifications (DevOps, Cloud, Security, etc.)
+- **Educational Gaming**: Generate interactive quiz cards for classroom activities or educational games
+- **Corporate Training**: Develop assessment materials for employee training programs
+- **Personal Learning**: Create custom study decks for self-paced learning
+- **Social Learning**: Generate quiz cards for group study sessions or family game nights
+
+### Technical Approach 🛠️
+
+The system follows a modular approach:
+
+1. **Content Generation**
+   - Uses AI prompts to generate questions, answers, and explanations
+   - Supports multiple question types (code blocks, knowledge-based, etc.)
+   - Maintains consistency through structured prompt engineering
+
+2. **Visual Generation**
+   - Converts text content into visually appealing SVG cards
+   - Uses QR codes for easy access to digital content
+   - Implements consistent styling and formatting
+
+3. **Automation Pipeline**
+   - Automated question generation and iteration
+   - Batch processing of quiz decks
+   - Version control for content management
+
+4. **Output Formats**
+   - Markdown files for content storage
+   - SVG files for visual representation
+   - Printable format for physical cards
+
+### Key Components 🔑
+
+- **Prompt Engineering**: Structured prompts in `quiz-prompt.md` guide AI generation
+- **Content Management**: Organized storage of questions and assets
+- **Visual Design**: Automated SVG generation with consistent styling
+- **Printing System**: Optimized for high-quality physical output
+
 ## Prerequisites 🛠️
 
 ```sh
@@ -13,7 +55,7 @@ brew install librsvg
 
 To generate new questions:
 ```sh
-Follow instructions in quiz-prompt.md, to build a quiz deck of type devops-hero; only generate 2 questions, one of type code-block, one of type Knowledge-Based; only using the content of the prompt as context.
+Follow instructions in quiz-prompt.md, to build a quiz deck of type devops-hero; regenerate the first 4 questions, only using the content of the prompt as context.
 ```
 
 To reiterate on existing questions:

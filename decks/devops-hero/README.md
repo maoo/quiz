@@ -28,7 +28,7 @@ The mix of difficulty levels provides an engaging experience for beginners and e
 
 ## Available Questions 📝
 
-1. [Container Security Best Practices](https://blog.session.it/quiz/decks/devops-hero/questions/001-question) 🔒
-2. [Kubernetes Deployment Troubleshooting](https://blog.session.it/quiz/decks/devops-hero/questions/002-question) 🛠️
-3. [CNCF Graduated Projects](https://blog.session.it/quiz/decks/devops-hero/questions/003-question) ☸️
-4. [Kubernetes Deployment Analysis](https://blog.session.it/quiz/decks/devops-hero/questions/004-question) 📊
+1. [CNCF Graduated Projects](https://blog.session.it/quiz/decks/devops-hero/questions/001-question) 🚀 ([SVG](https://blog.session.it/quiz/decks/devops-hero/questions/001-output.svg)|[PDF](https://blog.session.it/quiz/decks/devops-hero/questions/001-output.pdf))
+2. [Dockerfile Best Practices](https://blog.session.it/quiz/decks/devops-hero/questions/002-question) 🐳 ([SVG](https://blog.session.it/quiz/decks/devops-hero/questions/002-output.svg)|[PDF](https://blog.session.it/quiz/decks/devops-hero/questions/002-output.pdf))
+3. [AWS Services Timeline](https://blog.session.it/quiz/decks/devops-hero/questions/003-question) ☁️ ([SVG](https://blog.session.it/quiz/decks/devops-hero/questions/003-output.svg)|[PDF](https://blog.session.it/quiz/decks/devops-hero/questions/003-output.pdf))
+4. [Kubernetes YAML Analysis](https://blog.session.it/quiz/decks/devops-hero/questions/004-question) ⚙️ ([SVG](https://blog.session.it/quiz/decks/devops-hero/questions/004-output.svg)|[PDF](https://blog.session.it/quiz/decks/devops-hero/questions/004-output.pdf))
