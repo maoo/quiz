@@ -14,12 +14,23 @@ Each quiz should include 200 questions, each with 10 options and 10 answers; the
 - Be visually and structurally consistent to support physical board game interaction.
 
 ## ⚖️ Design and Answer Rules
-
+- Each deck contains 200 designs.
+- Each design has one question.
 - Each question must have exactly 10 options.
+- Each option (10 in total) has an answer (10 in total)
 - Each option MUST be strictly limited to a maximum of 20 characters for readability on physical game cards. ABSOLUTELY NO EXCEPTIONS to this limit. Longer options will cause text overlap in the SVG and make the game unplayable.
+- Questions can be of different types:
+  - Text: For example, "what is the color of these logos"; the text can be maximum 200 characters
+  - QR: A QR is generated and visualized in the design, pointing to `https://blog.session.it/quiz/questions/<deck id>/<question id>-question` , which will visualize the contents of `questions/<deck id>/<question id>-question`; in this file, we can embed any content, of any type or length, to define our questions and options; there could be a YouTube video embedded (no longer than 40 seconds), and below the list of options are questions specific to the video content; or it could be the picture of a famous frame or art piece; or a snippet; or a link to a website. Come up with different options, also depending on the context of the deck.
+- Options are only of one type: a text string of maximum 80 characters
+- Answers can be of different types, depending on the question:
+    - Binary answer: True/False, On/Off, Black/White
+    - Free answer: Decade (1980-1990-2000-2010-2020), ordering number (for example, order options from youngest to oldest), color (yellow-green-red-etc), names, labels, ...
+- The type of questions and answers must be more varied and shuffled within the deck
+- Answers must be maximum 15 characters
 - Split longer concepts into simpler terms to meet the 20-character limit. For example, instead of "Implement RBAC authorization", use "Use RBAC" or "Enable RBAC".
-- Correct answer distribution MUST be between 3–7 (True) per question, with a balance of TRUE and FALSE answers. This is a STRICT requirement.
-- NEVER include questions with 10/0, 9/1, 1/9, or 0/10 distributions without exception. Having all TRUE or all FALSE answers is not acceptable for game play.
+- Correct answer distribution for binary answers MUST be between 3–7 (True) per question, with a balance of TRUE and FALSE answers. This is a STRICT requirement.
+- NEVER include questions with 10/0, 9/1, 1/9, or 0/10 binary answer distributions without exception. Having all TRUE or all FALSE answers is not acceptable for game play.
 - Each option must be clear, stand-alone, and unambiguous.
 - Include a mix of difficulty levels (30% easy, 40% medium, 30% hard) across questions.
 
@@ -30,6 +41,7 @@ For each question generated, create the following files in the `questions` direc
 2. `<deck id>/<question id>-output.svg`: Contains only the SVG code for the physical game board, ready for publication
 3. `<deck id>/<question id>-output.pdf`: Contains only the PDF version of the SVG image, sized 11x11 centimeters, ready for printing, using the command `rsvg-convert -f pdf -o <deck id>/<question id>-output.pdf -w 416 -h 416 <deck id>/<question id>-output.svg`
 4. `<deck id>/<question id>-answers.md`: Contains the list of options with their answers
+5. (for questions of type QR only) `<deck id>/<question id>-qr.png`: Contains the QR code encoding `https://blog.session.it/quiz/questions/<deck id>/<question id>-question` which is visualized in the diagram
 
 Where `<question id>` is a unique numeric identifier for each question (e.g., "001", "042", "123", etc.). Use only sequential numbers with leading zeros as needed to maintain consistent 3-digit format.
 
@@ -59,8 +71,8 @@ The SVG layout must match the Smart10 game board design with:
 
 - Each diagram has 21 elements: 1 question, 10 options and 10 answers.
 - The question sits in the center of the diagram:
-  - If text of the question is smaller than 200 chars, show the text in a box, with multi-line (3-4 lines), word-wrap, centered, with 24px font-size
-  - If the text of the question is bigger than 200 chars OR there is a `code snippet` included in the question, then do the following:
+  - for Text questions, show the text in a box, with multi-line (3-4 lines), word-wrap, centered, with 24px font-size
+  - for QR questions:
     - First, generate a QR code using the qrencode command:
       ```
       qrencode -o questions/<deck id>/<question id>-qr.png "https://blog.session.it/quiz/questions/<deck id>/<question id>-question"
@@ -100,7 +112,7 @@ The SVG layout must match the Smart10 game board design with:
   - For questions >200 characters (or with code snippet), has the QR code been generated with qrencode and properly referenced in the SVG?
   - Are option texts formatted to display in 3-4 lines where needed?
   - All elements (except the background square) have a transparent background?
-- Can QR code image links in SVG files (that is, the `xlink:href` attribute in the `<image>` element) can be resolved with `curl` (or similar command) ?
+- Check all URLs mentioned in the `.svg` and `.md` files using `curl` (or similar command)
 
 ### ✅ Text layout validation
 
