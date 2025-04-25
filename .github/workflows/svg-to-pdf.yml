@@ -4,6 +4,12 @@ on:
   push:
     paths:
       - '**/*.svg'
+  workflow_dispatch:
+    inputs:
+      deck_name:
+        description: 'Name of the deck to process (e.g., "deck1")'
+        required: true
+        type: string
 
 jobs:
   convert-svg:
@@ -14,19 +20,26 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Get changed files
-        id: changed-files
+      - name: Get files to process
+        id: files-to-process
+        if: github.event_name == 'push'
         uses: tj-actions/changed-files@v46
         with:
           files: |
             questions/**/*.svg
 
+      - name: Set files to process for manual run
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          echo "all_changed_files=$(find questions/${{ github.event.inputs.deck_name }} -name '*.svg' | tr '\n' ' ')" >> $GITHUB_OUTPUT
+          echo "any_changed=true" >> $GITHUB_OUTPUT
+
       - name: Convert SVG to PDF
-        if: steps.changed-files.outputs.any_changed == 'true'
+        if: steps.files-to-process.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
         uses: docker://minidocks/librsvg
         with:
           args: |
-            for svg_file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            for svg_file in ${{ steps.files-to-process.outputs.all_changed_files }}; do
               if [ -f "$svg_file" ] && [[ "$svg_file" == *.svg ]]; then
                 filename=$(basename "$svg_file" .svg)
                 rsvg-convert -f pdf -o "$(dirname "$svg_file")/${filename}-output.pdf" -w 416 -h 416 "$svg_file"
@@ -34,7 +47,7 @@ jobs:
             done
 
       - name: Commit and push changes
-        if: steps.changed-files.outputs.any_changed == 'true'
+        if: steps.files-to-process.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
