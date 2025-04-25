@@ -31,26 +31,30 @@ jobs:
       - name: Set files to process for manual run
         if: github.event_name == 'workflow_dispatch'
         run: |
-          echo "all_changed_files=$(find questions/${{ github.event.inputs.deck_name }} -name '*.svg' | tr '\n' ' ')" >> $GITHUB_OUTPUT
+          echo "all_changed_files=$(find decks/${{ github.event.inputs.deck_name }} -name '*.svg' | tr '\n' ' ')" >> $GITHUB_OUTPUT
           echo "any_changed=true" >> $GITHUB_OUTPUT
 
       - name: Convert SVG to PDF
         if: steps.files-to-process.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
-        uses: docker://minidocks/librsvg
-        with:
-          args: |
-            for svg_file in ${{ steps.files-to-process.outputs.all_changed_files }}; do
-              if [ -f "$svg_file" ] && [[ "$svg_file" == *.svg ]]; then
-                filename=$(basename "$svg_file" .svg)
-                rsvg-convert -f pdf -o "$(dirname "$svg_file")/${filename}-output.pdf" -w 416 -h 416 "$svg_file"
-              fi
-            done
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            svg_files=$(find decks/${{ github.event.inputs.deck_name }} -name '*.svg')
+          else
+            svg_files="${{ steps.files-to-process.outputs.all_changed_files }}"
+          fi
+          
+          for svg_file in $svg_files; do
+            if [ -f "$svg_file" ] && [[ "$svg_file" == *.svg ]]; then
+              filename=$(basename "$svg_file" .svg)
+              rsvg-convert -f pdf -o "$(dirname "$svg_file")/${filename}-output.pdf" -w 416 -h 416 "$svg_file"
+            fi
+          done
 
       - name: Commit and push changes
         if: steps.files-to-process.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add questions/*.pdf
+          git add decks/*.pdf
           git commit -m "Convert SVG to PDF" || exit 0
           git push 
