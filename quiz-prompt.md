@@ -67,7 +67,7 @@ The SVG layout must match the Smart10 game board design with:
     - Then, embed the QR code file in the SVG by directly referencing the image file:
       ```xml
       <!-- Direct QR code image reference -->
-      <image x="-100" y="-100" width="200" height="200" xlink:href="<question id>-qr.png" />
+      <image x="-100" y="-100" width="200" height="200" xlink:href="https://blog.session.it/quiz/questions/<question id>-qr.png" />
       ```
     - Last, hide the question ring
 - All option texts should be broken into 3-4 lines where appropriate to keep text box width smaller (maximum 200px width)
