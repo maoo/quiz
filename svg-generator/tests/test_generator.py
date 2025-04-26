@@ -137,8 +137,7 @@ def test_generate_svg_with_qr(mock_svgwrite, temp_markdown_file, temp_qr_file, t
     mock_drawing.save.assert_called_once_with(pretty=True, indent=2)
 
 @patch('generator.QuizSVGGenerator')
-@patch('sys.argv')
-def test_main(mock_argv, mock_generator_class, tmp_path):
+def test_main(mock_generator_class, tmp_path):
     """Test the main function."""
     # Setup
     mock_generator = MagicMock()
@@ -146,28 +145,39 @@ def test_main(mock_argv, mock_generator_class, tmp_path):
     
     input_path = str(tmp_path / "input.md")
     output_path = str(tmp_path / "output.svg")
-    mock_argv.__getitem__.side_effect = lambda i: [
-        'generator.py', input_path, output_path
-    ][i]
     
-    # Run
-    main()
+    # Save original argv
+    orig_argv = sys.argv
     
-    # Verify
-    mock_generator_class.assert_called_once_with()
-    mock_generator.generate_svg.assert_called_once_with(input_path, output_path)
+    try:
+        # Override sys.argv with test values
+        sys.argv = ['generator.py', input_path, output_path]
+        
+        # Run
+        main()
+        
+        # Verify
+        mock_generator_class.assert_called_once_with()
+        mock_generator.generate_svg.assert_called_once_with(input_path, output_path)
+    finally:
+        # Restore original argv
+        sys.argv = orig_argv
 
-@patch('sys.exit')
-@patch('sys.argv')
-def test_main_error(mock_argv, mock_exit, tmp_path):
+def test_main_error():
     """Test the main function with insufficient arguments."""
-    # Setup
-    mock_argv.__getitem__.side_effect = lambda i: [
-        'generator.py'
-    ][i]
+    # Save original argv
+    orig_argv = sys.argv
     
-    # Run
-    main()
-    
-    # Verify
-    mock_exit.assert_called_once_with(1)
+    try:
+        # Override sys.argv with test values
+        sys.argv = ['generator.py']
+        
+        # With pytest.raises we catch the SystemExit and verify it has the right exit code
+        with pytest.raises(SystemExit) as excinfo:
+            main()
+        
+        # Check that the exit code is 1
+        assert excinfo.value.code == 1
+    finally:
+        # Restore original argv
+        sys.argv = orig_argv

@@ -128,7 +128,7 @@ class QuizSVGGenerator:
         dwg.save(pretty=True, indent=2)
 
 def main():
-    if len(sys.argv) != 3:
+    if len(sys.argv) < 3:
         print("Usage: python generator.py <input_markdown> <output_svg>")
         sys.exit(1)
     
