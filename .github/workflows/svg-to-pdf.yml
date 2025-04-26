@@ -1,9 +1,10 @@
 name: Convert SVG to PDF
 
 on:
-  push:
-    paths:
-      - 'decks/**/*.svg'
+  workflow_run:
+    workflows: ["Convert Markdown to SVG"]
+    types:
+      - completed
   workflow_dispatch:
     inputs:
       deck_name:
@@ -26,11 +27,13 @@ jobs:
 
       - name: Get files to process
         id: files-to-process
-        if: github.event_name == 'push'
-        uses: tj-actions/changed-files@v46
-        with:
-          files: |
-            decks/**/*.svg
+        if: github.event_name == 'workflow_run'
+        run: |
+          # Get the commit that triggered this workflow
+          COMMIT_SHA=${{ github.event.workflow_run.head_commit.id }}
+          # Get the list of SVG files that were changed in that commit
+          echo "all_changed_files=$(git diff-tree --no-commit-id --name-only -r $COMMIT_SHA | grep 'decks/.*\.svg$' | tr '\n' ' ')" >> $GITHUB_OUTPUT
+          echo "any_changed=true" >> $GITHUB_OUTPUT
 
       - name: Set files to process for manual run
         if: github.event_name == 'workflow_dispatch'
