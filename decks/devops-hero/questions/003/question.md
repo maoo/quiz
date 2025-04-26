@@ -20,4 +20,4 @@ Identify the decade when each of these foundational DevOps technologies was firs
 - [Kubernetes History](https://kubernetes.io/blog/2015/04/borg-predecessor-to-kubernetes/)
 - Historical documentation from each project
 
-URL: https://blog.session.it/quiz/decks/devops-hero/questions/003-question
+URL: https://blog.session.it/quiz/decks/devops-hero/questions/003/question

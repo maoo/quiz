@@ -20,4 +20,4 @@ This question tests your knowledge of open source status of popular continuous i
 - [OpenSource CI/CD tools](https://github.com/topics/continuous-integration)
 - [CNCF Landscape - CI/CD](https://landscape.cncf.io/card-mode?category=continuous-integration-delivery)
 
-URL: https://blog.session.it/quiz/decks/devops-hero/questions/007-question
+URL: https://blog.session.it/quiz/decks/devops-hero/questions/007/question

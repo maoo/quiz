@@ -18,4 +18,4 @@ This question tests your knowledge of projects that have reached graduated statu
 - [CNCF Graduated Projects](https://www.cncf.io/projects/)
 - [CNCF Landscape](https://landscape.cncf.io/)
 
-URL: https://blog.session.it/quiz/decks/devops-hero/questions/001-question
+URL: https://blog.session.it/quiz/decks/devops-hero/questions/001/question
