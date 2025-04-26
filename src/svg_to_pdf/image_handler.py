@@ -1,4 +1,7 @@
-"""Image handling utilities for SVG to PDF conversion."""
+"""
+Image handling utilities for SVG to PDF conversion.
+"""
+
 import base64
 import logging
 import os
@@ -11,25 +14,35 @@ from PIL import Image
 
 logger = logging.getLogger(__name__)
 
+
 class ImageHandler:
-    """Handles image references in SVG files."""
+    """
+    Handles image references in SVG files.
+    
+    This class provides functionality to:
+    - Convert remote image URLs to local file paths
+    - Embed small images as data URIs
+    - Handle case-sensitive file systems
+    """
     
     def __init__(self, base_dir: Optional[str] = None):
-        """Initialize the image handler.
+        """
+        Initialize the image handler.
         
         Args:
-            base_dir (str, optional): Base directory for image resolution
+            base_dir: Base directory for image resolution
         """
         self.base_dir = base_dir or os.getcwd()
         
     def fix_image_references(self, svg_content: str) -> str:
-        """Replace remote image references with local file paths and embed small images.
+        """
+        Replace remote image references with local file paths and embed small images.
         
         Args:
-            svg_content (str): SVG file content
+            svg_content: SVG file content
             
         Returns:
-            str: Modified SVG content with fixed image references
+            Modified SVG content with fixed image references
         """
         # Regular expression to find image references in the SVG
         image_pattern = r'<image([^>]*?)xlink:href="([^"]+)"([^>]*?)/?>'
@@ -107,4 +120,4 @@ class ImageHandler:
         
         # Replace all image references
         modified_content = re.sub(image_pattern, replace_image_ref, svg_content)
-        return modified_content
+        return modified_content 

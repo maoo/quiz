@@ -3,7 +3,7 @@ name: Build and Push Docker Image for PDF Generator
 on:
   push:
     paths:
-      - 'Dockerfile'
+      - 'src/svg_to_pdf/Dockerfile'
   workflow_dispatch:
 
 jobs:

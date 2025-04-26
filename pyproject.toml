@@ -1,16 +1,51 @@
 [tool.poetry]
-name = "quiz-test"
+name = "quiz-tools"
 version = "0.1.0"
-description = "Quiz SVG Generator"
+description = "Tools for generating and converting SVG content"
 authors = ["Your Name <your.email@example.com>"]
+readme = "README.md"
 packages = [
-    { include = "svg-generator" }
+    { include = "svg_to_pdf", from = "src" },
+    { include = "svg_generator", from = "src" }
 ]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.9"
+cairosvg = "^2.7.1"
+reportlab = "^4.0.9"
 svgwrite = "^1.4.3"
+pillow = "^10.2.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+pytest-cov = "^4.1.0"
+black = "^24.2.0"
+isort = "^5.13.2"
+mypy = "^1.8.0"
+flake8 = "^7.0.0"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api" 
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "--cov=src --cov-report=xml"
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+check_untyped_defs = true 

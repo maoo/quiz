@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 SVG to PDF Converter with image support.
 
@@ -14,27 +13,35 @@ import tempfile
 from pathlib import Path
 from typing import List, Optional
 
-from svg_to_pdf.converters.base import BaseConverter
-from svg_to_pdf.converters.cairo_converter import CairoConverter
-from svg_to_pdf.converters.weasyprint_converter import WeasyPrintConverter
-from svg_to_pdf.converters.svglib_converter import SvglibConverter
-from svg_to_pdf.converters.system_converter import (
+from .converters.base import BaseConverter
+from .converters.cairo_converter import CairoConverter
+from .converters.weasyprint_converter import WeasyPrintConverter
+from .converters.svglib_converter import SvglibConverter
+from .converters.system_converter import (
     InkscapeConverter,
     RsvgConverter,
     ChromeConverter,
     ImageMagickConverter
 )
-from svg_to_pdf.image_handler import ImageHandler
+from .image_handler import ImageHandler
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
 logger = logging.getLogger(__name__)
 
+
 class SVGToPDFConverter:
-    """Main SVG to PDF conversion class."""
+    """
+    Main SVG to PDF conversion class.
+    
+    This class provides a unified interface for converting SVG files to PDF
+    using multiple conversion methods. It automatically handles image references
+    and ensures proper scaling of the output.
+    """
     
     def __init__(self, dpi: int = 254):
-        """Initialize the SVG to PDF converter.
+        """
+        Initialize the SVG to PDF converter.
         
         Args:
             dpi: DPI to use for PDF generation (default: 254 which gives 100px per cm)
@@ -43,7 +50,8 @@ class SVGToPDFConverter:
         self.converters = self._create_converters()
         
     def _create_converters(self) -> List[BaseConverter]:
-        """Create all available converters in order of preference.
+        """
+        Create all available converters in order of preference.
         
         Returns:
             List of converter instances.
@@ -59,7 +67,8 @@ class SVGToPDFConverter:
         ]
         
     def convert_svg_to_pdf(self, svg_file: str, output_file: Optional[str] = None) -> str:
-        """Convert SVG file to PDF with proper image handling.
+        """
+        Convert SVG file to PDF with proper image handling.
         
         Args:
             svg_file: Path to the SVG file
@@ -120,8 +129,14 @@ class SVGToPDFConverter:
             if os.path.exists(temp_svg_path):
                 os.unlink(temp_svg_path)
 
-def main():
-    """Command-line interface for the SVG to PDF converter."""
+
+def main() -> int:
+    """
+    Command-line interface for the SVG to PDF converter.
+    
+    Returns:
+        int: Exit code (0 for success, 1 for failure)
+    """
     parser = argparse.ArgumentParser(description='Convert SVG files to PDF with proper image support')
     parser.add_argument('svg_file', help='Path to the SVG file to convert')
     parser.add_argument('-o', '--output', help='Path to the output PDF file')
@@ -152,5 +167,6 @@ def main():
         logger.error(f"Conversion failed: {e}")
         return 1
 
+
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(main()) 

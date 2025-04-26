@@ -1,1 +1,0 @@
-"""SVG to PDF converter package."""
