@@ -25,15 +25,37 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Wait for push to be processed
+        if: github.event_name == 'workflow_run'
+        run: |
+          echo "Waiting 10 seconds to ensure push is processed..."
+          sleep 10
+
       - name: Get files to process
         id: files-to-process
         if: github.event_name == 'workflow_run'
         run: |
           # Get the commit that triggered this workflow
           COMMIT_SHA=${{ github.event.workflow_run.head_commit.id }}
-          # Get the list of SVG files that were changed in that commit
-          echo "all_changed_files=$(git diff-tree --no-commit-id --name-only -r $COMMIT_SHA | grep 'decks/.*/questions/.*/card\.svg$' | tr '\n' ' ')" >> $GITHUB_OUTPUT
-          echo "any_changed=true" >> $GITHUB_OUTPUT
+          
+          # First try to get files from the specific commit
+          CHANGED_FILES=$(git diff-tree --no-commit-id --name-only -r $COMMIT_SHA | grep 'decks/.*/questions/.*/card\.svg$' || true)
+          
+          # If no files found, try to get all SVG files that were modified in the last 5 minutes
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "No files found in commit, checking recent changes..."
+            CHANGED_FILES=$(find decks -name 'card.svg' -mmin -5 2>/dev/null || true)
+          fi
+          
+          if [ -n "$CHANGED_FILES" ]; then
+            echo "Found files to process:"
+            echo "$CHANGED_FILES"
+            echo "all_changed_files=$(echo "$CHANGED_FILES" | tr '\n' ' ')" >> $GITHUB_OUTPUT
+            echo "any_changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "No files to process"
+            echo "any_changed=false" >> $GITHUB_OUTPUT
+          fi
 
       - name: Set files to process for manual run
         if: github.event_name == 'workflow_dispatch'
@@ -84,15 +106,31 @@ jobs:
             local pdf_output="$(dirname "$svg_file")/card.pdf"
             
             echo "Converting $svg_file to $pdf_output"
-            poetry run python -m src.svg_to_pdf.converter "$svg_file" -o "$pdf_output" --width 11 --height 11
+            if ! poetry run python -m src.svg_to_pdf.converter "$svg_file" -o "$pdf_output" --width 11 --height 11; then
+              echo "Error: Failed to convert $svg_file"
+              return 1
+            fi
+            return 0
           }
 
           # Process each SVG file
+          failed_files=()
           for svg_file in $(get_svg_files); do
             if [ -f "$svg_file" ] && [[ "$svg_file" == *.svg ]]; then
-              convert_svg_to_pdf "$svg_file"
+              if ! convert_svg_to_pdf "$svg_file"; then
+                failed_files+=("$svg_file")
+              fi
+            else
+              echo "Warning: $svg_file not found or not an SVG file"
             fi
           done
+
+          # Fail the workflow if any conversions failed
+          if [ ${#failed_files[@]} -ne 0 ]; then
+            echo "Error: Failed to convert the following files:"
+            printf '%s\n' "${failed_files[@]}"
+            exit 1
+          fi
 
       - name: Commit and push changes
         if: steps.files-to-process.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
