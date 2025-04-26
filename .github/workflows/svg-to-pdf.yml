@@ -7,8 +7,8 @@ on:
   workflow_dispatch:
     inputs:
       deck_name:
-        description: 'Name of the deck to process (e.g., "deck1")'
-        required: true
+        description: 'Name of the deck to process (e.g., "deck1"). Leave empty to process all decks.'
+        required: false
         type: string
 
 jobs:
@@ -34,14 +34,22 @@ jobs:
       - name: Set files to process for manual run
         if: github.event_name == 'workflow_dispatch'
         run: |
-          echo "all_changed_files=$(find decks/${{ github.event.inputs.deck_name }} -name '*.svg' | tr '\n' ' ')" >> $GITHUB_OUTPUT
+          if [ -n "${{ github.event.inputs.deck_name }}" ]; then
+            echo "all_changed_files=$(find decks/${{ github.event.inputs.deck_name }} -name '*.svg' | tr '\n' ' ')" >> $GITHUB_OUTPUT
+          else
+            echo "all_changed_files=$(find decks -name '*.svg' | tr '\n' ' ')" >> $GITHUB_OUTPUT
+          fi
           echo "any_changed=true" >> $GITHUB_OUTPUT
 
       - name: Convert SVG to PDF
         if: steps.files-to-process.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
         run: |
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
-            svg_files=$(find decks/${{ github.event.inputs.deck_name }} -name '*.svg')
+            if [ -n "${{ github.event.inputs.deck_name }}" ]; then
+              svg_files=$(find decks/${{ github.event.inputs.deck_name }} -name '*.svg')
+            else
+              svg_files=$(find decks -name '*.svg')
+            fi
           else
             svg_files="${{ steps.files-to-process.outputs.all_changed_files }}"
           fi
