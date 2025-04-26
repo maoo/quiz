@@ -94,8 +94,8 @@ test_all_decks() {
 }
 
 # Copy the script to the test directory
+mkdir -p "$TEST_DIR/scripts"
 cp scripts/generate_svgs.sh "$TEST_DIR/scripts/"
-chmod +x "$TEST_DIR/scripts/generate_svgs.sh"
 
 # Run tests
 test_specific_deck

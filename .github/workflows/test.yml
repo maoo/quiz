@@ -60,8 +60,7 @@ jobs:
 
     - name: Run script tests
       run: |
-        chmod +x tests/test_generate_svgs.sh
-        ./tests/test_generate_svgs.sh
+        ./scripts/test_generate_svgs.sh
 
     # - name: Upload coverage
     #   uses: codecov/codecov-action@v3
