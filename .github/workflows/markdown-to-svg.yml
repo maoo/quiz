@@ -69,11 +69,13 @@ jobs:
           fi
           ./scripts/generate_svgs.sh "${DECK_NAME}"
           ls -lrt decks/**/*.svg
-          
-      - name: Commit and push if changed
+
+      - name: Commit and push changes
         if: steps.changed-files.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add "**/*-output.svg"
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Update SVG files" && git push) 
+          ls -lrt decks/**/*.svg
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add decks/**/*.svg
+          git commit -m "Convert Markdown to SVG" || exit 0
+          git push origin HEAD:${{ github.ref }} 
