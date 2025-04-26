@@ -70,7 +70,7 @@ jobs:
                 -w /work \
                 ghcr.io/${{ github.repository }}/svg-to-pdf:latest \
                 rsvg-convert -f pdf \
-                  -o "$(dirname "$svg_file")/${filename}-output.pdf" \
+                  -o "$(dirname "$svg_file")/${filename}.pdf" \
                   -w 416 \
                   -h 416 \
                   "$svg_file"
