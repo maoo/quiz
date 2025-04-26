@@ -1,5 +1,8 @@
 import pytest
+import os
+import sys
 from src.svg_to_pdf.converter import SVGToPDFConverter
+from unittest.mock import patch
 
 def test_converter_initialization():
     converter = SVGToPDFConverter()
@@ -27,4 +30,34 @@ def test_invalid_svg_content():
     invalid_svg = "not a valid svg content"
     
     with pytest.raises(Exception):
-        converter.convert(invalid_svg, "output.pdf") 
+        converter.convert(invalid_svg, "output.pdf")
+
+def test_cli_interface(tmp_path):
+    # Create a test SVG file
+    svg_file = tmp_path / "test.svg"
+    svg_content = """
+    <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="100" fill="red"/>
+    </svg>
+    """
+    svg_file.write_text(svg_content)
+    
+    # Create a non-SVG file to test filtering
+    non_svg_file = tmp_path / "README.md"
+    non_svg_file.write_text("# Test README")
+    
+    # Test the CLI with a single SVG file
+    with patch.object(sys, 'argv', ['converter.py', str(svg_file)]):
+        from src.svg_to_pdf.converter import main
+        main()
+    
+    # Verify the output PDF was created
+    output_pdf = tmp_path / "test.pdf"
+    assert output_pdf.exists()
+    assert output_pdf.stat().st_size > 0
+    
+    # Test that non-SVG files are ignored
+    with patch.object(sys, 'argv', ['converter.py', str(non_svg_file)]):
+        with pytest.raises(SystemExit) as exc_info:
+            main()
+        assert exc_info.value.code != 0  # Should exit with error 

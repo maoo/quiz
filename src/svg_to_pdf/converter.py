@@ -97,6 +97,41 @@ class SVGToPDFConverter:
                 os.unlink(temp_svg_path)
 
 
+def process_directory(input_dir: str, output_dir: Optional[str] = None) -> List[str]:
+    """
+    Process all SVG files in a directory.
+    
+    Args:
+        input_dir: Path to the input directory
+        output_dir: Path to the output directory (optional)
+        
+    Returns:
+        List of paths to generated PDF files
+    """
+    input_path = Path(input_dir)
+    if not input_path.is_dir():
+        raise ValueError(f"{input_dir} is not a directory")
+        
+    if output_dir is None:
+        output_path = input_path
+    else:
+        output_path = Path(output_dir)
+        output_path.mkdir(parents=True, exist_ok=True)
+    
+    converter = SVGToPDFConverter()
+    generated_pdfs = []
+    
+    for svg_file in input_path.glob("*.svg"):
+        try:
+            output_file = str(output_path / svg_file.with_suffix('.pdf').name)
+            converter.convert_svg_to_pdf(str(svg_file), output_file)
+            generated_pdfs.append(output_file)
+        except Exception as e:
+            logger.error(f"Failed to process {svg_file}: {e}")
+    
+    return generated_pdfs
+
+
 def main() -> int:
     """
     Command-line interface for the SVG to PDF converter.
@@ -105,8 +140,8 @@ def main() -> int:
         int: Exit code (0 for success, 1 for failure)
     """
     parser = argparse.ArgumentParser(description='Convert SVG files to PDF with proper image support')
-    parser.add_argument('svg_file', help='Path to the SVG file to convert')
-    parser.add_argument('-o', '--output', help='Path to the output PDF file')
+    parser.add_argument('input', help='Path to the SVG file or directory to convert')
+    parser.add_argument('-o', '--output', help='Path to the output PDF file or directory')
     parser.add_argument('--width', type=float, default=11, help='Width in centimeters (default: 11)')
     parser.add_argument('--height', type=float, default=11, help='Height in centimeters (default: 11)')
     parser.add_argument('-v', '--verbose', action='store_true', help='Enable verbose output')
@@ -123,13 +158,25 @@ def main() -> int:
             logging.getLogger(name).setLevel(logging.DEBUG)
     
     try:
-        converter = SVGToPDFConverter(dpi=args.dpi)
-        output_file = converter.convert_svg_to_pdf(
-            args.svg_file, 
-            args.output
-        )
-        logger.info(f"Conversion complete: {output_file}")
-        return 0
+        input_path = Path(args.input)
+        
+        if input_path.is_dir():
+            # Process directory
+            process_directory(str(input_path), args.output)
+            return 0
+        elif input_path.suffix.lower() == '.svg':
+            # Process single file
+            converter = SVGToPDFConverter(dpi=args.dpi)
+            output_file = converter.convert_svg_to_pdf(
+                str(input_path), 
+                args.output
+            )
+            logger.info(f"Conversion complete: {output_file}")
+            return 0
+        else:
+            logger.error(f"Input must be either a directory or an SVG file: {args.input}")
+            return 1
+            
     except Exception as e:
         logger.error(f"Conversion failed: {e}")
         return 1

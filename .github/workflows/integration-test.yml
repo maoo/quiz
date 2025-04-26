@@ -76,10 +76,7 @@ jobs:
           
       - name: Convert SVGs to PDFs
         run: |
-          for svg_file in /tmp/integration-test/output/*.svg; do
-            filename=$(basename "$svg_file" .svg)
-            poetry run python -m src.svg_to_pdf.converter "$svg_file" "/tmp/integration-test/output/${filename}.pdf"
-          done
+          poetry run python -m src.svg_to_pdf.converter /tmp/integration-test/output -o /tmp/integration-test/output
           
       - name: Verify PDFs were created
         run: |
