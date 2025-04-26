@@ -13,17 +13,8 @@ import tempfile
 from pathlib import Path
 from typing import List, Optional
 
-from .converters.base import BaseConverter
-from .converters.cairo_converter import CairoConverter
-from .converters.weasyprint_converter import WeasyPrintConverter
-from .converters.svglib_converter import SvglibConverter
-from .converters.system_converter import (
-    InkscapeConverter,
-    RsvgConverter,
-    ChromeConverter,
-    ImageMagickConverter
-)
-from .image_handler import ImageHandler
+from svg_to_pdf.converters.cairo_converter import CairoConverter
+from svg_to_pdf.image_handler import ImageHandler
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
@@ -35,7 +26,7 @@ class SVGToPDFConverter:
     Main SVG to PDF conversion class.
     
     This class provides a unified interface for converting SVG files to PDF
-    using multiple conversion methods. It automatically handles image references
+    using CairoSVG. It automatically handles image references
     and ensures proper scaling of the output.
     """
     
@@ -47,24 +38,7 @@ class SVGToPDFConverter:
             dpi: DPI to use for PDF generation (default: 254 which gives 100px per cm)
         """
         self.dpi = dpi
-        self.converters = self._create_converters()
-        
-    def _create_converters(self) -> List[BaseConverter]:
-        """
-        Create all available converters in order of preference.
-        
-        Returns:
-            List of converter instances.
-        """
-        return [
-            CairoConverter(self.dpi),
-            WeasyPrintConverter(self.dpi),
-            SvglibConverter(self.dpi),
-            InkscapeConverter(self.dpi),
-            RsvgConverter(self.dpi),
-            ChromeConverter(self.dpi),
-            ImageMagickConverter(self.dpi)
-        ]
+        self.converter = CairoConverter(self.dpi)
         
     def convert_svg_to_pdf(self, svg_file: str, output_file: Optional[str] = None) -> str:
         """
@@ -78,7 +52,7 @@ class SVGToPDFConverter:
             Path to the generated PDF file
             
         Raises:
-            Exception: If all conversion methods fail
+            Exception: If conversion fails
         """
         svg_path = Path(svg_file)
         
@@ -102,21 +76,14 @@ class SVGToPDFConverter:
             temp_svg.write(modified_svg.encode('utf-8'))
         
         try:
-            # Convert SVG to PDF using our converters in order
+            # Convert SVG to PDF
             logger.info(f"Converting {svg_file} to {output_file} at {self.dpi} DPI")
             
             with open(temp_svg_path, 'rb') as f:
                 svg_bytes = f.read()
                 
-            # Try each converter until one succeeds
-            success = False
-            for converter in self.converters:
-                if converter.convert(svg_bytes, output_file):
-                    success = True
-                    break
-            
-            if not success:
-                raise Exception("All conversion methods failed")
+            if not self.converter.convert(svg_bytes, output_file):
+                raise Exception("Conversion failed")
                 
             logger.info(f"Successfully created PDF: {output_file}")
             return output_file

@@ -57,7 +57,8 @@ jobs:
       - name: Install dependencies
         run: |
           cd src/svg_to_pdf
-          poetry install
+          poetry install --with dev
+          poetry install --no-interaction
 
       - name: Convert SVG to PDF
         if: steps.files-to-process.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
@@ -100,4 +101,9 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add decks/**/*.pdf
           git commit -m "Convert SVG to PDF" || exit 0
-          git push origin HEAD:${{ github.ref }} 
+          git push origin HEAD:${{ github.ref }}
+
+      - name: Run tests
+        run: |
+          cd src/svg_to_pdf
+          PYTHONPATH=$PYTHONPATH:$(pwd)/../.. poetry run pytest --cov=src --cov-report=xml 
