@@ -11,6 +11,7 @@ Each deck must have a homepage on https://blog.session.it/quiz/decks/<deck id>, 
 - 3 Paragraphs description of the game, mostly around the questions, topics, sources, etc
 - The list of questions, with a link to `https://blog.session.it/quiz/decks/<deck id>/questions/<question id>-question` for each of them ; also add a link to the SVG and PDF version of the question.
 
+The deck homepage must be always updated with all questions, everytime a question is added, updated or removed from a deck.
 
 ## 🎯 Objective
 
@@ -66,3 +67,4 @@ Each `<question id>-question.md` should include:
 - Are there 3–7 correct (True) answers?
 - Are answers undisputable, based on trusted sources?
 - For code-based questions, has the QR code been generated and properly embedded in the SVG?
+- Is the deck homepage up to date with all questions and with links to SVG and PDF versions of the question?
