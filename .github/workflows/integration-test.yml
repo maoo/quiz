@@ -55,7 +55,6 @@ jobs:
           
       - name: Create test QR code
         run: |
-          poetry install
           cd integration-test/questions
           printf '%s\n' 'import qrcode' \
             'qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_L, box_size=10, border=4)' \
@@ -63,10 +62,11 @@ jobs:
             'qr.make(fit=True)' \
             "img = qr.make_image(fill_color='black', back_color='white')" \
             "img.save('test-qr.png')" | poetry run python3
+          cd ../..  # Change back to the root directory
           
       - name: Generate Quiz
         run: |
-          poetry run python -m src.svg_generator.generator ../integration-test/questions/test-question.md ../integration-test/questions/test-output.pdf
+          poetry run python -m src.svg_generator.generator integration-test/questions/test-question.md integration-test/questions/test-output.pdf
           
       - name: Verify PDF was created
         run: |
