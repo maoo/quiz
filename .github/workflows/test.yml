@@ -3,8 +3,20 @@ name: Test
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'src/**'
+      - 'scripts/**'
+      - 'tests/**'
+      - 'pyproject.toml'
+      - 'poetry.lock'
   pull_request:
     branches: [ main ]
+    paths:
+      - 'src/**'
+      - 'scripts/**'
+      - 'tests/**'
+      - 'pyproject.toml'
+      - 'poetry.lock'
 
 jobs:
   test:
@@ -39,12 +51,17 @@ jobs:
     - name: Install project
       run: poetry install --no-interaction
       
-    - name: Run tests
+    - name: Run Python tests
       run: |
         poetry run pytest --cov=src --cov-report=xml
         
     - name: Run type checking
       run: poetry run mypy src
+
+    - name: Run script tests
+      run: |
+        chmod +x tests/test_generate_svgs.sh
+        ./tests/test_generate_svgs.sh
 
     # - name: Upload coverage
     #   uses: codecov/codecov-action@v3

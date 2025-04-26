@@ -1,4 +1,4 @@
-name: Generate SVG from Markdown
+name: Convert Markdown to SVG
 
 on:
   push:
@@ -62,19 +62,17 @@ jobs:
         env:
           MARKDOWN_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
-          # Make script executable
-          chmod +x ./scripts/generate_svgs.sh
-          
           # Run script with deck name if provided in workflow_dispatch
-          if [ "${{ github.event_name }}" == "workflow_dispatch" ] && [ -n "${{ github.event.inputs.deck_name }}" ]; then
-            ./scripts/generate_svgs.sh "${{ github.event.inputs.deck_name }}"
-          else
-            ./scripts/generate_svgs.sh
+          DECK_NAME="${{ github.event.inputs.deck_name }}"
+          if [ "${{ github.event_name }}" != "workflow_dispatch" ] && [ -z "${{ github.event.inputs.deck_name }}" ]; then
+            DECK_NAME=""
           fi
+          ./scripts/generate_svgs.sh "${DECK_NAME}"
           
       - name: Commit and push if changed
         if: steps.changed-files.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
         run: |
+          ls -la "**/*-output.svg"
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add "**/*-output.svg"
