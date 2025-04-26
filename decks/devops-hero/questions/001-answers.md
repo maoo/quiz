@@ -1,18 +1,14 @@
-# DevOps Hero Question 001 - Answers ✅
+# Answers to: Which of these are CNCF graduated projects?
 
-## CNCF Graduated Projects
+1. Kubernetes - TRUE
+2. Prometheus - TRUE
+3. Docker - FALSE
+4. Podman - FALSE
+5. Envoy - TRUE
+6. Jenkins - FALSE
+7. Fluentd - TRUE
+8. Chef - FALSE
+9. Linkerd - FALSE
+10. Ansible - FALSE
 
-### Correct Answers
-1. ✅ Kubernetes
-2. ❌ Istio
-3. ✅ Prometheus
-4. ❌ Docker
-5. ✅ Envoy
-6. ❌ Jenkins
-7. ✅ Helm
-8. ❌ Traefik
-9. ✅ Fluentd
-10. ❌ OpenShift
-
-## Explanation
-This question tests knowledge of which projects have officially graduated from the CNCF incubation process. Graduated projects have demonstrated widespread adoption, a healthy contributor base, and commitment to the CNCF principles. Istio is a service mesh project maintained by Google, not a CNCF project. Docker donated containerd to CNCF but Docker itself is not a CNCF project. Jenkins is a CI/CD tool maintained by the Jenkins project, not CNCF. Traefik is an open-source project but not part of CNCF. OpenShift is Red Hat's Kubernetes platform, not a CNCF project.
+Note: As of creation date, the graduated CNCF projects among the options are Kubernetes, Prometheus, Envoy, and Fluentd. Docker was never part of CNCF. Linkerd is a CNCF project but at the incubating level, not graduated.

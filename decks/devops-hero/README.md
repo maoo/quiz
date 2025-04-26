@@ -28,7 +28,7 @@ The mix of difficulty levels provides an engaging experience for beginners and e
 
 ## Available Questions 📝
 
-1. [CNCF Graduated Projects](https://blog.session.it/quiz/decks/devops-hero/questions/001-question) 🚀 ([SVG](https://blog.session.it/quiz/decks/devops-hero/questions/001-output.svg)|[PDF](https://blog.session.it/quiz/decks/devops-hero/questions/001-output.pdf))
-2. [Dockerfile Best Practices](https://blog.session.it/quiz/decks/devops-hero/questions/002-question) 🐳 ([SVG](https://blog.session.it/quiz/decks/devops-hero/questions/002-output.svg)|[PDF](https://blog.session.it/quiz/decks/devops-hero/questions/002-output.pdf))
-3. [AWS Services Timeline](https://blog.session.it/quiz/decks/devops-hero/questions/003-question) ☁️ ([SVG](https://blog.session.it/quiz/decks/devops-hero/questions/003-output.svg)|[PDF](https://blog.session.it/quiz/decks/devops-hero/questions/003-output.pdf))
-4. [Kubernetes YAML Analysis](https://blog.session.it/quiz/decks/devops-hero/questions/004-question) ⚙️ ([SVG](https://blog.session.it/quiz/decks/devops-hero/questions/004-output.svg)|[PDF](https://blog.session.it/quiz/decks/devops-hero/questions/004-output.pdf))
+1. [Which of these are CNCF graduated projects?](https://blog.session.it/quiz/decks/devops-hero/questions/001-question) 🚀 ([SVG](https://blog.session.it/quiz/decks/devops-hero/questions/001-output.svg)|[PDF](https://blog.session.it/quiz/decks/devops-hero/questions/001-output.pdf))
+2. [Which statements are true for this Dockerfile?](https://blog.session.it/quiz/decks/devops-hero/questions/002-question) 🐳 ([SVG](https://blog.session.it/quiz/decks/devops-hero/questions/002-output.svg)|[PDF](https://blog.session.it/quiz/decks/devops-hero/questions/002-output.pdf))
+3. [In which decade were these DevOps technologies first released?](https://blog.session.it/quiz/decks/devops-hero/questions/003-question) 📅 ([SVG](https://blog.session.it/quiz/decks/devops-hero/questions/003-output.svg)|[PDF](https://blog.session.it/quiz/decks/devops-hero/questions/003-output.pdf))
+4. [Which statements are true about this Kubernetes manifest?](https://blog.session.it/quiz/decks/devops-hero/questions/004-question) ⚙️ ([SVG](https://blog.session.it/quiz/decks/devops-hero/questions/004-output.svg)|[PDF](https://blog.session.it/quiz/decks/devops-hero/questions/004-output.pdf))

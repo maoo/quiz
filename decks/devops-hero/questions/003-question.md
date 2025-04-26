@@ -1,25 +1,23 @@
-# DevOps Hero Question 003 ☁️
+# In which decade were these DevOps technologies first released?
 
-## AWS Services Timeline
+Identify the decade when each of these foundational DevOps technologies was first introduced to the public.
 
-In which decade were these AWS services first released to the public?
+## Options
+1. Docker
+2. Jenkins
+3. Kubernetes
+4. Terraform
+5. Ansible
+6. Nagios
+7. Prometheus
+8. Chef
+9. ArgoCD
+10. Puppet
 
-### Options
-1. EC2
-2. Lambda
-3. S3
-4. DynamoDB
-5. CloudFront
-6. Fargate
-7. Route 53
-8. CloudFormation
-9. EKS
-10. SageMaker
+## Sources
+- [Docker History](https://www.docker.com/company/history/)
+- [Jenkins History](https://www.jenkins.io/project/history/)
+- [Kubernetes History](https://kubernetes.io/blog/2015/04/borg-predecessor-to-kubernetes/)
+- Historical documentation from each project
 
-## References 📚
-- [AWS Service Launch Timeline](https://aws.amazon.com/about-aws/timeline/)
-- [History of AWS](https://techcrunch.com/2016/07/02/andy-jassys-brief-history-of-the-genesis-of-aws/)
-- [AWS Documentation](https://docs.aws.amazon.com/)
-
-## Question URL 🔗
-[View Question Online](https://blog.session.it/quiz/decks/devops-hero/questions/003-question)
+URL: https://blog.session.it/quiz/decks/devops-hero/questions/003-question

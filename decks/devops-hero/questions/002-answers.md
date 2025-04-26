@@ -1,18 +1,21 @@
-# DevOps Hero Question 002 - Answers ✅
+# Answers to: Which statements are true for this Dockerfile?
 
-## Dockerfile Best Practices
+1. Uses latest Alpine - FALSE
+2. Runs as non-root - TRUE
+3. Copies all files - TRUE
+4. Has security issue - FALSE
+5. Sets working dir - TRUE
+6. Uses multistage build - FALSE
+7. Installs Python 2 - FALSE
+8. Exposes port 8080 - TRUE
+9. Uses ENTRYPOINT - FALSE
+10. Caches pip packages - FALSE
 
-### Correct Answers
-1. ❌ Uses pinned version
-2. ❌ Has multi-stage build
-3. ❌ Runs as non-root
-4. ❌ Has cache efficiency
-5. ✅ Creates large image
-6. ❌ Uses HEALTHCHECK
-7. ✅ Has layer reduction
-8. ❌ Includes .dockerignore
-9. ❌ Uses best practices
-10. ❌ Has proper cleanup
-
-## Explanation
-This question tests understanding of Dockerfile best practices. The example violates several best practices: it uses the latest tag instead of a pinned version, lacks multi-stage builds, explicitly sets USER to root (security issue), doesn't use proper cache optimization with frequent changes last, uses Ubuntu instead of smaller base images, lacks a HEALTHCHECK command, doesn't mention .dockerignore file usage, and doesn't clean up apt caches. It does have some layer reduction by chaining commands with &&, but overall doesn't follow most container best practices.
+Notes:
+- It uses Alpine 3.14 specifically, not latest
+- It runs as 'nobody' user (non-root) which is good security practice
+- It uses COPY . . which copies all files from the context
+- Sets working directory to /app with WORKDIR
+- It uses `--no-cache-dir` for pip which prevents caching packages
+- It uses CMD not ENTRYPOINT
+- It installs Python 3, not Python 2

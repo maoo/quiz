@@ -55,7 +55,7 @@ brew install librsvg
 
 To generate new questions:
 ```sh
-Follow instructions in quiz-prompt.md, to build a quiz deck of type devops-hero; regenerate the first 4 questions, only using the content of the prompt as context.
+Follow instructions in quiz-prompt.md, to build a quiz deck of type devops-hero; generate the first 4 questions, only using the content of the prompt as context.
 ```
 
 To reiterate on existing questions:

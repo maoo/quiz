@@ -1,18 +1,24 @@
-# DevOps Hero Question 003 - Answers ✅
+# Answers to: In which decade were these DevOps technologies first released?
 
-## AWS Services Timeline
+1. Docker - 2010s
+2. Jenkins - 2000s
+3. Kubernetes - 2010s
+4. Terraform - 2010s
+5. Ansible - 2010s
+6. Nagios - 2000s
+7. Prometheus - 2010s
+8. Chef - 2000s
+9. ArgoCD - 2010s
+10. Puppet - 2000s
 
-### Correct Answers
-1. 2000s (2006)
-2. 2010s (2014)
-3. 2000s (2006)
-4. 2010s (2012)
-5. 2000s (2008)
-6. 2010s (2017)
-7. 2010s (2010)
-8. 2010s (2011)
-9. 2010s (2018)
-10. 2010s (2017)
-
-## Explanation
-This question tests knowledge of AWS service evolution timeline. The first AWS services (S3, EC2) were launched in the mid-2000s, forming the foundation of AWS. Most modern services like Lambda, EKS, Fargate, and SageMaker were introduced in the 2010s as cloud computing matured and expanded into containerization, serverless, and machine learning domains.
+Notes:
+- Docker: First released in 2013
+- Jenkins: Originally released as Hudson in 2005
+- Kubernetes: First released in 2014
+- Terraform: First released in 2014
+- Ansible: First released in 2012
+- Nagios: First released in 2002
+- Prometheus: First released in 2015
+- Chef: First released in 2009
+- ArgoCD: First released in 2018
+- Puppet: First released in 2005

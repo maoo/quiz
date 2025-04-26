@@ -1,18 +1,24 @@
-# DevOps Hero Question 004 - Answers ✅
+# Answers to: Which statements are true about this Kubernetes manifest?
 
-## Kubernetes YAML Analysis
+1. Uses latest tag - FALSE
+2. Has resource limits - TRUE
+3. Runs Daemonset - FALSE
+4. Has network policy - FALSE
+5. Has health checks - TRUE
+6. Runs as non-root - TRUE
+7. Uses Canary deploy - FALSE
+8. Runs 3 replicas - TRUE
+9. Exposes NodePort - FALSE
+10. Has ConfigMap - FALSE
 
-### Correct Answers
-1. ✅ Uses latest tag
-2. ❌ Has network policy
-3. ❌ Has liveness probe
-4. ✅ Sets resource limits
-5. ❌ Uses StatefulSet
-6. ❌ Has PodDisruptionBudget
-7. ❌ Enables auto-scaling
-8. ✅ Runs in production
-9. ✅ Uses 3 replicas
-10. ❌ Has pod security
-
-## Explanation
-This question tests knowledge of Kubernetes manifests and configurations. The YAML shows a Deployment (not a StatefulSet) with 3 replicas running in the production namespace. It uses the latest tag for the nginx image (which is not recommended for production) and correctly sets resource requests and limits. It does not include health probes (liveness/readiness), network policies, PodDisruptionBudgets, auto-scaling configuration, or pod security context definitions.
+Notes:
+- It uses a specific tag (v1.2.3), not latest
+- It has both resource limits and requests defined
+- It's a Deployment, not a DaemonSet
+- No NetworkPolicy is defined in this manifest
+- It has both liveness and readiness probes (health checks)
+- It uses securityContext.runAsNonRoot: true
+- It uses RollingUpdate strategy, not Canary
+- It specifies 3 replicas
+- It only defines containerPort, not a NodePort service
+- No ConfigMap is referenced or defined

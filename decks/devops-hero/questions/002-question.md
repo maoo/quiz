@@ -1,35 +1,33 @@
-# DevOps Hero Question 002 🐳
+# Which statements are true for this Dockerfile?
 
-## Dockerfile Best Practices
+Analyze this Docker container definition and identify which statements are true.
 
 ```dockerfile
-FROM ubuntu:latest
-RUN apt-get update && \
-    apt-get install -y nginx
-COPY . /app
-USER root
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+FROM alpine:3.14
+WORKDIR /app
+COPY . .
+RUN apk add --no-cache python3 py3-pip && \
+    pip install --no-cache-dir -r requirements.txt
+ENV PORT=8080
+EXPOSE $PORT
+USER nobody
+CMD ["python3", "app.py"]
 ```
 
-Which of these statements are TRUE about this Dockerfile?
+## Options
+1. Uses latest Alpine
+2. Runs as non-root
+3. Copies all files
+4. Has security issue
+5. Sets working dir
+6. Uses multistage build
+7. Installs Python 2
+8. Exposes port 8080
+9. Uses ENTRYPOINT
+10. Caches pip packages
 
-### Options
-1. Uses pinned version
-2. Has multi-stage build
-3. Runs as non-root
-4. Has cache efficiency
-5. Creates large image
-6. Uses HEALTHCHECK
-7. Has layer reduction
-8. Includes .dockerignore
-9. Uses best practices
-10. Has proper cleanup
-
-## References 📚
+## Sources
 - [Docker Best Practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
-- [Dockerfile Reference](https://docs.docker.com/engine/reference/builder/)
-- [Container Security Best Practices](https://sysdig.com/blog/dockerfile-best-practices/)
+- [Docker Security Best Practices](https://docs.docker.com/engine/security/security/)
 
-## Question URL 🔗
-[View Question Online](https://blog.session.it/quiz/decks/devops-hero/questions/002-question)
+URL: https://blog.session.it/quiz/decks/devops-hero/questions/002-question
