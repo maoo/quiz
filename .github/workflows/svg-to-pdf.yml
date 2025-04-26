@@ -70,15 +70,23 @@ jobs:
               # Construct the full URL
               svg_url="https://blog.session.it/quiz/$rel_path"
               
+              # Download the SVG file to a temporary location
+              temp_svg="/tmp/${filename}.svg"
+              curl -L "$svg_url" -o "$temp_svg"
+              
               docker run --rm \
                 -v "$PWD:/work" \
+                -v "/tmp:/tmp" \
                 -w /work \
                 ghcr.io/${{ github.repository }}/svg-to-pdf:latest \
                 rsvg-convert -f pdf \
                   -o "$(dirname "$svg_file")/${filename}.pdf" \
                   -w 416 \
                   -h 416 \
-                  "$svg_url"
+                  "$temp_svg"
+              
+              # Clean up temporary file
+              rm "$temp_svg"
             fi
           done
 
