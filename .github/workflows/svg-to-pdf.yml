@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      packages: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -41,6 +42,13 @@ jobs:
           fi
           echo "any_changed=true" >> $GITHUB_OUTPUT
 
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Convert SVG to PDF
         if: steps.files-to-process.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
         run: |
@@ -60,15 +68,12 @@ jobs:
               docker run --rm \
                 -v "$PWD:/work" \
                 -w /work \
-                ubuntu:22.04 \
-                bash -c 'apt-get update && \
-                        apt-get install -y librsvg2-bin && \
-                        rsvg-convert -f pdf \
-                          -o "$(dirname "$1")/${2}-output.pdf" \
-                          -w 416 \
-                          -h 416 \
-                          "$1"' \
-                _ "$svg_file" "$filename"
+                ghcr.io/${{ github.repository }}/svg-to-pdf:latest \
+                rsvg-convert -f pdf \
+                  -o "$(dirname "$svg_file")/${filename}-output.pdf" \
+                  -w 416 \
+                  -h 416 \
+                  "$svg_file"
             fi
           done
 
