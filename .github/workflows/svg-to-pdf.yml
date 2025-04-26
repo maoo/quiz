@@ -65,6 +65,11 @@ jobs:
           for svg_file in $svg_files; do
             if [ -f "$svg_file" ] && [[ "$svg_file" == *.svg ]]; then
               filename=$(basename "$svg_file" .svg)
+              # Get the relative path from the root of the repository
+              rel_path=$(realpath --relative-to="$PWD" "$svg_file")
+              # Construct the full URL
+              svg_url="https://blog.session.it/quiz/$rel_path"
+              
               docker run --rm \
                 -v "$PWD:/work" \
                 -w /work \
@@ -73,7 +78,7 @@ jobs:
                   -o "$(dirname "$svg_file")/${filename}.pdf" \
                   -w 416 \
                   -h 416 \
-                  "$svg_file"
+                  "$svg_url"
             fi
           done
 
