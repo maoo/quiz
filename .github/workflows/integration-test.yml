@@ -5,11 +5,13 @@ on:
     paths:
       - 'src/**'
       - 'tests/**'
+      - 'decks/**'
       - '.github/workflows/integration-test.yml'
   pull_request:
     paths:
       - 'src/**'
       - 'tests/**'
+      - 'decks/**'
       - '.github/workflows/integration-test.yml'
   workflow_dispatch:  # Allow manual triggering
 
@@ -35,60 +37,79 @@ jobs:
         run: |
           poetry install
           
-      - name: Create test question
+      - name: Create test output directory
         run: |
-          mkdir -p integration-test/questions
-          printf '%s\n' '# Quiz Questions' \
-            '' \
-            '## Test Integration Question' \
-            '' \
-            '1. Option One' \
-            '2. Option Two' \
-            '3. Option Three (TRUE)' \
-            '4. Option Four' \
-            '5. Option Five (TRUE)' \
-            '6. Option Six' \
-            '7. Option Seven' \
-            '8. Option Eight' \
-            '9. Option Nine' \
-            '10. Option Ten' > integration-test/questions/test-question.md
+          mkdir -p /tmp/integration-test/output
           
-      - name: Create test QR code
+      - name: Generate SVGs for all questions
         run: |
-          cd integration-test/questions
-          printf '%s\n' 'import qrcode' \
-            'qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_L, box_size=10, border=4)' \
-            "qr.add_data('https://example.com/integration-test')" \
-            'qr.make(fit=True)' \
-            "img = qr.make_image(fill_color='black', back_color='white')" \
-            "img.save('test-qr.png')" | poetry run python3
-          cd ../..  # Change back to the root directory
+          for question_file in decks/*.md; do
+            if [ -f "$question_file" ]; then
+              filename=$(basename "$question_file" .md)
+              poetry run python -m src.svg_generator.generator "$question_file" "/tmp/integration-test/output/${filename}.svg"
+            fi
+          done
           
-      - name: Generate Quiz
+      - name: Verify SVGs were created
         run: |
-          poetry run python -m src.svg_generator.generator integration-test/questions/test-question.md integration-test/questions/test-output.pdf
-          
-      - name: Verify PDF was created
-        run: |
-          if [ ! -f integration-test/questions/test-output.pdf ]; then
-            echo "PDF file was not created!"
+          # Check if any SVGs were generated
+          if [ ! "$(ls -A /tmp/integration-test/output/*.svg 2>/dev/null)" ]; then
+            echo "No SVG files were generated!"
             exit 1
           fi
           
-          # Check PDF size is reasonable (more than 1KB)
-          FILE_SIZE=$(du -k integration-test/questions/test-output.pdf | cut -f1)
-          if [ "$FILE_SIZE" -lt 1 ]; then
-            echo "PDF file is too small (likely empty)"
+          # Check SVG contents
+          for svg_file in /tmp/integration-test/output/*.svg; do
+            # Verify SVG contains question text
+            if ! grep -q "text" "$svg_file"; then
+              echo "SVG file $svg_file does not contain text elements!"
+              exit 1
+            fi
+            
+            # Verify SVG contains QR code if present in original markdown
+            original_md=$(basename "$svg_file" .svg).md
+            if grep -q "qr:" "decks/$original_md" && ! grep -q "image" "$svg_file"; then
+              echo "SVG file $svg_file should contain QR code but doesn't!"
+              exit 1
+            fi
+          done
+          
+      - name: Convert SVGs to PDFs
+        run: |
+          for svg_file in /tmp/integration-test/output/*.svg; do
+            filename=$(basename "$svg_file" .svg)
+            poetry run python -m src.svg_to_pdf.converter "$svg_file" "/tmp/integration-test/output/${filename}.pdf"
+          done
+          
+      - name: Verify PDFs were created
+        run: |
+          # Check if any PDFs were generated
+          if [ ! "$(ls -A /tmp/integration-test/output/*.pdf 2>/dev/null)" ]; then
+            echo "No PDF files were generated!"
             exit 1
           fi
           
-          echo "Integration test passed successfully!"
+          # Check PDF sizes and contents
+          for pdf_file in /tmp/integration-test/output/*.pdf; do
+            # Check PDF size is reasonable (more than 1KB)
+            FILE_SIZE=$(du -k "$pdf_file" | cut -f1)
+            if [ "$FILE_SIZE" -lt 1 ]; then
+              echo "PDF file $pdf_file is too small (likely empty)"
+              exit 1
+            fi
+            
+            # Verify PDF contains text (using pdftotext)
+            if ! command -v pdftotext &> /dev/null; then
+              apt-get update && apt-get install -y poppler-utils
+            fi
+            if ! pdftotext "$pdf_file" - | grep -q "[a-zA-Z]"; then
+              echo "PDF file $pdf_file does not contain readable text!"
+              exit 1
+            fi
+          done
           
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: integration-test-output
-          path: |
-            integration-test/questions/test-question.md
-            integration-test/questions/test-qr.png
-            integration-test/questions/test-output.pdf
+          path: /tmp/integration-test/output/
