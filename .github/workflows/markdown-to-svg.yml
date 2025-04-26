@@ -59,29 +59,18 @@ jobs:
 
       - name: Generate SVG files
         if: steps.changed-files.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
+        env:
+          MARKDOWN_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
-          cd src/svg_generator
-          # Function to get markdown files based on event type
-          get_markdown_files() {
-            if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
-              if [ -n "${{ github.event.inputs.deck_name }}" ]; then
-                find ../../decks/${{ github.event.inputs.deck_name }} -name '*-question.md'
-              else
-                find ../../decks -name '*-question.md'
-              fi
-            else
-              echo "${{ steps.changed-files.outputs.all_changed_files }}"
-            fi
-          }
-
-          # Process each markdown file
-          for file in $(get_markdown_files); do
-            if [ -f "$file" ]; then
-              output_file="${file%-question.md}-output.svg"
-              poetry run python generator.py "$file" "$output_file"
-              echo "Generated SVG for $file"
-            fi
-          done
+          # Make script executable
+          chmod +x ./scripts/generate_svgs.sh
+          
+          # Run script with deck name if provided in workflow_dispatch
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ] && [ -n "${{ github.event.inputs.deck_name }}" ]; then
+            ./scripts/generate_svgs.sh "${{ github.event.inputs.deck_name }}"
+          else
+            ./scripts/generate_svgs.sh
+          fi
           
       - name: Commit and push if changed
         if: steps.changed-files.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
