@@ -1,0 +1,74 @@
+name: Test SVG to PDF Converter
+
+on:
+  push:
+    paths:
+      - 'src/svg_to_pdf/**'
+      - 'tests/test_svg_to_pdf.py'
+      - '.github/workflows/test-svg-to-pdf.yml'
+  pull_request:
+    paths:
+      - 'src/svg_to_pdf/**'
+      - 'tests/test_svg_to_pdf.py'
+      - '.github/workflows/test-svg-to-pdf.yml'
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  test-svg-to-pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: latest
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          
+      - name: Install dependencies
+        run: |
+          poetry install
+          
+      - name: Run tests
+        run: |
+          poetry run pytest tests/test_svg_to_pdf.py -v
+          
+      - name: Test directory conversion
+        run: |
+          # Create test directory with SVG files
+          mkdir -p /tmp/test-svgs
+          echo '<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="red"/></svg>' > /tmp/test-svgs/test1.svg
+          echo '<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="blue"/></svg>' > /tmp/test-svgs/test2.svg
+          
+          # Create a non-SVG file to test filtering
+          echo "# Test README" > /tmp/test-svgs/README.md
+          
+          # Run the converter
+          poetry run python -m src.svg_to_pdf.converter /tmp/test-svgs -o /tmp/test-output
+          
+          # Verify output
+          if [ ! -f "/tmp/test-output/test1.pdf" ] || [ ! -f "/tmp/test-output/test2.pdf" ]; then
+            echo "PDF files were not generated correctly!"
+            exit 1
+          fi
+          
+          # Check PDF sizes
+          for pdf_file in /tmp/test-output/*.pdf; do
+            FILE_SIZE=$(du -k "$pdf_file" | cut -f1)
+            if [ "$FILE_SIZE" -lt 1 ]; then
+              echo "PDF file $pdf_file is too small (likely empty)"
+              exit 1
+            fi
+          done
+          
+      - name: Upload test artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-svg-to-pdf-output
+          path: /tmp/test-output/ 

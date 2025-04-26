@@ -97,7 +97,7 @@ jobs:
             
             # Verify PDF contains text (using pdftotext)
             if ! command -v pdftotext &> /dev/null; then
-              apt-get update && apt-get install -y poppler-utils
+              sudo apt-get update && sudo apt-get install -y poppler-utils
             fi
             if ! pdftotext "$pdf_file" - | grep -q "[a-zA-Z]"; then
               echo "PDF file $pdf_file does not contain readable text!"

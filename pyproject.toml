@@ -5,8 +5,7 @@ description = "Tools for generating and converting SVG content"
 authors = ["Your Name <your.email@example.com>"]
 readme = "README.md"
 packages = [
-    { include = "svg_to_pdf", from = "src" },
-    { include = "svg_generator", from = "src" }
+    { include = "src" }
 ]
 
 [tool.poetry.dependencies]
@@ -33,6 +32,7 @@ build-backend = "poetry.core.masonry.api"
 testpaths = ["tests"]
 python_files = ["test_*.py"]
 addopts = "--cov=src --cov-report=xml"
+pythonpath = ["."]
 
 [tool.black]
 line-length = 88

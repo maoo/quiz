@@ -13,8 +13,8 @@ import tempfile
 from pathlib import Path
 from typing import List, Optional
 
-from svg_to_pdf.converters.cairo_converter import CairoConverter
-from svg_to_pdf.image_handler import ImageHandler
+from src.svg_to_pdf.converters.cairo_converter import CairoConverter
+from src.svg_to_pdf.image_handler import ImageHandler
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')

@@ -16,10 +16,14 @@ def test_convert_svg_to_pdf(tmp_path):
         <rect width="100" height="100" fill="red"/>
     </svg>
     """
+    svg_file = tmp_path / "test.svg"
     output_path = tmp_path / "test.pdf"
     
+    # Write SVG content to file
+    svg_file.write_text(svg_content)
+    
     # Test the conversion
-    converter.convert(svg_content, str(output_path))
+    converter.convert_svg_to_pdf(str(svg_file), str(output_path))
     
     # Verify the output file exists
     assert output_path.exists()
@@ -30,7 +34,7 @@ def test_invalid_svg_content():
     invalid_svg = "not a valid svg content"
     
     with pytest.raises(Exception):
-        converter.convert(invalid_svg, "output.pdf")
+        converter.convert_svg_to_pdf(invalid_svg, "output.pdf")
 
 def test_cli_interface(tmp_path):
     # Create a test SVG file
@@ -49,15 +53,13 @@ def test_cli_interface(tmp_path):
     # Test the CLI with a single SVG file
     with patch.object(sys, 'argv', ['converter.py', str(svg_file)]):
         from src.svg_to_pdf.converter import main
-        main()
+        assert main() == 0  # Should succeed
     
     # Verify the output PDF was created
     output_pdf = tmp_path / "test.pdf"
     assert output_pdf.exists()
     assert output_pdf.stat().st_size > 0
     
-    # Test that non-SVG files are ignored
+    # Test that non-SVG files are rejected
     with patch.object(sys, 'argv', ['converter.py', str(non_svg_file)]):
-        with pytest.raises(SystemExit) as exc_info:
-            main()
-        assert exc_info.value.code != 0  # Should exit with error 
+        assert main() == 1  # Should fail with error code 1 

@@ -5,6 +5,6 @@ This module provides tools for converting SVG files to PDF format,
 with support for embedded images and proper scaling.
 """
 
-from svg_to_pdf.converter import SVGToPDFConverter
+from src.svg_to_pdf.converter import SVGToPDFConverter
 
 __all__ = ["SVGToPDFConverter"] 
