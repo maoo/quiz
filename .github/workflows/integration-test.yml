@@ -3,13 +3,13 @@ name: Integration Test
 on:
   push:
     paths:
-      - 'svg-generator/**'
-      - 'svg-to-pdf/**'
+      - 'src/**'
+      - 'tests/**'
       - '.github/workflows/integration-test.yml'
   pull_request:
     paths:
-      - 'svg-generator/**'
-      - 'svg-to-pdf/**'
+      - 'src/**'
+      - 'tests/**'
       - '.github/workflows/integration-test.yml'
   workflow_dispatch:  # Allow manual triggering
 
@@ -17,31 +17,20 @@ jobs:
   integration-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
-          
-      - name: Install system dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libcairo2-dev libpango1.0-dev libgdk-pixbuf2.0-dev librsvg2-dev
+          python-version: '3.11'
           
       - name: Install Poetry
         run: |
           curl -sSL https://install.python-poetry.org | python3 -
           echo "$HOME/.local/bin" >> $GITHUB_PATH
           
-      - name: Install SVG Generator
+      - name: Install dependencies
         run: |
-          cd svg-generator
-          poetry install
-          
-      - name: Install SVG to PDF
-        run: |
-          cd svg-to-pdf
           poetry install
           
       - name: Create test question
@@ -76,15 +65,9 @@ img = qr.make_image(fill_color='black', back_color='white')
 img.save('test-qr.png')
 "
           
-      - name: Generate SVG
+      - name: Generate Quiz
         run: |
-          cd svg-generator
-          poetry run python generator.py ../integration-test/questions/test-question.md ../integration-test/questions/test-output.svg
-          
-      - name: Convert SVG to PDF
-        run: |
-          cd svg-to-pdf
-          poetry run svg-to-pdf ../integration-test/questions/test-output.svg -o ../integration-test/questions/test-output.pdf
+          poetry run python -m src.quiz_generator ../integration-test/questions/test-question.md ../integration-test/questions/test-output.pdf
           
       - name: Verify PDF was created
         run: |
@@ -103,11 +86,10 @@ img.save('test-qr.png')
           echo "Integration test passed successfully!"
           
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: integration-test-output
           path: |
             integration-test/questions/test-question.md
             integration-test/questions/test-qr.png
-            integration-test/questions/test-output.svg
             integration-test/questions/test-output.pdf

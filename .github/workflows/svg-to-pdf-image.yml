@@ -26,6 +26,6 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: src/svg_to_pdf
           push: true
           tags: ghcr.io/${{ github.repository }}/svg-to-pdf:latest 

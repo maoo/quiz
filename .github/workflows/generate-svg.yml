@@ -30,7 +30,7 @@ jobs:
           
       - name: Install dependencies
         run: |
-          cd svg-generator
+          cd src/svg_generator
           poetry install
           
       - name: Get changed files
@@ -43,7 +43,7 @@ jobs:
       - name: Generate SVG files
         if: steps.changed-files.outputs.any_changed == 'true'
         run: |
-          cd svg-generator
+          cd src/svg_generator
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             if [ -f "../$file" ]; then
               output_file="${file%-question.md}-output.svg"
