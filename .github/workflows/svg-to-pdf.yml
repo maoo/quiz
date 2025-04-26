@@ -56,7 +56,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd src/svg_to_pdf
           poetry install --with dev
           poetry install --no-interaction
 
@@ -82,9 +81,7 @@ jobs:
             local pdf_output="$(dirname "$svg_file")/$(basename "$svg_file" .svg).pdf"
             
             echo "Converting $svg_file to $pdf_output"
-            cd src/svg_to_pdf
-            poetry run svg-to-pdf "../$svg_file" -o "../$pdf_output" --width 11 --height 11
-            cd ..
+            poetry run python -m src.svg_to_pdf.converter "$svg_file" -o "$pdf_output" --width 11 --height 11
           }
 
           # Process each SVG file

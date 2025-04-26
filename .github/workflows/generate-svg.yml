@@ -4,9 +4,12 @@ on:
   push:
     paths:
       - 'decks/**/*-question.md'
-  pull_request:
-    paths:
-      - 'decks/**/*-question.md'
+  workflow_dispatch:
+    inputs:
+      deck_name:
+        description: 'Name of the deck to process (e.g., "deck1"). Leave empty to process all decks.'
+        required: false
+        type: string
 
 permissions:
   contents: write
@@ -36,27 +39,52 @@ jobs:
           cd src/svg_generator
           poetry install
           
-      - name: Get changed files
+      - name: Get changed files for push event
         id: changed-files
+        if: github.event_name == 'push'
         uses: tj-actions/changed-files@v46
         with:
           files: |
             **/*-question.md
 
+      - name: Set files to process for manual run
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          if [ -n "${{ github.event.inputs.deck_name }}" ]; then
+            echo "all_changed_files=$(find decks/${{ github.event.inputs.deck_name }} -name '*-question.md' | tr '\n' ' ')" >> $GITHUB_OUTPUT
+          else
+            echo "all_changed_files=$(find decks -name '*-question.md' | tr '\n' ' ')" >> $GITHUB_OUTPUT
+          fi
+          echo "any_changed=true" >> $GITHUB_OUTPUT
+
       - name: Generate SVG files
-        if: steps.changed-files.outputs.any_changed == 'true'
+        if: steps.changed-files.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
         run: |
           cd src/svg_generator
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            if [ -f "../$file" ]; then
+          # Function to get markdown files based on event type
+          get_markdown_files() {
+            if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+              if [ -n "${{ github.event.inputs.deck_name }}" ]; then
+                find ../../decks/${{ github.event.inputs.deck_name }} -name '*-question.md'
+              else
+                find ../../decks -name '*-question.md'
+              fi
+            else
+              echo "${{ steps.changed-files.outputs.all_changed_files }}"
+            fi
+          }
+
+          # Process each markdown file
+          for file in $(get_markdown_files); do
+            if [ -f "$file" ]; then
               output_file="${file%-question.md}-output.svg"
-              poetry run python generator.py "../$file" "../$output_file"
+              poetry run python generator.py "$file" "$output_file"
               echo "Generated SVG for $file"
             fi
           done
           
       - name: Commit and push if changed
-        if: steps.changed-files.outputs.any_changed == 'true'
+        if: steps.changed-files.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
