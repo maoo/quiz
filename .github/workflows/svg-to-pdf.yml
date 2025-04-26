@@ -65,29 +65,44 @@ jobs:
           for svg_file in $svg_files; do
             if [ -f "$svg_file" ] && [[ "$svg_file" == *.svg ]]; then
               filename=$(basename "$svg_file" .svg)
-              # Get the QR code path
+              # Get the QR code path (using the correct pattern)
               qr_path=$(dirname "$svg_file")/${filename%-output}-qr.png
               
-              # Convert QR code to base64
-              qr_base64=$(base64 -w 0 "$qr_path")
-              
-              # Create a temporary SVG with embedded QR code
-              temp_svg="/tmp/${filename}.svg"
-              sed "s|https://blog.session.it/quiz/decks/devops-hero/questions/${filename%-output}-qr.png|data:image/png;base64,$qr_base64|g" "$svg_file" > "$temp_svg"
-              
-              docker run --rm \
-                -v "$PWD:/work" \
-                -v "/tmp:/tmp" \
-                -w /work \
-                ghcr.io/${{ github.repository }}/svg-to-pdf:latest \
-                rsvg-convert -f pdf \
-                  -o "$(dirname "$svg_file")/${filename}.pdf" \
-                  -w 416 \
-                  -h 416 \
-                  "$temp_svg"
-              
-              # Clean up temporary file
-              rm "$temp_svg"
+              # Check if QR code exists
+              if [ -f "$qr_path" ]; then
+                # Convert QR code to base64
+                qr_base64=$(base64 -w 0 "$qr_path")
+                
+                # Create a temporary SVG with embedded QR code
+                temp_svg="/tmp/${filename}.svg"
+                sed "s|https://blog.session.it/quiz/decks/devops-hero/questions/${filename%-output}-qr.png|data:image/png;base64,$qr_base64|g" "$svg_file" > "$temp_svg"
+                
+                docker run --rm \
+                  -v "$PWD:/work" \
+                  -v "/tmp:/tmp" \
+                  -w /work \
+                  ghcr.io/${{ github.repository }}/svg-to-pdf:latest \
+                  rsvg-convert -f pdf \
+                    -o "$(dirname "$svg_file")/${filename}.pdf" \
+                    -w 416 \
+                    -h 416 \
+                    "$temp_svg"
+                
+                # Clean up temporary file
+                rm "$temp_svg"
+              else
+                echo "Warning: QR code file not found: $qr_path"
+                # Convert without QR code
+                docker run --rm \
+                  -v "$PWD:/work" \
+                  -w /work \
+                  ghcr.io/${{ github.repository }}/svg-to-pdf:latest \
+                  rsvg-convert -f pdf \
+                    -o "$(dirname "$svg_file")/${filename}.pdf" \
+                    -w 416 \
+                    -h 416 \
+                    "$svg_file"
+              fi
             fi
           done
 
