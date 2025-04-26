@@ -84,3 +84,67 @@ Follow instructions in quiz-prompt.md, to build a quiz deck of type devops-hero;
    - Use a professional domain name (quiz.session.it or purchased domain)
    - Improve markdown file visualization
    - Enhance SVG visualization with better colors and fonts
+
+## System Architecture Diagram 📊
+
+```mermaid
+graph TD
+    subgraph "AI Content Generation"
+        A[Deck Prompt<br>e.g. devops-hero] --> C[AI Prompt Engine]
+        B[quiz-prompt.md] --> C
+        C --> D[Generate Markdown & QR Codes]
+    end
+
+    subgraph "GitHub Actions Pipeline"
+        D --> E[markdown-to-svg Action]
+        E --> F[Generate SVGs]
+        F --> G[Push SVGs to Git]
+        G --> H[svg-to-pdf Action]
+        H --> I[Generate PDFs]
+        I --> J[Push PDFs to Git]
+    end
+
+    subgraph "Output Artifacts"
+        K[Markdown Files] -.-> L[SVG Files]
+        L -.-> M[PDF Files]
+        N[QR Codes] -.-> O[Digital Content]
+    end
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#f9f,stroke:#333,stroke-width:2px
+    style C fill:#bbf,stroke:#333,stroke-width:2px
+    style D fill:#bfb,stroke:#333,stroke-width:2px
+    style E fill:#fbb,stroke:#333,stroke-width:2px
+    style F fill:#fbb,stroke:#333,stroke-width:2px
+    style G fill:#fbb,stroke:#333,stroke-width:2px
+    style H fill:#fbb,stroke:#333,stroke-width:2px
+    style I fill:#fbb,stroke:#333,stroke-width:2px
+    style J fill:#fbb,stroke:#333,stroke-width:2px
+    style K fill:#dfd,stroke:#333,stroke-width:2px
+    style L fill:#dfd,stroke:#333,stroke-width:2px
+    style M fill:#dfd,stroke:#333,stroke-width:2px
+    style N fill:#dfd,stroke:#333,stroke-width:2px
+    style O fill:#dfd,stroke:#333,stroke-width:2px
+```
+
+The diagram above illustrates the complete workflow of the quiz generation system:
+
+1. **AI Content Generation**
+   - The system starts with a deck-specific prompt (e.g., devops-hero) and the main quiz-prompt.md
+   - The AI Prompt Engine processes these inputs to generate markdown content and QR codes
+   - This creates the foundation for all subsequent steps
+
+2. **GitHub Actions Pipeline**
+   - The markdown-to-svg action converts the generated markdown into SVG files
+   - SVGs are automatically pushed to the Git repository
+   - The svg-to-pdf action then converts SVGs to PDF format
+   - PDFs are also automatically pushed to the repository
+
+3. **Output Artifacts**
+   - The system produces multiple formats:
+     - Markdown files for content storage
+     - SVG files for web display
+     - PDF files for printing
+     - QR codes linking to digital content
+
+This automated pipeline ensures consistent, high-quality output across all formats while maintaining version control of all generated content.

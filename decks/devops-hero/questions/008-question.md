@@ -1,6 +1,6 @@
-# What issues exist in this Kubernetes manifest?
+# Rank these Kubernetes manifest issues by severity
 
-Analyze this Kubernetes deployment configuration and identify issues or best practices that are not being followed.
+Order these security and operational issues found in the Kubernetes manifest from most critical (1) to least critical (10).
 
 ```yaml
 apiVersion: apps/v1
@@ -47,11 +47,12 @@ spec:
 6. Privileged container
 7. Wrong port exposed
 8. No node selector
-9. Missing labels
+9. Missing namespace
 10. Probe too frequent
 
 ## Sources
 - [Kubernetes Best Practices](https://kubernetes.io/docs/concepts/configuration/overview/)
 - [CNCF Cloud Native Security Whitepaper](https://github.com/cncf/tag-security/blob/main/security-whitepaper/CNCF_cloud-native-security-whitepaper-Nov2020.pdf)
+- [Kubernetes Security Best Practices](https://kubernetes.io/docs/concepts/security/security-checklist/)
 
 URL: https://blog.session.it/quiz/decks/devops-hero/questions/008-question

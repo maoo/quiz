@@ -11,7 +11,11 @@ Each deck must have a homepage on https://blog.session.it/quiz/decks/<deck id>, 
 - 3 Paragraphs description of the game, mostly around the questions, topics, sources, etc
 - The list of questions, with a link to `https://blog.session.it/quiz/decks/<deck id>/questions/<question id>-question` for each of them ; also add a link to the SVG and PDF version of the question.
 
-The deck homepage must be always updated with all questions, everytime a question is added, updated or removed from a deck.
+IMPORTANT! When new questions are added to an existing deck, make sure that:
+  - The deck homepage is updated to report all questions
+  - The types of questions and answers are properly balanced, following the "Design and Answer Rules" described below
+  - CRITICAL: Answer types MUST strictly adhere to the percentage distribution defined in the "Answer Types" section below. Check ALL existing questions in the deck before adding new ones to maintain these ratios.
+  - The types of questions and answers must be shuffled (randomly ordered) across the deck, using a random order, but trying to avoid having 2 questions or answers of the same type sequentially in the deck; if needed, change the number of an existing question, and update the deck homepage.
 
 ## 🎯 Objective
 
@@ -31,10 +35,14 @@ All conent must be nicely and clearly visualized, taking advantage of emojis, cl
   - Text (50% of the deck): For example, "what is the color of these logos"; the text can be maximum 200 characters
   - QR (50% of the deck): A QR is generated and visualized in the design, pointing to `https://blog.session.it/quiz/decks/<deck id>/questions/<question id>-question` , which will visualize the contents of `decks/<deck id>/questions/<question id>-question`; in this file, we can embed any content, of any type or length, to define our questions and options; there could be a YouTube video embedded (no longer than 40 seconds), and below the list of options are questions specific to the video content; or it could be the picture of a famous frame or art piece; or a snippet; or a link to a website. Come up with different options, also depending on the context of the deck.
 - Options are only of one type: a text string of maximum 80 characters
-- Answers can be of different types, depending on the question:
-    - Binary answer: True/False, On/Off, Black/White
-    - Free answer: Decade (1980-1990-2000-2010-2020), ordering number (for example, order options from youngest to oldest), color (yellow-green-red-etc), names, labels, ...
-- The type of questions and answers must be more varied and shuffled within the deck
+- Answers can be of different types, depending on the question (these percentages define the required Answer Type Distribution):
+    - Binary answer (30% of the deck, STRICT MAXIMUM): True/False, On/Off, Black/White
+    - Free answer (70% of the deck combined, MUST INCLUDE ALL THREE TYPES):
+      - (20% of the deck) ordering number (for example, order options from youngest to oldest)
+      - (20% of the deck) Decade (1980-1990-2000-2010-2020) or other type of dates (month, day, century, etc)
+      - (30% of the deck) names, labels, colors and other type of words
+- The type of questions and answers MUST be more varied and shuffled within the deck
+- CRUCIAL: When adding to an existing deck, analyze ALL existing questions to ensure the deck maintains proper answer type balance. If a deck already has many binary (True/False) questions, subsequent additions MUST focus on the other answer types.
 - Answers must be maximum 15 characters
 - Split longer concepts into simpler terms to meet the 20-character limit. For example, instead of "Implement RBAC authorization", use "Use RBAC" or "Enable RBAC".
 - Correct answer distribution for binary answers MUST be between 3–7 (True) per question, with a balance of TRUE and FALSE answers. This is a STRICT requirement.
@@ -64,7 +72,21 @@ Each `<question id>-question.md` should include:
 - Does the question type (code vs knowledge) follow spec?
 - Are there exactly 10 well-formed, independent options?
 - Is each option STRICTLY 20 characters or less?
-- Are there 3–7 correct (True) answers?
+- For binary questions: Are there 3–7 correct (True) answers?
 - Are answers undisputable, based on trusted sources?
 - For code-based questions, has the QR code been generated and properly embedded in the SVG?
 - Is the deck homepage up to date with all questions and with links to SVG and PDF versions of the question?
+- CRITICAL: Are answer types properly balanced across the ENTIRE deck according to the percentages defined in the "Answer Types" section?
+- Are all types of questions and answers are properly balanced and shuffled across the deck?
+- Does this question contribute to proper answer type distribution? If a deck is already heavy on one answer type, avoid adding more of that same type.
+
+## 📊 Answer Type Distribution Tracking
+
+When adding new questions:
+1. Count the current number of each answer type in the deck
+2. Calculate the current percentages
+3. Determine which answer types are underrepresented
+4. Prioritize those underrepresented answer types for new questions
+5. Document your answer type analysis before adding new questions
+
+Remember to refer to the percentages defined in the "Answer Types" section for the target distribution.

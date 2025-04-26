@@ -1,6 +1,6 @@
-# Which statements are true about this Kubernetes manifest?
+# What Kubernetes feature is applied in this manifest?
 
-Examine this Kubernetes manifest and determine which statements about it are true.
+Identify the Kubernetes functionality represented in each part of this deployment manifest.
 
 ```yaml
 apiVersion: apps/v1
@@ -49,19 +49,20 @@ spec:
 ```
 
 ## Options
-1. Uses latest tag
-2. Has resource limits
-3. Runs Daemonset
-4. Has network policy
-5. Has health checks
-6. Runs as non-root
-7. Uses Canary deploy
-8. Runs 3 replicas
-9. Exposes NodePort
-10. Has ConfigMap
+1. Namespace isolation
+2. Security policy
+3. Resource quotas
+4. Auto-scaling
+5. Image versioning
+6. Health checking
+7. Update strategy
+8. Service discovery
+9. Pod replication
+10. Port mapping
 
 ## Sources
 - [Kubernetes Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
 - [Kubernetes Best Practices](https://kubernetes.io/docs/concepts/configuration/overview/)
+- [Kubernetes Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)
 
 URL: https://blog.session.it/quiz/decks/devops-hero/questions/004-question

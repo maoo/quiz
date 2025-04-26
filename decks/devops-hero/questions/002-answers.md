@@ -1,21 +1,23 @@
-# Answers to: Which statements are true for this Dockerfile?
+# Answers to: What Docker instruction is used in this Dockerfile?
 
-1. Uses latest Alpine - FALSE
-2. Runs as non-root - TRUE
-3. Copies all files - TRUE
-4. Has security issue - FALSE
-5. Sets working dir - TRUE
-6. Uses multistage build - FALSE
-7. Installs Python 2 - FALSE
-8. Exposes port 8080 - TRUE
-9. Uses ENTRYPOINT - FALSE
-10. Caches pip packages - FALSE
+1. Cache busting - Line 9-10
+2. Base image - Line 6
+3. Directory setting - Line 7
+4. Volume mounting - Not used
+5. Entry command - Line 14
+6. File copying - Line 8
+7. Environment var - Line 11
+8. Port publishing - Line 12
+9. User switching - Line 13
+10. Package install - Line 9-10
 
 Notes:
-- It uses Alpine 3.14 specifically, not latest
-- It runs as 'nobody' user (non-root) which is good security practice
-- It uses COPY . . which copies all files from the context
-- Sets working directory to /app with WORKDIR
-- It uses `--no-cache-dir` for pip which prevents caching packages
-- It uses CMD not ENTRYPOINT
-- It installs Python 3, not Python 2
+- Line 6: FROM alpine:3.14 sets the base image
+- Line 7: WORKDIR /app sets the working directory
+- Line 8: COPY . . copies files from build context to image
+- Line 9-10: RUN installs packages and has --no-cache flags (cache busting)
+- Line 11: ENV PORT=8080 sets an environment variable
+- Line 12: EXPOSE $PORT exposes a port for publishing
+- Line 13: USER nobody switches to non-root user
+- Line 14: CMD ["python3", "app.py"] sets the entry command
+- No VOLUME instruction is present for volume mounting
