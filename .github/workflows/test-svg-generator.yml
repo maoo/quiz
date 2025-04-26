@@ -1,0 +1,48 @@
+name: Test SVG Generator
+
+on:
+  push:
+    paths:
+      - 'svg-generator/**'
+      - '.github/workflows/test-svg-generator.yml'
+  pull_request:
+    paths:
+      - 'svg-generator/**'
+      - '.github/workflows/test-svg-generator.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          
+      - name: Install dependencies
+        run: |
+          cd svg-generator
+          poetry install
+          
+      - name: Run tests
+        run: |
+          cd svg-generator
+          poetry run pytest
+          
+      - name: Run linting
+        run: |
+          cd svg-generator
+          poetry run flake8 *.py tests
+          
+      - name: Upload coverage report
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./svg-generator/coverage.xml
+          flags: svg-generator

@@ -1,0 +1,113 @@
+name: Integration Test
+
+on:
+  push:
+    paths:
+      - 'svg-generator/**'
+      - 'svg-to-pdf/**'
+      - '.github/workflows/integration-test.yml'
+  pull_request:
+    paths:
+      - 'svg-generator/**'
+      - 'svg-to-pdf/**'
+      - '.github/workflows/integration-test.yml'
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  integration-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcairo2-dev libpango1.0-dev libgdk-pixbuf2.0-dev librsvg2-dev
+          
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          
+      - name: Install SVG Generator
+        run: |
+          cd svg-generator
+          poetry install
+          
+      - name: Install SVG to PDF
+        run: |
+          cd svg-to-pdf
+          poetry install
+          
+      - name: Create test question
+        run: |
+          mkdir -p integration-test/questions
+          cat > integration-test/questions/test-question.md << EOF
+# Quiz Questions
+
+## Test Integration Question
+
+1. Option One
+2. Option Two
+3. Option Three (TRUE)
+4. Option Four
+5. Option Five (TRUE)
+6. Option Six
+7. Option Seven
+8. Option Eight
+9. Option Nine
+10. Option Ten
+EOF
+          
+      - name: Create test QR code
+        run: |
+          cd integration-test/questions
+          python3 -c "
+import qrcode
+qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_L, box_size=10, border=4)
+qr.add_data('https://example.com/integration-test')
+qr.make(fit=True)
+img = qr.make_image(fill_color='black', back_color='white')
+img.save('test-qr.png')
+"
+          
+      - name: Generate SVG
+        run: |
+          cd svg-generator
+          poetry run python generator.py ../integration-test/questions/test-question.md ../integration-test/questions/test-output.svg
+          
+      - name: Convert SVG to PDF
+        run: |
+          cd svg-to-pdf
+          poetry run svg-to-pdf ../integration-test/questions/test-output.svg -o ../integration-test/questions/test-output.pdf
+          
+      - name: Verify PDF was created
+        run: |
+          if [ ! -f integration-test/questions/test-output.pdf ]; then
+            echo "PDF file was not created!"
+            exit 1
+          fi
+          
+          # Check PDF size is reasonable (more than 1KB)
+          FILE_SIZE=$(du -k integration-test/questions/test-output.pdf | cut -f1)
+          if [ "$FILE_SIZE" -lt 1 ]; then
+            echo "PDF file is too small (likely empty)"
+            exit 1
+          fi
+          
+          echo "Integration test passed successfully!"
+          
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: integration-test-output
+          path: |
+            integration-test/questions/test-question.md
+            integration-test/questions/test-qr.png
+            integration-test/questions/test-output.svg
+            integration-test/questions/test-output.pdf

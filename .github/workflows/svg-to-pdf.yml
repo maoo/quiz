@@ -42,12 +42,20 @@ jobs:
           fi
           echo "any_changed=true" >> $GITHUB_OUTPUT
 
-      - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          python-version: '3.10'
+
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Install dependencies
+        run: |
+          cd svg-to-pdf
+          poetry install
 
       - name: Convert SVG to PDF
         if: steps.files-to-process.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
@@ -65,48 +73,15 @@ jobs:
             fi
           }
 
-          # Function to convert SVG to PDF
+          # Function to convert SVG to PDF using our Python tool
           convert_svg_to_pdf() {
             local svg_file="$1"
-            local filename=$(basename "$svg_file" .svg)
-            local qr_path=$(dirname "$svg_file")/${filename%-output}-qr.png
-            local temp_svg="/tmp/${filename}.svg"
-            local pdf_output="$(dirname "$svg_file")/${filename}.pdf"
-
-            # Check if QR code exists
-            if [ -f "$qr_path" ]; then
-              # Get absolute path of QR code
-              local abs_qr_path=$(realpath "$qr_path")
-              # Create temporary SVG with local QR code path
-              sed "s|https://blog.session.it/quiz/decks/devops-hero/questions/${filename%-output}-qr.png|file://$abs_qr_path|g" "$svg_file" > "$temp_svg"
-              
-              # Convert with QR code
-              docker run --rm \
-                -v "$PWD:/work" \
-                -v "/tmp:/tmp" \
-                -w /work \
-                ghcr.io/${{ github.repository }}/svg-to-pdf:latest \
-                rsvg-convert -f pdf \
-                  -o "$pdf_output" \
-                  -w 416 \
-                  -h 416 \
-                  "$temp_svg"
-              
-              # Clean up temporary file
-              rm "$temp_svg"
-            else
-              echo "Warning: QR code file not found: $qr_path"
-              # Convert without QR code
-              docker run --rm \
-                -v "$PWD:/work" \
-                -w /work \
-                ghcr.io/${{ github.repository }}/svg-to-pdf:latest \
-                rsvg-convert -f pdf \
-                  -o "$pdf_output" \
-                  -w 416 \
-                  -h 416 \
-                  "$svg_file"
-            fi
+            local pdf_output="$(dirname "$svg_file")/$(basename "$svg_file" .svg).pdf"
+            
+            echo "Converting $svg_file to $pdf_output"
+            cd svg-to-pdf
+            poetry run svg-to-pdf "../$svg_file" -o "../$pdf_output" --width 11 --height 11
+            cd ..
           }
 
           # Process each SVG file
@@ -121,6 +96,6 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add decks/*.pdf
+          git add decks/**/*.pdf
           git commit -m "Convert SVG to PDF" || exit 0
           git push origin HEAD:${{ github.ref }} 
