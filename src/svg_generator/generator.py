@@ -6,6 +6,7 @@ import os
 import re
 import sys
 import math
+import base64
 from typing import List, Tuple, Optional
 
 import svgwrite
@@ -47,6 +48,21 @@ class QuizSVGGenerator:
         """
         qr_path = markdown_path.replace('-question.md', '-qr.png')
         return os.path.exists(qr_path)
+
+    def get_qr_code_data_uri(self, qr_path: str) -> str:
+        """
+        Convert QR code image to data URI.
+        
+        Args:
+            qr_path: Path to the QR code image
+            
+        Returns:
+            str: Data URI of the QR code image
+        """
+        with open(qr_path, 'rb') as f:
+            image_data = f.read()
+        base64_data = base64.b64encode(image_data).decode('utf-8')
+        return f'data:image/png;base64,{base64_data}'
 
     def parse_markdown(self, markdown_path: str) -> Tuple[str, List[str], List[bool]]:
         """
@@ -137,8 +153,8 @@ class QuizSVGGenerator:
             qr_x = self.center_x - qr_size // 2
             qr_y = self.center_y - qr_size // 2
             
-            clean_qr_path = qr_path.replace('../', '')
-            dwg.add(dwg.image(href=f"https://blog.session.it/quiz/{clean_qr_path}", 
+            qr_data_uri = self.get_qr_code_data_uri(qr_path)
+            dwg.add(dwg.image(href=qr_data_uri, 
                              insert=(qr_x, qr_y), 
                              size=(qr_size, qr_size)))
         else:
