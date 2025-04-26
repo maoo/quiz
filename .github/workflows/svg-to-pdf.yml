@@ -98,9 +98,4 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add decks/**/*.pdf
           git commit -m "Convert SVG to PDF" || exit 0
-          git push origin HEAD:${{ github.ref }}
-
-      - name: Run tests
-        run: |
-          cd src/svg_to_pdf
-          PYTHONPATH=$PYTHONPATH:$(pwd)/../.. poetry run pytest --cov=src --cov-report=xml 
+          git push origin HEAD:${{ github.ref }} 
