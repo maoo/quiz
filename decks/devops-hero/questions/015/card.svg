@@ -5,11 +5,7 @@
   <path d="M 860,0 L 1110,0 L 1110,250 Q 1060,50 860,0 Z" fill="#f5f5f5"/>
   <path d="M 860,1110 L 1110,1110 L 1110,860 Q 1060,1060 860,1110 Z" fill="#f5f5f5"/>
   <circle cx="555" cy="555" fill="#dcdcdc" r="165"/>
-  <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="555" y="515"/>
-    <text x="555" y="555">Options</text>
-    <text x="555" y="595">Which are TRUE?</text>
-  </g>
+  <image height="200" width="200" x="455" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAB7AQMAAABuCW08AAAABlBMVEUAAAD///+l2Z/dAAAAAnRSTlP//8i138cAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAF3SURBVEiJ1dWxbcMwEAXQb6hgZy1AQGuw40rSAmS0gLUSO64hQAtInQpCl8/YsYEU0aUIggguhCfgeDzyzpAvD/4zrEDMNibbJlx0sEkZcuGrZL7rINkotpVlyxjU0Jvmzcn4Ewh+kb2b9CCld7gaG1+pnwDrMWRbf68CnQCfA6XNiK9jOIEVFm6GK8Etkw4OLGO2AcvNlIsOVs+DkjfPZR9BT+FwjYgd9mU1JepgNegNgrGhflHBlppRSkBzMzIqYUe7W/g5SjfpQFJ3c8xxvuKe6TmsrgAzPMPcYyjAM8du25sxL6MOJLHevA4ddznpYK2rseoI3kYluHrjQr1Bz9TPwMuUy8AGSp+pnwEbGuBZyWHumSpg57YYg5dijkpgMT52BnSbDvispvbowKrogJ3dG3uRbsyPepwClw1OJuEkQKsEDjYwUwZ7xNAAG45VOZ4NpIDeCCdBm0urBM71xMnBTkXUQa0HT7dOkVeBvodf+Z/7E3gH1mI3PYpkfW0AAAAASUVORK5CYII=" y="455"/>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
     <text x="555.0" y="265.0"/>
     <text x="555.0" y="295.0">Docker</text>

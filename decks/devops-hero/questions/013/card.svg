@@ -5,11 +5,7 @@
   <path d="M 860,0 L 1110,0 L 1110,250 Q 1060,50 860,0 Z" fill="#f5f5f5"/>
   <path d="M 860,1110 L 1110,1110 L 1110,860 Q 1060,1060 860,1110 Z" fill="#f5f5f5"/>
   <circle cx="555" cy="555" fill="#dcdcdc" r="165"/>
-  <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="555" y="515"/>
-    <text x="555" y="555">Options</text>
-    <text x="555" y="595">Which are TRUE?</text>
-  </g>
+  <image height="200" width="200" x="455" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAB7AQMAAABuCW08AAAABlBMVEUAAAD///+l2Z/dAAAAAnRSTlP//8i138cAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAF0SURBVEiJ1dVBjoQgEAXQMi7YtRcg4RrsuJJeANoLtFdixzVMuIDsXBBqvm3PdDIbaxaTyRAT9SVCWVIl8bdB/xk2opB0iHqI1MmgcJ1SnvF4wrUMog6sB84l0SSGUfV3y/NPwLvMu1nkwHW0dFM6vEO/AORjSvo43gm6AIxGdUgU3p/hAjbSZFey1du8yIB3Lkl7yg9VOxk0u06J7w7LnnNcA3M/s572vKkahJD0TZFX2tueZdCUmbl66h+KZxlgNY+UuDWwWWTQVG4WMa43OiMVgF27uJLDNGaRwea4OVP2fn7WhASaw2rYDqbEfpHBpnI5sk7e6SAE0qMjf+wgswgB51QnFFB8hX4JZccddgRyeUYqADYPgtGo1iAF3cXjzYhMkQFGedbohKzIAJU9Kt2xmdNngq4A/cNbXhidgAYhoLFZRIrJXnOIgHLZTXsVkAwcoxMMqQ5CQF+P6ByoVAoyOHphJHL4IXwl6AJ+5T/3J/AByodGLu0uK9MAAAAASUVORK5CYII=" y="455"/>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
     <text x="555.0" y="265.0"/>
     <text x="555.0" y="295.0">Ansible</text>
