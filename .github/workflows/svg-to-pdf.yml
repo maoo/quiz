@@ -61,13 +61,14 @@ jobs:
                 -v "$PWD:/work" \
                 -w /work \
                 ubuntu:22.04 \
-                bash -c "apt-get update && \
+                bash -c 'apt-get update && \
                         apt-get install -y librsvg2-bin && \
                         rsvg-convert -f pdf \
-                          -o \"$(dirname \"$svg_file\")\/${filename}-output.pdf\" \
+                          -o "$(dirname "$1")/${2}-output.pdf" \
                           -w 416 \
                           -h 416 \
-                          \"$svg_file\""
+                          "$1"' \
+                _ "$svg_file" "$filename"
             fi
           done
 
