@@ -43,7 +43,7 @@ jobs:
           
       - name: Generate SVGs for all questions
         run: |
-          for question_file in decks/*.md; do
+          for question_file in decks/**/*.md; do
             if [ -f "$question_file" ]; then
               filename=$(basename "$question_file" .md)
               poetry run python -m src.svg_generator.generator "$question_file" "/tmp/integration-test/output/${filename}.svg"
