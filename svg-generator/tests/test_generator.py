@@ -2,16 +2,16 @@
 import os
 import pytest
 from unittest.mock import patch, MagicMock
-import re
 import math
 import sys
 import tempfile
-from pathlib import Path
 
 # Add the parent directory to sys.path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from generator import QuizSVGGenerator, main
+
+
 
 def test_init_default():
     """Test QuizSVGGenerator initialization with default values."""
@@ -21,6 +21,8 @@ def test_init_default():
     assert generator.center_x == 555
     assert generator.center_y == 555
 
+
+
 def test_init_custom():
     """Test QuizSVGGenerator initialization with custom values."""
     generator = QuizSVGGenerator(width=1000, height=800)
@@ -29,34 +31,36 @@ def test_init_custom():
     assert generator.center_x == 500
     assert generator.center_y == 400
 
+
+
 def test_has_qr_code_true():
     """Test has_qr_code when QR file exists."""
     with tempfile.TemporaryDirectory() as tmpdir:
         # Create mock files
         question_path = os.path.join(tmpdir, "test-question.md")
         qr_path = os.path.join(tmpdir, "test-qr.png")
-        
         # Create empty files
         open(question_path, 'w').close()
         open(qr_path, 'w').close()
-        
         generator = QuizSVGGenerator()
         assert generator.has_qr_code(question_path) is True
+
+
 
 def test_has_qr_code_false():
     """Test has_qr_code when QR file doesn't exist."""
     with tempfile.TemporaryDirectory() as tmpdir:
         question_path = os.path.join(tmpdir, "test-question.md")
         open(question_path, 'w').close()
-        
         generator = QuizSVGGenerator()
         assert generator.has_qr_code(question_path) is False
+
+
 
 def test_parse_markdown(test_question_md, temp_markdown_file):
     """Test parsing markdown content."""
     generator = QuizSVGGenerator()
     title, options, answers = generator.parse_markdown(temp_markdown_file)
-    
     assert title == "Container Security Best Practices"
     assert len(options) == 10
     assert "Use minimal base images" in options
@@ -70,10 +74,11 @@ def test_parse_markdown(test_question_md, temp_markdown_file):
     assert answers[6] is True  # Sign container images
     assert answers[4] is False  # Pin dependency versions
 
+
 def test_calculate_position():
     """Test position calculation."""
     generator = QuizSVGGenerator(width=1000, height=1000)
-    
+
     # Test first position (top)
     x, y = generator.calculate_position(0, 10, 100)
     assert x == pytest.approx(500)
@@ -87,13 +92,13 @@ def test_calculate_position():
     assert x == pytest.approx(expected_x)
     assert y == pytest.approx(expected_y)
 
+
 @patch('generator.svgwrite')
 def test_generate_svg_basic(mock_svgwrite, temp_markdown_file, tmp_path):
     """Test SVG generation without QR code."""
     # Setup
     mock_drawing = MagicMock()
     mock_svgwrite.Drawing.return_value = mock_drawing
-    
     output_path = str(tmp_path / "output.svg")
     
     # Run
@@ -105,16 +110,17 @@ def test_generate_svg_basic(mock_svgwrite, temp_markdown_file, tmp_path):
     assert mock_drawing.add.call_count > 0
     mock_drawing.save.assert_called_once_with(pretty=True, indent=2)
 
+
 @patch('generator.svgwrite')
 def test_generate_svg_with_qr(mock_svgwrite, temp_markdown_file, temp_qr_file, tmp_path):
     """Test SVG generation with QR code."""
     # Setup
     mock_drawing = MagicMock()
     mock_svgwrite.Drawing.return_value = mock_drawing
-    
     # Rename QR file to match the markdown file
-    qr_path = os.path.join(os.path.dirname(temp_markdown_file), 
-                        os.path.basename(temp_markdown_file).replace('-question.md', '-qr.png'))
+    qr_path = os.path.join(
+        os.path.dirname(temp_markdown_file),
+        os.path.basename(temp_markdown_file).replace('-question.md', '-qr.png'))
     
     # Create QR file
     os.makedirs(os.path.dirname(qr_path), exist_ok=True)
@@ -172,7 +178,7 @@ def test_main_error():
         # Override sys.argv with test values
         sys.argv = ['generator.py']
         
-        # With pytest.raises we catch the SystemExit and verify it has the right exit code
+        # Check SystemExit is raised with correct exit code
         with pytest.raises(SystemExit) as excinfo:
             main()
         
@@ -181,3 +187,4 @@ def test_main_error():
     finally:
         # Restore original argv
         sys.argv = orig_argv
+

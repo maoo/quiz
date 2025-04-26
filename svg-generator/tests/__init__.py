@@ -1,1 +1,2 @@
 """SVG Generator test package."""
+

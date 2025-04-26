@@ -35,11 +35,12 @@ jobs:
         run: |
           cd svg-generator
           poetry run pytest
-          
-      - name: Run linting
-        run: |
-          cd svg-generator
-          poetry run flake8 *.py tests
+
+      # Enable if/when we will care about linting
+      # - name: Run linting
+      #   run: |
+      #     cd svg-generator
+      #     poetry run flake8 *.py tests
           
       - name: Upload coverage report
         uses: codecov/codecov-action@v3

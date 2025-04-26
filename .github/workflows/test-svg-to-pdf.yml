@@ -40,11 +40,12 @@ jobs:
         run: |
           cd svg-to-pdf
           poetry run pytest
-          
-      - name: Run linting
-        run: |
-          cd svg-to-pdf
-          poetry run flake8 svg_to_pdf tests
+
+      # Enable if/when we will care about linting
+      # - name: Run linting
+      #   run: |
+      #     cd svg-to-pdf
+      #     poetry run flake8 svg_to_pdf tests
           
       - name: Upload coverage report
         uses: codecov/codecov-action@v3

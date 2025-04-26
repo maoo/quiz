@@ -5,8 +5,8 @@ import re
 import sys
 import math
 import svgwrite
-from pathlib import Path
 from typing import List, Tuple
+
 
 class QuizSVGGenerator:
     def __init__(self, width: int = 1110, height: int = 1110):
@@ -35,7 +35,8 @@ class QuizSVGGenerator:
         options = []
         answers = []
         for line in content.split('\n'):
-            if line.strip().startswith(('1.', '2.', '3.', '4.', '5.', '6.', '7.', '8.', '9.', '10.')):
+            if line.strip().startswith(('1.', '2.', '3.', '4.', '5.', '6.', '7.', '8.',
+                                        '9.', '10.')):
                 option = line.strip().split('.', 1)[1].strip()
                 options.append(option)
                 # For this example, we'll consider some options as TRUE
@@ -71,8 +72,11 @@ class QuizSVGGenerator:
         dwg.add(dwg.rect((0, 0), (self.width, self.height), fill='#f5f5f5', rx=250, ry=250))
         
         # Add corner paths for rounded corners
-        dwg.add(dwg.path(d=f"M {self.width-250},0 L {self.width},0 L {self.width},{250} Q {self.width-50},50 {self.width-250},0 Z", fill='#f5f5f5'))
-        dwg.add(dwg.path(d=f"M {self.width-250},{self.height} L {self.width},{self.height} L {self.width},{self.height-250} Q {self.width-50},{self.height-50} {self.width-250},{self.height} Z", fill='#f5f5f5'))
+        dwg.add(dwg.path(d=f"M {self.width-250},0 L {self.width},0 L {self.width},{250} "
+                         f"Q {self.width-50},50 {self.width-250},0 Z", fill='#f5f5f5'))
+        dwg.add(dwg.path(d=f"M {self.width-250},{self.height} L {self.width},{self.height} "
+                         f"L {self.width},{self.height-250} Q {self.width-50},{self.height-50} "
+                         f"{self.width-250},{self.height} Z", fill='#f5f5f5'))
         
         # Add question circle
         dwg.add(dwg.circle(center=(self.center_x, self.center_y), r=self.radius, fill='#dcdcdc'))
@@ -87,7 +91,9 @@ class QuizSVGGenerator:
             
             # Add QR code as image - strip "../" from the path
             clean_qr_path = qr_path.replace('../', '')
-            dwg.add(dwg.image(href=f"https://blog.session.it/quiz/{clean_qr_path}", insert=(qr_x, qr_y), size=(qr_size, qr_size)))
+            dwg.add(dwg.image(href=f"https://blog.session.it/quiz/{clean_qr_path}", 
+                             insert=(qr_x, qr_y), 
+                             size=(qr_size, qr_size)))
         else:
             # Regular title display for short questions
             title_parts = title.split()
@@ -95,10 +101,12 @@ class QuizSVGGenerator:
             title_line1 = ' '.join(title_parts[:mid])
             title_line2 = ' '.join(title_parts[mid:])
             
-            title_group = dwg.g(font_family="Arial", font_size=24, text_anchor="middle", dominant_baseline="middle")
+            title_group = dwg.g(font_family="Arial", font_size=24, 
+                               text_anchor="middle", dominant_baseline="middle")
             title_group.add(dwg.text(title_line1, insert=(self.center_x, self.center_y - 40)))
             title_group.add(dwg.text(title_line2, insert=(self.center_x, self.center_y)))
-            title_group.add(dwg.text("Which are TRUE?", insert=(self.center_x, self.center_y + 40)))
+            title_group.add(dwg.text("Which are TRUE?", 
+                                    insert=(self.center_x, self.center_y + 40)))
             dwg.add(title_group)
         
         # Add options and answers
@@ -112,7 +120,8 @@ class QuizSVGGenerator:
             line2 = ' '.join(words[mid:])
             
             # Add option text
-            option_group = dwg.g(font_family="Arial", font_size=24, text_anchor="middle", dominant_baseline="middle")
+            option_group = dwg.g(font_family="Arial", font_size=24, 
+                                text_anchor="middle", dominant_baseline="middle")
             option_group.add(dwg.text(line1, insert=(x, y - 15)))
             if line2:
                 option_group.add(dwg.text(line2, insert=(x, y + 15)))
@@ -120,8 +129,10 @@ class QuizSVGGenerator:
             
             # Add answer on the circle and decagon
             answer_x, answer_y = self.calculate_position(i, 10, self.answer_radius)
-            answer_group = dwg.g(font_family="Arial", font_size=18, text_anchor="middle", dominant_baseline="middle")
-            answer_group.add(dwg.text('TRUE' if is_true else 'FALSE', insert=(answer_x, answer_y)))
+            answer_group = dwg.g(font_family="Arial", font_size=18, 
+                               text_anchor="middle", dominant_baseline="middle")
+            answer_group.add(dwg.text('TRUE' if is_true else 'FALSE', 
+                                    insert=(answer_x, answer_y)))
             dwg.add(answer_group)
         
         # Save the SVG with pretty printing
@@ -131,12 +142,13 @@ def main():
     if len(sys.argv) < 3:
         print("Usage: python generator.py <input_markdown> <output_svg>")
         sys.exit(1)
-    
+
     input_path = sys.argv[1]
     output_path = sys.argv[2]
-    
+
     generator = QuizSVGGenerator()
     generator.generate_svg(input_path, output_path)
 
+
 if __name__ == "__main__":
-    main() 
+    main()

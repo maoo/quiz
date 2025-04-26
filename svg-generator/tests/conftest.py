@@ -1,8 +1,6 @@
 """Pytest fixtures for SVG Generator tests."""
-import os
 import pytest
-import tempfile
-from pathlib import Path
+
 
 @pytest.fixture
 def test_question_md():
@@ -22,12 +20,16 @@ def test_question_md():
 9. Implement proper healthchecks
 10. Enable logging and monitoring"""
 
+
+
 @pytest.fixture
 def temp_markdown_file(test_question_md, tmp_path):
     """Create a temporary markdown file."""
     md_path = tmp_path / "test-question.md"
     md_path.write_text(test_question_md)
     return str(md_path)
+
+
 
 @pytest.fixture
 def temp_qr_file(tmp_path):
@@ -52,3 +54,4 @@ def temp_qr_file(tmp_path):
         qr_path = tmp_path / "test-qr.png"
         qr_path.write_bytes(b"dummy")
         return str(qr_path)
+
