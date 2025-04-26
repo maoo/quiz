@@ -5,73 +5,77 @@
   <path d="M 860,0 L 1110,0 L 1110,250 Q 1060,50 860,0 Z" fill="#f5f5f5"/>
   <path d="M 860,1110 L 1110,1110 L 1110,860 Q 1060,1060 860,1110 Z" fill="#f5f5f5"/>
   <circle cx="555" cy="555" fill="#dcdcdc" r="165"/>
-  <image height="200" width="200" x="455" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAB7AQMAAABuCW08AAAABlBMVEUAAAD///+l2Z/dAAAAAnRSTlP//8i138cAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAF0SURBVEiJ1dVBboUgEAbgMS7Y6QVIuAY7rvS8AOgF6pXYcQ0TL/DYsSBOf+trTLoo06SLlphovkQYhxkk/jLoP8OTKCQdoh4jdTLIXKe0r3g94VkGUQc2K+850SSGh+pny8tPwLudi1nlwPVh9aB0uENvAPIxJX1ed4IagHFQHROFexsa8CRNdiNbvT0TKYHD9py0p/1N1U4IapsSzw7LvuZowpOwS3oq+1PVIIPDalLklfZYXwgOt+qpf1O8yICxZtTkto86EkFOZo2IcRvoirQNXLYxbuQwzWvSJiAfszK59EvaFyGc+4NyMDn2qwy49LNC1sk7HWRwuNol8mcFXZG2IRdURJ3QQPGKVABcB9vj8VBXpBIwM2EOeqgtCKHUgc4vIzJZBhj5rAicBHqSwdXZHZslfe5tC/Bx3vLKOAloFAIONotIr06Sw56LOV4NJAJ0Nk6CMdVRCDjXI+oOnUpBBmc+CpHDD+FO0PfwG7+1vwHvr/dGyjRx0XoAAAAASUVORK5CYII=" y="455"/>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="555.0" y="265.0">Cache</text>
-    <text x="555.0" y="295.0">busting</text>
+    <text x="555" y="515"/>
+    <text x="555" y="555">Options</text>
+    <text x="555" y="595">Which are TRUE?</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
+    <text x="555.0" y="265.0"/>
+    <text x="555.0" y="295.0">Jenkins</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="555.0" y="105.0">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="716.6409443804301" y="317.52032654688946">Base</text>
-    <text x="716.6409443804301" y="347.52032654688946">image</text>
+    <text x="716.6409443804301" y="317.52032654688946"/>
+    <text x="716.6409443804301" y="347.52032654688946">CircleCI</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="819.5033635316129" y="190.94235253127363">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="816.5405419811673" y="455.02032654688946">Directory</text>
-    <text x="816.5405419811673" y="485.02032654688946">setting</text>
+    <text x="816.5405419811673" y="455.02032654688946">Travis</text>
+    <text x="816.5405419811673" y="485.02032654688946">CI</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="982.9754323328191" y="415.9423525312737">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="816.5405419811673" y="624.9796734531105">Volume</text>
-    <text x="816.5405419811673" y="654.9796734531105">mounting</text>
+    <text x="816.5405419811673" y="624.9796734531105">GitHub</text>
+    <text x="816.5405419811673" y="654.9796734531105">Actions</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="982.9754323328191" y="694.0576474687264">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="716.6409443804301" y="762.4796734531105">Entry</text>
-    <text x="716.6409443804301" y="792.4796734531105">command</text>
+    <text x="716.6409443804301" y="762.4796734531105">GitLab</text>
+    <text x="716.6409443804301" y="792.4796734531105">CI</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="819.5033635316129" y="919.0576474687264">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="555.0" y="815.0">File</text>
-    <text x="555.0" y="845.0">copying</text>
+    <text x="555.0" y="815.0"/>
+    <text x="555.0" y="845.0">Bamboo</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="555.0" y="1005.0">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="393.3590556195699" y="762.4796734531105">Environment</text>
-    <text x="393.3590556195699" y="792.4796734531105">var</text>
+    <text x="393.3590556195699" y="762.4796734531105"/>
+    <text x="393.3590556195699" y="792.4796734531105">TeamCity</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="290.4966364683871" y="919.0576474687264">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="293.4594580188328" y="624.9796734531105">Port</text>
-    <text x="293.4594580188328" y="654.9796734531105">publishing</text>
+    <text x="293.4594580188328" y="624.9796734531105"/>
+    <text x="293.4594580188328" y="654.9796734531105">Drone</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="127.02456766718092" y="694.0576474687264">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="293.4594580188327" y="455.02032654688946">User</text>
-    <text x="293.4594580188327" y="485.02032654688946">switching</text>
+    <text x="293.4594580188327" y="455.02032654688946">Argo</text>
+    <text x="293.4594580188327" y="485.02032654688946">CD</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="127.02456766718086" y="415.94235253127374">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="393.35905561956986" y="317.52032654688946">Package</text>
-    <text x="393.35905561956986" y="347.52032654688946">install</text>
+    <text x="393.35905561956986" y="317.52032654688946"/>
+    <text x="393.35905561956986" y="347.52032654688946">Tekton</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="290.49663646838707" y="190.94235253127368">FALSE</text>

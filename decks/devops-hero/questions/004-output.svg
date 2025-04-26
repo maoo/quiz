@@ -7,71 +7,71 @@
   <circle cx="555" cy="555" fill="#dcdcdc" r="165"/>
   <image height="200" width="200" x="455" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAB7AQMAAABuCW08AAAABlBMVEUAAAD///+l2Z/dAAAAAnRSTlP//8i138cAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAF0SURBVEiJ1dUxboQwEAXQQRTulgtY8jXc+UpwATtcYLmSO18DyRfAHYXF5LPLZqU0nhRRFIsCnsTsMPbMEn9b9J9hIwpJh6iHSJ0MCtcp1QGvJ9zLIOrAZuFcEk1iGFX/YXn+CXiXeTeLHLiOVt+UDu/UG4B6TEmf17tADcA6qA6JwnsbGrCRJruSrd7mRQYc8VnaU76r2slgI2wUfzj87CtoC0oyhfW0503VIISdvMKlve1ZCpm5eurvimcZHIRiaHLr4xyJYKPMETmuN3pm2oay1xvCOIR5xmgDYmzOlL2fU55lgHp0jONgSuwXGXDkQ6Hq5J0OMsCTd+TPE3QVqAmFzaHqhAaKV6ZtiBRij9tDXam3YTeoOjId1RqkgG44v4zIFBlgbe7s0QmnVQbPzu7YzOm1ty3A/PCWF8Z20SAEDDZCpgh2xZDAFDOqcrwaSATMmATDY1SLAHM9YnKczRpkgHqMlshhinwVqAG/8j/3J/AJoOFKD1f3pScAAAAASUVORK5CYII=" y="455"/>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="555.0" y="265.0">Uses</text>
-    <text x="555.0" y="295.0">latest tag</text>
+    <text x="555.0" y="265.0">Namespace</text>
+    <text x="555.0" y="295.0">isolation</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="555.0" y="105.0">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="716.6409443804301" y="317.52032654688946">Has</text>
-    <text x="716.6409443804301" y="347.52032654688946">resource limits</text>
+    <text x="716.6409443804301" y="317.52032654688946">Security</text>
+    <text x="716.6409443804301" y="347.52032654688946">policy</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="819.5033635316129" y="190.94235253127363">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="816.5405419811673" y="455.02032654688946">Runs</text>
-    <text x="816.5405419811673" y="485.02032654688946">Daemonset</text>
+    <text x="816.5405419811673" y="455.02032654688946">Resource</text>
+    <text x="816.5405419811673" y="485.02032654688946">quotas</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="982.9754323328191" y="415.9423525312737">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="816.5405419811673" y="624.9796734531105">Has</text>
-    <text x="816.5405419811673" y="654.9796734531105">network policy</text>
+    <text x="816.5405419811673" y="624.9796734531105"/>
+    <text x="816.5405419811673" y="654.9796734531105">Auto-scaling</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="982.9754323328191" y="694.0576474687264">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="716.6409443804301" y="762.4796734531105">Has</text>
-    <text x="716.6409443804301" y="792.4796734531105">health checks</text>
+    <text x="716.6409443804301" y="762.4796734531105">Image</text>
+    <text x="716.6409443804301" y="792.4796734531105">versioning</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="819.5033635316129" y="919.0576474687264">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="555.0" y="815.0">Runs</text>
-    <text x="555.0" y="845.0">as non-root</text>
+    <text x="555.0" y="815.0">Health</text>
+    <text x="555.0" y="845.0">checking</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="555.0" y="1005.0">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="393.3590556195699" y="762.4796734531105">Uses</text>
-    <text x="393.3590556195699" y="792.4796734531105">Canary deploy</text>
+    <text x="393.3590556195699" y="762.4796734531105">Update</text>
+    <text x="393.3590556195699" y="792.4796734531105">strategy</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="290.4966364683871" y="919.0576474687264">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="293.4594580188328" y="624.9796734531105">Runs</text>
-    <text x="293.4594580188328" y="654.9796734531105">3 replicas</text>
+    <text x="293.4594580188328" y="624.9796734531105">Service</text>
+    <text x="293.4594580188328" y="654.9796734531105">discovery</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="127.02456766718092" y="694.0576474687264">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="293.4594580188327" y="455.02032654688946">Exposes</text>
-    <text x="293.4594580188327" y="485.02032654688946">NodePort</text>
+    <text x="293.4594580188327" y="455.02032654688946">Pod</text>
+    <text x="293.4594580188327" y="485.02032654688946">replication</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="127.02456766718086" y="415.94235253127374">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="393.35905561956986" y="317.52032654688946">Has</text>
-    <text x="393.35905561956986" y="347.52032654688946">ConfigMap</text>
+    <text x="393.35905561956986" y="317.52032654688946">Port</text>
+    <text x="393.35905561956986" y="347.52032654688946">mapping</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="290.49663646838707" y="190.94235253127368">FALSE</text>
