@@ -67,16 +67,11 @@ class ImageHandler:
             
             # If not found, try with different case patterns (important for case-sensitive filesystems)
             if not os.path.exists(local_path):
-                # Try with the base name without the output suffix
-                if '-output' in filename:
-                    base_name = filename.replace('-output', '')
-                    qr_name = os.path.splitext(base_name)[0] + '-qr.png'
-                    local_path = os.path.join(self.base_dir, qr_name)
-                
-                # Try direct QR name pattern
-                if not os.path.exists(local_path) and not filename.endswith('-qr.png'):
-                    possible_qr = os.path.splitext(filename)[0] + '-qr.png'
-                    local_path = os.path.join(self.base_dir, possible_qr)
+                # Try with the base name without any suffixes
+                base_name = os.path.splitext(filename)[0]
+                if base_name.endswith('-qr'):
+                    base_name = base_name[:-3]  # Remove -qr suffix
+                local_path = os.path.join(self.base_dir, base_name, 'qr.png')
             
             # If we found a local file, use it
             if os.path.exists(local_path):

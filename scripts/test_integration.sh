@@ -10,11 +10,11 @@ mkdir -p /tmp/integration-test/output
 
 # Generate SVGs for all questions
 echo "Generating SVGs..."
-for question_file in decks/devops-hero/questions/*-question.md; do
-    if [ -f "$question_file" ]; then
-        filename=$(basename "$question_file" -question.md)
-        echo "Processing $question_file..."
-        poetry run python -m src.svg_generator.generator "$question_file" "/tmp/integration-test/output/${filename}.svg"
+for question_dir in decks/devops-hero/questions/*/; do
+    if [ -f "${question_dir}question.md" ]; then
+        question_id=$(basename "$question_dir")
+        echo "Processing ${question_dir}question.md..."
+        poetry run python -m src.svg_generator.generator "${question_dir}question.md" "/tmp/integration-test/output/${question_id}.svg"
     fi
 done
 
@@ -35,8 +35,8 @@ for svg_file in /tmp/integration-test/output/*.svg; do
     fi
     
     # Verify SVG contains QR code if present in original markdown
-    original_md=$(basename "$svg_file" .svg)-question.md
-    if grep -q "qr:" "decks/devops-hero/questions/$original_md" && ! grep -q "image" "$svg_file"; then
+    question_id=$(basename "$svg_file" .svg)
+    if grep -q "qr:" "decks/devops-hero/questions/${question_id}/question.md" && ! grep -q "image" "$svg_file"; then
         echo "SVG file $svg_file should contain QR code but doesn't!"
         exit 1
     fi

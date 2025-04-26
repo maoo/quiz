@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" height="1110" version="1.1" width="1110">
+  <defs/>
+  <rect fill="#f5f5f5" height="1110" rx="250" ry="250" width="1110" x="0" y="0"/>
+  <path d="M 860,0 L 1110,0 L 1110,250 Q 1060,50 860,0 Z" fill="#f5f5f5"/>
+  <path d="M 860,1110 L 1110,1110 L 1110,860 Q 1060,1060 860,1110 Z" fill="#f5f5f5"/>
+  <circle cx="555" cy="555" fill="#dcdcdc" r="165"/>
+  <image height="200" width="200" x="455" xlink:href="data:image/png;base64,IyBSYW5rIHRoZXNlIEt1YmVybmV0ZXMgbWFuaWZlc3QgaXNzdWVzIGJ5IHNldmVyaXR5CgpPcmRlciB0aGVzZSBzZWN1cml0eSBhbmQgb3BlcmF0aW9uYWwgaXNzdWVzIGZvdW5kIGluIHRoZSBLdWJlcm5ldGVzIG1hbmlmZXN0IGZyb20gbW9zdCBjcml0aWNhbCAoMSkgdG8gbGVhc3QgY3JpdGljYWwgKDEwKS4KCmBgYHlhbWwKYXBpVmVyc2lvbjogYXBwcy92MQpraW5kOiBEZXBsb3ltZW50Cm1ldGFkYXRhOgogIG5hbWU6IGFwaS1zZXJ2aWNlCnNwZWM6CiAgcmVwbGljYXM6IDEKICBzZWxlY3RvcjoKICAgIG1hdGNoTGFiZWxzOgogICAgICBhcHA6IGFwaQogIHRlbXBsYXRlOgogICAgbWV0YWRhdGE6CiAgICAgIGxhYmVsczoKICAgICAgICBhcHA6IGFwaQogICAgc3BlYzoKICAgICAgY29udGFpbmVyczoKICAgICAgLSBuYW1lOiBhcGktY29udGFpbmVyCiAgICAgICAgaW1hZ2U6IGNvbXBhbnkvYXBpOmxhdGVzdAogICAgICAgIHBvcnRzOgogICAgICAgIC0gY29udGFpbmVyUG9ydDogODA4MAogICAgICAgIGVudjoKICAgICAgICAtIG5hbWU6IERCX1BBU1NXT1JECiAgICAgICAgICB2YWx1ZTogInBhc3N3b3JkMTIzIgogICAgICAgIC0gbmFtZTogQVBJX0tFWQogICAgICAgICAgdmFsdWU6ICJza19saXZlX2FiY2RlZjEyMzQ1NiIKICAgICAgICByZXNvdXJjZXM6IHt9CiAgICAgICAgc2VjdXJpdHlDb250ZXh0OgogICAgICAgICAgcHJpdmlsZWdlZDogdHJ1ZQogICAgICAgIGxpdmVuZXNzUHJvYmU6CiAgICAgICAgICBodHRwR2V0OgogICAgICAgICAgICBwYXRoOiAvaGVhbHRoegogICAgICAgICAgICBwb3J0OiA4MDgwCiAgICAgICAgICBpbml0aWFsRGVsYXlTZWNvbmRzOiAzCiAgICAgICAgICBwZXJpb2RTZWNvbmRzOiAzCmBgYAoKIyMgT3B0aW9ucwoxLiBVc2luZyBsYXRlc3QgdGFnCjIuIEhhcmQtY29kZWQgc2VjcmV0cwozLiBTaW5nbGUgcmVwbGljYQo0LiBNaXNzaW5nIHJlYWRpbmVzcwo1LiBObyByZXNvdXJjZSBsaW1pdHMKNi4gUHJpdmlsZWdlZCBjb250YWluZXIKNy4gV3JvbmcgcG9ydCBleHBvc2VkCjguIE5vIG5vZGUgc2VsZWN0b3IKOS4gTWlzc2luZyBuYW1lc3BhY2UKMTAuIFByb2JlIHRvbyBmcmVxdWVudAoKIyMgU291cmNlcwotIFtLdWJlcm5ldGVzIEJlc3QgUHJhY3RpY2VzXShodHRwczovL2t1YmVybmV0ZXMuaW8vZG9jcy9jb25jZXB0cy9jb25maWd1cmF0aW9uL292ZXJ2aWV3LykKLSBbQ05DRiBDbG91ZCBOYXRpdmUgU2VjdXJpdHkgV2hpdGVwYXBlcl0oaHR0cHM6Ly9naXRodWIuY29tL2NuY2YvdGFnLXNlY3VyaXR5L2Jsb2IvbWFpbi9zZWN1cml0eS13aGl0ZXBhcGVyL0NOQ0ZfY2xvdWQtbmF0aXZlLXNlY3VyaXR5LXdoaXRlcGFwZXItTm92MjAyMC5wZGYpCi0gW0t1YmVybmV0ZXMgU2VjdXJpdHkgQmVzdCBQcmFjdGljZXNdKGh0dHBzOi8va3ViZXJuZXRlcy5pby9kb2NzL2NvbmNlcHRzL3NlY3VyaXR5L3NlY3VyaXR5LWNoZWNrbGlzdC8pCgpVUkw6IGh0dHBzOi8vYmxvZy5zZXNzaW9uLml0L3F1aXovZGVja3MvZGV2b3BzLWhlcm8vcXVlc3Rpb25zLzAwOC1xdWVzdGlvbg==" y="455"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
+    <text x="555.0" y="265.0">Using</text>
+    <text x="555.0" y="295.0">latest tag</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="555.0" y="105.0">FALSE</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
+    <text x="716.6409443804301" y="317.52032654688946">Hard-coded</text>
+    <text x="716.6409443804301" y="347.52032654688946">secrets</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="819.5033635316129" y="190.94235253127363">FALSE</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
+    <text x="816.5405419811673" y="455.02032654688946">Single</text>
+    <text x="816.5405419811673" y="485.02032654688946">replica</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="982.9754323328191" y="415.9423525312737">FALSE</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
+    <text x="816.5405419811673" y="624.9796734531105">Missing</text>
+    <text x="816.5405419811673" y="654.9796734531105">readiness</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="982.9754323328191" y="694.0576474687264">TRUE</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
+    <text x="716.6409443804301" y="762.4796734531105">No</text>
+    <text x="716.6409443804301" y="792.4796734531105">resource limits</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="819.5033635316129" y="919.0576474687264">FALSE</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
+    <text x="555.0" y="815.0">Privileged</text>
+    <text x="555.0" y="845.0">container</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="555.0" y="1005.0">FALSE</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
+    <text x="393.3590556195699" y="762.4796734531105">Wrong</text>
+    <text x="393.3590556195699" y="792.4796734531105">port exposed</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="290.4966364683871" y="919.0576474687264">FALSE</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
+    <text x="293.4594580188328" y="624.9796734531105">No</text>
+    <text x="293.4594580188328" y="654.9796734531105">node selector</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="127.02456766718092" y="694.0576474687264">FALSE</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
+    <text x="293.4594580188327" y="455.02032654688946">Missing</text>
+    <text x="293.4594580188327" y="485.02032654688946">namespace</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="127.02456766718086" y="415.94235253127374">TRUE</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
+    <text x="393.35905561956986" y="317.52032654688946">Probe</text>
+    <text x="393.35905561956986" y="347.52032654688946">too frequent</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="290.49663646838707" y="190.94235253127368">FALSE</text>
+  </g>
+</svg>

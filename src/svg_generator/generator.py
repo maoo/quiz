@@ -46,7 +46,7 @@ class QuizSVGGenerator:
         Returns:
             bool: True if QR code exists, False otherwise
         """
-        qr_path = markdown_path.replace('-question.md', '-qr.png')
+        qr_path = os.path.join(os.path.dirname(markdown_path), 'qr.png')
         return os.path.exists(qr_path)
 
     def get_qr_code_data_uri(self, qr_path: str) -> str:
@@ -148,7 +148,7 @@ class QuizSVGGenerator:
         
         # Add title and QR code if needed
         if self.has_qr_code(markdown_path):
-            qr_path = markdown_path.replace('-question.md', '-qr.png')
+            qr_path = os.path.join(os.path.dirname(markdown_path), 'qr.png')
             qr_size = 200
             qr_x = self.center_x - qr_size // 2
             qr_y = self.center_y - qr_size // 2

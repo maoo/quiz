@@ -5,77 +5,73 @@
   <path d="M 860,0 L 1110,0 L 1110,250 Q 1060,50 860,0 Z" fill="#f5f5f5"/>
   <path d="M 860,1110 L 1110,1110 L 1110,860 Q 1060,1060 860,1110 Z" fill="#f5f5f5"/>
   <circle cx="555" cy="555" fill="#dcdcdc" r="165"/>
+  <image height="200" width="200" x="455" xlink:href="data:image/png;base64,IyBPcmRlciB0aGVzZSBzZWN1cml0eSBwcmFjdGljZXMgYnkgaW1wbGVtZW50YXRpb24gcHJpb3JpdHkKCkFycmFuZ2UgdGhlc2UgS3ViZXJuZXRlcyBzZWN1cml0eSBtZWFzdXJlcyBmcm9tIGhpZ2hlc3QgcHJpb3JpdHkgKDEpIHRvIGxvd2VzdCBwcmlvcml0eSAoMTApIGJhc2VkIG9uIHNlY3VyaXR5IGltcGFjdC4KCiMjIE9wdGlvbnMKMS4gUmVzb3VyY2UgcXVvdGFzCjIuIE5ldHdvcmsgcG9saWNpZXMKMy4gUkJBQyBpbXBsZW1lbnRhdGlvbgo0LiBDb250YWluZXIgc2Nhbm5pbmcKNS4gU2VjcmV0IG1hbmFnZW1lbnQKNi4gUG9kIHNlY3VyaXR5IGNvbnRleHQKNy4gSW1hZ2Ugc2lnbmluZwo4LiBOYW1lc3BhY2UgaXNvbGF0aW9uCjkuIEFkbWlzc2lvbiBjb250cm9sbGVycwoxMC4gU2VjY29tcCBwcm9maWxlcwoKIyMgU291cmNlcwotIFtLdWJlcm5ldGVzIFNlY3VyaXR5IEJlc3QgUHJhY3RpY2VzXShodHRwczovL2t1YmVybmV0ZXMuaW8vZG9jcy9jb25jZXB0cy9zZWN1cml0eS9vdmVydmlldy8pCi0gW0NOQ0YgU2VjdXJpdHkgV2hpdGVwYXBlcl0oaHR0cHM6Ly9naXRodWIuY29tL2NuY2YvdGFnLXNlY3VyaXR5L2Jsb2IvbWFpbi9zZWN1cml0eS13aGl0ZXBhcGVyL0NOQ0ZfY2xvdWQtbmF0aXZlLXNlY3VyaXR5LXdoaXRlcGFwZXItTm92MjAyMC5wZGYpCi0gW0NJUyBLdWJlcm5ldGVzIEJlbmNobWFya10oaHR0cHM6Ly93d3cuY2lzZWN1cml0eS5vcmcvYmVuY2htYXJrL2t1YmVybmV0ZXMpCi0gW05TQSBLdWJlcm5ldGVzIEhhcmRlbmluZyBHdWlkZV0oaHR0cHM6Ly9tZWRpYS5kZWZlbnNlLmdvdi8yMDIyL0F1Zy8yOS8yMDAzMDY2MzYyLy0xLy0xLzAvQ1RSX0tVQkVSTkVURVNfSEFSREVOSU5HX0dVSURBTkNFXzEuMl8yMDIyMDgyOS5QREYpCgpVUkw6IGh0dHBzOi8vYmxvZy5zZXNzaW9uLml0L3F1aXovZGVja3MvZGV2b3BzLWhlcm8vcXVlc3Rpb25zLzAxNy1xdWVzdGlvbg==" y="455"/>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="555" y="515"/>
-    <text x="555" y="555">Options</text>
-    <text x="555" y="595">Which are TRUE?</text>
-  </g>
-  <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="555.0" y="265.0"/>
-    <text x="555.0" y="295.0">Jenkins</text>
+    <text x="555.0" y="265.0">Resource</text>
+    <text x="555.0" y="295.0">quotas</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="555.0" y="105.0">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="716.6409443804301" y="317.52032654688946"/>
-    <text x="716.6409443804301" y="347.52032654688946">CircleCI</text>
+    <text x="716.6409443804301" y="317.52032654688946">Network</text>
+    <text x="716.6409443804301" y="347.52032654688946">policies</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="819.5033635316129" y="190.94235253127363">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="816.5405419811673" y="455.02032654688946">Travis</text>
-    <text x="816.5405419811673" y="485.02032654688946">CI</text>
+    <text x="816.5405419811673" y="455.02032654688946">RBAC</text>
+    <text x="816.5405419811673" y="485.02032654688946">implementation</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="982.9754323328191" y="415.9423525312737">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="816.5405419811673" y="624.9796734531105">GitHub</text>
-    <text x="816.5405419811673" y="654.9796734531105">Actions</text>
+    <text x="816.5405419811673" y="624.9796734531105">Container</text>
+    <text x="816.5405419811673" y="654.9796734531105">scanning</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="982.9754323328191" y="694.0576474687264">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="716.6409443804301" y="762.4796734531105">GitLab</text>
-    <text x="716.6409443804301" y="792.4796734531105">CI</text>
+    <text x="716.6409443804301" y="762.4796734531105">Secret</text>
+    <text x="716.6409443804301" y="792.4796734531105">management</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="819.5033635316129" y="919.0576474687264">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="555.0" y="815.0"/>
-    <text x="555.0" y="845.0">Bamboo</text>
+    <text x="555.0" y="815.0">Pod</text>
+    <text x="555.0" y="845.0">security context</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="555.0" y="1005.0">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="393.3590556195699" y="762.4796734531105"/>
-    <text x="393.3590556195699" y="792.4796734531105">TeamCity</text>
+    <text x="393.3590556195699" y="762.4796734531105">Image</text>
+    <text x="393.3590556195699" y="792.4796734531105">signing</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="290.4966364683871" y="919.0576474687264">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="293.4594580188328" y="624.9796734531105"/>
-    <text x="293.4594580188328" y="654.9796734531105">Drone</text>
+    <text x="293.4594580188328" y="624.9796734531105">Namespace</text>
+    <text x="293.4594580188328" y="654.9796734531105">isolation</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="127.02456766718092" y="694.0576474687264">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="293.4594580188327" y="455.02032654688946">Argo</text>
-    <text x="293.4594580188327" y="485.02032654688946">CD</text>
+    <text x="293.4594580188327" y="455.02032654688946">Admission</text>
+    <text x="293.4594580188327" y="485.02032654688946">controllers</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="127.02456766718086" y="415.94235253127374">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
-    <text x="393.35905561956986" y="317.52032654688946"/>
-    <text x="393.35905561956986" y="347.52032654688946">Tekton</text>
+    <text x="393.35905561956986" y="317.52032654688946">Seccomp</text>
+    <text x="393.35905561956986" y="347.52032654688946">profiles</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="290.49663646838707" y="190.94235253127368">FALSE</text>

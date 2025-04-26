@@ -32,16 +32,16 @@ jobs:
           # Get the commit that triggered this workflow
           COMMIT_SHA=${{ github.event.workflow_run.head_commit.id }}
           # Get the list of SVG files that were changed in that commit
-          echo "all_changed_files=$(git diff-tree --no-commit-id --name-only -r $COMMIT_SHA | grep 'decks/.*\.svg$' | tr '\n' ' ')" >> $GITHUB_OUTPUT
+          echo "all_changed_files=$(git diff-tree --no-commit-id --name-only -r $COMMIT_SHA | grep 'decks/.*/questions/.*/card\.svg$' | tr '\n' ' ')" >> $GITHUB_OUTPUT
           echo "any_changed=true" >> $GITHUB_OUTPUT
 
       - name: Set files to process for manual run
         if: github.event_name == 'workflow_dispatch'
         run: |
           if [ -n "${{ github.event.inputs.deck_name }}" ]; then
-            echo "all_changed_files=$(find decks/${{ github.event.inputs.deck_name }} -name '*.svg' | tr '\n' ' ')" >> $GITHUB_OUTPUT
+            echo "all_changed_files=$(find decks/${{ github.event.inputs.deck_name }}/questions -name 'card.svg' | tr '\n' ' ')" >> $GITHUB_OUTPUT
           else
-            echo "all_changed_files=$(find decks -name '*.svg' | tr '\n' ' ')" >> $GITHUB_OUTPUT
+            echo "all_changed_files=$(find decks -name 'card.svg' | tr '\n' ' ')" >> $GITHUB_OUTPUT
           fi
           echo "any_changed=true" >> $GITHUB_OUTPUT
 
@@ -69,9 +69,9 @@ jobs:
           get_svg_files() {
             if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
               if [ -n "${{ github.event.inputs.deck_name }}" ]; then
-                find decks/${{ github.event.inputs.deck_name }} -name '*.svg'
+                find decks/${{ github.event.inputs.deck_name }}/questions -name 'card.svg'
               else
-                find decks -name '*.svg'
+                find decks -name 'card.svg'
               fi
             else
               echo "${{ steps.files-to-process.outputs.all_changed_files }}"
@@ -81,7 +81,7 @@ jobs:
           # Function to convert SVG to PDF using our Python tool
           convert_svg_to_pdf() {
             local svg_file="$1"
-            local pdf_output="$(dirname "$svg_file")/$(basename "$svg_file" .svg).pdf"
+            local pdf_output="$(dirname "$svg_file")/card.pdf"
             
             echo "Converting $svg_file to $pdf_output"
             poetry run python -m src.svg_to_pdf.converter "$svg_file" -o "$pdf_output" --width 11 --height 11
@@ -99,6 +99,6 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add decks/**/*.pdf
+          git add decks/**/questions/*/card.pdf
           git commit -m "Convert SVG to PDF" || exit 0
           git push origin HEAD:${{ github.ref }} 

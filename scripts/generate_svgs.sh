@@ -16,9 +16,9 @@ get_markdown_files() {
     if [ -n "$MARKDOWN_FILES" ]; then
         echo "$MARKDOWN_FILES"
     elif [ -n "$deck_name" ]; then
-        find "decks/$deck_name" -name '*-question.md'
+        find "decks/$deck_name/questions" -name 'question.md'
     else
-        find decks -name '*-question.md'
+        find decks -name 'question.md'
     fi
 }
 
@@ -34,7 +34,7 @@ print_usage() {
     echo ""
     echo "Example: $0 devops-hero"
     echo "         $0"
-    echo "         MARKDOWN_FILES='decks/deck1/questions/001-question.md decks/deck2/questions/002-question.md' $0"
+    echo "         MARKDOWN_FILES='decks/deck1/questions/001/question.md decks/deck2/questions/002/question.md' $0"
 }
 
 # Check if help is requested
@@ -59,7 +59,7 @@ fi
 echo "Generating SVGs..."
 for file in $(get_markdown_files "$1"); do
     if [ -f "$file" ]; then
-        output_file="${file%-question.md}-output.svg"
+        output_file="$(dirname "$file")/card.svg"
         echo "Processing $file -> $output_file"
         poetry run python -m src.svg_generator.generator "$file" "$output_file"
     fi
