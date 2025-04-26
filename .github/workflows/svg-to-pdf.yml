@@ -49,7 +49,17 @@ jobs:
           for svg_file in $svg_files; do
             if [ -f "$svg_file" ] && [[ "$svg_file" == *.svg ]]; then
               filename=$(basename "$svg_file" .svg)
-              docker run --rm -v "$PWD:/work" -w /work minidocks/librsvg /usr/bin/rsvg-convert -f pdf -o "$(dirname "$svg_file")/${filename}-output.pdf" -w 416 -h 416 "$svg_file"
+              docker run --rm \
+                -v "$PWD:/work" \
+                -w /work \
+                ubuntu:22.04 \
+                bash -c "apt-get update && \
+                        apt-get install -y librsvg2-bin && \
+                        rsvg-convert -f pdf \
+                          -o \"$(dirname \"$svg_file\")\/${filename}-output.pdf\" \
+                          -w 416 \
+                          -h 416 \
+                          \"$svg_file\""
             fi
           done
 
