@@ -5,7 +5,11 @@
   <path d="M 860,0 L 1110,0 L 1110,250 Q 1060,50 860,0 Z" fill="#f5f5f5"/>
   <path d="M 860,1110 L 1110,1110 L 1110,860 Q 1060,1060 860,1110 Z" fill="#f5f5f5"/>
   <circle cx="555" cy="555" fill="#dcdcdc" r="165"/>
-  <image height="200" width="200" x="455" xlink:href="data:image/png;base64,IyBXaGljaCBvZiB0aGVzZSBvYnNlcnZhYmlsaXR5IHRvb2xzIGZvY3VzIHByaW1hcmlseSBvbiBtZXRyaWNzIGNvbGxlY3Rpb24/CgpUaGlzIHF1ZXN0aW9uIHRlc3RzIHlvdXIga25vd2xlZGdlIG9mIHZhcmlvdXMgRGV2T3BzIG9ic2VydmFiaWxpdHkgdG9vbHMgYW5kIHRoZWlyIHByaW1hcnkgZm9jdXMgYXJlYXMuCgojIyBPcHRpb25zCjEuIFByb21ldGhldXMKMi4gSmFlZ2VyCjMuIEdyYWZhbmEKNC4gTmV3IFJlbGljCjUuIFppcGtpbgo2LiBEYXRhZG9nCjcuIEVsYXN0aWNzZWFyY2gKOC4gTGlnaHRzdGVwCjkuIE5hZ2lvcwoxMC4gU3RhdHNECgojIyBTb3VyY2VzCi0gW0NOQ0YgT2JzZXJ2YWJpbGl0eSBMYW5kc2NhcGVdKGh0dHBzOi8vbGFuZHNjYXBlLmNuY2YuaW8vY2FyZC1tb2RlP2NhdGVnb3J5PW9ic2VydmFiaWxpdHktYW5kLWFuYWx5c2lzKQotIFtQcm9tZXRoZXVzIERvY3VtZW50YXRpb25dKGh0dHBzOi8vcHJvbWV0aGV1cy5pby9kb2NzL2ludHJvZHVjdGlvbi9vdmVydmlldy8pCi0gW0phZWdlciBEb2N1bWVudGF0aW9uXShodHRwczovL3d3dy5qYWVnZXJ0cmFjaW5nLmlvL2RvY3MvMS40MS8pCgpVUkw6IGh0dHBzOi8vYmxvZy5zZXNzaW9uLml0L3F1aXovZGVja3MvZGV2b3BzLWhlcm8vcXVlc3Rpb25zLzAwOS1xdWVzdGlvbg==" y="455"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
+    <text x="555" y="515"/>
+    <text x="555" y="555">Options</text>
+    <text x="555" y="595">Which are TRUE?</text>
+  </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
     <text x="555.0" y="265.0"/>
     <text x="555.0" y="295.0">Prometheus</text>

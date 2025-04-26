@@ -5,7 +5,11 @@
   <path d="M 860,0 L 1110,0 L 1110,250 Q 1060,50 860,0 Z" fill="#f5f5f5"/>
   <path d="M 860,1110 L 1110,1110 L 1110,860 Q 1060,1060 860,1110 Z" fill="#f5f5f5"/>
   <circle cx="555" cy="555" fill="#dcdcdc" r="165"/>
-  <image height="200" width="200" x="455" xlink:href="data:image/png;base64,IyBXaGljaCBvZiB0aGVzZSBDSS9DRCB0b29scyBhcmUgb3BlbiBzb3VyY2U/CgpUaGlzIHF1ZXN0aW9uIHRlc3RzIHlvdXIga25vd2xlZGdlIG9mIG9wZW4gc291cmNlIHN0YXR1cyBvZiBwb3B1bGFyIGNvbnRpbnVvdXMgaW50ZWdyYXRpb24gYW5kIGNvbnRpbnVvdXMgZGVwbG95bWVudCB0b29scy4KCiMjIE9wdGlvbnMKMS4gSmVua2lucwoyLiBHaXRIdWIgQWN0aW9ucwozLiBDaXJjbGVDSQo0LiBHaXRMYWIgQ0kKNS4gVHJhdmlzIENJCjYuIFRlYW1DaXR5CjcuIEJhbWJvbwo4LiBBcmdvQ0QKOS4gU3Bpbm5ha2VyCjEwLiBIYXJuZXNzCgojIyBTb3VyY2VzCi0gW0plbmtpbnMgV2Vic2l0ZV0oaHR0cHM6Ly9qZW5raW5zLmlvLykKLSBbR2l0SHViIEFjdGlvbnMgRG9jdW1lbnRhdGlvbl0oaHR0cHM6Ly9kb2NzLmdpdGh1Yi5jb20vZW4vYWN0aW9ucykKLSBbT3BlblNvdXJjZSBDSS9DRCB0b29sc10oaHR0cHM6Ly9naXRodWIuY29tL3RvcGljcy9jb250aW51b3VzLWludGVncmF0aW9uKQotIFtDTkNGIExhbmRzY2FwZSAtIENJL0NEXShodHRwczovL2xhbmRzY2FwZS5jbmNmLmlvL2NhcmQtbW9kZT9jYXRlZ29yeT1jb250aW51b3VzLWludGVncmF0aW9uLWRlbGl2ZXJ5KQoKVVJMOiBodHRwczovL2Jsb2cuc2Vzc2lvbi5pdC9xdWl6L2RlY2tzL2Rldm9wcy1oZXJvL3F1ZXN0aW9ucy8wMDctcXVlc3Rpb24=" y="455"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
+    <text x="555" y="515"/>
+    <text x="555" y="555">Options</text>
+    <text x="555" y="595">Which are TRUE?</text>
+  </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
     <text x="555.0" y="265.0"/>
     <text x="555.0" y="295.0">Jenkins</text>

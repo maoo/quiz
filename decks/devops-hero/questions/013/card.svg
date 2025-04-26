@@ -5,7 +5,11 @@
   <path d="M 860,0 L 1110,0 L 1110,250 Q 1060,50 860,0 Z" fill="#f5f5f5"/>
   <path d="M 860,1110 L 1110,1110 L 1110,860 Q 1060,1060 860,1110 Z" fill="#f5f5f5"/>
   <circle cx="555" cy="555" fill="#dcdcdc" r="165"/>
-  <image height="200" width="200" x="455" xlink:href="data:image/png;base64,IyBJbiB3aGljaCBkZWNhZGUgd2VyZSB0aGVzZSBjb25maWd1cmF0aW9uIG1hbmFnZW1lbnQgdG9vbHMgZmlyc3QgcmVsZWFzZWQ/CgpJZGVudGlmeSB0aGUgZGVjYWRlIHdoZW4gZWFjaCBvZiB0aGVzZSBjb25maWd1cmF0aW9uIG1hbmFnZW1lbnQgYW5kIGF1dG9tYXRpb24gdG9vbHMgd2FzIGluaXRpYWxseSByZWxlYXNlZC4KCiMjIE9wdGlvbnMKMS4gQW5zaWJsZQoyLiBDaGVmCjMuIFB1cHBldAo0LiBTYWx0U3RhY2sKNS4gQ0ZFbmdpbmUKNi4gVGVycmFmb3JtCjcuIFB1bHVtaQo4LiBSdWRkZXIKOS4gSnVqdQoxMC4gVmFncmFudAoKIyMgU291cmNlcwotIFtDb25maWd1cmF0aW9uIE1hbmFnZW1lbnQgVG9vbCBIaXN0b3J5XShodHRwczovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9Db21wYXJpc29uX29mX29wZW4tc291cmNlX2NvbmZpZ3VyYXRpb25fbWFuYWdlbWVudF9zb2Z0d2FyZSkKLSBbVGVycmFmb3JtIEhpc3RvcnldKGh0dHBzOi8vd3d3Lmhhc2hpY29ycC5jb20vcHJvZHVjdHMvdGVycmFmb3JtKQotIFtBbnNpYmxlIERvY3VtZW50YXRpb25dKGh0dHBzOi8vZG9jcy5hbnNpYmxlLmNvbS8pCi0gW0NoZWYgSGlzdG9yeV0oaHR0cHM6Ly93d3cuY2hlZi5pby9wcm9kdWN0cy9jaGVmLWluZnJhKQotIFtQdXBwZXQgVGltZWxpbmVdKGh0dHBzOi8vcHVwcGV0LmNvbS9kb2NzLykKClVSTDogaHR0cHM6Ly9ibG9nLnNlc3Npb24uaXQvcXVpei9kZWNrcy9kZXZvcHMtaGVyby9xdWVzdGlvbnMvMDEzLXF1ZXN0aW9u" y="455"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
+    <text x="555" y="515"/>
+    <text x="555" y="555">Options</text>
+    <text x="555" y="595">Which are TRUE?</text>
+  </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
     <text x="555.0" y="265.0"/>
     <text x="555.0" y="295.0">Ansible</text>

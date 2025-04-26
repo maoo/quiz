@@ -5,7 +5,11 @@
   <path d="M 860,0 L 1110,0 L 1110,250 Q 1060,50 860,0 Z" fill="#f5f5f5"/>
   <path d="M 860,1110 L 1110,1110 L 1110,860 Q 1060,1060 860,1110 Z" fill="#f5f5f5"/>
   <circle cx="555" cy="555" fill="#dcdcdc" r="165"/>
-  <image height="200" width="200" x="455" xlink:href="data:image/png;base64,IyBJbiB3aGljaCB5ZWFyIHdlcmUgdGhlc2Ugb3BlbiBzb3VyY2UgRGV2T3BzIHByb2plY3RzIGZpcnN0IHJlbGVhc2VkPwoKSWRlbnRpZnkgdGhlIGluaXRpYWwgcmVsZWFzZSB5ZWFyIGZvciBlYWNoIG9mIHRoZXNlIHBvcHVsYXIgb3BlbiBzb3VyY2UgRGV2T3BzIHRvb2xzLgoKIyMgT3B0aW9ucwoxLiBLdWJlcm5ldGVzCjIuIEFuc2libGUKMy4gVGVycmFmb3JtCjQuIFByb21ldGhldXMKNS4gSXN0aW8KNi4gRG9ja2VyCjcuIEdpdExhYgo4LiBKZW5raW5zCjkuIEhlbG0KMTAuIFZhdWx0CgojIyBTb3VyY2VzCi0gW0Nsb3VkIE5hdGl2ZSBDb21wdXRpbmcgRm91bmRhdGlvbl0oaHR0cHM6Ly93d3cuY25jZi5pby9wcm9qZWN0cy8pCi0gW0t1YmVybmV0ZXMgSGlzdG9yeV0oaHR0cHM6Ly9rdWJlcm5ldGVzLmlvL2Jsb2cvMjAxNS8wNC9ib3JnLXByZWRlY2Vzc29yLXRvLWt1YmVybmV0ZXMvKQotIFtIYXNoaUNvcnAgVGltZWxpbmVdKGh0dHBzOi8vd3d3Lmhhc2hpY29ycC5jb20vYWJvdXQpCi0gW0RvY2tlciBSZWxlYXNlIEhpc3RvcnldKGh0dHBzOi8vZG9jcy5kb2NrZXIuY29tL3JlbGVhc2Utbm90ZXMvKQotIFtBbnNpYmxlIERvY3VtZW50YXRpb25dKGh0dHBzOi8vZG9jcy5hbnNpYmxlLmNvbS8pCgpVUkw6IGh0dHBzOi8vYmxvZy5zZXNzaW9uLml0L3F1aXovZGVja3MvZGV2b3BzLWhlcm8vcXVlc3Rpb25zLzAxOC1xdWVzdGlvbg==" y="455"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
+    <text x="555" y="515"/>
+    <text x="555" y="555">Options</text>
+    <text x="555" y="595">Which are TRUE?</text>
+  </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
     <text x="555.0" y="265.0"/>
     <text x="555.0" y="295.0">Kubernetes</text>

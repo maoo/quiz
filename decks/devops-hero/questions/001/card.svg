@@ -12,49 +12,49 @@
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
     <text x="555.0" y="265.0"/>
-    <text x="555.0" y="295.0">Docker</text>
+    <text x="555.0" y="295.0">Kubernetes</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="555.0" y="105.0">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
     <text x="716.6409443804301" y="317.52032654688946"/>
-    <text x="716.6409443804301" y="347.52032654688946">Jenkins</text>
+    <text x="716.6409443804301" y="347.52032654688946">Prometheus</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="819.5033635316129" y="190.94235253127363">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
     <text x="816.5405419811673" y="455.02032654688946"/>
-    <text x="816.5405419811673" y="485.02032654688946">Kubernetes</text>
+    <text x="816.5405419811673" y="485.02032654688946">Docker</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="982.9754323328191" y="415.9423525312737">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
     <text x="816.5405419811673" y="624.9796734531105"/>
-    <text x="816.5405419811673" y="654.9796734531105">Terraform</text>
+    <text x="816.5405419811673" y="654.9796734531105">Podman</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="982.9754323328191" y="694.0576474687264">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
     <text x="716.6409443804301" y="762.4796734531105"/>
-    <text x="716.6409443804301" y="792.4796734531105">Ansible</text>
+    <text x="716.6409443804301" y="792.4796734531105">Envoy</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="819.5033635316129" y="919.0576474687264">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
     <text x="555.0" y="815.0"/>
-    <text x="555.0" y="845.0">Nagios</text>
+    <text x="555.0" y="845.0">Jenkins</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="555.0" y="1005.0">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
     <text x="393.3590556195699" y="762.4796734531105"/>
-    <text x="393.3590556195699" y="792.4796734531105">Prometheus</text>
+    <text x="393.3590556195699" y="792.4796734531105">Fluentd</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="290.4966364683871" y="919.0576474687264">FALSE</text>
@@ -68,14 +68,14 @@
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
     <text x="293.4594580188327" y="455.02032654688946"/>
-    <text x="293.4594580188327" y="485.02032654688946">ArgoCD</text>
+    <text x="293.4594580188327" y="485.02032654688946">Linkerd</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="127.02456766718086" y="415.94235253127374">FALSE</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
     <text x="393.35905561956986" y="317.52032654688946"/>
-    <text x="393.35905561956986" y="347.52032654688946">Puppet</text>
+    <text x="393.35905561956986" y="347.52032654688946">Ansible</text>
   </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
     <text x="290.49663646838707" y="190.94235253127368">FALSE</text>

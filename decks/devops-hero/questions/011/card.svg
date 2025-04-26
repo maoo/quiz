@@ -5,7 +5,11 @@
   <path d="M 860,0 L 1110,0 L 1110,250 Q 1060,50 860,0 Z" fill="#f5f5f5"/>
   <path d="M 860,1110 L 1110,1110 L 1110,860 Q 1060,1060 860,1110 Z" fill="#f5f5f5"/>
   <circle cx="555" cy="555" fill="#dcdcdc" r="165"/>
-  <image height="200" width="200" x="455" xlink:href="data:image/png;base64,IyBPcmRlciB0aGVzZSBDSS9DRCB0b29scyBieSB0aGVpciBpbml0aWFsIHJlbGVhc2UgeWVhciAob2xkZXN0IHRvIG5ld2VzdCkKCkFycmFuZ2UgdGhlc2UgcG9wdWxhciBjb250aW51b3VzIGludGVncmF0aW9uIGFuZCBjb250aW51b3VzIGRlbGl2ZXJ5IHRvb2xzIGluIGNocm9ub2xvZ2ljYWwgb3JkZXIgYmFzZWQgb24gd2hlbiB0aGV5IHdlcmUgZmlyc3QgcmVsZWFzZWQuCgojIyBPcHRpb25zCjEuIEplbmtpbnMKMi4gQ2lyY2xlQ0kKMy4gVHJhdmlzIENJCjQuIEdpdEh1YiBBY3Rpb25zCjUuIEdpdExhYiBDSQo2LiBCYW1ib28KNy4gVGVhbUNpdHkKOC4gRHJvbmUKOS4gQXJnbyBDRAoxMC4gVGVrdG9uCgojIyBTb3VyY2VzCi0gW0plbmtpbnMgSGlzdG9yeV0oaHR0cHM6Ly93d3cuamVua2lucy5pby9wcm9qZWN0L2hpc3RvcnkvKQotIFtDaXJjbGVDSSBBYm91dF0oaHR0cHM6Ly9jaXJjbGVjaS5jb20vYWJvdXQvKQotIFtUcmF2aXMgQ0kgSGlzdG9yeV0oaHR0cHM6Ly9kb2NzLnRyYXZpcy1jaS5jb20vdXNlci9mb3ItYmVnaW5uZXJzLykKLSBbR2l0SHViIEFjdGlvbnMgQW5ub3VuY2VtZW50XShodHRwczovL2dpdGh1Yi5ibG9nLzIwMTgtMTAtMTYtZnV0dXJlLW9mLXNvZnR3YXJlLykKLSBbR2l0TGFiIENJIEhpc3RvcnldKGh0dHBzOi8vYWJvdXQuZ2l0bGFiLmNvbS9jb21wYW55L2hpc3RvcnkvKQoKVVJMOiBodHRwczovL2Jsb2cuc2Vzc2lvbi5pdC9xdWl6L2RlY2tzL2Rldm9wcy1oZXJvL3F1ZXN0aW9ucy8wMTEtcXVlc3Rpb24=" y="455"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
+    <text x="555" y="515"/>
+    <text x="555" y="555">Options</text>
+    <text x="555" y="595">Which are TRUE?</text>
+  </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
     <text x="555.0" y="265.0"/>
     <text x="555.0" y="295.0">Jenkins</text>

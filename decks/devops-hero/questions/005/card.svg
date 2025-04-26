@@ -5,7 +5,11 @@
   <path d="M 860,0 L 1110,0 L 1110,250 Q 1060,50 860,0 Z" fill="#f5f5f5"/>
   <path d="M 860,1110 L 1110,1110 L 1110,860 Q 1060,1060 860,1110 Z" fill="#f5f5f5"/>
   <circle cx="555" cy="555" fill="#dcdcdc" r="165"/>
-  <image height="200" width="200" x="455" xlink:href="data:image/png;base64,IyBPcmRlciB0aGVzZSBBV1Mgc2VydmljZXMgYnkgdGhlaXIgbGF1bmNoIHllYXIgKG9sZGVzdCB0byBuZXdlc3QpCgpUaGlzIHF1ZXN0aW9uIHRlc3RzIHlvdXIga25vd2xlZGdlIG9mIHRoZSBoaXN0b3JpY2FsIHRpbWVsaW5lIG9mIEFXUyBzZXJ2aWNlIHJlbGVhc2VzLgoKIyMgT3B0aW9ucwoxLiBFQzIKMi4gTGFtYmRhCjMuIFMzCjQuIER5bmFtb0RCCjUuIENsb3VkRnJvbnQKNi4gRUtTCjcuIEVDUwo4LiBSb3V0ZSA1Mwo5LiBSRFMKMTAuIEF1cm9yYQoKIyMgU291cmNlcwotIFtBV1MgU2VydmljZSBUaW1lbGluZV0oaHR0cHM6Ly9hd3MuYW1hem9uLmNvbS9hYm91dC1hd3Mvd2hhdHMtbmV3LzIwMjEvMDYvYXdzLW1pbGVzdG9uZS10aW1lbGluZS8pCi0gW0FXUyBIaXN0b3J5XShodHRwczovL3d3dy5nZWVrc2ZvcmdlZWtzLm9yZy9oaXN0b3J5LW9mLWF3cy1hbWF6b24td2ViLXNlcnZpY2VzLykKClVSTDogaHR0cHM6Ly9ibG9nLnNlc3Npb24uaXQvcXVpei9kZWNrcy9kZXZvcHMtaGVyby9xdWVzdGlvbnMvMDA1LXF1ZXN0aW9u" y="455"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
+    <text x="555" y="515"/>
+    <text x="555" y="555">Options</text>
+    <text x="555" y="595">Which are TRUE?</text>
+  </g>
   <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
     <text x="555.0" y="265.0"/>
     <text x="555.0" y="295.0">EC2</text>
