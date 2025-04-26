@@ -65,26 +65,29 @@ jobs:
           for svg_file in $svg_files; do
             if [ -f "$svg_file" ] && [[ "$svg_file" == *.svg ]]; then
               filename=$(basename "$svg_file" .svg)
-              # Get the absolute path of the SVG file
-              abs_svg_path=$(realpath "$svg_file")
-              # Get the absolute path of the QR code
-              qr_path=$(dirname "$abs_svg_path")/${filename%-output}-qr.png
+              # Get the QR code path
+              qr_path=$(dirname "$svg_file")/${filename%-output}-qr.png
               
-              # Update the SVG to use absolute file:// URL for the QR code
-              sed -i "s|https://blog.session.it/quiz/decks/devops-hero/questions/${filename%-output}-qr.png|file://$qr_path|g" "$svg_file"
+              # Convert QR code to base64
+              qr_base64=$(base64 -w 0 "$qr_path")
+              
+              # Create a temporary SVG with embedded QR code
+              temp_svg="/tmp/${filename}.svg"
+              sed "s|https://blog.session.it/quiz/decks/devops-hero/questions/${filename%-output}-qr.png|data:image/png;base64,$qr_base64|g" "$svg_file" > "$temp_svg"
               
               docker run --rm \
                 -v "$PWD:/work" \
+                -v "/tmp:/tmp" \
                 -w /work \
                 ghcr.io/${{ github.repository }}/svg-to-pdf:latest \
                 rsvg-convert -f pdf \
                   -o "$(dirname "$svg_file")/${filename}.pdf" \
                   -w 416 \
                   -h 416 \
-                  "$svg_file"
+                  "$temp_svg"
               
-              # Restore the original URL in the SVG file
-              sed -i "s|file://$qr_path|https://blog.session.it/quiz/decks/devops-hero/questions/${filename%-output}-qr.png|g" "$svg_file"
+              # Clean up temporary file
+              rm "$temp_svg"
             fi
           done
 
