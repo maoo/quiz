@@ -66,7 +66,7 @@ jobs:
           
       - name: Generate Quiz
         run: |
-          poetry run python -m src.quiz_generator ../integration-test/questions/test-question.md ../integration-test/questions/test-output.pdf
+          poetry run python -m src.svg_generator.generator ../integration-test/questions/test-question.md ../integration-test/questions/test-output.pdf
           
       - name: Verify PDF was created
         run: |
