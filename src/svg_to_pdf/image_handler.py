@@ -48,7 +48,7 @@ class ImageHandler:
         image_pattern = r'<image([^>]*?)xlink:href="([^"]+)"([^>]*?)/?>'
         
         # Define a replacement function for each matched image
-        def replace_image_ref(match):
+        def replace_image_ref(match: re.Match[str]) -> str:
             before_url = match.group(1)
             url = match.group(2)
             after_url = match.group(3)

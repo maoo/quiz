@@ -69,7 +69,7 @@ class SVGToPDFConverter:
                 svg_content = f.read()
             
             # Fix image references
-            image_handler = ImageHandler(base_dir=svg_path.parent)
+            image_handler = ImageHandler(base_dir=str(svg_path.parent))
             modified_svg = image_handler.fix_image_references(svg_content)
             
             # Write the modified SVG to the temporary file
