@@ -1,98 +1,32 @@
-# Quiz Tools
+# Quiz Game 🎮
 
-A collection of tools for generating and converting quiz content.
+Welcome to our interactive quiz game! This is a fun and educational way to test your knowledge across various topics. Each quiz deck contains carefully crafted questions designed to challenge and entertain you.
 
-## Features
+## How to Play 🎲
 
-- **SVG Generator**: Create SVG images for quiz questions with QR codes and answers
-- **SVG to PDF Converter**: Convert SVG files to PDF with proper image handling and scaling
+1. Choose a deck that interests you from the options below
+2. Each deck contains multiple questions with different formats
+3. Try to answer the questions on your own
+4. Check your answers using the QR code on each card
+5. Learn from the detailed explanations provided
 
-## Installation
+## Available Decks 🃏
 
-The project uses Poetry for dependency management. To install:
+| Deck | Description | Link |
+|------|-------------|------|
+| 🚀 DevOps Hero | Test your DevOps knowledge with questions about containerization, CI/CD, and more | [Play Now](https://blog.session.it/quiz/decks/devops-hero) |
+| 🧮 Fun Math | Perfect for kids! Learn math through fun, interactive questions | [Play Now](https://blog.session.it/quiz/decks/fun-math) |
 
-```bash
-# Install Poetry if you haven't already
-curl -sSL https://install.python-poetry.org | python3 -
+## Features ✨
 
-# Clone the repository
-git clone https://github.com/yourusername/quiz-tools.git
-cd quiz-tools
+- **Interactive Learning**: Each question comes with detailed explanations
+- **Multiple Formats**: Questions include code blocks, multiple choice, and more
+- **QR Code Access**: Quickly access digital content using QR codes
+- **Beautiful Design**: Professionally designed cards for an engaging experience
+- **Printable Format**: Print the cards for offline play
 
-# Install dependencies
-poetry install
-```
+## Getting Started 🚀
 
-## Usage
-
-### SVG Generator
-
-```python
-from svg_generator import QuizSVGGenerator
-
-# Create a generator instance
-generator = QuizSVGGenerator()
-
-# Generate an SVG from a markdown file
-generator.generate_svg("input.md", "output.svg")
-```
-
-### SVG to PDF Converter
-
-```python
-from svg_to_pdf import SVGToPDFConverter
-
-# Create a converter instance
-converter = SVGToPDFConverter()
-
-# Convert an SVG to PDF
-converter.convert_svg_to_pdf("input.svg", "output.pdf")
-```
-
-## Command Line Interface
-
-### SVG Generator
-
-```bash
-python -m svg_generator.generator input.md output.svg
-```
-
-### SVG to PDF Converter
-
-```bash
-python -m svg_to_pdf.converter input.svg -o output.pdf
-```
-
-## Development
-
-### Running Tests
-
-```bash
-poetry run pytest
-```
-
-### Type Checking
-
-```bash
-poetry run mypy src
-```
-
-### Linting
-
-```bash
-poetry run black src tests
-poetry run isort src tests
-poetry run flake8 src tests
-```
-
-## License
-
-MIT License
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
+1. Choose a deck from the options above
+2. Click the "Play Now" link to access the deck
+3. Start answering questions and learning!
