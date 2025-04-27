@@ -19,17 +19,17 @@ jobs:
       contents: write
       packages: read
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Wait for push to be processed
         if: github.event_name == 'workflow_run'
         run: |
           echo "Waiting 10 seconds to ensure push is processed..."
           sleep 10
+
+          - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get files to process
         id: files-to-process
