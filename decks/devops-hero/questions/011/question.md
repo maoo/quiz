@@ -22,3 +22,6 @@ Arrange these popular continuous integration and continuous delivery tools in ch
 - [GitLab CI History](https://about.gitlab.com/company/history/)
 
 URL: https://blog.session.it/quiz/decks/devops-hero/questions/011-question
+
+Question Type: Text
+Answer Type: Ordering/number

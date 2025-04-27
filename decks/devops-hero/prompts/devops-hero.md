@@ -14,7 +14,7 @@
   - Web diagrams
 
 ### 📋 Text Questions (50%)
-- **Format:** Free text (max 200 characters)
+- **Format:** Free text (max 80 characters)
 - **Examples:**
   - "Which of these tools are CNCF projects?" (T/F)
   - "Order these technologies from oldest to newest." (Rank 1–10)

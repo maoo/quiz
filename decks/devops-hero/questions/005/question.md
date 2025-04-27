@@ -19,3 +19,6 @@ This question tests your knowledge of the historical timeline of AWS service rel
 - [AWS History](https://www.geeksforgeeks.org/history-of-aws-amazon-web-services/)
 
 URL: https://blog.session.it/quiz/decks/devops-hero/questions/005-question
+
+Question Type: Text
+Answer Type: Ordering/number

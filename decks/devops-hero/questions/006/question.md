@@ -2,6 +2,12 @@
 
 Analyze this infrastructure-as-code snippet and identify potential security issues.
 
+## Watch this video on Terraform security best practices
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SLB_c_ayRMo" title="Terraform Security Best Practices" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Then analyze the following Terraform code for security issues:
+
 ```terraform
 resource "aws_s3_bucket" "data_bucket" {
   bucket = "company-data-bucket-${var.environment}"
@@ -78,3 +84,6 @@ resource "aws_security_group" "web_sg" {
 - [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/)
 
 URL: https://blog.session.it/quiz/decks/devops-hero/questions/006-question
+
+Question Type: QR - YouTube Video
+Answer Type: Binary

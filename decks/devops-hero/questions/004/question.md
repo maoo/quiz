@@ -66,3 +66,6 @@ spec:
 - [Kubernetes Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)
 
 URL: https://blog.session.it/quiz/decks/devops-hero/questions/004-question
+
+Question Type: QR - Embedded content
+Answer Type: Names/labels/words

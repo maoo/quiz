@@ -1,6 +1,19 @@
 # What's correct in this Helm chart?
 
-Analyze this Helm chart values.yaml file and determine which statements are true.
+Analyze this Helm chart diagram and values.yaml file to determine which statements are true.
+
+## Helm Chart Architecture
+
+![Helm Architecture](https://helm.sh/img/helm-architecture.svg)
+*Helm Architecture*
+
+![Kubernetes Application Deployment with Helm](https://d33wubrfki0l68.cloudfront.net/9dce8ca2b56a3aa742b24a7c7a8c929d4676e55c/43822/docs/v21.1/images/kubernetes-deploy-sequence.png)
+*Kubernetes Application Deployment with Helm*
+
+![Helm Template Structure](https://d33wubrfki0l68.cloudfront.net/c1d2fb8d7e5cd9f1c5d1d9e92e90599ec6761eac/9c456/docs/topics/chart_template_guide/graduated-bases.png)
+*Helm Template Structure*
+
+Now analyze this values.yaml file:
 
 ```yaml
 # values.yaml for a web application
@@ -64,3 +77,6 @@ securityContext:
 - [Helm Chart Development Tips](https://helm.sh/docs/howto/charts_tips_and_tricks/)
 
 URL: https://blog.session.it/quiz/decks/devops-hero/questions/012-question
+
+Question Type: QR - Embedded Images
+Answer Type: Binary

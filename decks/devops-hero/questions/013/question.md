@@ -22,3 +22,6 @@ Identify the decade when each of these configuration management and automation t
 - [Puppet Timeline](https://puppet.com/docs/)
 
 URL: https://blog.session.it/quiz/decks/devops-hero/questions/013-question
+
+Question Type: Text
+Answer Type: Decade/date

@@ -1,6 +1,12 @@
 # Rank these Kubernetes manifest issues by severity
 
-Order these security and operational issues found in the Kubernetes manifest from most critical (1) to least critical (10).
+Watch this video about Kubernetes security issues and then rank the issues in the manifest below from most critical (1) to least critical (10).
+
+## Kubernetes Security Best Practices
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wqsUfvRyYpw" title="Kubernetes Security Best Practices" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Now analyze this Kubernetes manifest for security and operational issues:
 
 ```yaml
 apiVersion: apps/v1
@@ -56,3 +62,6 @@ spec:
 - [Kubernetes Security Best Practices](https://kubernetes.io/docs/concepts/security/security-checklist/)
 
 URL: https://blog.session.it/quiz/decks/devops-hero/questions/008-question
+
+Question Type: QR - YouTube Video
+Answer Type: Ordering/number

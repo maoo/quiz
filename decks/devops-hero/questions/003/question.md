@@ -21,3 +21,6 @@ Identify the decade when each of these foundational DevOps technologies was firs
 - Historical documentation from each project
 
 URL: https://blog.session.it/quiz/decks/devops-hero/questions/003/question
+
+Question Type: Text
+Answer Type: Decade/date

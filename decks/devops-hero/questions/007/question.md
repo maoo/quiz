@@ -21,3 +21,6 @@ This question tests your knowledge of open source status of popular continuous i
 - [CNCF Landscape - CI/CD](https://landscape.cncf.io/card-mode?category=continuous-integration-delivery)
 
 URL: https://blog.session.it/quiz/decks/devops-hero/questions/007/question
+
+Question Type: Text
+Answer Type: Binary

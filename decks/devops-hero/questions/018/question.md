@@ -22,3 +22,6 @@ Identify the initial release year for each of these popular open source DevOps t
 - [Ansible Documentation](https://docs.ansible.com/)
 
 URL: https://blog.session.it/quiz/decks/devops-hero/questions/018/question
+
+Question Type: Text
+Answer Type: Decade/date

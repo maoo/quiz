@@ -68,3 +68,6 @@ resource "aws_security_group" "web" {
 - [Terraform AWS VPC Module](https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/latest)
 
 URL: https://blog.session.it/quiz/decks/devops-hero/questions/010-question
+
+Question Type: QR - Embedded content
+Answer Type: Binary

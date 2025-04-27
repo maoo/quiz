@@ -20,3 +20,6 @@ This question tests your knowledge of various DevOps observability tools and the
 - [Jaeger Documentation](https://www.jaegertracing.io/docs/1.41/)
 
 URL: https://blog.session.it/quiz/decks/devops-hero/questions/009-question
+
+Question Type: Text
+Answer Type: Binary

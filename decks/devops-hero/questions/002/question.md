@@ -32,3 +32,6 @@ CMD ["python3", "app.py"]
 - [Docker Security Best Practices](https://docs.docker.com/engine/security/security/)
 
 URL: https://blog.session.it/quiz/decks/devops-hero/questions/002-question
+
+Question Type: QR - Embedded content
+Answer Type: Names/labels/words
