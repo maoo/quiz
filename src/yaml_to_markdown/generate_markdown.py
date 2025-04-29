@@ -8,7 +8,7 @@ Creates individual card pages and an index page for navigation.
 import logging
 import os
 from pathlib import Path
-from typing import Dict
+from typing import Dict, List, Optional, Any, cast
 
 import yaml
 
@@ -41,7 +41,7 @@ class YAMLToMarkdown:
         # Create output directory if it doesn't exist
         self.output_path.mkdir(parents=True, exist_ok=True)
         
-    def load_question(self, card_id: str) -> Dict:
+    def load_question(self, card_id: str) -> Dict[str, Any]:
         """
         Load a card from its YAML file.
         
@@ -61,7 +61,7 @@ class YAMLToMarkdown:
             if card_file.exists():
                 try:
                     with open(card_file, 'r', encoding='utf-8') as f:
-                        return yaml.safe_load(f)
+                        return cast(Dict[str, Any], yaml.safe_load(f))
                 except yaml.YAMLError as e:
                     logger.error(f"Failed to parse YAML file {card_file}: {e}")
                     raise

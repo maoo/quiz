@@ -3,10 +3,10 @@ import yaml
 from pathlib import Path
 import svgwrite
 import argparse
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Any, cast
 
 class YAMLToSVG:
-    def __init__(self, deck_name: str, output_dir: str = None):
+    def __init__(self, deck_name: str, output_dir: Optional[str] = None) -> None:
         # If deck_name is a full path, use it as the deck path
         if os.path.isabs(deck_name) or deck_name.startswith('./'):
             self.deck_path = Path(deck_name)
@@ -34,17 +34,17 @@ class YAMLToSVG:
             
         self.output_path.mkdir(parents=True, exist_ok=True)
         
-    def load_question(self, card_id: str) -> Dict:
+    def load_question(self, card_id: str) -> Dict[str, Any]:
         """Load a question from its YAML file."""
         # Try both question.yaml and content.yaml
         for filename in ["question.yaml", "content.yaml"]:
             question_file = self.questions_path / card_id / filename
             if question_file.exists():
                 with open(question_file, 'r') as f:
-                    return yaml.safe_load(f)
+                    return cast(Dict[str, Any], yaml.safe_load(f))
         raise FileNotFoundError(f"No question file found for card {card_id}")
             
-    def create_svg_card(self, question: Dict, card_id: str) -> None:
+    def create_svg_card(self, question: Dict[str, Any], card_id: str) -> None:
         """Create an SVG card for a question."""
         # Create SVG drawing
         output_file = self.output_path / f"{card_id}.svg"
@@ -84,7 +84,7 @@ class YAMLToSVG:
         """Process all questions in the deck."""
         # Load deck metadata
         with open(self.readme_path, 'r') as f:
-            deck_meta = yaml.safe_load(f)
+            deck_meta = cast(Dict[str, Any], yaml.safe_load(f))
             
         # Check for either 'questions' or 'cards' in metadata
         if 'questions' in deck_meta:
@@ -104,7 +104,7 @@ class YAMLToSVG:
             except Exception as e:
                 print(f"Error processing card {card_id}: {str(e)}")
             
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(description='Convert YAML questions to SVG cards')
     parser.add_argument('deck_name', help='Name of the deck to process')
     parser.add_argument('--output-dir', default=None,
