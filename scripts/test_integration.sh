@@ -5,26 +5,45 @@ set -e
 
 echo "Starting integration test..."
 
+# Find first valid deck
+echo "Looking for valid decks..."
+DECK_DIR=""
+for deck in decks/*/; do
+    if [ -f "${deck}README.yaml" ] && [ -d "${deck}cards" ]; then
+        DECK_DIR="$deck"
+        echo "Found valid deck: $deck"
+        break
+    fi
+done
+
+if [ -z "$DECK_DIR" ]; then
+    echo "No valid deck found! A valid deck must have a README.yaml and a cards/ directory."
+    exit 1
+fi
+
+# Extract deck name from path
+DECK_NAME=$(basename "$DECK_DIR")
+
 # Create output directory
 mkdir -p /tmp/integration-test/output
 
 # Generate SVGs and Markdown from YAML files
 echo "Processing YAML files..."
-for question_dir in decks/devops-hero/questions/*/; do
-    if [ -f "${question_dir}question.yaml" ]; then
-        card_id=$(basename "$question_dir")
-        echo "Processing ${question_dir}question.yaml..."
-        
-        # Convert YAML to SVG
-        poetry run python -m src.yaml_to_svg.generator "${question_dir}question.yaml" "/tmp/integration-test/output/${card_id}.svg"
-        
-        # Convert YAML to Markdown
-        poetry run python -m src.yaml_to_markdown.generator "${question_dir}question.yaml" "/tmp/integration-test/output/${card_id}.md"
-        
-        # Generate QR code if specified in YAML
-        if grep -q "qr:" "${question_dir}question.yaml"; then
-            poetry run python -m src.qr_generator.generator "${question_dir}question.yaml" "/tmp/integration-test/output/${card_id}_qr.png"
-        fi
+
+# Convert YAML to SVG for all cards
+echo "Converting YAML to SVG..."
+poetry run python -m src.yaml_to_svg.generate_svg "$DECK_NAME" --output-dir /tmp/integration-test/output
+
+# Convert YAML to Markdown for all cards
+echo "Converting YAML to Markdown..."
+poetry run python -m src.yaml_to_markdown.generate_markdown "${DECK_DIR}" "/tmp/integration-test/output"
+
+# Generate QR codes if specified
+echo "Generating QR codes..."
+for card_dir in "${DECK_DIR}cards"/*/; do
+    if [ -f "${card_dir}content.yaml" ] && grep -q "qr:" "${card_dir}content.yaml"; then
+        card_id=$(basename "$card_dir")
+        poetry run python -m src.qr_generator.generate_qr "$DECK_NAME" --output-dir /tmp/integration-test/output
     fi
 done
 
@@ -44,7 +63,9 @@ else
         
         # Verify SVG contains QR code if present in original YAML
         card_id=$(basename "$svg_file" .svg)
-        if grep -q "qr:" "decks/devops-hero/questions/${card_id}/question.yaml" && ! grep -q "image" "$svg_file"; then
+        if [ -f "${DECK_DIR}cards/${card_id}/content.yaml" ] && \
+           grep -q "qr:" "${DECK_DIR}cards/${card_id}/content.yaml" && \
+           ! grep -q "image" "$svg_file"; then
             echo "SVG file $svg_file should contain QR code but doesn't!"
             exit 1
         fi
@@ -60,9 +81,9 @@ fi
 
 # Verify QR codes were created if specified
 echo "Verifying QR codes..."
-for question_dir in decks/devops-hero/questions/*/; do
-    if [ -f "${question_dir}question.yaml" ] && grep -q "qr:" "${question_dir}question.yaml"; then
-        card_id=$(basename "$question_dir")
+for card_dir in "${DECK_DIR}cards"/*/; do
+    if [ -f "${card_dir}content.yaml" ] && grep -q "qr:" "${card_dir}content.yaml"; then
+        card_id=$(basename "$card_dir")
         if [ ! -f "/tmp/integration-test/output/${card_id}_qr.png" ]; then
             echo "QR code for ${card_id} was not generated!"
             exit 1

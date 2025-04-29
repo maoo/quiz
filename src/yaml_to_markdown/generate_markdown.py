@@ -55,16 +55,19 @@ class YAMLToMarkdown:
             FileNotFoundError: If card file doesn't exist
             yaml.YAMLError: If YAML parsing fails
         """
-        card_file = self.cards_path / card_id / "question.yaml"
-        try:
-            with open(card_file, 'r', encoding='utf-8') as f:
-                return yaml.safe_load(f)
-        except FileNotFoundError:
-            logger.error(f"Card file not found: {card_file}")
-            raise
-        except yaml.YAMLError as e:
-            logger.error(f"Failed to parse YAML file {card_file}: {e}")
-            raise
+        # Try content.yaml first, then question.yaml
+        for filename in ["content.yaml", "question.yaml"]:
+            card_file = self.cards_path / card_id / filename
+            if card_file.exists():
+                try:
+                    with open(card_file, 'r', encoding='utf-8') as f:
+                        return yaml.safe_load(f)
+                except yaml.YAMLError as e:
+                    logger.error(f"Failed to parse YAML file {card_file}: {e}")
+                    raise
+        
+        logger.error(f"No content.yaml or question.yaml found for card: {card_id}")
+        raise FileNotFoundError(f"No content.yaml or question.yaml found for card: {card_id}")
             
     def create_markdown_content(self, card: Dict, card_id: str) -> str:
         """
@@ -85,7 +88,8 @@ class YAMLToMarkdown:
         
         # Add card text
         lines.append("## Question")
-        lines.append(card['question'])
+        question_text = card.get('question_content', card.get('question', card.get('content', 'No question content')))
+        lines.append(question_text)
         lines.append("")
         
         # Add options if they exist
@@ -95,15 +99,17 @@ class YAMLToMarkdown:
                 lines.append(f"{i}. {option}")
             lines.append("")
                 
-        # Add card type
-        lines.append("## Type")
-        lines.append(card['question_type'])
-        lines.append("")
+        # Add card type if it exists
+        if 'question_type' in card:
+            lines.append("## Type")
+            lines.append(card['question_type'])
+            lines.append("")
         
-        # Add answer type
-        lines.append("## Answer Type")
-        lines.append(card['answers_type'])
-        lines.append("")
+        # Add answer type if it exists
+        if 'answers_type' in card:
+            lines.append("## Answer Type")
+            lines.append(card['answers_type'])
+            lines.append("")
         
         # Add sources if they exist
         if 'sources' in card and card['sources']:
@@ -157,7 +163,9 @@ class YAMLToMarkdown:
             
         # Add cards list
         lines.append("## Questions")
-        for card in deck_meta['questions']:
+        # Support both 'questions' and 'cards' keys
+        items = deck_meta.get('questions', deck_meta.get('cards', []))
+        for card in items:
             card_id = str(card['id']).zfill(3)
             lines.append(f"- [Question {card_id}]({card_id}.md)")
             
@@ -194,47 +202,48 @@ class YAMLToMarkdown:
             logger.info("Created index markdown file")
                 
             # Process each card
-            for card in deck_meta['questions']:
+            # Support both 'questions' and 'cards' keys
+            items = deck_meta.get('questions', deck_meta.get('cards', []))
+            for card in items:
                 card_id = str(card['id']).zfill(3)
                 try:
                     card_data = self.load_question(card_id)
                     self.create_markdown_file(card_data, card_id)
-                    logger.info(f"Processed card {card_id}")
-                except Exception as e:
+                    logger.info(f"Created markdown file for card {card_id}")
+                except (FileNotFoundError, yaml.YAMLError, IOError) as e:
                     logger.error(f"Failed to process card {card_id}: {e}")
-                    raise
+                    continue
                     
         except yaml.YAMLError as e:
-            logger.error(f"Failed to parse deck metadata: {e}")
+            logger.error(f"Failed to process deck: {e}")
             raise
         except Exception as e:
-            logger.error(f"Failed to process deck: {e}")
+            logger.error(f"Conversion failed: {e}")
             raise
             
 def main() -> int:
     """
-    Command-line interface for the YAML to Markdown converter.
+    Main entry point for the script.
     
     Returns:
-        int: Exit code (0 for success, 1 for failure)
+        0 on success, non-zero on error
     """
     import argparse
     
-    parser = argparse.ArgumentParser(description='Convert YAML card files to Markdown format')
-    parser.add_argument('input_path', help='Path to the input deck directory')
-    parser.add_argument('output_path', help='Path to the output directory for markdown files')
+    parser = argparse.ArgumentParser(description='Convert YAML cards to Markdown')
+    parser.add_argument('input_path', help='Path to the deck directory')
+    parser.add_argument('output_path', help='Path to output directory')
     
     args = parser.parse_args()
     
     try:
         converter = YAMLToMarkdown(args.input_path, args.output_path)
         converter.process_deck()
-        logger.info("Successfully converted YAML to Markdown")
+        logger.info("Conversion completed successfully")
         return 0
     except Exception as e:
         logger.error(f"Conversion failed: {e}")
         return 1
-    
+        
 if __name__ == "__main__":
-    import sys
-    sys.exit(main()) 
+    exit(main()) 
