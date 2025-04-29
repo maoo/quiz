@@ -1,31 +1,30 @@
-answers:
-- order: 1
+- answer: Verdadero
   option: '2'
-  answer: 'True'
-- order: 2
+  order: 1
+- answer: Verdadero
   option: '3'
-  answer: 'True'
-- order: 3
+  order: 2
+- answer: Falso
   option: '4'
-  answer: 'False'
-- order: 4
+  order: 3
+- answer: Verdadero
   option: '5'
-  answer: 'True'
-- order: 5
+  order: 4
+- answer: Falso
   option: '6'
-  answer: 'False'
-- order: 6
+  order: 5
+- answer: Verdadero
   option: '7'
-  answer: 'True'
-- order: 7
+  order: 6
+- answer: Falso
   option: '8'
-  answer: 'False'
-- order: 8
+  order: 7
+- answer: Falso
   option: '9'
-  answer: 'False'
-- order: 9
+  order: 8
+- answer: Falso
   option: '10'
-  answer: 'False'
-- order: 10
+  order: 9
+- answer: Verdadero
   option: '11'
-  answer: 'True'
+  order: 10

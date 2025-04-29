@@ -1,31 +1,30 @@
-answers:
-- order: 1
-  option: A
-  answer: πr²h
-- order: 2
-  option: B
-  answer: (1/3)πr²h
-- order: 3
-  option: C
-  answer: (4/3)πr³
-- order: 4
-  option: D
-  answer: Área base × altura
-- order: 5
-  option: E
-  answer: Área base × altura
-- order: 6
-  option: F
-  answer: (1/3 Área base × altura)
-- order: 7
-  option: G
-  answer: (1/3 Área base × altura)
-- order: 8
-  option: H
-  answer: Área base × altura
-- order: 9
-  option: I
-  answer: Área base × altura
-- order: 10
-  option: J
-  answer: (1/3 Área base × altura)
+- answer: Verdadero
+  option: 3×4=12
+  order: 1
+- answer: Falso
+  option: 7×5=33
+  order: 2
+- answer: Verdadero
+  option: 6×6=36
+  order: 3
+- answer: Verdadero
+  option: 8×7=56
+  order: 4
+- answer: Falso
+  option: 9×9=80
+  order: 5
+- answer: Verdadero
+  option: 4×6=24
+  order: 6
+- answer: Verdadero
+  option: 5×5=25
+  order: 7
+- answer: Verdadero
+  option: 2×9=18
+  order: 8
+- answer: Verdadero
+  option: 3×7=21
+  order: 9
+- answer: Verdadero
+  option: 8×8=64
+  order: 10

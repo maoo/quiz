@@ -1,31 +1,30 @@
-answers:
-- order: 1
+- answer: Falso
   option: A
-  answer: 1 m
-- order: 2
+  order: 1
+- answer: Falso
   option: B
-  answer: 1000 m
-- order: 3
+  order: 2
+- answer: Falso
   option: C
-  answer: 0.5 m
-- order: 4
+  order: 3
+- answer: Falso
   option: D
-  answer: 2.5 m
-- order: 5
+  order: 4
+- answer: Verdadero
   option: E
-  answer: 5 m
-- order: 6
+  order: 5
+- answer: Falso
   option: F
-  answer: 75 m
-- order: 7
+  order: 6
+- answer: Verdadero
   option: G
-  answer: 3 m
-- order: 8
+  order: 7
+- answer: Falso
   option: H
-  answer: 1.2 m
-- order: 9
+  order: 8
+- answer: Verdadero
   option: I
-  answer: 2.5 m
-- order: 10
+  order: 9
+- answer: Verdadero
   option: J
-  answer: 10 m
+  order: 10

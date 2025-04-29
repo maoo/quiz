@@ -1,0 +1,34 @@
+type: object
+properties:
+  title:
+    type: string
+  deck_id:
+    type: string
+  language:
+    type: string
+  difficulty_levels:
+    type: object
+    properties:
+      easy: {type: string}
+      easy_medium: {type: string}
+      medium: {type: string}
+      medium_hard: {type: string}
+      hard: {type: string}
+    required: [easy, easy_medium, medium, medium_hard, hard]
+  introduction:
+    type: string
+  question_examples:
+    type: object
+    properties:
+      extended:
+        type: array
+        items: {type: object}
+      short:
+        type: array
+        items: {type: object}
+  subject_matter:
+    type: array
+    items: {type: string}
+  quiz_types:
+    type: object
+required: [title, deck_id, language, introduction, question_examples, subject_matter, quiz_types]

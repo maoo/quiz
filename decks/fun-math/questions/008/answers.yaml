@@ -1,31 +1,30 @@
-answers:
-- order: 1
+- answer: XVIII
   option: A
-  answer: cubo
-- order: 2
+  order: 1
+- answer: XX
   option: B
-  answer: pirámide cuadrangular
-- order: 3
+  order: 2
+- answer: XV
   option: C
-  answer: prisma rectangular
-- order: 4
+  order: 3
+- answer: XXI
   option: D
-  answer: prisma triangular
-- order: 5
+  order: 4
+- answer: XVII
   option: E
-  answer: cono
-- order: 6
+  order: 5
+- answer: XIX
   option: F
-  answer: cilindro
-- order: 7
+  order: 6
+- answer: XXI
   option: G
-  answer: prisma hexagonal
-- order: 8
+  order: 7
+- answer: XVIII
   option: H
-  answer: prisma pentagonal
-- order: 9
+  order: 8
+- answer: XX
   option: I
-  answer: tetraedro
-- order: 10
+  order: 9
+- answer: XVI
   option: J
-  answer: octaedro
+  order: 10

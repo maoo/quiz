@@ -1,0 +1,19 @@
+answer_type: free_text
+embedded_contents: []
+options:
+- Triángulo
+- Cuadrado
+- Pentágono
+- Hexágono
+- Heptágono
+- Octágono
+- Eneágono
+- Decágono
+- Hendecágono
+- Dodecágono
+question_content: ¿Cuántos lados tiene cada polígono?
+question_id: '002'
+question_type: short
+sources:
+- https://www.mathsisfun.com/geometry/polygons.html
+url: https://blog.session.it/quiz/decks/fun-math/cards/002

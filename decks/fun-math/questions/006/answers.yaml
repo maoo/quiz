@@ -1,31 +1,30 @@
-answers:
-- order: 1
+- answer: '9'
   option: A
-  answer: '3'
-- order: 2
+  order: 1
+- answer: '6'
   option: B
-  answer: '5'
-- order: 3
+  order: 2
+- answer: '10'
   option: C
-  answer: '6'
-- order: 4
+  order: 3
+- answer: '2'
   option: D
-  answer: '4'
-- order: 5
+  order: 4
+- answer: '4'
   option: E
-  answer: '8'
-- order: 6
+  order: 5
+- answer: '7'
   option: F
-  answer: '2'
-- order: 7
+  order: 6
+- answer: '1'
   option: G
-  answer: '7'
-- order: 8
+  order: 7
+- answer: '5'
   option: H
-  answer: '1'
-- order: 9
+  order: 8
+- answer: '8'
   option: I
-  answer: '10'
-- order: 10
+  order: 9
+- answer: '3'
   option: J
-  answer: '9'
+  order: 10

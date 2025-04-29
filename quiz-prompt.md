@@ -65,15 +65,12 @@ For each question generated, create the following files in the `decks/<deck_name
   - **Answers type** (smaller font)
 2. `answers.yaml`: Lists all **options** and related **answers** as a table with 10 lines and 3 columns: Order number, Option, Answer
 
-The folder `schemas/` MUST contain the following YAML schema definitions:
-- `deck.yaml`: Defines the schema for the deck
-- `card.yaml`: Defines the schema for the card
-- `answers.yaml`: Defines the schema for the answers
+All YAML files must comply with the schemas defined in the `schemas/` folder.
 
 ## ✅ Content Quality
 
 The content of the quiz cards must be:
-  - Challenging, fair, precise, and undisputable DevOps questions, based on widely adopted technologies and real-world best practices. Every question must:
+  - Challenging, fair, precise, and undisputable DevOps quiz questions, based on widely adopted technologies and real-world best practices. Every question must:
   - Grounded in fact-checked, verifiable documentation.
   - Clear, stand-alone, and unambiguous.
   - Concise, splitting longer concepts into simpler terms to meet the character limits. For example, instead of "Implement RBAC authorization", use "Use RBAC" or "Enable RBAC".

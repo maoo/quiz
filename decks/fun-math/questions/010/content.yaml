@@ -1,0 +1,50 @@
+answer_type: binary
+embedded_contents:
+- description: Figuras A-J
+  type: image
+  url: https://example.com/images/figuras.svg
+- table: '| Opción | Lados | Longitud |
+
+    |--------|-------|----------|
+
+    | A      | 3     | 5        |
+
+    | B      | 4     | 4        |
+
+    | C      | 5     | 3        |
+
+    | D      | 6     | 2        |
+
+    | E      | 7     | 3        |
+
+    | F      | 8     | 2        |
+
+    | G      | 9     | 3        |
+
+    | H      | 10    | 2        |
+
+    | I      | 4     | 6        |
+
+    | J      | 5     | 5        |'
+  type: table
+- description: Fórmula del perímetro
+  type: link
+  url: https://es.khanacademy.org/math/geometry/edges-perimeter
+options:
+- A
+- B
+- C
+- D
+- E
+- F
+- G
+- H
+- I
+- J
+question_content: Basándote en la imagen, la tabla y el recurso, determina si el perímetro
+  supera 20
+question_id: '010'
+question_type: extended
+sources:
+- https://es.khanacademy.org/math/geometry/edges-perimeter
+url: https://blog.session.it/quiz/decks/fun-math/cards/010
