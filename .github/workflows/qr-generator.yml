@@ -10,7 +10,15 @@ jobs:
   generate-qr:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout main branch
+        uses: actions/checkout@v3
+      
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+          path: gh-pages
+          fetch-depth: 0
       
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -32,7 +40,7 @@ jobs:
               
               python -c "
               from src.qr_generator import generate_question_qr_code
-              generate_question_qr_code('$DECK_NAME', '$QUESTION_ID')
+              generate_question_qr_code('$DECK_NAME', '$QUESTION_ID', output_dir='gh-pages/decks')
               "
             done
           else
@@ -45,14 +53,15 @@ jobs:
               
               python -c "
               from src.qr_generator import generate_question_qr_code
-              generate_question_qr_code('$DECK_NAME', '$QUESTION_ID')
+              generate_question_qr_code('$DECK_NAME', '$QUESTION_ID', output_dir='gh-pages/decks')
               "
             done
           fi
           
       - name: Commit and push if changes
         run: |
+          cd gh-pages
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add decks/
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Generate QR codes for ${{ github.event_name == 'workflow_dispatch' && 'all questions' || 'changed questions' }}" && git push) 
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Generate QR codes for ${{ github.event_name == 'workflow_dispatch' && 'all questions' || 'changed questions' }}" && git push origin gh-pages) 

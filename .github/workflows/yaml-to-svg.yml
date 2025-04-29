@@ -20,10 +20,18 @@ jobs:
   generate-svg:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout main branch
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
       
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+          path: gh-pages
+          fetch-depth: 0
+          
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -47,15 +55,15 @@ jobs:
         uses: tj-actions/changed-files@v46
         with:
           files: |
-            decks/**/questions/*/question.yaml
+            decks/**/cards/*/content.yaml
 
       - name: Set files to process for manual run
         if: github.event_name == 'workflow_dispatch'
         run: |
           if [ -n "${{ github.event.inputs.deck_name }}" ]; then
-            echo "all_changed_files=$(find decks/${{ github.event.inputs.deck_name }}/questions -name 'question.yaml' | tr '\n' ' ')" >> $GITHUB_OUTPUT
+            echo "all_changed_files=$(find decks/${{ github.event.inputs.deck_name }}/cards -name 'content.yaml' | tr '\n' ' ')" >> $GITHUB_OUTPUT
           else
-            echo "all_changed_files=$(find decks -name 'question.yaml' | tr '\n' ' ')" >> $GITHUB_OUTPUT
+            echo "all_changed_files=$(find decks -name 'content.yaml' | tr '\n' ' ')" >> $GITHUB_OUTPUT
           fi
           echo "any_changed=true" >> $GITHUB_OUTPUT
 
@@ -70,15 +78,17 @@ jobs:
             DECK_NAME=""
           fi
           cd src
-          poetry run python -m yaml_to_svg.main "${DECK_NAME}"
-          ls -lRt ../decks
+          # Generate SVGs into the gh-pages directory
+          poetry run python -m yaml_to_svg.main "${DECK_NAME}" --output-dir ../gh-pages/decks
+          ls -lRt ../gh-pages/decks
 
-      - name: Commit and push changes
+      - name: Commit and push changes to gh-pages
         if: steps.changed-files.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
         run: |
-          ls -lRt decks/**/questions/*/card.svg
+          cd gh-pages
+          ls -lRt decks/**/cards/*/card.svg
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add decks/**/questions/*/card.svg
+          git add decks/**/cards/*/card.svg
           git commit -m "Convert YAML to SVG" || exit 0
-          git push origin HEAD:${{ github.ref }} 
+          git push origin gh-pages

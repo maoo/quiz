@@ -25,9 +25,17 @@ jobs:
           echo "Waiting 10 seconds to ensure push is processed..."
           sleep 10
 
-      - name: Checkout repository
+      - name: Checkout main branch
         uses: actions/checkout@v4
         with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -103,7 +111,7 @@ jobs:
           # Function to convert SVG to PDF using our Python tool
           convert_svg_to_pdf() {
             local svg_file="$1"
-            local pdf_output="$(dirname "$svg_file")/card.pdf"
+            local pdf_output="gh-pages/$(dirname "$svg_file")/card.pdf"
             
             echo "Converting $svg_file to $pdf_output"
             if ! poetry run python -m src.svg_to_pdf.converter "$svg_file" -o "$pdf_output" --width 11 --height 11; then
@@ -135,8 +143,9 @@ jobs:
       - name: Commit and push changes
         if: steps.files-to-process.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
         run: |
+          cd gh-pages
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add decks/**/questions/*/card.pdf
           git commit -m "Convert SVG to PDF" || exit 0
-          git push origin HEAD:${{ github.ref }} 
+          git push origin gh-pages 

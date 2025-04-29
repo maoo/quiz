@@ -11,7 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout main branch
+      uses: actions/checkout@v3
+    
+    - name: Checkout gh-pages branch
+      uses: actions/checkout@v3
+      with:
+        ref: gh-pages
+        path: gh-pages
+        fetch-depth: 0
     
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -38,11 +46,13 @@ jobs:
       
     - name: Convert YAML to Markdown
       run: |
-        poetry run python src/yaml_to_markdown/generate_markdown.py
+        poetry run python src/yaml_to_markdown/generate_markdown.py --output-dir gh-pages/decks
         
     - name: Commit and push if changed
       run: |
+        cd gh-pages
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add decks/*/questions/decks/*/docs/
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Update Markdown docs from YAML" && git push) 
+        git add decks/*
+        git commit -m "Convert YAML to Markdown" || exit 0
+        git push origin gh-pages
