@@ -9,6 +9,7 @@ echo "Starting integration test..."
 echo "Looking for valid decks..."
 
 TEMP_DIR=$(mktemp -d)
+echo "Using temporary directory: $TEMP_DIR"
 
 DECK_DIR=""
 for deck in decks/*/; do
@@ -26,16 +27,23 @@ fi
 
 # Extract deck name from path
 DECK_NAME=$(basename "$DECK_DIR")
+echo "Processing deck: $DECK_NAME"
 
 # Create output directory
 mkdir -p ${TEMP_DIR}/output
+echo "Created output directory: ${TEMP_DIR}/output"
 
 # Generate SVGs and Markdown from YAML files
 echo "Processing YAML files..."
 
 # Convert YAML to SVG for all cards
 echo "Converting YAML to SVG..."
+echo "Running command: poetry run python -m src.yaml_to_svg.generate_svg \"$DECK_NAME\" --output-dir ${TEMP_DIR}/output"
 poetry run python -m src.yaml_to_svg.generate_svg "$DECK_NAME" --output-dir ${TEMP_DIR}/output
+
+# List generated SVG files
+echo "Generated SVG files:"
+ls -la ${TEMP_DIR}/output/*.svg 2>/dev/null || echo "No SVG files found"
 
 # Convert YAML to Markdown for all cards
 echo "Converting YAML to Markdown..."

@@ -21,7 +21,7 @@ class YAMLToSVG:
             if not self.questions_path.exists():
                 raise FileNotFoundError(f"Neither questions nor cards directory found in deck: {self.deck_path}")
                 
-        self.output_path = Path(output_dir) / deck_name / "cards"
+        self.output_path = Path(output_dir)
         self.output_path.mkdir(parents=True, exist_ok=True)
         
     def load_question(self, card_id: str) -> Dict:
@@ -37,8 +37,9 @@ class YAMLToSVG:
     def create_svg_card(self, question: Dict, card_id: str) -> None:
         """Create an SVG card for a question."""
         # Create SVG drawing
+        output_file = self.output_path / f"{card_id}.svg"
         dwg = svgwrite.Drawing(
-            filename=str(self.output_path / f"{card_id}.svg"),
+            filename=str(output_file),
             size=('210mm', '297mm'),  # A4 size
             viewBox=('0 0 210 297')
         )
@@ -67,6 +68,7 @@ class YAMLToSVG:
                 
         # Save the SVG
         dwg.save()
+        print(f"Saved SVG to {output_file}")
         
     def process_deck(self) -> None:
         """Process all questions in the deck."""
