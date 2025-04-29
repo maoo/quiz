@@ -175,13 +175,18 @@ class YAMLToMarkdown:
         Process all cards in the deck.
         
         Raises:
-            FileNotFoundError: If deck metadata file doesn't exist
             yaml.YAMLError: If YAML parsing fails
             IOError: If file operations fail
         """
         try:
+            # Check if README.yaml exists
+            readme_path = self.input_path / "README.yaml"
+            if not readme_path.exists():
+                logger.warning(f"Skipping deck {self.input_path} - README.yaml not found")
+                return
+                
             # Load deck metadata
-            with open(self.input_path / "README.yaml", 'r', encoding='utf-8') as f:
+            with open(readme_path, 'r', encoding='utf-8') as f:
                 deck_meta = yaml.safe_load(f)
                 
             # Create index markdown
@@ -199,9 +204,6 @@ class YAMLToMarkdown:
                     logger.error(f"Failed to process card {card_id}: {e}")
                     raise
                     
-        except FileNotFoundError:
-            logger.error("Deck metadata file (README.yaml) not found")
-            raise
         except yaml.YAMLError as e:
             logger.error(f"Failed to parse deck metadata: {e}")
             raise
