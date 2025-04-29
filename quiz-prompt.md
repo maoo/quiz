@@ -65,8 +65,6 @@ For each question generated, create the following files in the `decks/<deck_name
   - **Answers type** (smaller font)
 2. `answers.yaml`: Lists all **options** and related **answers** as a table with 10 lines and 3 columns: Order number, Option, Answer
 
-The root folder MUST have an `index.md` file which contains an introduction to the game for players, and the list of decks, with links to their homepages.
-
 All YAML files must comply with the schemas defined in the `schemas/` folder.
 
 ## ✅ Content Quality

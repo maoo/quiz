@@ -221,6 +221,52 @@ class YAMLToMarkdown:
             logger.error(f"Conversion failed: {e}")
             raise
             
+    def create_root_index(self, decks: List[Dict[str, Any]]) -> None:
+        """
+        Create or update the root index.md file that lists all decks.
+        
+        Args:
+            decks: List of deck metadata dictionaries
+            
+        Raises:
+            IOError: If file creation fails
+        """
+        lines = []
+        
+        # Add main title
+        lines.append("# Quiz Game")
+        lines.append("")
+        
+        # Add introduction
+        lines.append("Welcome to the Quiz Game! This is a collection of decks covering various topics.")
+        lines.append("Each deck contains a set of questions to test your knowledge.")
+        lines.append("")
+        
+        # Add instructions
+        lines.append("## How to Play")
+        lines.append("1. Choose a deck that interests you")
+        lines.append("2. Read through the questions")
+        lines.append("3. Test your knowledge and learn something new!")
+        lines.append("")
+        
+        # Add decks list
+        lines.append("## Available Decks")
+        for deck in decks:
+            deck_path = deck['path'].name
+            lines.append(f"- [{deck['title']}]({deck_path}/index.md)")
+            if 'description' in deck:
+                lines.append(f"  - {deck['description']}")
+        lines.append("")
+        
+        # Write root index file
+        try:
+            with open(self.output_path / "index.md", 'w', encoding='utf-8') as f:
+                f.write("\n".join(lines))
+            logger.debug("Created/updated root index markdown file")
+        except IOError as e:
+            logger.error(f"Failed to create root index markdown file: {e}")
+            raise
+
 def main() -> int:
     """
     Main entry point for the script.
@@ -237,8 +283,35 @@ def main() -> int:
     args = parser.parse_args()
     
     try:
+        # First, collect all deck metadata
+        decks = []
+        input_path = Path(args.input_path)
+        
+        # If input path is a directory containing multiple decks
+        if input_path.is_dir():
+            for deck_dir in input_path.iterdir():
+                if deck_dir.is_dir() and (deck_dir / "index.yaml").exists():
+                    with open(deck_dir / "index.yaml", 'r', encoding='utf-8') as f:
+                        deck_meta = yaml.safe_load(f)
+                        deck_meta['path'] = deck_dir
+                        decks.append(deck_meta)
+        else:
+            # Single deck case
+            if (input_path / "index.yaml").exists():
+                with open(input_path / "index.yaml", 'r', encoding='utf-8') as f:
+                    deck_meta = yaml.safe_load(f)
+                    deck_meta['path'] = input_path
+                    decks.append(deck_meta)
+        
+        # Create root index.md
         converter = YAMLToMarkdown(args.input_path, args.output_path)
-        converter.process_deck()
+        converter.create_root_index(decks)
+        
+        # Process each deck
+        for deck in decks:
+            deck_converter = YAMLToMarkdown(str(deck['path']), args.output_path / deck['path'].name)
+            deck_converter.process_deck()
+            
         logger.info("Conversion completed successfully")
         return 0
     except Exception as e:
