@@ -3,7 +3,7 @@
 
 ## 📝 Question Types
 
-### 🔄 QR Questions (50%)
+### 🔄 QR Questions
 - **Code Snippets**
   - Dockerfile, YAML, Terraform, Bash examples
   - Proper syntax highlighting (```language)
@@ -13,7 +13,7 @@
   - StackOverflow threads
   - Web diagrams
 
-### 📋 Text Questions (50%)
+### 📋 Text Questions
 - **Format:** Free text (max 80 characters)
 - **Examples:**
   - "Which of these tools are CNCF projects?" (T/F)
@@ -23,6 +23,7 @@
   - "In which decade were these technologies created?" (1980-1990-2000-2010-2020)
 
 ## 📚 Knowledge Source Alignment
+- Use images from permanent repositories like GitHub, GitLab, or Bitbucket
 
 ### 🌐 CNCF & Cloud Native
 - **Kubernetes Certifications**

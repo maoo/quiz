@@ -1,95 +1,131 @@
-# 🏆 DevOps Quiz Generation Prompt
+# 🏆 Quiz Deck - Generation Prompt
 
-I am building a high-quality, professional, production-ready quiz designed primarily for physical use. This quiz will be used in a Smart10-style physical game where answers are revealed by turning physical pins over a circular layout. Because of this, the SVG output must be extremely precise and readable.
+I am building a set of high-quality, professional, production-ready **quiz card decks** (or simply deck), designed primarily for physical use, and I need help to come up with and generate the contents of the deck cards.
 
-Each deck file (in `decks/<deck id>/prompts/<deck id>.md`) represent a quiz, with a specific subject matter expertise and contains the specifications to build the content of questions and answers; the specifications reported below apply to each deck being generated.
+Each deck contains 200 **quiz cards**, each containing a quiz, that are related to the same subject; the deck is described by `decks/<deck id>/prompts/<deck id>.yaml`, which contains:
+- A **title**, which is set at the title of the page
+- A **deck_id**, which is also reflected in the path of the file
+- A **language** (default English), which specifies which language must be used to generate the deck's contents
+- An **introduction** of the deck subject, to understand which type of content must be used in the questions
+- **question_examples**, to get an idea of the type of questions, options and answers that can be generated
+- **subject_matter**, describing the topics that must be treated by the quiz; every question, option and answer must be related to one of these items
+- **quiz_types**, to see some quiz and take inspiration from
+- **difficulty_levels**, to specify how to mix the difficulty across quiz cards
 
-Each quiz should include 200 questions, each with 10 options and 10 answers; the quality of content, style (font style and size, layout and spacing) must be well thought and precise, in order to send the produced assets for printing.
+## ⚖️ Quiz card specifications
 
-Each deck must have a homepage on https://blog.session.it/quiz/decks/<deck id>, that shows decks and questions; each deck must have a homepage (in `decks/<deck id>/README.md`) with:
-- The title of the deck
-- 3 Paragraphs description of the game, mostly around the questions, topics, sources, etc
-- The list of questions, with a link to `https://blog.session.it/quiz/decks/<deck id>/questions/<question id>-question` for each of them ; also add a link to the SVG and PDF version of the question.
+Each quiz card is composed by the following elements:
+  - A **question_id** , also known as `<question_id>`, which is a unique, sequential numeric identifier for each question (e.g., "001", "042", "123", etc.).
+  - A **question_type**, which can be either `short` or `extended`.
+  - **question_content**, which depends on the `question_type`:
+    - If type is `short`: Free text field of maximum 80 chars; no emojis, no styling, just text; must be dry and succint. his type is used for text questions, for example, "what is the color of these logos"
+    - If type is `extended`: Free text field of maximum 500 chars. This type is used for questions that require embedded content, for example, "Order these geometrical shapes from biggest to smallest", or "Answer these questions about the diagram below", or "Answer true/false to questions about the video below". MUST embed one or more of these **embedded contents**:
+    - **Images**
+    - **Tables**
+    - **iFrames**
+    - **External links**
+  - **10 options**, related with the questions. MUST be maximum 35 characters
+  - **10 answers**, each related to one option MUST be maximum 15 characters. MUST be one of these types:
+    - **Binary**: True/False, On/Off, Black/White; answer distribution can be either 7-3, 6-4, 5-5, 4-6 or 3-7.
+    - **Non-binary answer** (70% of the deck combined):
+      - **ordering_number** (for example, order options from youngest to oldest)
+      - **date**, for example decade (1980-1990-2000-2010-2020) or other type of dates (month, day, century, etc)
+      - **free_text**, like names, labels, colors and other type of words
 
-IMPORTANT! When new questions are added to an existing deck, make sure that:
-  - The deck homepage is updated to report all questions
-  - The types of questions and answers are properly balanced, following the "Design and Answer Rules" described below
-  - CRITICAL: Answer types MUST strictly adhere to the percentage distribution defined in the "Answer Types" section below. Check ALL existing questions in the deck before adding new ones to maintain these ratios.
-  - The types of questions and answers must be shuffled (randomly ordered) across the deck, using a random order, but trying to avoid having 2 questions or answers of the same type sequentially in the deck; if needed, change the number of an existing question, and update the deck homepage.
+## ⚖️ Deck specifications
 
-## 🎯 Objective
+All questions and answers in a deck MUST be randomly shuffled and MUST follow this distribution:
+- 50% of questions must be of type `short`
+- 20% of questions must be of type `extended`, with images
+- 10% of questions must be of type `extended`, with tables
+- 10% of questions must be of type `extended`, with iframes
+- 10% of questions must be of type `extended`, with a combination of one or more of these embedded contents: images, tables and iframes, external links
+- 30% of answers must be of type `binary`
+- 20% of answers must be of type `ordering_number`
+- 20% of answers must be of type `date`
+- 30% of answers must be of type `free_text`
 
-Create the content of the game following the "Output File Structure" described below; content must be:
-  - Challenging, fair, precise, and undisputable DevOps questions, based on widely adopted technologies and real-world best practices. Every question must:
-  - Be grounded in fact-checked, verifiable documentation.
-
-All conent must be nicely and clearly visualized, taking advantage of emojis, clickable links, styling, layout and any other tool in Markdown format that can make the web rendering pleasant, cool and clear.
-
-## ⚖️ Design and Answer Rules
-- Each deck contains 200 designs.
-- Each design has one question.
-- Each question must have exactly 10 options.
-- Each option (10 in total) has an answer (10 in total)
-- Each option MUST be strictly limited to a maximum of 20 characters for readability on physical game cards. ABSOLUTELY NO EXCEPTIONS to this limit. Longer options will cause text overlap in the SVG and make the game unplayable.
-- Questions can be of different types:
-  - Text (50% of the deck): This type is used for text questions, for example, "what is the color of these logos"; the text must be maximum 80 characters, so be dry and succint
-  - QR (50% of the deck): A QR is generated and visualized in the design, pointing to `https://blog.session.it/quiz/decks/<deck id>/questions/<question id>-question` , which will visualize the contents of `decks/<deck id>/questions/<question id>-question`; in this file, we can embed any content, of any type or length, to define our questions and options; the following distribution of content types must be respected:
-    - YouTube embedded video (15% of the deck)
-    - Embedded images (15% of the deck)
-    - Embedded content (20% of the deck), for example links to external pages (make sure it opens in a new tab), tables, snippets
-- Options are only of one type: a text string of maximum 80 characters
-- Answers can be of different types, depending on the question (these percentages define the required Answer Type Distribution):
-    - Binary answer (30% of the deck, STRICT MAXIMUM): True/False, On/Off, Black/White
-    - Free answer (70% of the deck combined, MUST INCLUDE ALL THREE TYPES):
-      - (20% of the deck) ordering number (for example, order options from youngest to oldest)
-      - (20% of the deck) Decade (1980-1990-2000-2010-2020) or other type of dates (month, day, century, etc)
-      - (30% of the deck) names, labels, colors and other type of words
-- The type of questions and answers MUST be more varied and shuffled within the deck
-- CRUCIAL: When adding to an existing deck, analyze ALL existing questions to ensure the deck maintains proper answer type balance. If a deck already has many binary (True/False) questions, subsequent additions MUST focus on the other answer types.
-- Answers must be maximum 15 characters
-- Split longer concepts into simpler terms to meet the 20-character limit. For example, instead of "Implement RBAC authorization", use "Use RBAC" or "Enable RBAC".
-- Correct answer distribution for binary answers MUST be between 3–7 (True) per question, with a balance of TRUE and FALSE answers. This is a STRICT requirement.
-- NEVER include questions with 10/0, 9/1, 1/9, or 0/10 binary answer distributions without exception. Having all TRUE or all FALSE answers is not acceptable for game play.
-- Each option must be clear, stand-alone, and unambiguous.
-- Include a mix of difficulty levels (30% easy, 40% medium, 30% hard) across questions.
-
+The order of the quiz cards across the deck MUST be random.
 ## 📁 Output File Structure
 
+The folder `decks/<deck_name>` MUST contain:
+1. `README.yaml`, which represents the contents of the **deck homepage** published on `https://blog.session.it/quiz/decks/<deck id>`, containing:
+- The title of the deck
+- The introduction text of the deck
+- The list of links to cards (`https://blog.session.it/quiz/decks/<deck id>/cards/<card id>`), with the link to SVG (`https://blog.session.it/quiz/decks/<deck id>/cards/<card id>/content.svg`) and PDF (`https://blog.session.it/quiz/decks/<deck id>/cards/<card id>/content.pdf`) versions too.
+
 For each question generated, create the following files in the `decks/<deck_name>/questions/<question_id>` directory:
-1. `question.md`: Contains the question text, the 10 options, code snippet (if applicable); at the bottom, with a smaller font, add question type, answers type, sources used and URL to the question (using the template `https://blog.session.it/quiz/decks/<deck_name>/questions/<question_id>/question`).
-2. `card.svg`: Contains only the SVG code for the physical game board, generated by GitHub Actions.
-3. `card.pdf`: Contains only the PDF version of the SVG image, generated by GitHub Actions.
-4. `answers.md`: Contains the list of options with their answers.
-5. (for questions of type QR only) `qr.png`: Contains the QR code encoding `https://blog.session.it/quiz/decks/<deck_name>/questions/<question_id>/question` which is visualized in the diagram; this file must be generated using `qrencode -o decks/<deck_name>/questions/<question_id>/qr.png "https://blog.session.it/quiz/decks/<deck_name>/questions/<question_id>/question"` as soon as the `question.md` file is created.
+1. `content.yaml`: Contains all content related to a quiz card, listed in "Quiz card specifications", except for the 10 answers:
+  - The **Question**
+  - The **Embedded Contents**
+  - The **10 Options**
+  - **Sources** , list of links to sources to certify the answer
+  - The **URL** to the current question - `https://blog.session.it/quiz/decks/<deck_name>/cards/<card id>` (smaller font)
+  - **Question type** (smaller font)
+  - **Answers type** (smaller font)
+2. `answers.yaml`: Lists all **options** and related **answers** as a table with 10 lines and 3 columns: Order number, Option, Answer
 
-Where `<question_id>` is a unique, sequential numeric identifier for each question (e.g., "001", "042", "123", etc.). Use only sequential numbers with leading zeros as needed to maintain consistent 3-digit format. Always create 001 first, unless the question already exists in the current deck folder.
+The folder `schemas/` MUST contain the following YAML schema definitions:
+- `deck.yaml`: Defines the schema for the deck
+- `card.yaml`: Defines the schema for the card
+- `answers.yaml`: Defines the schema for the answers
 
-Each `<question_id>-question.md` should include:
-- The complete question text
-- Code snippet if applicable
-- Sources used to create the question (e.g., documentation URLs, certification guides)
-- The URL to github.com/maoo/quiz/... that points to the `<question id>-question.md` file
+## ✅ Content Quality
 
-## ✅ Final Checklist per Question
+The content of the quiz cards must be:
+  - Challenging, fair, precise, and undisputable DevOps questions, based on widely adopted technologies and real-world best practices. Every question must:
+  - Grounded in fact-checked, verifiable documentation.
+  - Clear, stand-alone, and unambiguous.
+  - Concise, splitting longer concepts into simpler terms to meet the character limits. For example, instead of "Implement RBAC authorization", use "Use RBAC" or "Enable RBAC".
+
+## 🔍 Content Validation
+
+All external content must be validated and follow these guidelines:
+
+### Images and Media
+- Images MUST be hosted on reliable, permanent platforms:
+  - Use images from official documentation sites
+  - Use images from established educational platforms
+- AVOID using:
+  - Wikimedia Commons or other wiki-based image repositories
+  - Temporary image hosting services
+  - Social media image links
+  - Direct links to image search results
+- All images must be:
+  - In the public domain or properly licensed
+  - Optimized for web use (compressed, appropriate format)
+
+### Links and References
+- All external links must:
+  - Point to official documentation or trusted educational resources
+  - Be tested for availability before inclusion
+  - Use HTTPS protocol
+  - Be from permanent, stable sources
+- AVOID linking to:
+  - Wiki pages (Wikipedia, etc.)
+  - Social media posts
+  - Temporary or personal websites
+  - Unverified sources
+
+### Content Testing
+- Before finalizing any question:
+  - Test all links for availability
+  - Verify image accessibility
+  - Check content licensing
+  - Validate source reliability
+  - Ensure content permanence
+
+All output content (all question.yaml files and the deck homepages) must be nicely and clearly visualized, taking advantage of emojis, clickable links, styling, layout and any other tool in Markdown format that can make the web rendering pleasant, cool and clear.
+
+## ✅ Content Checklist
 
 - Does the question type (code vs knowledge) follow spec?
 - Are there exactly 10 well-formed, independent options?
-- Is each option STRICTLY 20 characters or less?
 - For binary questions: Are there 3–7 correct (True) answers?
+- Is each option STRICTLY 20 characters or less?
 - Are answers undisputable, based on trusted sources?
 - For code-based questions, has the QR code been generated and properly embedded in the SVG?
 - Is the deck homepage up to date with all questions and with links to SVG and PDF versions of the question?
-- CRITICAL: Are answer types properly balanced across the ENTIRE deck according to the percentages defined in the "Answer Types" section?
-- Are all types of questions and answers are properly balanced and shuffled across the deck?
+- Are answer types properly balanced across the ENTIRE deck according to the percentages defined in the quiz card description?
+- Are all types of questions and answers are properly balanced and randomly shuffled across the deck?
 - Does this question contribute to proper answer type distribution? If a deck is already heavy on one answer type, avoid adding more of that same type.
-
-## 📊 Answer Type Distribution Tracking
-
-When adding new questions:
-1. Count the current number of each answer type in the deck
-2. Calculate the current percentages
-3. Determine which answer types are underrepresented
-4. Prioritize those underrepresented answer types for new questions
-5. Document your answer type analysis before adding new questions
-
-Remember to refer to the percentages defined in the "Answer Types" section for the target distribution.

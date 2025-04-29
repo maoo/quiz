@@ -1,0 +1,36 @@
+name: YAML to SVG Conversion
+
+on:
+  push:
+    paths:
+      - 'decks/fun-math/questions/decks/fun-math/**'
+      - 'src/yaml_to_svg/**'
+  workflow_dispatch:
+
+jobs:
+  convert-yaml-to-svg:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r src/yaml_to_svg/requirements.txt
+        
+    - name: Convert YAML to SVG
+      run: |
+        python src/yaml_to_svg/generate_svg.py
+        
+    - name: Commit and push if changed
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add decks/fun-math/questions/decks/fun-math/cards/
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Update SVG cards from YAML" && git push) 

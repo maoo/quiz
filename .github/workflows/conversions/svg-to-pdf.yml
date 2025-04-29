@@ -1,0 +1,142 @@
+name: Convert SVG to PDF
+
+on:
+  workflow_run:
+    workflows: ["Convert YAML to SVG"]
+    types:
+      - completed
+  workflow_dispatch:
+    inputs:
+      deck_name:
+        description: 'Name of the deck to process (e.g., "deck1"). Leave empty to process all decks.'
+        required: false
+        type: string
+
+jobs:
+  convert-svg:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: read
+    steps:
+      - name: Wait for push to be processed
+        if: github.event_name == 'workflow_run'
+        run: |
+          echo "Waiting 10 seconds to ensure push is processed..."
+          sleep 10
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get files to process
+        id: files-to-process
+        if: github.event_name == 'workflow_run'
+        run: |
+          # Get the commit that triggered this workflow
+          COMMIT_SHA=${{ github.event.workflow_run.head_commit.id }}
+          
+          # First try to get files from the specific commit
+          CHANGED_FILES=$(git diff-tree --no-commit-id --name-only -r $COMMIT_SHA | grep 'decks/.*/questions/.*/card\.svg$' || true)
+          
+          # If no files found, try to get all SVG files that were modified in the last 5 minutes
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "No files found in commit, checking recent changes..."
+            CHANGED_FILES=$(find decks -name 'card.svg' -mmin -5 2>/dev/null || true)
+          fi
+          
+          if [ -n "$CHANGED_FILES" ]; then
+            echo "Found files to process:"
+            echo "$CHANGED_FILES"
+            echo "all_changed_files=$(echo "$CHANGED_FILES" | tr '\n' ' ')" >> $GITHUB_OUTPUT
+            echo "any_changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "No files to process"
+            echo "any_changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Set files to process for manual run
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          if [ -n "${{ github.event.inputs.deck_name }}" ]; then
+            echo "all_changed_files=$(find decks/${{ github.event.inputs.deck_name }}/questions -name 'card.svg' | tr '\n' ' ')" >> $GITHUB_OUTPUT
+          else
+            echo "all_changed_files=$(find decks -name 'card.svg' | tr '\n' ' ')" >> $GITHUB_OUTPUT
+          fi
+          echo "any_changed=true" >> $GITHUB_OUTPUT
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: latest
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+
+      - name: Install dependencies
+        run: |
+          poetry install --with dev
+          poetry install --no-interaction
+
+      - name: Convert SVG to PDF
+        if: steps.files-to-process.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
+        run: |
+          # Function to get SVG files based on event type
+          get_svg_files() {
+            if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+              if [ -n "${{ github.event.inputs.deck_name }}" ]; then
+                find decks/${{ github.event.inputs.deck_name }}/questions -name 'card.svg'
+              else
+                find decks -name 'card.svg'
+              fi
+            else
+              echo "${{ steps.files-to-process.outputs.all_changed_files }}"
+            fi
+          }
+
+          # Function to convert SVG to PDF using our Python tool
+          convert_svg_to_pdf() {
+            local svg_file="$1"
+            local pdf_output="$(dirname "$svg_file")/card.pdf"
+            
+            echo "Converting $svg_file to $pdf_output"
+            if ! poetry run python -m src.svg_to_pdf.converter "$svg_file" -o "$pdf_output" --width 11 --height 11; then
+              echo "Error: Failed to convert $svg_file"
+              return 1
+            fi
+            return 0
+          }
+
+          # Process each SVG file
+          failed_files=()
+          for svg_file in $(get_svg_files); do
+            if [ -f "$svg_file" ] && [[ "$svg_file" == *.svg ]]; then
+              if ! convert_svg_to_pdf "$svg_file"; then
+                failed_files+=("$svg_file")
+              fi
+            else
+              echo "Warning: $svg_file not found or not an SVG file"
+            fi
+          done
+
+          # Fail the workflow if any conversions failed
+          if [ ${#failed_files[@]} -ne 0 ]; then
+            echo "Error: Failed to convert the following files:"
+            printf '%s\n' "${failed_files[@]}"
+            exit 1
+          fi
+
+      - name: Commit and push changes
+        if: steps.files-to-process.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add decks/**/questions/*/card.pdf
+          git commit -m "Convert SVG to PDF" || exit 0
+          git push origin HEAD:${{ github.ref }} 

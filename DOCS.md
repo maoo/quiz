@@ -54,8 +54,8 @@ brew install librsvg
 ### Using Claude Code or ChatGPT
 
 To generate new questions:
-```sh
-Follow instructions in quiz-prompt.md, to build a quiz deck of type devops-hero; generate 4 additional questions, only using the content of the prompt as context.
+```
+Build a list of questions (and related assets), given the quiz-prompt.md prompt file that contains all requirements and specifications to build a quiz deck of type "fun-math";  limit the number of generated questions 5.
 ```
 
 To reiterate on existing questions:
@@ -151,6 +151,9 @@ This automated pipeline ensures consistent, high-quality output across all forma
 
 ## Technical Features
 
+- **YAML to Markdown Converter**: Convert YAML content to structured markdown format
+- **YAML to SVG Converter**: Convert YAML content to SVG format with proper styling
+- **QR Code Generator**: Generate QR codes for linking to digital content
 - **SVG Generator**: Create SVG images for quiz questions with QR codes and answers
 - **SVG to PDF Converter**: Convert SVG files to PDF with proper image handling and scaling
 
@@ -172,16 +175,40 @@ poetry install
 
 ## Technical Usage
 
-### SVG Generator
+### YAML to Markdown Converter
 
 ```python
-from svg_generator import QuizSVGGenerator
+from yaml_to_markdown import YAMLToMarkdownConverter
 
-# Create a generator instance
-generator = QuizSVGGenerator()
+# Create a converter instance
+converter = YAMLToMarkdownConverter()
 
-# Generate an SVG from a markdown file
-generator.generate_svg("input.md", "output.svg")
+# Convert YAML to Markdown
+converter.convert_yaml_to_markdown("input.yaml", "output.md")
+```
+
+### YAML to SVG Converter
+
+```python
+from yaml_to_svg import YAMLToSVGConverter
+
+# Create a converter instance
+converter = YAMLToSVGConverter()
+
+# Convert YAML to SVG
+converter.convert_yaml_to_svg("input.yaml", "output.svg")
+```
+
+### QR Code Generator
+
+```python
+from qr_generator import QRGenerator
+
+# Create a QR generator instance
+generator = QRGenerator()
+
+# Generate a QR code
+generator.generate_qr("https://example.com", "qr_code.png")
 ```
 
 ### SVG to PDF Converter
@@ -198,16 +225,28 @@ converter.convert_svg_to_pdf("input.svg", "output.pdf")
 
 ## Technical Command Line Interface
 
-### SVG Generator
+### YAML to Markdown Converter
 
 ```bash
-python -m svg_generator.generator input.md output.svg
+poetry run python -m yaml_to_markdown.converter input.yaml -o output.md
+```
+
+### YAML to SVG Converter
+
+```bash
+poetry run python -m yaml_to_svg.converter input.yaml -o output.svg
+```
+
+### QR Code Generator
+
+```bash
+poetry run python -m qr_generator.generator "https://example.com" -o qr_code.png
 ```
 
 ### SVG to PDF Converter
 
 ```bash
-python -m svg_to_pdf.converter input.svg -o output.pdf
+poetry run python -m svg_to_pdf.converter input.svg -o output.pdf
 ```
 
 ## Technical Development
@@ -230,6 +269,18 @@ poetry run mypy src
 poetry run black src tests
 poetry run isort src tests
 poetry run flake8 src tests
+```
+
+### Building the Project
+
+```bash
+poetry build
+```
+
+### Installing in Development Mode
+
+```bash
+poetry install
 ```
 
 ## Technical License

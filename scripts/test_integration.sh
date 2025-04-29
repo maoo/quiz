@@ -8,13 +8,23 @@ echo "Starting integration test..."
 # Create output directory
 mkdir -p /tmp/integration-test/output
 
-# Generate SVGs for all questions
-echo "Generating SVGs..."
+# Generate SVGs and Markdown from YAML files
+echo "Processing YAML files..."
 for question_dir in decks/devops-hero/questions/*/; do
-    if [ -f "${question_dir}question.md" ]; then
+    if [ -f "${question_dir}question.yaml" ]; then
         question_id=$(basename "$question_dir")
-        echo "Processing ${question_dir}question.md..."
-        poetry run python -m src.svg_generator.generator "${question_dir}question.md" "/tmp/integration-test/output/${question_id}.svg"
+        echo "Processing ${question_dir}question.yaml..."
+        
+        # Convert YAML to SVG
+        poetry run python -m src.yaml_to_svg.generator "${question_dir}question.yaml" "/tmp/integration-test/output/${question_id}.svg"
+        
+        # Convert YAML to Markdown
+        poetry run python -m src.yaml_to_markdown.generator "${question_dir}question.yaml" "/tmp/integration-test/output/${question_id}.md"
+        
+        # Generate QR code if specified in YAML
+        if grep -q "qr:" "${question_dir}question.yaml"; then
+            poetry run python -m src.qr_generator.generator "${question_dir}question.yaml" "/tmp/integration-test/output/${question_id}_qr.png"
+        fi
     fi
 done
 
@@ -34,11 +44,30 @@ for svg_file in /tmp/integration-test/output/*.svg; do
         exit 1
     fi
     
-    # Verify SVG contains QR code if present in original markdown
+    # Verify SVG contains QR code if present in original YAML
     question_id=$(basename "$svg_file" .svg)
-    if grep -q "qr:" "decks/devops-hero/questions/${question_id}/question.md" && ! grep -q "image" "$svg_file"; then
+    if grep -q "qr:" "decks/devops-hero/questions/${question_id}/question.yaml" && ! grep -q "image" "$svg_file"; then
         echo "SVG file $svg_file should contain QR code but doesn't!"
         exit 1
+    fi
+done
+
+# Verify Markdown files were created
+echo "Verifying Markdown files..."
+if [ ! "$(ls -A /tmp/integration-test/output/*.md 2>/dev/null)" ]; then
+    echo "No Markdown files were generated!"
+    exit 1
+fi
+
+# Verify QR codes were created if specified
+echo "Verifying QR codes..."
+for question_dir in decks/devops-hero/questions/*/; do
+    if [ -f "${question_dir}question.yaml" ] && grep -q "qr:" "${question_dir}question.yaml"; then
+        question_id=$(basename "$question_dir")
+        if [ ! -f "/tmp/integration-test/output/${question_id}_qr.png" ]; then
+            echo "QR code for ${question_id} was not generated!"
+            exit 1
+        fi
     fi
 done
 

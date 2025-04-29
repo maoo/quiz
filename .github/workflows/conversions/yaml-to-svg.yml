@@ -1,0 +1,83 @@
+name: Convert YAML to SVG
+
+on:
+  # QRs must be generated before SVGs
+  workflow_run:
+    workflows: ["QR Code Generator"]
+    types:
+      - completed
+  workflow_dispatch:
+    inputs:
+      deck_name:
+        description: 'Name of the deck to process (e.g., "deck1"). Leave empty to process all decks.'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  generate-svg:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: latest
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          
+      - name: Install dependencies
+        run: |
+          cd src/yaml_to_svg
+          poetry install
+          
+      - name: Get changed files for push event
+        id: changed-files
+        if: github.event_name == 'push'
+        uses: tj-actions/changed-files@v46
+        with:
+          files: |
+            **/questions/*/question.yaml
+
+      - name: Set files to process for manual run
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          if [ -n "${{ github.event.inputs.deck_name }}" ]; then
+            echo "all_changed_files=$(find decks/${{ github.event.inputs.deck_name }}/questions -name 'question.yaml' | tr '\n' ' ')" >> $GITHUB_OUTPUT
+          else
+            echo "all_changed_files=$(find decks -name 'question.yaml' | tr '\n' ' ')" >> $GITHUB_OUTPUT
+          fi
+          echo "any_changed=true" >> $GITHUB_OUTPUT
+
+      - name: Generate SVG files
+        if: steps.changed-files.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
+        env:
+          YAML_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+        run: |
+          # Run script with deck name if provided in workflow_dispatch
+          DECK_NAME="${{ github.event.inputs.deck_name }}"
+          if [ "${{ github.event_name }}" != "workflow_dispatch" ] && [ -z "${{ github.event.inputs.deck_name }}" ]; then
+            DECK_NAME=""
+          fi
+          ./scripts/yaml_to_svg.sh "${DECK_NAME}"
+          ls -lRt ./decks
+
+      - name: Commit and push changes
+        if: steps.changed-files.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
+        run: |
+          ls -lRt ./decks
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add decks/**/questions/*/card.svg
+          git commit -m "Convert YAML to SVG" || exit 0
+          git push origin HEAD:${{ github.ref }} 

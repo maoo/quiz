@@ -1,49 +1,60 @@
 #!/bin/bash
 
-# Test script for generate_svgs.sh
-# This script tests the functionality of generate_svgs.sh
+# test_generate_svgs.sh - Script to test SVG generation from YAML questions
+# Usage: ./scripts/test_generate_svgs.sh [deck_name]
+#   deck_name: Optional. If provided, only tests questions from this deck
+#              If not provided, tests all questions in all decks
 
 set -e  # Exit on error
 
-# Function to test with a specific deck
-test_specific_deck() {
-    echo "Testing with specific deck..."
-    MARKDOWN_FILES="" ./scripts/generate_svgs.sh devops-hero
-    
-    # Verify SVGs were created for the specific deck
-    if [ ! -f "decks/devops-hero/questions/001/card.svg" ]; then
-        echo "Error: SVG not generated for devops-hero deck"
-        exit 1
-    fi
+# Function to print usage
+print_usage() {
+    echo "Usage: $0 [deck_name]"
+    echo "  deck_name: Optional. If provided, only tests questions from this deck"
+    echo "            If not provided, tests all questions in all decks"
+    echo ""
+    echo "Example: $0 devops-hero"
+    echo "         $0"
 }
 
-# Function to test with MARKDOWN_FILES environment variable
-test_markdown_files_env() {
-    echo "Testing with MARKDOWN_FILES environment variable..."
-    MARKDOWN_FILES="decks/devops-hero/questions/001/question.md" ./scripts/generate_svgs.sh
-    
-    # Verify only the specified file was processed
-    if [ ! -f "decks/devops-hero/questions/001/card.svg" ]; then
-        echo "Error: SVG not generated for specified file"
-        exit 1
-    fi
-}
+# Check if help is requested
+if [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
+    print_usage
+    exit 0
+fi
 
-# Function to test with no arguments (all decks)
-test_all_decks() {
-    echo "Testing with no arguments (all decks)..."
-    MARKDOWN_FILES="" ./scripts/generate_svgs.sh
-    
-    # Verify SVGs were created for all decks
-    if [ ! -f "decks/devops-hero/questions/001/card.svg" ]; then
-        echo "Error: SVG not generated for devops-hero deck"
-        exit 1
-    fi
-}
+# Ensure we're in the project root
+if [ ! -d "src" ] || [ ! -d "decks" ]; then
+    echo "Error: Must be run from project root directory"
+    exit 1
+fi
 
-# Run tests
-test_specific_deck
-test_markdown_files_env
-test_all_decks
+# Ensure poetry is available
+if ! command -v poetry &> /dev/null; then
+    echo "Error: poetry is not installed or not in PATH"
+    exit 1
+fi
 
-echo "All tests passed successfully!" 
+# Run the actual script
+echo "Testing SVG generation..."
+./scripts/yaml_to_svg.sh "$1"
+
+# Verify SVG files were generated
+echo "Verifying SVG files..."
+if [ -n "$1" ]; then
+    find "decks/$1/questions" -name 'card.svg' | while read -r svg_file; do
+        if [ ! -s "$svg_file" ]; then
+            echo "Error: Empty SVG file generated: $svg_file"
+            exit 1
+        fi
+    done
+else
+    find decks -name 'card.svg' | while read -r svg_file; do
+        if [ ! -s "$svg_file" ]; then
+            echo "Error: Empty SVG file generated: $svg_file"
+            exit 1
+        fi
+    done
+fi
+
+echo "SVG generation test completed successfully!" 
