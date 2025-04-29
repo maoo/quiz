@@ -1,0 +1,46 @@
+title: 🚀 DevOps Hero
+deck_id: devops-hero
+question_types:
+  qr_questions:
+  - name: Code Snippets
+    items: []
+  - name: Multimedia Content
+    items: []
+  text_questions:
+    format: Free text (max 80 characters)
+    examples: []
+knowledge_sources:
+- name: 🌐 CNCF & Cloud Native
+  subcategories:
+  - name: Kubernetes Certifications
+    items: []
+  - name: Service Mesh
+    items: []
+- name: ☁️ AWS
+  subcategories:
+  - name: Professional Certifications
+    items: []
+  - name: Specialty Certifications
+    items: []
+- name: 🛠️ DevOps & Infrastructure
+  subcategories:
+  - name: HashiCorp
+    items: []
+  - name: Linux Foundation
+    items: []
+  - name: Cloud Providers
+    items: []
+  - name: Red Hat
+    items: []
+- name: 🔒 Security Certifications
+  subcategories: []
+- name: ⚙️ Core DevOps Toolchain
+  subcategories:
+  - name: Container & Orchestration
+    items: []
+  - name: CI/CD
+    items: []
+  - name: Monitoring & Logging
+    items: []
+  - name: Infrastructure & Service Mesh
+    items: []

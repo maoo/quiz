@@ -9,3 +9,10 @@ __pycache__
 .mypy_cache
 test-output
 test-svgs
+
+decks/**.svg
+decks/**.png
+decks/**.pdf
+decks/**.md
+
+gh-pages
