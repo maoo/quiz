@@ -31,9 +31,9 @@ fi
 generate_qr_code() {
     local question_dir="$1"
     local deck_name=$(echo "$question_dir" | cut -d'/' -f2)
-    local question_id=$(basename "$question_dir")
+    local card_id=$(basename "$question_dir")
     local qr_path="$question_dir/qr.png"
-    local url="https://blog.session.it/quiz/decks/$deck_name/questions/$question_id/question"
+    local url="https://blog.session.it/quiz/decks/$deck_name/questions/$card_id/question"
     
     echo "Generating QR code for $url"
     qrencode -o "$qr_path" "$url"

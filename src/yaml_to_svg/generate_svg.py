@@ -11,17 +11,17 @@ class YAMLToSVG:
         self.output_path = self.deck_path / "cards"
         self.output_path.mkdir(exist_ok=True)
         
-    def load_question(self, question_id: str) -> Dict:
+    def load_question(self, card_id: str) -> Dict:
         """Load a question from its YAML file."""
-        question_file = self.questions_path / question_id / "question.yaml"
+        question_file = self.questions_path / card_id / "question.yaml"
         with open(question_file, 'r') as f:
             return yaml.safe_load(f)
             
-    def create_svg_card(self, question: Dict, question_id: str) -> None:
+    def create_svg_card(self, question: Dict, card_id: str) -> None:
         """Create an SVG card for a question."""
         # Create SVG drawing
         dwg = svgwrite.Drawing(
-            filename=str(self.output_path / f"{question_id}.svg"),
+            filename=str(self.output_path / f"{card_id}.svg"),
             size=('210mm', '297mm'),  # A4 size
             viewBox=('0 0 210 297')
         )
@@ -59,9 +59,9 @@ class YAMLToSVG:
             
         # Process each question
         for question in deck_meta['questions']:
-            question_id = str(question['id']).zfill(3)
-            question_data = self.load_question(question_id)
-            self.create_svg_card(question_data, question_id)
+            card_id = str(question['id']).zfill(3)
+            question_data = self.load_question(card_id)
+            self.create_svg_card(question_data, card_id)
             
 def main():
     # Process the fun-math deck

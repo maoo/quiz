@@ -12,7 +12,7 @@ options:
 - Tonelada
 - Microgramo
 question_content: Empareja cada unidad con su abreviatura
-question_id: '005'
+card_id: '005'
 question_type: short
 sources:
 - https://es.khanacademy.org/math/cc-third-grade-math/imp-measurement

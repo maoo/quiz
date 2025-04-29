@@ -31,11 +31,11 @@ def test_generate_question_qr_code(tmp_path, monkeypatch):
     monkeypatch.setattr("src.qr_generator.generate_qr_code", mock_generate_qr_code)
     
     deck_name = "test-deck"
-    question_id = "001"
+    card_id = "001"
     
-    result = generate_question_qr_code(deck_name, question_id)
+    result = generate_question_qr_code(deck_name, card_id)
     
-    expected_path = f"decks/{deck_name}/questions/{question_id}-qr.png"
+    expected_path = f"decks/{deck_name}/questions/{card_id}-qr.png"
     assert result == expected_path
 
 def test_generate_qr_code_invalid_path():

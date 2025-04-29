@@ -12,7 +12,7 @@ options:
 - Hendecágono
 - Dodecágono
 question_content: ¿Cuántos lados tiene cada polígono?
-question_id: '002'
+card_id: '002'
 question_type: short
 sources:
 - https://www.mathsisfun.com/geometry/polygons.html

@@ -36,11 +36,11 @@ jobs:
             # For manual triggers, process all question files
             find decks -name "*-question.md" | while read -r file; do
               DECK_NAME=$(echo $file | cut -d'/' -f2)
-              QUESTION_ID=$(echo $file | cut -d'/' -f4 | sed 's/-question.md//')
+              card_id=$(echo $file | cut -d'/' -f4 | sed 's/-question.md//')
               
               python -c "
               from src.qr_generator import generate_question_qr_code
-              generate_question_qr_code('$DECK_NAME', '$QUESTION_ID', output_dir='gh-pages/decks')
+              generate_question_qr_code('$DECK_NAME', '$card_id', output_dir='gh-pages/decks')
               "
             done
           else
@@ -56,11 +56,11 @@ jobs:
             if [ -n "$CHANGED_FILES" ]; then
               for file in $CHANGED_FILES; do
                 DECK_NAME=$(echo $file | cut -d'/' -f2)
-                QUESTION_ID=$(echo $file | cut -d'/' -f4 | sed 's/-question.md//')
+                card_id=$(echo $file | cut -d'/' -f4 | sed 's/-question.md//')
                 
                 python -c "
                 from src.qr_generator import generate_question_qr_code
-                generate_question_qr_code('$DECK_NAME', '$QUESTION_ID', output_dir='gh-pages/decks')
+                generate_question_qr_code('$DECK_NAME', '$card_id', output_dir='gh-pages/decks')
                 "
               done
             else

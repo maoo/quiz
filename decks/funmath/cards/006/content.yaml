@@ -15,7 +15,7 @@ options:
 - I
 - J
 question_content: Ordena estas barras por longitud (1=mayor)
-question_id: '006'
+card_id: '006'
 question_type: extended
 sources:
 - https://www.mathsisfun.com/numbers/comparing-lengths.html

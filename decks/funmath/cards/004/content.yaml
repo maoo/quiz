@@ -12,7 +12,7 @@ options:
 - '2010'
 - '1975'
 question_content: ¿A qué década pertenece cada año?
-question_id: '004'
+card_id: '004'
 question_type: short
 sources:
 - https://www.education.com/resources/decades-centuries/

@@ -36,7 +36,7 @@ options:
 - I
 - J
 question_content: ¿A qué siglo pertenece cada año de la tabla?
-question_id: 008
+card_id: 008
 question_type: extended
 sources:
 - https://www.mathsisfun.com/numbers/century-names.html

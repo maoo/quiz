@@ -43,7 +43,7 @@ options:
 - J
 question_content: Basándote en la imagen, la tabla y el recurso, determina si el perímetro
   supera 20
-question_id: '010'
+card_id: '010'
 question_type: extended
 sources:
 - https://es.khanacademy.org/math/geometry/edges-perimeter

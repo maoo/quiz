@@ -15,7 +15,7 @@ options:
 - Austria
 - Polonia
 question_content: En el mapa, empareja cada país con su capital
-question_id: '007'
+card_id: '007'
 question_type: extended
 sources:
 - https://es.khanacademy.org/math/basic-geo

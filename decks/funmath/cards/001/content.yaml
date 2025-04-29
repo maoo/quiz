@@ -12,7 +12,7 @@ options:
 - '10'
 - '11'
 question_content: ¿Es primo cada número?
-question_id: '001'
+card_id: '001'
 question_type: short
 sources:
 - https://es.khanacademy.org/math/arithmetic/factors-multiples

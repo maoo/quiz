@@ -51,18 +51,18 @@ def generate_qr_code(
         print(f"Error generating QR code: {str(e)}")
         return None
 
-def generate_question_qr_code(deck_name: str, question_id: str) -> Optional[str]:
+def generate_question_qr_code(deck_name: str, card_id: str) -> Optional[str]:
     """
     Generate a QR code for a quiz question.
     
     Args:
         deck_name (str): The name of the deck
-        question_id (str): The question ID
+        card_id (str): The question ID
         
     Returns:
         Optional[str]: The path to the generated QR code if successful, None otherwise
     """
-    url = f"https://blog.session.it/quiz/decks/{deck_name}/questions/{question_id}/question"
-    output_path = f"decks/{deck_name}/questions/{question_id}-qr.png"
+    url = f"https://blog.session.it/quiz/decks/{deck_name}/questions/{card_id}/question"
+    output_path = f"decks/{deck_name}/questions/{card_id}-qr.png"
     
     return generate_qr_code(url, output_path) 

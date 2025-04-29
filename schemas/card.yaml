@@ -1,6 +1,6 @@
 type: object
 properties:
-  question_id:
+  card_id:
     type: string
   question_type:
     type: string
@@ -32,4 +32,4 @@ properties:
   answer_type:
     type: string
     enum: [binary, ordering_number, date, free_text]
-required: [question_id, question_type, question_content, options, sources, url, answer_type]
+required: [card_id, question_type, question_content, options, sources, url, answer_type]

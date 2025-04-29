@@ -34,10 +34,11 @@ class YAMLToMarkdown:
             deck_path: Path to the deck directory containing cards
         """
         self.deck_path = Path(deck_path)
-        self.cards_path = self.deck_path / "cards"
-        self.cards_path.mkdir(exist_ok=True)
+        self.docs_path = self.deck_path / "docs"
+        self.docs_path.mkdir(exist_ok=True)
+        self.questions_path = self.deck_path / "questions"
         
-    def load_card(self, card_id: str) -> Dict:
+    def load_question(self, card_id: str) -> Dict:
         """
         Load a card from its YAML file.
         
@@ -51,7 +52,7 @@ class YAMLToMarkdown:
             FileNotFoundError: If card file doesn't exist
             yaml.YAMLError: If YAML parsing fails
         """
-        card_file = self.cards_path / card_id / "card.yaml"
+        card_file = self.questions_path / card_id / "question.yaml"
         try:
             with open(card_file, 'r', encoding='utf-8') as f:
                 return yaml.safe_load(f)
@@ -76,7 +77,7 @@ class YAMLToMarkdown:
         lines = []
         
         # Add card title
-        lines.append(f"# Card {card_id}")
+        lines.append(f"# Question {card_id}")
         lines.append("")
         
         # Add card text
@@ -122,7 +123,7 @@ class YAMLToMarkdown:
         """
         try:
             content = self.create_markdown_content(card, card_id)
-            output_file = self.cards_path / f"{card_id}.md"
+            output_file = self.docs_path / f"{card_id}.md"
             with open(output_file, 'w', encoding='utf-8') as f:
                 f.write(content)
             logger.debug(f"Created markdown file: {output_file}")
@@ -152,14 +153,14 @@ class YAMLToMarkdown:
             lines.append("")
             
         # Add cards list
-        lines.append("## Cards")
-        for card in deck_meta['cards']:
+        lines.append("## Questions")
+        for card in deck_meta['questions']:
             card_id = str(card['id']).zfill(3)
-            lines.append(f"- [Card {card_id}]({card_id}.md)")
+            lines.append(f"- [Question {card_id}]({card_id}.md)")
             
         # Write index file
         try:
-            with open(self.cards_path / "index.md", 'w', encoding='utf-8') as f:
+            with open(self.docs_path / "index.md", 'w', encoding='utf-8') as f:
                 f.write("\n".join(lines))
             logger.debug("Created index markdown file")
         except IOError as e:
@@ -185,10 +186,10 @@ class YAMLToMarkdown:
             logger.info("Created index markdown file")
                 
             # Process each card
-            for card in deck_meta['cards']:
+            for card in deck_meta['questions']:
                 card_id = str(card['id']).zfill(3)
                 try:
-                    card_data = self.load_card(card_id)
+                    card_data = self.load_question(card_id)
                     self.create_markdown_file(card_data, card_id)
                     logger.info(f"Processed card {card_id}")
                 except Exception as e:

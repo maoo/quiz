@@ -12,7 +12,7 @@ options:
 - '67'
 - '10'
 question_content: Ordena estos números de menor a mayor (1=menor)
-question_id: '003'
+card_id: '003'
 question_type: short
 sources:
 - https://es.khanacademy.org/math/arithmetic/order-of-numbers
