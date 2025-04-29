@@ -65,8 +65,8 @@ jobs:
       - name: Commit and push changes to gh-pages
         run: |
           cd gh-pages
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
+          git config --local user.email "maoo@apache.org"
+          git config --local user.name "maoo"
           git add decks/**/*.svg
           git commit -m "Convert YAML to SVG" || exit 0
           git push origin gh-pages
