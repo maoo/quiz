@@ -26,17 +26,20 @@ class YAMLToMarkdown:
     individual card files and deck metadata.
     """
     
-    def __init__(self, deck_path: str):
+    def __init__(self, input_path: str, output_path: str):
         """
         Initialize the YAML to Markdown converter.
         
         Args:
-            deck_path: Path to the deck directory containing cards
+            input_path: Path to the input deck directory containing cards
+            output_path: Path to the output directory for markdown files
         """
-        self.deck_path = Path(deck_path)
-        self.docs_path = self.deck_path / "docs"
-        self.docs_path.mkdir(exist_ok=True)
-        self.questions_path = self.deck_path / "questions"
+        self.input_path = Path(input_path)
+        self.output_path = Path(output_path)
+        self.cards_path = self.input_path / "cards"
+        
+        # Create output directory if it doesn't exist
+        self.output_path.mkdir(parents=True, exist_ok=True)
         
     def load_question(self, card_id: str) -> Dict:
         """
@@ -52,7 +55,7 @@ class YAMLToMarkdown:
             FileNotFoundError: If card file doesn't exist
             yaml.YAMLError: If YAML parsing fails
         """
-        card_file = self.questions_path / card_id / "question.yaml"
+        card_file = self.cards_path / card_id / "question.yaml"
         try:
             with open(card_file, 'r', encoding='utf-8') as f:
                 return yaml.safe_load(f)
@@ -123,7 +126,7 @@ class YAMLToMarkdown:
         """
         try:
             content = self.create_markdown_content(card, card_id)
-            output_file = self.docs_path / f"{card_id}.md"
+            output_file = self.output_path / f"{card_id}.md"
             with open(output_file, 'w', encoding='utf-8') as f:
                 f.write(content)
             logger.debug(f"Created markdown file: {output_file}")
@@ -160,7 +163,7 @@ class YAMLToMarkdown:
             
         # Write index file
         try:
-            with open(self.docs_path / "index.md", 'w', encoding='utf-8') as f:
+            with open(self.output_path / "index.md", 'w', encoding='utf-8') as f:
                 f.write("\n".join(lines))
             logger.debug("Created index markdown file")
         except IOError as e:
@@ -178,7 +181,7 @@ class YAMLToMarkdown:
         """
         try:
             # Load deck metadata
-            with open(self.deck_path / "README.yaml", 'r', encoding='utf-8') as f:
+            with open(self.input_path / "README.yaml", 'r', encoding='utf-8') as f:
                 deck_meta = yaml.safe_load(f)
                 
             # Create index markdown
@@ -213,8 +216,16 @@ def main() -> int:
     Returns:
         int: Exit code (0 for success, 1 for failure)
     """
+    import argparse
+    
+    parser = argparse.ArgumentParser(description='Convert YAML card files to Markdown format')
+    parser.add_argument('input_path', help='Path to the input deck directory')
+    parser.add_argument('output_path', help='Path to the output directory for markdown files')
+    
+    args = parser.parse_args()
+    
     try:
-        converter = YAMLToMarkdown("decks/fun-math")
+        converter = YAMLToMarkdown(args.input_path, args.output_path)
         converter.process_deck()
         logger.info("Successfully converted YAML to Markdown")
         return 0

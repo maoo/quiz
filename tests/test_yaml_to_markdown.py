@@ -9,8 +9,10 @@ class TestYAMLToMarkdown(unittest.TestCase):
     def setUp(self):
         # Create a temporary directory for testing
         self.test_dir = tempfile.mkdtemp()
-        self.deck_path = Path(self.test_dir) / "test_deck"
-        self.deck_path.mkdir()
+        self.input_path = Path(self.test_dir) / "test_deck"
+        self.output_path = Path(self.test_dir) / "output"
+        self.input_path.mkdir()
+        self.output_path.mkdir()
         
         # Create test YAML files
         self._create_test_yaml_files()
@@ -25,11 +27,11 @@ class TestYAMLToMarkdown(unittest.TestCase):
                 {'id': '002'}
             ]
         }
-        with open(self.deck_path / "README.yaml", 'w') as f:
+        with open(self.input_path / "README.yaml", 'w') as f:
             yaml.dump(readme_data, f)
             
         # Create questions directory
-        questions_dir = self.deck_path / "questions"
+        questions_dir = self.input_path / "cards"
         questions_dir.mkdir()
         
         # Create question 001
@@ -57,13 +59,13 @@ class TestYAMLToMarkdown(unittest.TestCase):
             yaml.dump(question_002_data, f)
             
     def test_load_question(self):
-        converter = YAMLToMarkdown(str(self.deck_path))
+        converter = YAMLToMarkdown(str(self.input_path), str(self.output_path))
         question = converter.load_question('001')
         self.assertEqual(question['question'], 'What is 2+2?')
         self.assertEqual(question['options'], ['3', '4', '5'])
         
     def test_create_markdown_content(self):
-        converter = YAMLToMarkdown(str(self.deck_path))
+        converter = YAMLToMarkdown(str(self.input_path), str(self.output_path))
         question = converter.load_question('001')
         content = converter.create_markdown_content(question, '001')
         
@@ -89,12 +91,12 @@ single
         self.assertEqual(content, expected_content)
         
     def test_create_markdown_file(self):
-        converter = YAMLToMarkdown(str(self.deck_path))
+        converter = YAMLToMarkdown(str(self.input_path), str(self.output_path))
         question = converter.load_question('001')
         converter.create_markdown_file(question, '001')
         
         # Check if markdown file was created
-        md_path = self.deck_path / "docs" / "001.md"
+        md_path = self.output_path / "001.md"
         self.assertTrue(md_path.exists())
         
         # Verify content
@@ -104,13 +106,13 @@ single
             self.assertIn('What is 2+2?', content)
             
     def test_create_index_markdown(self):
-        converter = YAMLToMarkdown(str(self.deck_path))
-        with open(self.deck_path / "README.yaml", 'r') as f:
+        converter = YAMLToMarkdown(str(self.input_path), str(self.output_path))
+        with open(self.input_path / "README.yaml", 'r') as f:
             deck_meta = yaml.safe_load(f)
         converter.create_index_markdown(deck_meta)
         
         # Check if index file was created
-        index_path = self.deck_path / "docs" / "index.md"
+        index_path = self.output_path / "index.md"
         self.assertTrue(index_path.exists())
         
         # Verify content
@@ -122,13 +124,13 @@ single
             self.assertIn('- [Question 002](002.md)', content)
             
     def test_process_deck(self):
-        converter = YAMLToMarkdown(str(self.deck_path))
+        converter = YAMLToMarkdown(str(self.input_path), str(self.output_path))
         converter.process_deck()
         
         # Check if all files were created
-        self.assertTrue((self.deck_path / "docs" / "index.md").exists())
-        self.assertTrue((self.deck_path / "docs" / "001.md").exists())
-        self.assertTrue((self.deck_path / "docs" / "002.md").exists())
+        self.assertTrue((self.output_path / "index.md").exists())
+        self.assertTrue((self.output_path / "001.md").exists())
+        self.assertTrue((self.output_path / "002.md").exists())
         
     def tearDown(self):
         # Clean up temporary directory
