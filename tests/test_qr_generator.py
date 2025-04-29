@@ -35,7 +35,7 @@ def test_generate_question_qr_code(tmp_path, monkeypatch):
     
     result = generate_question_qr_code(deck_name, card_id)
     
-    expected_path = f"decks/{deck_name}/questions/{card_id}-qr.png"
+    expected_path = f"gh-pages/decks/{deck_name}/qr-codes/{card_id}.png"
     assert result == expected_path
 
 def test_generate_qr_code_invalid_path():
