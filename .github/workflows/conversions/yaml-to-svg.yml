@@ -38,7 +38,7 @@ jobs:
           
       - name: Install dependencies
         run: |
-          cd src/yaml_to_svg
+          cd src
           poetry install
           
       - name: Get changed files for push event
@@ -47,7 +47,7 @@ jobs:
         uses: tj-actions/changed-files@v46
         with:
           files: |
-            **/questions/*/question.yaml
+            decks/**/questions/*/question.yaml
 
       - name: Set files to process for manual run
         if: github.event_name == 'workflow_dispatch'
@@ -69,13 +69,14 @@ jobs:
           if [ "${{ github.event_name }}" != "workflow_dispatch" ] && [ -z "${{ github.event.inputs.deck_name }}" ]; then
             DECK_NAME=""
           fi
-          ./scripts/yaml_to_svg.sh "${DECK_NAME}"
-          ls -lRt ./decks
+          cd src
+          poetry run python -m yaml_to_svg.main "${DECK_NAME}"
+          ls -lRt ../decks
 
       - name: Commit and push changes
         if: steps.changed-files.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
         run: |
-          ls -lRt ./decks
+          ls -lRt decks/**/questions/*/card.svg
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add decks/**/questions/*/card.svg
