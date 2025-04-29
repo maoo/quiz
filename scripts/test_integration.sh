@@ -97,9 +97,11 @@ done
 # Convert SVGs to PDFs
 echo "Converting SVGs to PDFs..."
 for svg_file in ${TEMP_DIR}/output/*.svg; do
-    filename=$(basename "$svg_file" .svg)
-    echo "Converting $svg_file..."
-    poetry run python -m src.svg_to_pdf.converter "$svg_file" -o "${TEMP_DIR}/output/${filename}.pdf"
+    if [ -f "$svg_file" ]; then
+        filename=$(basename "$svg_file" .svg)
+        echo "Converting $svg_file..."
+        poetry run python -m src.svg_to_pdf.converter "$svg_file" -o "${TEMP_DIR}/output/${filename}.pdf"
+    fi
 done
 
 # Verify PDFs were created
