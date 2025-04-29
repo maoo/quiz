@@ -62,7 +62,7 @@ def generate_question_qr_code(deck_name: str, card_id: str) -> Optional[str]:
     Returns:
         Optional[str]: The path to the generated QR code if successful, None otherwise
     """
-    url = f"https://blog.session.it/quiz/decks/{deck_name}/questions/{card_id}/question"
-    output_path = f"gh-pages/decks/{deck_name}/qr-codes/{card_id}.png"
+    url = f"https://blog.session.it/quiz/decks/{deck_name}/cards/{card_id}"
+    output_path = f"gh-pages/decks/{deck_name}/cards/{card_id}/qr.png"
     
     return generate_qr_code(url, output_path) 

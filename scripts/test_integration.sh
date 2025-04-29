@@ -7,6 +7,9 @@ echo "Starting integration test..."
 
 # Find first valid deck
 echo "Looking for valid decks..."
+
+TEMP_DIR=$(mktemp -d)
+
 DECK_DIR=""
 for deck in decks/*/; do
     if [ -f "${deck}README.yaml" ] && [ -d "${deck}cards" ]; then
@@ -25,35 +28,35 @@ fi
 DECK_NAME=$(basename "$DECK_DIR")
 
 # Create output directory
-mkdir -p /tmp/integration-test/output
+mkdir -p ${TEMP_DIR}/output
 
 # Generate SVGs and Markdown from YAML files
 echo "Processing YAML files..."
 
 # Convert YAML to SVG for all cards
 echo "Converting YAML to SVG..."
-poetry run python -m src.yaml_to_svg.generate_svg "$DECK_NAME" --output-dir /tmp/integration-test/output
+poetry run python -m src.yaml_to_svg.generate_svg "$DECK_NAME" --output-dir ${TEMP_DIR}/output
 
 # Convert YAML to Markdown for all cards
 echo "Converting YAML to Markdown..."
-poetry run python -m src.yaml_to_markdown.generate_markdown "${DECK_DIR}" "/tmp/integration-test/output"
+poetry run python -m src.yaml_to_markdown.generate_markdown "${DECK_DIR}" "${TEMP_DIR}/output"
 
 # Generate QR codes if specified
 echo "Generating QR codes..."
 for card_dir in "${DECK_DIR}cards"/*/; do
     if [ -f "${card_dir}content.yaml" ] && grep -q "qr:" "${card_dir}content.yaml"; then
         card_id=$(basename "$card_dir")
-        poetry run python -m src.qr_generator.generate_qr "$DECK_NAME" --output-dir /tmp/integration-test/output
+        poetry run python -m src.qr_generator.generate_qr "$DECK_NAME" --output-dir ${TEMP_DIR}/output
     fi
 done
 
 # Verify SVGs were created
 echo "Verifying SVGs..."
-if [ ! "$(ls -A /tmp/integration-test/output/*.svg 2>/dev/null)" ]; then
+if [ ! "$(ls -A ${TEMP_DIR}/output/*.svg 2>/dev/null)" ]; then
     echo "Warning: No SVG files were generated!"
 else
     # Check SVG contents
-    for svg_file in /tmp/integration-test/output/*.svg; do
+    for svg_file in ${TEMP_DIR}/output/*.svg; do
         echo "Checking $svg_file..."
         # Verify SVG contains question text
         if ! grep -q "text" "$svg_file"; then
@@ -74,7 +77,7 @@ fi
 
 # Verify Markdown files were created
 echo "Verifying Markdown files..."
-if [ ! "$(ls -A /tmp/integration-test/output/*.md 2>/dev/null)" ]; then
+if [ ! "$(ls -A ${TEMP_DIR}/output/*.md 2>/dev/null)" ]; then
     echo "No Markdown files were generated!"
     exit 1
 fi
@@ -84,7 +87,7 @@ echo "Verifying QR codes..."
 for card_dir in "${DECK_DIR}cards"/*/; do
     if [ -f "${card_dir}content.yaml" ] && grep -q "qr:" "${card_dir}content.yaml"; then
         card_id=$(basename "$card_dir")
-        if [ ! -f "/tmp/integration-test/output/${card_id}_qr.png" ]; then
+        if [ ! -f "${TEMP_DIR}/output/${card_id}_qr.png" ]; then
             echo "QR code for ${card_id} was not generated!"
             exit 1
         fi
@@ -93,21 +96,21 @@ done
 
 # Convert SVGs to PDFs
 echo "Converting SVGs to PDFs..."
-for svg_file in /tmp/integration-test/output/*.svg; do
+for svg_file in ${TEMP_DIR}/output/*.svg; do
     filename=$(basename "$svg_file" .svg)
     echo "Converting $svg_file..."
-    poetry run python -m src.svg_to_pdf.converter "$svg_file" -o "/tmp/integration-test/output/${filename}.pdf"
+    poetry run python -m src.svg_to_pdf.converter "$svg_file" -o "${TEMP_DIR}/output/${filename}.pdf"
 done
 
 # Verify PDFs were created
 echo "Verifying PDFs..."
-if [ ! "$(ls -A /tmp/integration-test/output/*.pdf 2>/dev/null)" ]; then
+if [ ! "$(ls -A ${TEMP_DIR}/output/*.pdf 2>/dev/null)" ]; then
     echo "No PDF files were generated!"
     exit 1
 fi
 
 # Check PDF sizes and contents
-for pdf_file in /tmp/integration-test/output/*.pdf; do
+for pdf_file in ${TEMP_DIR}/output/*.pdf; do
     echo "Checking $pdf_file..."
     # Check PDF size is reasonable (more than 1KB)
     FILE_SIZE=$(du -k "$pdf_file" | cut -f1)
@@ -132,4 +135,4 @@ for pdf_file in /tmp/integration-test/output/*.pdf; do
 done
 
 echo "Integration test completed successfully!"
-echo "Generated files are in /tmp/integration-test/output/" 
+echo "Generated files are in ${TEMP_DIR}/output/" 
