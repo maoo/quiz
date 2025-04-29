@@ -1,8 +1,8 @@
 """
 YAML to Markdown Converter.
 
-Converts YAML question files to Markdown format for GitHub Pages.
-Creates individual question pages and an index page for navigation.
+Converts YAML card files to Markdown format for GitHub Pages.
+Creates individual card pages and an index page for navigation.
 """
 
 import logging
@@ -21,9 +21,9 @@ class YAMLToMarkdown:
     """
     Main YAML to Markdown conversion class.
     
-    This class provides functionality to convert YAML question files
+    This class provides functionality to convert YAML card files
     to Markdown format suitable for GitHub Pages. It handles both
-    individual question files and deck metadata.
+    individual card files and deck metadata.
     """
     
     def __init__(self, deck_path: str):
@@ -31,104 +31,103 @@ class YAMLToMarkdown:
         Initialize the YAML to Markdown converter.
         
         Args:
-            deck_path: Path to the deck directory containing questions
+            deck_path: Path to the deck directory containing cards
         """
         self.deck_path = Path(deck_path)
-        self.questions_path = self.deck_path / "questions"
-        self.output_path = self.deck_path / "docs"
-        self.output_path.mkdir(exist_ok=True)
+        self.cards_path = self.deck_path / "cards"
+        self.cards_path.mkdir(exist_ok=True)
         
-    def load_question(self, question_id: str) -> Dict:
+    def load_card(self, card_id: str) -> Dict:
         """
-        Load a question from its YAML file.
+        Load a card from its YAML file.
         
         Args:
-            question_id: ID of the question to load
+            card_id: ID of the card to load
             
         Returns:
-            Dict containing the question data
+            Dict containing the card data
             
         Raises:
-            FileNotFoundError: If question file doesn't exist
+            FileNotFoundError: If card file doesn't exist
             yaml.YAMLError: If YAML parsing fails
         """
-        question_file = self.questions_path / question_id / "question.yaml"
+        card_file = self.cards_path / card_id / "card.yaml"
         try:
-            with open(question_file, 'r', encoding='utf-8') as f:
+            with open(card_file, 'r', encoding='utf-8') as f:
                 return yaml.safe_load(f)
         except FileNotFoundError:
-            logger.error(f"Question file not found: {question_file}")
+            logger.error(f"Card file not found: {card_file}")
             raise
         except yaml.YAMLError as e:
-            logger.error(f"Failed to parse YAML file {question_file}: {e}")
+            logger.error(f"Failed to parse YAML file {card_file}: {e}")
             raise
             
-    def create_markdown_content(self, question: Dict, question_id: str) -> str:
+    def create_markdown_content(self, card: Dict, card_id: str) -> str:
         """
-        Create markdown content for a question.
+        Create markdown content for a card.
         
         Args:
-            question: Dictionary containing question data
-            question_id: ID of the question
+            card: Dictionary containing card data
+            card_id: ID of the card
             
         Returns:
             Formatted markdown content as string
         """
         lines = []
         
-        # Add question title
-        lines.append(f"# Question {question_id}")
+        # Add card title
+        lines.append(f"# Card {card_id}")
         lines.append("")
         
-        # Add question text
+        # Add card text
         lines.append("## Question")
-        lines.append(question['question'])
+        lines.append(card['question'])
         lines.append("")
         
         # Add options if they exist
-        if 'options' in question:
+        if 'options' in card:
             lines.append("## Options")
-            for i, option in enumerate(question['options'], 1):
+            for i, option in enumerate(card['options'], 1):
                 lines.append(f"{i}. {option}")
             lines.append("")
                 
-        # Add question type
+        # Add card type
         lines.append("## Type")
-        lines.append(question['question_type'])
+        lines.append(card['question_type'])
         lines.append("")
         
         # Add answer type
         lines.append("## Answer Type")
-        lines.append(question['answers_type'])
+        lines.append(card['answers_type'])
         lines.append("")
         
         # Add sources if they exist
-        if 'sources' in question and question['sources']:
+        if 'sources' in card and card['sources']:
             lines.append("## Sources")
-            for source in question['sources']:
+            for source in card['sources']:
                 lines.append(f"- {source}")
                 
         return "\n".join(lines)
         
-    def create_markdown_file(self, question: Dict, question_id: str) -> None:
+    def create_markdown_file(self, card: Dict, card_id: str) -> None:
         """
-        Create a markdown file for a question.
+        Create a markdown file for a card.
         
         Args:
-            question: Dictionary containing question data
-            question_id: ID of the question
+            card: Dictionary containing card data
+            card_id: ID of the card
             
         Raises:
             IOError: If file creation fails
         """
         try:
-            content = self.create_markdown_content(question, question_id)
-            output_file = self.output_path / f"{question_id}.md"
+            content = self.create_markdown_content(card, card_id)
+            output_file = self.cards_path / f"{card_id}.md"
             with open(output_file, 'w', encoding='utf-8') as f:
                 f.write(content)
             logger.debug(f"Created markdown file: {output_file}")
         except IOError as e:
-            logger.error(f"Failed to create markdown file for question {question_id}: {e}")
+            logger.error(f"Failed to create markdown file for card {card_id}: {e}")
             raise
             
     def create_index_markdown(self, deck_meta: Dict) -> None:
@@ -152,15 +151,15 @@ class YAMLToMarkdown:
             lines.append(deck_meta['introduction'])
             lines.append("")
             
-        # Add questions list
-        lines.append("## Questions")
-        for question in deck_meta['questions']:
-            question_id = str(question['id']).zfill(3)
-            lines.append(f"- [Question {question_id}]({question_id}.md)")
+        # Add cards list
+        lines.append("## Cards")
+        for card in deck_meta['cards']:
+            card_id = str(card['id']).zfill(3)
+            lines.append(f"- [Card {card_id}]({card_id}.md)")
             
         # Write index file
         try:
-            with open(self.output_path / "index.md", 'w', encoding='utf-8') as f:
+            with open(self.cards_path / "index.md", 'w', encoding='utf-8') as f:
                 f.write("\n".join(lines))
             logger.debug("Created index markdown file")
         except IOError as e:
@@ -169,7 +168,7 @@ class YAMLToMarkdown:
             
     def process_deck(self) -> None:
         """
-        Process all questions in the deck.
+        Process all cards in the deck.
         
         Raises:
             FileNotFoundError: If deck metadata file doesn't exist
@@ -185,15 +184,15 @@ class YAMLToMarkdown:
             self.create_index_markdown(deck_meta)
             logger.info("Created index markdown file")
                 
-            # Process each question
-            for question in deck_meta['questions']:
-                question_id = str(question['id']).zfill(3)
+            # Process each card
+            for card in deck_meta['cards']:
+                card_id = str(card['id']).zfill(3)
                 try:
-                    question_data = self.load_question(question_id)
-                    self.create_markdown_file(question_data, question_id)
-                    logger.info(f"Processed question {question_id}")
+                    card_data = self.load_card(card_id)
+                    self.create_markdown_file(card_data, card_id)
+                    logger.info(f"Processed card {card_id}")
                 except Exception as e:
-                    logger.error(f"Failed to process question {question_id}: {e}")
+                    logger.error(f"Failed to process card {card_id}: {e}")
                     raise
                     
         except FileNotFoundError:
@@ -214,7 +213,7 @@ def main() -> int:
         int: Exit code (0 for success, 1 for failure)
     """
     try:
-        converter = YAMLToMarkdown("decks/fun-math/questions/decks/fun-math")
+        converter = YAMLToMarkdown("decks/fun-math")
         converter.process_deck()
         logger.info("Successfully converted YAML to Markdown")
         return 0

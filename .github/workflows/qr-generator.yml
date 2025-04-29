@@ -45,17 +45,27 @@ jobs:
             done
           else
             # For push events, only process changed files
-            CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep "decks/.*/questions/.*-question.md")
+            # Check if we have a valid before commit
+            if git rev-parse --verify --quiet ${{ github.event.before }} >/dev/null; then
+              CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep "decks/.*/questions/.*-question.md")
+            else
+              # If no before commit, get all files in the current commit
+              CHANGED_FILES=$(git ls-tree -r --name-only ${{ github.sha }} | grep "decks/.*/questions/.*-question.md")
+            fi
             
-            for file in $CHANGED_FILES; do
-              DECK_NAME=$(echo $file | cut -d'/' -f2)
-              QUESTION_ID=$(echo $file | cut -d'/' -f4 | sed 's/-question.md//')
-              
-              python -c "
-              from src.qr_generator import generate_question_qr_code
-              generate_question_qr_code('$DECK_NAME', '$QUESTION_ID', output_dir='gh-pages/decks')
-              "
-            done
+            if [ -n "$CHANGED_FILES" ]; then
+              for file in $CHANGED_FILES; do
+                DECK_NAME=$(echo $file | cut -d'/' -f2)
+                QUESTION_ID=$(echo $file | cut -d'/' -f4 | sed 's/-question.md//')
+                
+                python -c "
+                from src.qr_generator import generate_question_qr_code
+                generate_question_qr_code('$DECK_NAME', '$QUESTION_ID', output_dir='gh-pages/decks')
+                "
+              done
+            else
+              echo "No question files to process"
+            fi
           fi
           
       - name: Commit and push if changes
