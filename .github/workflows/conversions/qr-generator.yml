@@ -3,7 +3,7 @@ name: QR Code Generator
 on:
   push:
     paths:
-      - 'decks/**/*.yaml'
+      - 'decks/**/content.yaml'
   workflow_dispatch:
 
 jobs:

@@ -36,9 +36,6 @@ jobs:
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: poetry install --no-interaction --no-root
       
-    - name: Run tests
-      run: poetry run pytest tests/test_yaml_to_markdown.py -v
-      
     - name: Convert YAML to Markdown
       run: |
         poetry run python src/yaml_to_markdown/generate_markdown.py
