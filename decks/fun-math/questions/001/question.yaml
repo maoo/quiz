@@ -1,0 +1,18 @@
+question: ¿Es primo cada número de la lista?
+embedded_media: null
+options:
+- '2'
+- '3'
+- '4'
+- '5'
+- '6'
+- '7'
+- '8'
+- '9'
+- '10'
+- '11'
+sources:
+- https://www.mathsisfun.com/prime-factorization.html
+url: https://blog.session.it/quiz/decks/fun-math/questions/001/question
+question_type: short
+answers_type: binary

@@ -1,0 +1,31 @@
+answers:
+- order: 1
+  option: A
+  answer: cubo
+- order: 2
+  option: B
+  answer: pirámide cuadrangular
+- order: 3
+  option: C
+  answer: prisma rectangular
+- order: 4
+  option: D
+  answer: prisma triangular
+- order: 5
+  option: E
+  answer: cono
+- order: 6
+  option: F
+  answer: cilindro
+- order: 7
+  option: G
+  answer: prisma hexagonal
+- order: 8
+  option: H
+  answer: prisma pentagonal
+- order: 9
+  option: I
+  answer: tetraedro
+- order: 10
+  option: J
+  answer: octaedro

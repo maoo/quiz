@@ -1,0 +1,40 @@
+question: Convierte estas medidas y empareja con su equivalente en metros.
+embedded_media: '| Label | Medida original |
+
+  |-------|-----------------|
+
+  | A     | 100 cm          |
+
+  | B     | 1 km            |
+
+  | C     | 500 mm          |
+
+  | D     | 2500 mm         |
+
+  | E     | 5 m             |
+
+  | F     | 7500 cm         |
+
+  | G     | 0.003 km        |
+
+  | H     | 120 cm          |
+
+  | I     | 2.5 m           |
+
+  | J     | 10000 mm        |'
+options:
+- A
+- B
+- C
+- D
+- E
+- F
+- G
+- H
+- I
+- J
+sources:
+- https://es.khanacademy.org/math/cc-third-grade-math/imp-measurement
+url: https://blog.session.it/quiz/decks/fun-math/questions/010/question
+question_type: extended
+answers_type: free_text

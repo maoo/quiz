@@ -1,0 +1,40 @@
+question: Ordena estos números de 4 y 5 cifras de menor a mayor (1 es el más pequeño).
+embedded_media: '| Label | Número |
+
+  |-------|--------|
+
+  | A     | 4235   |
+
+  | B     | 50234  |
+
+  | C     | 4789   |
+
+  | D     | 3200   |
+
+  | E     | 15300  |
+
+  | F     | 49999  |
+
+  | G     | 10000  |
+
+  | H     | 9999   |
+
+  | I     | 12345  |
+
+  | J     | 22222  |'
+options:
+- A
+- B
+- C
+- D
+- E
+- F
+- G
+- H
+- I
+- J
+sources:
+- https://es.khanacademy.org/math/arithmetic-home/arithmetic/ordering-numbers
+url: https://blog.session.it/quiz/decks/fun-math/questions/007/question
+question_type: extended
+answers_type: ordering_number

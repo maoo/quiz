@@ -1,0 +1,18 @@
+question: ¿Es múltiplo de 5 cada número de la lista?
+embedded_media: null
+options:
+- '5'
+- '10'
+- '12'
+- '15'
+- '18'
+- '20'
+- '22'
+- '25'
+- '27'
+- '30'
+sources:
+- https://es.khanacademy.org/math/arithmetic-home/arithmetic/multiples
+url: https://blog.session.it/quiz/decks/fun-math/questions/002/question
+question_type: short
+answers_type: binary

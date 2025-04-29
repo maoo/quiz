@@ -1,0 +1,40 @@
+question: Relaciona cada desarrollo plano con su sólido geométrico correspondiente.
+embedded_media: '| Label | Desarrollo plano                   |
+
+  |-------|-------------------------------------|
+
+  | A     | Cruz de 6 cuadrados                |
+
+  | B     | 1 cuadrado + 4 triángulos          |
+
+  | C     | 3 rectángulos iguales              |
+
+  | D     | 2 triángulos + 3 rectángulos       |
+
+  | E     | Con base circular + sector circular|
+
+  | F     | Rectángulo + 2 círculos            |
+
+  | G     | 1 hexágono + 6 rectángulos         |
+
+  | H     | 1 pentágono + 5 rectángulos        |
+
+  | I     | 4 triángulos equiláteros           |
+
+  | J     | 8 triángulos equiláteros           |'
+options:
+- A
+- B
+- C
+- D
+- E
+- F
+- G
+- H
+- I
+- J
+sources:
+- https://es.khanacademy.org/math/geometry/solid-geometry
+url: https://blog.session.it/quiz/decks/fun-math/questions/008/question
+question_type: extended
+answers_type: free_text

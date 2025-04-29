@@ -1,0 +1,45 @@
+title: 🚀 Fun Math
+introduction: Fun Math is a card deck to help 5 grade students (10-11 years old) to
+  learn mathematics in a fun way. The questions are designed to be smart, sometimes
+  challenging, and always intriguing to spark students' interest in mathematical concepts.
+questions:
+- id: '001'
+  question_url: https://blog.session.it/quiz/decks/fun-math/questions/001/question
+  svg_url: https://blog.session.it/quiz/decks/fun-math/questions/001/card.svg
+  pdf_url: https://blog.session.it/quiz/decks/fun-math/questions/001/card.pdf
+- id: '002'
+  question_url: https://blog.session.it/quiz/decks/fun-math/questions/002/question
+  svg_url: https://blog.session.it/quiz/decks/fun-math/questions/002/card.svg
+  pdf_url: https://blog.session.it/quiz/decks/fun-math/questions/002/card.pdf
+- id: '003'
+  question_url: https://blog.session.it/quiz/decks/fun-math/questions/003/question
+  svg_url: https://blog.session.it/quiz/decks/fun-math/questions/003/card.svg
+  pdf_url: https://blog.session.it/quiz/decks/fun-math/questions/003/card.pdf
+- id: '004'
+  question_url: https://blog.session.it/quiz/decks/fun-math/questions/004/question
+  svg_url: https://blog.session.it/quiz/decks/fun-math/questions/004/card.svg
+  pdf_url: https://blog.session.it/quiz/decks/fun-math/questions/004/card.pdf
+- id: '005'
+  question_url: https://blog.session.it/quiz/decks/fun-math/questions/005/question
+  svg_url: https://blog.session.it/quiz/decks/fun-math/questions/005/card.svg
+  pdf_url: https://blog.session.it/quiz/decks/fun-math/questions/005/card.pdf
+- id: '006'
+  question_url: https://blog.session.it/quiz/decks/fun-math/questions/006/question
+  svg_url: https://blog.session.it/quiz/decks/fun-math/questions/006/card.svg
+  pdf_url: https://blog.session.it/quiz/decks/fun-math/questions/006/card.pdf
+- id: '007'
+  question_url: https://blog.session.it/quiz/decks/fun-math/questions/007/question
+  svg_url: https://blog.session.it/quiz/decks/fun-math/questions/007/card.svg
+  pdf_url: https://blog.session.it/quiz/decks/fun-math/questions/007/card.pdf
+- id: 008
+  question_url: https://blog.session.it/quiz/decks/fun-math/questions/008/question
+  svg_url: https://blog.session.it/quiz/decks/fun-math/questions/008/card.svg
+  pdf_url: https://blog.session.it/quiz/decks/fun-math/questions/008/card.pdf
+- id: 009
+  question_url: https://blog.session.it/quiz/decks/fun-math/questions/009/question
+  svg_url: https://blog.session.it/quiz/decks/fun-math/questions/009/card.svg
+  pdf_url: https://blog.session.it/quiz/decks/fun-math/questions/009/card.pdf
+- id: '010'
+  question_url: https://blog.session.it/quiz/decks/fun-math/questions/010/question
+  svg_url: https://blog.session.it/quiz/decks/fun-math/questions/010/card.svg
+  pdf_url: https://blog.session.it/quiz/decks/fun-math/questions/010/card.pdf
