@@ -6,8 +6,13 @@ import argparse
 from typing import Dict, List, Optional
 
 class YAMLToSVG:
-    def __init__(self, deck_name: str, output_dir: str = "gh-pages/decks"):
-        self.deck_path = Path("decks") / deck_name
+    def __init__(self, deck_name: str, output_dir: str = None):
+        # If deck_name is a full path, use it as the deck path
+        if os.path.isabs(deck_name) or deck_name.startswith('./'):
+            self.deck_path = Path(deck_name)
+        else:
+            self.deck_path = Path("decks") / deck_name
+            
         if not self.deck_path.exists():
             raise FileNotFoundError(f"Deck directory not found: {self.deck_path}")
             
@@ -20,8 +25,13 @@ class YAMLToSVG:
             self.questions_path = self.deck_path / "cards"
             if not self.questions_path.exists():
                 raise FileNotFoundError(f"Neither questions nor cards directory found in deck: {self.deck_path}")
-                
-        self.output_path = Path(output_dir)
+        
+        # If output_dir is specified, use it; otherwise use deck_path/cards
+        if output_dir:
+            self.output_path = Path(output_dir)
+        else:
+            self.output_path = self.deck_path / "cards"
+            
         self.output_path.mkdir(parents=True, exist_ok=True)
         
     def load_question(self, card_id: str) -> Dict:
@@ -97,7 +107,7 @@ class YAMLToSVG:
 def main():
     parser = argparse.ArgumentParser(description='Convert YAML questions to SVG cards')
     parser.add_argument('deck_name', help='Name of the deck to process')
-    parser.add_argument('--output-dir', default='gh-pages/decks',
+    parser.add_argument('--output-dir', default=None,
                       help='Output directory for SVG files')
     
     args = parser.parse_args()
