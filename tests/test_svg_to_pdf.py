@@ -47,7 +47,7 @@ def test_cli_interface(tmp_path):
     svg_file.write_text(svg_content)
     
     # Create a non-SVG file to test filtering
-    non_svg_file = tmp_path / "README.md"
+    non_svg_file = tmp_path / "index.md"
     non_svg_file.write_text("# Test README")
     
     # Test the CLI with a single SVG file

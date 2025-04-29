@@ -14,7 +14,7 @@ Create the content of the game following the "Output File Structure" described b
   - Be grounded in fact-checked, verifiable documentation.
   - Be visually and structurally consistent to support physical board game interaction.
 
-Also create the content for the website (deployed on https://blog.session.it/quiz) that shows decks and questions; each deck must have a homepage (in `decks/<deck id>/README.md`) with:
+Also create the content for the website (deployed on https://blog.session.it/quiz) that shows decks and questions; each deck must have a homepage (in `decks/<deck id>/index.md`) with:
 - The title of the deck
 - 3 Paragraphs description of the game, mostly around the questions, topics, sources, etc
 - The list of questions, with a link to `https://blog.session.it/quiz/decks/<deck id>/questions/<question id>-question` for each of them

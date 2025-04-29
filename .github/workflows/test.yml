@@ -74,7 +74,7 @@ jobs:
         echo '<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="blue"/></svg>' > /tmp/test-svgs/test2.svg
         
         # Create a non-SVG file to test filtering
-        echo "# Test README" > /tmp/test-svgs/README.md
+        echo "# Test README" > /tmp/test-svgs/index.md
         
         # Run the converter
         poetry run python -m src.svg_to_pdf.converter /tmp/test-svgs -o /tmp/test-output
