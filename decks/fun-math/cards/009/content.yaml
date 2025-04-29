@@ -1,22 +1,22 @@
-answer_type: binary
+card_id: "009"
+question_type: "extended"
+question_content: "En el widget, arrastra y escribe el nombre de cada figura geométrica."
 embedded_contents:
-- description: Widget de multiplicación
-  type: iframe
-  url: https://example.com/widgets/multiplicacion.html
+  - type: iframe
+    url: "https://www.geogebra.org/material/iframe/id/zyF7NMRb/width/600/height/400"
+    description: "Widget interactivo de Geogebra con 10 figuras numeradas"
 options:
-- 3×4=12
-- 7×5=33
-- 6×6=36
-- 8×7=56
-- 9×9=80
-- 4×6=24
-- 5×5=25
-- 2×9=18
-- 3×7=21
-- 8×8=64
-question_content: Después de probar la máquina, indica si cada operación es correcta
-card_id: 009
-question_type: extended
+  - "Figura 1"
+  - "Figura 2"
+  - "Figura 3"
+  - "Figura 4"
+  - "Figura 5"
+  - "Figura 6"
+  - "Figura 7"
+  - "Figura 8"
+  - "Figura 9"
+  - "Figura 10"
 sources:
-- https://es.khanacademy.org/math/arithmetic/multiplication
-url: https://blog.session.it/quiz/decks/fun-math/cards/009
+  - "https://www.geogebra.org/m/zyF7NMRb"
+url: "https://blog.session.it/quiz/decks/fun-math/cards/009"
+answer_type: "free_text"

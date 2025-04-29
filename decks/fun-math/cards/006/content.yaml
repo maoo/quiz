@@ -1,22 +1,22 @@
-answer_type: ordering_number
+card_id: "006"
+question_type: "extended"
+question_content: "En la imagen, determina si cada uno de los 10 ángulos numerados es agudo."
 embedded_contents:
-- description: Barras etiquetadas A-J
-  type: image
-  url: https://example.com/images/barras_longitud.svg
+  - type: image
+    url: "https://example.com/angulos10.png"
+    description: "Diez ángulos numerados del 1 al 10"
 options:
-- A
-- B
-- C
-- D
-- E
-- F
-- G
-- H
-- I
-- J
-question_content: Ordena estas barras por longitud (1=mayor)
-card_id: '006'
-question_type: extended
+  - "Ángulo 1"
+  - "Ángulo 2"
+  - "Ángulo 3"
+  - "Ángulo 4"
+  - "Ángulo 5"
+  - "Ángulo 6"
+  - "Ángulo 7"
+  - "Ángulo 8"
+  - "Ángulo 9"
+  - "Ángulo 10"
 sources:
-- https://www.mathsisfun.com/numbers/comparing-lengths.html
-url: https://blog.session.it/quiz/decks/fun-math/cards/006
+  - "https://es.khanacademy.org/math/basic-geo/basic-angles"
+url: "https://blog.session.it/quiz/decks/fun-math/cards/006"
+answer_type: "binary"

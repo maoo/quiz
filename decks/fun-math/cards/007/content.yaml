@@ -1,22 +1,22 @@
-answer_type: free_text
+card_id: "007"
+question_type: "extended"
+question_content: "Asocia cada figura geométrica con su nombre correcto."
 embedded_contents:
-- description: Mapa de Europa
-  type: image
-  url: https://example.com/images/mapa_europa.svg
+  - type: image
+    url: "https://example.com/figuras10.png"
+    description: "Diez figuras geométricas numeradas del 1 al 10"
 options:
-- España
-- Francia
-- Alemania
-- Italia
-- Portugal
-- Bélgica
-- Países Bajos
-- Suiza
-- Austria
-- Polonia
-question_content: En el mapa, empareja cada país con su capital
-card_id: '007'
-question_type: extended
+  - "Figura 1"
+  - "Figura 2"
+  - "Figura 3"
+  - "Figura 4"
+  - "Figura 5"
+  - "Figura 6"
+  - "Figura 7"
+  - "Figura 8"
+  - "Figura 9"
+  - "Figura 10"
 sources:
-- https://es.khanacademy.org/math/basic-geo
-url: https://blog.session.it/quiz/decks/fun-math/cards/007
+  - "https://es.khanacademy.org/math/basic-geo/basic-shapes"
+url: "https://blog.session.it/quiz/decks/fun-math/cards/007"
+answer_type: "free_text"

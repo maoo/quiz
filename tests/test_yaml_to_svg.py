@@ -17,7 +17,7 @@ class TestYAMLToSVG(unittest.TestCase):
         self._create_test_yaml_files()
         
     def _create_test_yaml_files(self):
-        # Create README.yaml
+        # Create index.yaml
         readme_data = {
             'title': 'Test Deck',
             'questions': [
@@ -25,7 +25,7 @@ class TestYAMLToSVG(unittest.TestCase):
                 {'id': '002'}
             ]
         }
-        with open(self.deck_path / "README.yaml", 'w') as f:
+        with open(self.deck_path / "index.yaml", 'w') as f:
             yaml.dump(readme_data, f)
             
         # Create questions directory

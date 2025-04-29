@@ -1,43 +1,34 @@
-answer_type: date
+card_id: "008"
+question_type: "extended"
+question_content: "Asocia cada símbolo griego con su nombre."
 embedded_contents:
-- table: '| Opción | Año  |
-
-    |--------|------|
-
-    | A      | 1765 |
-
-    | B      | 1902 |
-
-    | C      | 1499 |
-
-    | D      | 2001 |
-
-    | E      | 1600 |
-
-    | F      | 1801 |
-
-    | G      | 2010 |
-
-    | H      | 1703 |
-
-    | I      | 1999 |
-
-    | J      | 1550 |'
-  type: table
+  - type: table
+    description: "Tabla con símbolos griegos"
+    headers:
+      - "Símbolo"
+    rows:
+      - ["α"]
+      - ["β"]
+      - ["γ"]
+      - ["δ"]
+      - ["ε"]
+      - ["θ"]
+      - ["λ"]
+      - ["μ"]
+      - ["π"]
+      - ["σ"]
 options:
-- A
-- B
-- C
-- D
-- E
-- F
-- G
-- H
-- I
-- J
-question_content: ¿A qué siglo pertenece cada año de la tabla?
-card_id: 008
-question_type: extended
+  - "α"
+  - "β"
+  - "γ"
+  - "δ"
+  - "ε"
+  - "θ"
+  - "λ"
+  - "μ"
+  - "π"
+  - "σ"
 sources:
-- https://www.mathsisfun.com/numbers/century-names.html
-url: https://blog.session.it/quiz/decks/fun-math/cards/008
+  - "https://www.guiainfantil.com/articulos/ocio/alfabetos/alfabeto-griego-para-ninos"
+url: "https://blog.session.it/quiz/decks/fun-math/cards/008"
+answer_type: "free_text"

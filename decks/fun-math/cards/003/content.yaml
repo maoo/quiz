@@ -1,19 +1,19 @@
-answer_type: ordering_number
+card_id: "003"
+question_type: "short"
+question_content: "Ordena los resultados de las siguientes operaciones (1=menor)"
 embedded_contents: []
 options:
-- '45'
-- '12'
-- '78'
-- '3'
-- '56'
-- '23'
-- '89'
-- '34'
-- '67'
-- '10'
-question_content: Ordena estos números de menor a mayor (1=menor)
-card_id: '003'
-question_type: short
+  - "5 + 7"
+  - "14 - 3"
+  - "4 × 6"
+  - "9 × 2"
+  - "20 ÷ 4"
+  - "7 + 8"
+  - "15 - 5"
+  - "3 × 3"
+  - "16 ÷ 2"
+  - "10 + 6"
 sources:
-- https://es.khanacademy.org/math/arithmetic/order-of-numbers
-url: https://blog.session.it/quiz/decks/fun-math/cards/003
+  - "https://es.khanacademy.org/math/arithmetic/arithmetic-properties"
+url: "https://blog.session.it/quiz/decks/fun-math/cards/003"
+answer_type: "ordering_number"

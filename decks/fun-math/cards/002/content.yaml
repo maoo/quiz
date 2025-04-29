@@ -1,19 +1,19 @@
-answer_type: free_text
+card_id: "002"
+question_type: "short"
+question_content: "Ordena estos números de menor a mayor (1=menor)"
 embedded_contents: []
 options:
-- Triángulo
-- Cuadrado
-- Pentágono
-- Hexágono
-- Heptágono
-- Octágono
-- Eneágono
-- Decágono
-- Hendecágono
-- Dodecágono
-question_content: ¿Cuántos lados tiene cada polígono?
-card_id: '002'
-question_type: short
+  - "57"
+  - "12"
+  - "89"
+  - "34"
+  - "23"
+  - "100"
+  - "76"
+  - "5"
+  - "48"
+  - "66"
 sources:
-- https://www.mathsisfun.com/geometry/polygons.html
-url: https://blog.session.it/quiz/decks/fun-math/cards/002
+  - "https://es.khanacademy.org/math/arithmetic/number-line"
+url: "https://blog.session.it/quiz/decks/fun-math/cards/002"
+answer_type: "ordering_number"

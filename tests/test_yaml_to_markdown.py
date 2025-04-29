@@ -18,7 +18,7 @@ class TestYAMLToMarkdown(unittest.TestCase):
         self._create_test_yaml_files()
         
     def _create_test_yaml_files(self):
-        # Create README.yaml
+        # Create index.yaml
         readme_data = {
             'title': 'Test Deck',
             'introduction': 'This is a test deck',
@@ -27,7 +27,7 @@ class TestYAMLToMarkdown(unittest.TestCase):
                 {'id': '002'}
             ]
         }
-        with open(self.input_path / "README.yaml", 'w') as f:
+        with open(self.input_path / "index.yaml", 'w') as f:
             yaml.dump(readme_data, f)
             
         # Create questions directory
@@ -107,7 +107,7 @@ single
             
     def test_create_index_markdown(self):
         converter = YAMLToMarkdown(str(self.input_path), str(self.output_path))
-        with open(self.input_path / "README.yaml", 'r') as f:
+        with open(self.input_path / "index.yaml", 'r') as f:
             deck_meta = yaml.safe_load(f)
         converter.create_index_markdown(deck_meta)
         

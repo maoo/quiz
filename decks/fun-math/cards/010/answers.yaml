@@ -1,30 +1,30 @@
-- answer: Falso
-  option: A
-  order: 1
-- answer: Falso
-  option: B
-  order: 2
-- answer: Falso
-  option: C
-  order: 3
-- answer: Falso
-  option: D
-  order: 4
-- answer: Verdadero
-  option: E
-  order: 5
-- answer: Falso
-  option: F
-  order: 6
-- answer: Verdadero
-  option: G
-  order: 7
-- answer: Falso
-  option: H
-  order: 8
-- answer: Verdadero
-  option: I
-  order: 9
-- answer: Verdadero
-  option: J
-  order: 10
+- order: 1
+  option: "Polígono 1"
+  answer: "Verdadero"
+- order: 2
+  option: "Polígono 2"
+  answer: "Verdadero"
+- order: 3
+  option: "Polígono 3"
+  answer: "Verdadero"
+- order: 4
+  option: "Polígono 4"
+  answer: "Verdadero"
+- order: 5
+  option: "Polígono 5"
+  answer: "Verdadero"
+- order: 6
+  option: "Polígono 6"
+  answer: "Verdadero"
+- order: 7
+  option: "Polígono 7"
+  answer: "Verdadero"
+- order: 8
+  option: "Polígono 8"
+  answer: "Falso"
+- order: 9
+  option: "Polígono 9"
+  answer: "Falso"
+- order: 10
+  option: "Polígono 10"
+  answer: "Falso"

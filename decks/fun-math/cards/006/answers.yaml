@@ -1,30 +1,30 @@
-- answer: '9'
-  option: A
-  order: 1
-- answer: '6'
-  option: B
-  order: 2
-- answer: '10'
-  option: C
-  order: 3
-- answer: '2'
-  option: D
-  order: 4
-- answer: '4'
-  option: E
-  order: 5
-- answer: '7'
-  option: F
-  order: 6
-- answer: '1'
-  option: G
-  order: 7
-- answer: '5'
-  option: H
-  order: 8
-- answer: '8'
-  option: I
-  order: 9
-- answer: '3'
-  option: J
-  order: 10
+- order: 1
+  option: "Ángulo 1"
+  answer: "Verdadero"
+- order: 2
+  option: "Ángulo 2"
+  answer: "Verdadero"
+- order: 3
+  option: "Ángulo 3"
+  answer: "Verdadero"
+- order: 4
+  option: "Ángulo 4"
+  answer: "Verdadero"
+- order: 5
+  option: "Ángulo 5"
+  answer: "Verdadero"
+- order: 6
+  option: "Ángulo 6"
+  answer: "Verdadero"
+- order: 7
+  option: "Ángulo 7"
+  answer: "Falso"
+- order: 8
+  option: "Ángulo 8"
+  answer: "Falso"
+- order: 9
+  option: "Ángulo 9"
+  answer: "Falso"
+- order: 10
+  option: "Ángulo 10"
+  answer: "Falso"

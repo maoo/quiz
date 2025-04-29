@@ -13,7 +13,7 @@ echo "Using temporary directory: $TEMP_DIR"
 
 DECK_DIR=""
 for deck in decks/*/; do
-    if [ -f "${deck}README.yaml" ] && [ -d "${deck}cards" ]; then
+    if [ -f "${deck}index.yaml" ] && [ -d "${deck}cards" ]; then
         DECK_DIR="$deck"
         echo "Found valid deck: $deck"
         break
@@ -21,7 +21,7 @@ for deck in decks/*/; do
 done
 
 if [ -z "$DECK_DIR" ]; then
-    echo "No valid deck found! A valid deck must have a README.yaml and a cards/ directory."
+    echo "No valid deck found! A valid deck must have a index.yaml and a cards/ directory."
     exit 1
 fi
 

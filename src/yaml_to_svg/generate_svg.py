@@ -16,9 +16,9 @@ class YAMLToSVG:
         if not self.deck_path.exists():
             raise FileNotFoundError(f"Deck directory not found: {self.deck_path}")
             
-        self.readme_path = self.deck_path / "README.yaml"
+        self.readme_path = self.deck_path / "index.yaml"
         if not self.readme_path.exists():
-            raise FileNotFoundError(f"README.yaml not found in deck: {self.readme_path}")
+            raise FileNotFoundError(f"index.yaml not found in deck: {self.readme_path}")
             
         self.questions_path = self.deck_path / "questions"
         if not self.questions_path.exists():

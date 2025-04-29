@@ -187,10 +187,10 @@ class YAMLToMarkdown:
             IOError: If file operations fail
         """
         try:
-            # Check if README.yaml exists
-            readme_path = self.input_path / "README.yaml"
+            # Check if index.yaml exists
+            readme_path = self.input_path / "index.yaml"
             if not readme_path.exists():
-                logger.warning(f"Skipping deck {self.input_path} - README.yaml not found")
+                logger.warning(f"Skipping deck {self.input_path} - index.yaml not found")
                 return
                 
             # Load deck metadata

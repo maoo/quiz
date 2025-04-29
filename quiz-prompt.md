@@ -49,7 +49,7 @@ The order of the quiz cards across the deck MUST be random.
 ## 📁 Output File Structure
 
 The folder `decks/<deck_name>` MUST contain:
-1. `README.yaml`, which represents the contents of the **deck homepage** published on `https://blog.session.it/quiz/decks/<deck id>`, containing:
+1. `index.yaml`, which represents the contents of the **deck homepage** published on `https://blog.session.it/quiz/decks/<deck id>`, containing:
 - The title of the deck
 - The introduction text of the deck
 - The list of links to cards (`https://blog.session.it/quiz/decks/<deck id>/cards/<card id>`), with the link to SVG (`https://blog.session.it/quiz/decks/<deck id>/cards/<card id>/content.svg`) and PDF (`https://blog.session.it/quiz/decks/<deck id>/cards/<card id>/content.pdf`) versions too.
@@ -64,6 +64,8 @@ For each question generated, create the following files in the `decks/<deck_name
   - **Question type** (smaller font)
   - **Answers type** (smaller font)
 2. `answers.yaml`: Lists all **options** and related **answers** as a table with 10 lines and 3 columns: Order number, Option, Answer
+
+The root folder MUST have an `index.md` file which contains an introduction to the game for players, and the list of decks, with links to their homepages.
 
 All YAML files must comply with the schemas defined in the `schemas/` folder.
 

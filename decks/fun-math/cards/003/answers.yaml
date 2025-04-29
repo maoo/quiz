@@ -1,30 +1,30 @@
-- answer: '6'
-  option: '45'
-  order: 1
-- answer: '3'
-  option: '12'
-  order: 2
-- answer: '9'
-  option: '78'
-  order: 3
-- answer: '1'
-  option: '3'
-  order: 4
-- answer: '7'
-  option: '56'
-  order: 5
-- answer: '4'
-  option: '23'
-  order: 6
-- answer: '10'
-  option: '89'
-  order: 7
-- answer: '5'
-  option: '34'
-  order: 8
-- answer: '8'
-  option: '67'
-  order: 9
-- answer: '2'
-  option: '10'
-  order: 10
+- order: 1
+  option: "5 + 7"
+  answer: "6"
+- order: 2
+  option: "14 - 3"
+  answer: "5"
+- order: 3
+  option: "4 × 6"
+  answer: "10"
+- order: 4
+  option: "9 × 2"
+  answer: "9"
+- order: 5
+  option: "20 ÷ 4"
+  answer: "1"
+- order: 6
+  option: "7 + 8"
+  answer: "7"
+- order: 7
+  option: "15 - 5"
+  answer: "4"
+- order: 8
+  option: "3 × 3"
+  answer: "3"
+- order: 9
+  option: "16 ÷ 2"
+  answer: "2"
+- order: 10
+  option: "10 + 6"
+  answer: "8"
