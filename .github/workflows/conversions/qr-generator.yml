@@ -4,7 +4,6 @@ on:
   push:
     paths:
       - 'decks/**/*.yaml'
-      - 'decks/**/questions/**/*.yaml'
   workflow_dispatch:
 
 jobs:

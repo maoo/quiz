@@ -15,7 +15,7 @@ Each deck contains 200 **quiz cards**, each containing a quiz, that are related 
 ## ⚖️ Quiz card specifications
 
 Each quiz card is composed by the following elements:
-  - A **question_id** , also known as `<question_id>`, which is a unique, sequential numeric identifier for each question (e.g., "001", "042", "123", etc.).
+  - A **card_id** , also known as `<card_id>`, which is a unique, sequential numeric identifier for each question (e.g., "001", "042", "123", etc.).
   - A **question_type**, which can be either `short` or `extended`.
   - **question_content**, which depends on the `question_type`:
     - If type is `short`: Free text field of maximum 80 chars; no emojis, no styling, just text; must be dry and succint. his type is used for text questions, for example, "what is the color of these logos"
@@ -54,13 +54,13 @@ The folder `decks/<deck_name>` MUST contain:
 - The introduction text of the deck
 - The list of links to cards (`https://blog.session.it/quiz/decks/<deck id>/cards/<card id>`), with the link to SVG (`https://blog.session.it/quiz/decks/<deck id>/cards/<card id>/content.svg`) and PDF (`https://blog.session.it/quiz/decks/<deck id>/cards/<card id>/content.pdf`) versions too.
 
-For each question generated, create the following files in the `decks/<deck_name>/questions/<question_id>` directory:
+For each question generated, create the following files in the `decks/<deck_name>/cards/<card_id>` directory:
 1. `content.yaml`: Contains all content related to a quiz card, listed in "Quiz card specifications", except for the 10 answers:
   - The **Question**
   - The **Embedded Contents**
   - The **10 Options**
   - **Sources** , list of links to sources to certify the answer
-  - The **URL** to the current question - `https://blog.session.it/quiz/decks/<deck_name>/cards/<card id>` (smaller font)
+  - The **URL** to the current card - `https://blog.session.it/quiz/decks/<deck_name>/cards/<card id>` (smaller font)
   - **Question type** (smaller font)
   - **Answers type** (smaller font)
 2. `answers.yaml`: Lists all **options** and related **answers** as a table with 10 lines and 3 columns: Order number, Option, Answer
@@ -70,7 +70,7 @@ All YAML files must comply with the schemas defined in the `schemas/` folder.
 ## ✅ Content Quality
 
 The content of the quiz cards must be:
-  - Challenging, fair, precise, and undisputable DevOps quiz questions, based on widely adopted technologies and real-world best practices. Every question must:
+  - Challenging, fair, precise, and undisputable DevOps quiz questions, based on widely adopted technologies and real-world best practices. Every card must:
   - Grounded in fact-checked, verifiable documentation.
   - Clear, stand-alone, and unambiguous.
   - Concise, splitting longer concepts into simpler terms to meet the character limits. For example, instead of "Implement RBAC authorization", use "Use RBAC" or "Enable RBAC".
@@ -105,24 +105,21 @@ All external content must be validated and follow these guidelines:
   - Unverified sources
 
 ### Content Testing
-- Before finalizing any question:
+- Before finalizing any card:
   - Test all links for availability
   - Verify image accessibility
   - Check content licensing
   - Validate source reliability
   - Ensure content permanence
 
-All output content (all question.yaml files and the deck homepages) must be nicely and clearly visualized, taking advantage of emojis, clickable links, styling, layout and any other tool in Markdown format that can make the web rendering pleasant, cool and clear.
+All output content (all card.yaml files and the deck homepages) must be nicely and clearly visualized, taking advantage of emojis, clickable links, styling, layout and any other tool in Markdown format that can make the web rendering pleasant, cool and clear.
 
 ## ✅ Content Checklist
 
-- Does the question type (code vs knowledge) follow spec?
 - Are there exactly 10 well-formed, independent options?
 - For binary questions: Are there 3–7 correct (True) answers?
 - Is each option STRICTLY 20 characters or less?
 - Are answers undisputable, based on trusted sources?
-- For code-based questions, has the QR code been generated and properly embedded in the SVG?
-- Is the deck homepage up to date with all questions and with links to SVG and PDF versions of the question?
+- Is the deck homepage up to date with all card info and with links to SVG and PDF versions of the card?
 - Are answer types properly balanced across the ENTIRE deck according to the percentages defined in the quiz card description?
 - Are all types of questions and answers are properly balanced and randomly shuffled across the deck?
-- Does this question contribute to proper answer type distribution? If a deck is already heavy on one answer type, avoid adding more of that same type.
