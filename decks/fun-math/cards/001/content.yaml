@@ -1,19 +1,18 @@
-card_id: "001"
-question_type: "short"
-question_content: "¿Cada uno de estos números es primo?"
-embedded_contents: []
+card_id: '001'
+question_type: short
+question_content: ¿Cuál es el resultado de 64 + 27?
 options:
-  - "2"
-  - "3"
-  - "4"
-  - "5"
-  - "6"
-  - "7"
-  - "8"
-  - "9"
-  - "10"
-  - "11"
+- 64 + 27
+- 58 - 19
+- 13 × 5
+- 81 ÷ 9
+- 45 + 36
+- 72 - 18
+- 9 × 7
+- 100 ÷ 4
+- 23 + 54
+- 49 - 17
 sources:
-  - "https://es.khanacademy.org/math/arithmetic/factors-multiples#primes"
-url: "https://blog.session.it/quiz/decks/fun-math/cards/001"
-answer_type: "binary"
+- https://es.khanacademy.org/math/arithmetic-home/arithmetic
+url: https://blog.session.it/quiz/decks/fun-math/cards/001
+answer_type: free_text

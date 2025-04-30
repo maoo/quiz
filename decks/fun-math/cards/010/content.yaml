@@ -1,25 +1,54 @@
-card_id: "010"
-question_type: "extended"
-question_content: "¿Cada uno de los siguientes polígonos es regular?"
-embedded_contents:
-  - type: image
-    url: "https://example.com/poligonos10.png"
-    description: "Diez polígonos numerados del 1 al 10"
-  - type: link
-    url: "https://es.khanacademy.org/math/basic-geo/regular-polygons"
-    description: "Definición de polígono regular"
+card_id: '010'
+question_type: extended
+question_content: Asocia cada evento con su año correspondiente usando los recursos
 options:
-  - "Polígono 1"
-  - "Polígono 2"
-  - "Polígono 3"
-  - "Polígono 4"
-  - "Polígono 5"
-  - "Polígono 6"
-  - "Polígono 7"
-  - "Polígono 8"
-  - "Polígono 9"
-  - "Polígono 10"
+- Fin del siglo XX
+- Inicio del siglo XXI
+- Uso del euro
+- Lanzamiento iPhone
+- Milenio 2000
+- Crisis 2008
+- Juegos Olímpicos 2012
+- Facebook 2004
+- YouTube 2005
+- Copa Mundo 2010
 sources:
-  - "https://es.khanacademy.org/math/basic-geo/regular-polygons"
-url: "https://blog.session.it/quiz/decks/fun-math/cards/010"
-answer_type: "binary"
+- https://es.khanacademy.org/math/unidades-tiempo
+url: https://blog.session.it/quiz/decks/fun-math/cards/010
+answer_type: date
+embedded_contents:
+- type: image
+  url: https://www.example.com/images/reloj.png
+  description: Reloj ilustrando unidades de tiempo
+- type: table
+  description: Tabla de eventos y años
+  headers:
+  - Evento
+  - Año
+  rows:
+  - - Fin del siglo XX
+    - '2000'
+  - - Inicio del siglo XXI
+    - '2001'
+  - - Uso del euro
+    - '2002'
+  - - Lanzamiento iPhone
+    - '2007'
+  - - Milenio 2000
+    - '2000'
+  - - Crisis 2008
+    - '2008'
+  - - Juegos Olímpicos 2012
+    - '2012'
+  - - Facebook 2004
+    - '2004'
+  - - YouTube 2005
+    - '2005'
+  - - Copa Mundo 2010
+    - '2010'
+- type: iframe
+  url: https://www.example.com/iframe/timeline
+  description: Línea de tiempo interactiva
+- type: link
+  url: https://es.khanacademy.org/math/unidades-tiempo
+  description: Explicación de unidades de tiempo

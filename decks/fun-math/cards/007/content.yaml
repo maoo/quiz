@@ -1,22 +1,22 @@
-card_id: "007"
-question_type: "extended"
-question_content: "Asocia cada figura geométrica con su nombre correcto."
-embedded_contents:
-  - type: image
-    url: "https://example.com/figuras10.png"
-    description: "Diez figuras geométricas numeradas del 1 al 10"
+card_id: '007'
+question_type: extended
+question_content: Observa los ángulos y decide si son agudos (True) o no (False)
 options:
-  - "Figura 1"
-  - "Figura 2"
-  - "Figura 3"
-  - "Figura 4"
-  - "Figura 5"
-  - "Figura 6"
-  - "Figura 7"
-  - "Figura 8"
-  - "Figura 9"
-  - "Figura 10"
+- Ángulo A
+- Ángulo B
+- Ángulo C
+- Ángulo D
+- Ángulo E
+- Ángulo F
+- Ángulo G
+- Ángulo H
+- Ángulo I
+- Ángulo J
 sources:
-  - "https://es.khanacademy.org/math/basic-geo/basic-shapes"
-url: "https://blog.session.it/quiz/decks/fun-math/cards/007"
-answer_type: "free_text"
+- https://es.khanacademy.org/math/geometry-home/geometry
+url: https://blog.session.it/quiz/decks/fun-math/cards/007
+answer_type: binary
+embedded_contents:
+- type: image
+  url: https://www.example.com/images/angulos.png
+  description: Ángulos etiquetados de A a J

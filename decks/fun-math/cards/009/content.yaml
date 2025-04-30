@@ -1,22 +1,22 @@
-card_id: "009"
-question_type: "extended"
-question_content: "En el widget, arrastra y escribe el nombre de cada figura geométrica."
-embedded_contents:
-  - type: iframe
-    url: "https://www.geogebra.org/material/iframe/id/zyF7NMRb/width/600/height/400"
-    description: "Widget interactivo de Geogebra con 10 figuras numeradas"
+card_id: 009
+question_type: extended
+question_content: Sigue el video y decide si cada paso es correcto (True/False)
 options:
-  - "Figura 1"
-  - "Figura 2"
-  - "Figura 3"
-  - "Figura 4"
-  - "Figura 5"
-  - "Figura 6"
-  - "Figura 7"
-  - "Figura 8"
-  - "Figura 9"
-  - "Figura 10"
+- Paso 1
+- Paso 2
+- Paso 3
+- Paso 4
+- Paso 5
+- Paso 6
+- Paso 7
+- Paso 8
+- Paso 9
+- Paso 10
 sources:
-  - "https://www.geogebra.org/m/zyF7NMRb"
-url: "https://blog.session.it/quiz/decks/fun-math/cards/009"
-answer_type: "free_text"
+- https://es.khanacademy.org/math/problem-solving
+url: https://blog.session.it/quiz/decks/fun-math/cards/009
+answer_type: binary
+embedded_contents:
+- type: iframe
+  url: https://www.youtube.com/embed/kX4FdtUNPDg
+  description: Video de pasos de resolución de problemas

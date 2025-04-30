@@ -1,30 +1,30 @@
 - order: 1
-  option: "Ángulo 1"
-  answer: "Verdadero"
+  option: Ruta A
+  answer: '3'
 - order: 2
-  option: "Ángulo 2"
-  answer: "Verdadero"
+  option: Ruta B
+  answer: '7'
 - order: 3
-  option: "Ángulo 3"
-  answer: "Verdadero"
+  option: Ruta C
+  answer: '1'
 - order: 4
-  option: "Ángulo 4"
-  answer: "Verdadero"
+  option: Ruta D
+  answer: '5'
 - order: 5
-  option: "Ángulo 5"
-  answer: "Verdadero"
+  option: Ruta E
+  answer: '9'
 - order: 6
-  option: "Ángulo 6"
-  answer: "Verdadero"
+  option: Ruta F
+  answer: '2'
 - order: 7
-  option: "Ángulo 7"
-  answer: "Falso"
+  option: Ruta G
+  answer: '6'
 - order: 8
-  option: "Ángulo 8"
-  answer: "Falso"
+  option: Ruta H
+  answer: '10'
 - order: 9
-  option: "Ángulo 9"
-  answer: "Falso"
+  option: Ruta I
+  answer: '4'
 - order: 10
-  option: "Ángulo 10"
-  answer: "Falso"
+  option: Ruta J
+  answer: '8'

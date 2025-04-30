@@ -1,19 +1,18 @@
-card_id: "003"
-question_type: "short"
-question_content: "Ordena los resultados de las siguientes operaciones (1=menor)"
-embedded_contents: []
+card_id: '003'
+question_type: short
+question_content: Determina si cada número es par (True) o impar (False)
 options:
-  - "5 + 7"
-  - "14 - 3"
-  - "4 × 6"
-  - "9 × 2"
-  - "20 ÷ 4"
-  - "7 + 8"
-  - "15 - 5"
-  - "3 × 3"
-  - "16 ÷ 2"
-  - "10 + 6"
+- '14'
+- '27'
+- '32'
+- '45'
+- '58'
+- '61'
+- '74'
+- '89'
+- '90'
+- '100'
 sources:
-  - "https://es.khanacademy.org/math/arithmetic/arithmetic-properties"
-url: "https://blog.session.it/quiz/decks/fun-math/cards/003"
-answer_type: "ordering_number"
+- https://es.khanacademy.org/math/arithmetic-home/arithmetic
+url: https://blog.session.it/quiz/decks/fun-math/cards/003
+answer_type: binary

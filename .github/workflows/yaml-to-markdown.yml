@@ -55,7 +55,7 @@ jobs:
         for deck in decks/*; do
           if [ -d "$deck" ]; then
             deck_name=$(basename "$deck")
-            output_dir="gh-pages/decks/$deck_name/cards"
+            output_dir="gh-pages/decks/$deck_name"
             mkdir -p "$output_dir"
             poetry run python src/yaml_to_markdown/generate_markdown.py "$deck" "$output_dir"
           fi

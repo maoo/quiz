@@ -1,34 +1,57 @@
-card_id: "008"
-question_type: "extended"
-question_content: "Asocia cada símbolo griego con su nombre."
-embedded_contents:
-  - type: table
-    description: "Tabla con símbolos griegos"
-    headers:
-      - "Símbolo"
-    rows:
-      - ["α"]
-      - ["β"]
-      - ["γ"]
-      - ["δ"]
-      - ["ε"]
-      - ["θ"]
-      - ["λ"]
-      - ["μ"]
-      - ["π"]
-      - ["σ"]
+card_id: 008
+question_type: extended
+question_content: Calcula el área de cada rectángulo de la tabla y ordénalos de mayor
+  a menor (1 es mayor)
 options:
-  - "α"
-  - "β"
-  - "γ"
-  - "δ"
-  - "ε"
-  - "θ"
-  - "λ"
-  - "μ"
-  - "π"
-  - "σ"
+- Rectángulo A
+- Rectángulo B
+- Rectángulo C
+- Rectángulo D
+- Rectángulo E
+- Rectángulo F
+- Rectángulo G
+- Rectángulo H
+- Rectángulo I
+- Rectángulo J
 sources:
-  - "https://www.guiainfantil.com/articulos/ocio/alfabetos/alfabeto-griego-para-ninos"
-url: "https://blog.session.it/quiz/decks/fun-math/cards/008"
-answer_type: "free_text"
+- https://es.khanacademy.org/math/geometry-home/geometry
+url: https://blog.session.it/quiz/decks/fun-math/cards/008
+answer_type: ordering_number
+embedded_contents:
+- type: table
+  description: Tabla con base y altura de rectángulos
+  headers:
+  - ID
+  - Base
+  - Altura
+  rows:
+  - - A
+    - '8'
+    - '5'
+  - - B
+    - '6'
+    - '7'
+  - - C
+    - '10'
+    - '4'
+  - - D
+    - '9'
+    - '6'
+  - - E
+    - '7'
+    - '8'
+  - - F
+    - '5'
+    - '9'
+  - - G
+    - '12'
+    - '3'
+  - - H
+    - '4'
+    - '10'
+  - - I
+    - '11'
+    - '2'
+  - - J
+    - '3'
+    - '11'

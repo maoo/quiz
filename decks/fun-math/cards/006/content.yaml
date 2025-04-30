@@ -1,22 +1,23 @@
-card_id: "006"
-question_type: "extended"
-question_content: "En la imagen, determina si cada uno de los 10 ángulos numerados es agudo."
-embedded_contents:
-  - type: image
-    url: "https://example.com/angulos10.png"
-    description: "Diez ángulos numerados del 1 al 10"
+card_id: '006'
+question_type: extended
+question_content: En el laberinto, ordena las rutas de más larga a más corta (la más
+  larga es 1)
 options:
-  - "Ángulo 1"
-  - "Ángulo 2"
-  - "Ángulo 3"
-  - "Ángulo 4"
-  - "Ángulo 5"
-  - "Ángulo 6"
-  - "Ángulo 7"
-  - "Ángulo 8"
-  - "Ángulo 9"
-  - "Ángulo 10"
+- Ruta A
+- Ruta B
+- Ruta C
+- Ruta D
+- Ruta E
+- Ruta F
+- Ruta G
+- Ruta H
+- Ruta I
+- Ruta J
 sources:
-  - "https://es.khanacademy.org/math/basic-geo/basic-angles"
-url: "https://blog.session.it/quiz/decks/fun-math/cards/006"
-answer_type: "binary"
+- https://es.khanacademy.org/math/geometry-home/geometry
+url: https://blog.session.it/quiz/decks/fun-math/cards/006
+answer_type: ordering_number
+embedded_contents:
+- type: image
+  url: https://www.example.com/images/laberinto.png
+  description: Laberinto con rutas etiquetadas de A a J

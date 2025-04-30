@@ -1,30 +1,30 @@
 - order: 1
-  option: "57"
-  answer: "6"
+  option: 15 + 20
+  answer: '8'
 - order: 2
-  option: "12"
-  answer: "2"
+  option: 8 × 7
+  answer: '3'
 - order: 3
-  option: "89"
-  answer: "9"
+  option: 100 - 45
+  answer: '6'
 - order: 4
-  option: "34"
-  answer: "4"
+  option: 9 × 9
+  answer: '2'
 - order: 5
-  option: "23"
-  answer: "3"
+  option: 72 ÷ 8
+  answer: '7'
 - order: 6
-  option: "100"
-  answer: "10"
+  option: 14 + 19
+  answer: '10'
 - order: 7
-  option: "76"
-  answer: "8"
+  option: 6 × 6
+  answer: '9'
 - order: 8
-  option: "5"
-  answer: "1"
+  option: 85 - 30
+  answer: '4'
 - order: 9
-  option: "48"
-  answer: "5"
+  option: 7 × 8
+  answer: '5'
 - order: 10
-  option: "66"
-  answer: "7"
+  option: 50 ÷ 5
+  answer: '1'
