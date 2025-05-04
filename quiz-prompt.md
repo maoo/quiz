@@ -46,6 +46,7 @@ All questions and answers in a deck MUST be randomly shuffled and MUST follow th
 - 30% of answers must be of type `free_text`
 
 The order of the quiz cards across the deck MUST be random.
+
 ## 📁 Output File Structure
 
 The folder `decks/<deck_name>` MUST contain:
@@ -65,7 +66,10 @@ For each question generated, create the following files in the `decks/<deck_name
   - **Answers type** (smaller font)
 2. `answers.yaml`: Lists all **options** and related **answers** as a table with 10 lines and 3 columns: Order number, Option, Answer
 
-All YAML files must comply with the schemas defined in the `schemas/` folder.
+All YAML files must comply with it's related schema in https://github.com/maoo/quiz/tree/main/schemas :
+- `decks/<deck_name>/index.yaml` -> `schemas/deck.yaml`
+- `decks/<deck_name>/cards/<card_id>/content.yaml` -> `schemas/card.yaml`
+- `decks/<deck_name>/cards/<card_id>/answers.yaml` -> `schemas/answers.yaml`
 
 ## ✅ Content Quality
 
