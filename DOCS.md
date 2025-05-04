@@ -55,12 +55,7 @@ brew install librsvg
 
 To generate new questions:
 ```
-Build a list of questions (and related assets), given the quiz-prompt.md prompt file that contains all requirements and specifications to build a quiz deck of type "fun-math";  limit the number of generated questions 5.
-```
-
-To reiterate on existing questions:
-```sh
-Follow instructions in quiz-prompt.md, to build a quiz deck of type devops-hero; only generate 2 questions, one of type code-block, one of type Knowledge-Based; you can reuse the .md files that were previously generated, but svg files must be recreated from scratch, only using the content of the prompt as context.
+Build and return a ZIP file containing a list of 10 questions and answers, following instructions on https://raw.githubusercontent.com/maoo/quiz/refs/heads/main/quiz-prompt.md and using the deck specification contained in https://raw.githubusercontent.com/maoo/quiz/refs/heads/main/decks/fun-math/prompts/fun-math.yaml
 ```
 
 ## Hardware Requirements 🖨️

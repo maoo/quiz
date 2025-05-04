@@ -1,0 +1,31 @@
+type: object
+description: Schema for a deck index file that defines a collection of flashcards
+properties:
+  title:
+    type: string
+    description: The name or title of the flashcard deck
+    required: true
+  introduction:
+    type: string
+    description: A detailed description of the deck, its purpose, and target audience
+    required: true
+  cards:
+    type: array
+    description: List of flashcard entries in the deck
+    items:
+      type: object
+      description: Individual flashcard entry
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the flashcard
+          required: true
+        link:
+          type: string
+          description: Link to the quiz content, must follow the format https://blog.session.it/quiz/decks/<deck id>/cards/<card id>
+          pattern: "^https://blog\\.session\\.it/quiz/decks/[^/]+/cards/[^/]+$"
+          required: true
+required:
+  - title
+  - introduction
+  - cards

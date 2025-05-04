@@ -67,7 +67,7 @@ For each question generated, create the following files in the `decks/<deck_name
 2. `answers.yaml`: Lists all **options** and related **answers** as a table with 10 lines and 3 columns: Order number, Option, Answer
 
 All YAML files must comply with it's related schema in https://github.com/maoo/quiz/tree/main/schemas :
-- `decks/<deck_name>/index.yaml` -> `schemas/deck.yaml`
+- `decks/<deck_name>/index.yaml` -> `schemas/deck-index.yaml`
 - `decks/<deck_name>/cards/<card_id>/content.yaml` -> `schemas/card.yaml`
 - `decks/<deck_name>/cards/<card_id>/answers.yaml` -> `schemas/answers.yaml`
 
