@@ -2,7 +2,7 @@
 
 I am building a set of high-quality, professional, production-ready **quiz card decks** (or simply deck), designed primarily for physical use, and I need help to come up with and generate the contents of the deck cards.
 
-Each deck contains 200 **quiz cards**, each containing a quiz, that are related to the same subject; the deck is described by `decks/<deck id>/prompts/<deck id>.yaml`, which contains:
+Each deck contains 200 **quiz cards**, each containing a quiz, that are related to the same subject; the deck is described by the **deck specification YAML file**, `<deck id>.yaml`, which contains:
 - A **title**, which is set at the title of the page
 - A **deck_id**, which is also reflected in the path of the file
 - A **language** (default English), which specifies which language must be used to generate the deck's contents

@@ -69,6 +69,7 @@ Follow instructions in quiz-prompt.md, to build a quiz deck of type devops-hero;
 - [Canon Pixma G650 Megatank](https://www.amazon.es/Canon-4620C006-PIXMA-G650/dp/B093QG1Y8C) - Impresora Fotográfica 3 en 1 (233€)
 - [Papel Fotográfico Láser Brillante](https://www.amazon.es/Fotogr%C3%A1fico-Brillante-impresoras-Certificados-Calendarios/dp/B07VVDM9FJ) - Doble cara, A4, 250 g/m², 100 hojas
 - [Laser Printer Discussion](https://www.reddit.com/r/Printing/comments/10un1q5/a_decent_laser_printer_for_heavyweight_paper/?tl=es-es) - Reddit thread about suitable printers
+- [Laser Cutting Machine](https://www.amazon.es/Atomstack-P1-5W-Escritorio-Biblioteca/dp/B0DX68H75L)
 
 ## Future Development Ideas 💡
 
