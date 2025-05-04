@@ -1,4 +1,4 @@
-title: "🚀 Fun Math"
+title: "🚀 Matemáticas Divertidas"
 deck_id: "fun-math"
 language: "Spanish"
 difficulty_levels:
@@ -9,40 +9,40 @@ difficulty_levels:
   hard: 35%
 
 introduction: |
-  Fun Math is a card deck to help 5 grade students (10-11 years old) to learn mathematics in a fun way. The questions are designed to be smart, sometimes challenging, and always intriguing to spark students' interest in mathematical concepts. This deck aims to develop critical thinking and problem-solving skills through engaging puzzles that combine geometry, metric system, logic problems, and other mathematical areas. The questions should encourage students to think creatively and apply mathematical principles to novel situations.
+  Matemáticas Divertidas es un mazo de cartas para ayudar a estudiantes de 5º grado (10-11 años) a aprender matemáticas de una manera divertida. Las preguntas están diseñadas para ser inteligentes, a veces desafiantes y siempre intrigantes para despertar el interés de los estudiantes en los conceptos matemáticos. Este mazo tiene como objetivo desarrollar el pensamiento crítico y las habilidades de resolución de problemas a través de acertijos atractivos que combinan geometría, sistema métrico, problemas de lógica y otras áreas matemáticas. Las preguntas deben animar a los estudiantes a pensar creativamente y aplicar principios matemáticos a situaciones novedosas.
 
 question_examples:
   extended:
-    - question: "In the labyrinth shown in the picture below, there are different paths; order them from longest to shortest (longest is 1)"
-      embedded_media: "Image - shows a labyrinth, and A to L letters marking the beginning and the end of invisible paths in the labyrinth"
-      options: "10 different letters (A to L)"
-      answers: "10 numbers that represent the rank of the solution (from longest to shortest)"
-    - question: "Order these geometrical shapes from biggest to smallest (biggest is 1)"
-      embedded_media: "Image - shows different shapes"
-      options: "the names of the 10 geometrical shapes shown in the image"
-      answers: "10 numbers that represent the rank of the solution (from biggest to smallest)"
-    - question: "Calculate the area of each colored region in the figure and order them from largest to smallest (largest is 1)"
-      embedded_media: "Image - shows a complex figure divided into different colored regions with dimensions labeled"
-      options: "10 different colored regions labeled with letters"
-      answers: "10 numbers that represent the rank of the solution (from largest to smallest)"
-    - question: "These shapes are folded into 3D objects. Match each 2D pattern with the correct 3D shape it creates."
-      embedded_media: "Image - shows various 2D nets/patterns that fold into 3D shapes"
-      options: "10 different 3D shapes (cube, pyramid, rectangular prism, etc.)"
-      answers: "10 letters corresponding to the correct 3D shape for each pattern"
+    - question: "En el laberinto que se muestra en la imagen de abajo, hay diferentes caminos; ordénalos de más largo a más corto (el más largo es 1)"
+      embedded_media: "Imagen - muestra un laberinto, y letras de A a L marcando el inicio y el final de caminos invisibles en el laberinto"
+      options: "10 letras diferentes (A a L)"
+      answers: "10 números que representan el rango de la solución (del más largo al más corto)"
+    - question: "Ordena estas formas geométricas de mayor a menor (la mayor es 1)"
+      embedded_media: "Imagen - muestra diferentes formas"
+      options: "los nombres de las 10 formas geométricas mostradas en la imagen"
+      answers: "10 números que representan el rango de la solución (de mayor a menor)"
+    - question: "Calcula el área de cada región coloreada en la figura y ordénalas de mayor a menor (la mayor es 1)"
+      embedded_media: "Imagen - muestra una figura compleja dividida en diferentes regiones coloreadas con dimensiones etiquetadas"
+      options: "10 regiones coloreadas diferentes etiquetadas con letras"
+      answers: "10 números que representan el rango de la solución (de mayor a menor)"
+    - question: "Estas formas se pliegan en objetos 3D. Relaciona cada patrón 2D con la forma 3D correcta que crea."
+      embedded_media: "Imagen - muestra varios patrones/redes 2D que se pliegan en formas 3D"
+      options: "10 formas 3D diferentes (cubo, pirámide, prisma rectangular, etc.)"
+      answers: "10 letras correspondientes a la forma 3D correcta para cada patrón"
 
   short:
-    - question: "What is the correct result of the operations?"
-      options: "10 different mathematical operations"
-      answers: "10 numerical solution to the 10 operations defined as options"
-    - question: "Order the results of the operations (highest is 1)"
-      options: "10 different mathematical operations"
-      answers: "10 numbers that represent the rank of the solution (from highest to lowest)"
-    - question: "If a pattern continues, what will be the value at position X?"
-      options: "10 different number sequences with a missing value"
-      answers: "10 numbers that complete each sequence correctly"
-    - question: "Solve these word problems and match them with the correct solution method"
-      options: "10 different word problems involving fractions, percentages, and proportions"
-      answers: "10 mathematical approaches (direct proportion, cross multiplication, etc.) that solve each problem"
+    - question: "¿Cuál es el resultado correcto de las operaciones?"
+      options: "10 operaciones matemáticas diferentes"
+      answers: "10 soluciones numéricas para las 10 operaciones definidas como opciones"
+    - question: "Ordena los resultados de las operaciones (el más alto es 1)"
+      options: "10 operaciones matemáticas diferentes"
+      answers: "10 números que representan el rango de la solución (de mayor a menor)"
+    - question: "Si un patrón continúa, ¿cuál será el valor en la posición X?"
+      options: "10 secuencias numéricas diferentes con un valor faltante"
+      answers: "10 números que completan cada secuencia correctamente"
+    - question: "Resuelve estos problemas de palabras y relaciónalos con el método de solución correcto"
+      options: "10 problemas de palabras diferentes que involucran fracciones, porcentajes y proporciones"
+      answers: "10 enfoques matemáticos (proporción directa, multiplicación cruzada, etc.) que resuelven cada problema"
 
 subject_matter:
   - "Números de 4 y 5 cifras"
