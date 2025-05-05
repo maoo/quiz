@@ -9,3 +9,5 @@ Each deck contains a set of questions to test your knowledge.
 3. Test your knowledge and learn something new!
 
 ## Available Decks
+
+- [Fun Math](decks/fun-math)

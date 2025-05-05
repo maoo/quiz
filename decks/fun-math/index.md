@@ -1,11 +1,15 @@
-# Quiz Game
+# 🚀 Fun Math
 
-Welcome to the Quiz Game! This is a collection of decks covering various topics.
-Each deck contains a set of questions to test your knowledge.
+Fun Math is a card deck to help 5 grade students (10-11 years old) to learn mathematics in a fun way. The questions are designed to be smart, sometimes challenging, and always intriguing to spark students' interest in mathematical concepts.
 
-## How to Play
-1. Choose a deck that interests you
-2. Read through the questions
-3. Test your knowledge and learn something new!
-
-## Available Decks
+## Questions
+- [Question 001](001.md)
+- [Question 002](002.md)
+- [Question 003](003.md)
+- [Question 004](004.md)
+- [Question 005](005.md)
+- [Question 006](006.md)
+- [Question 007](007.md)
+- [Question 008](008.md)
+- [Question 009](009.md)
+- [Question 010](010.md)
