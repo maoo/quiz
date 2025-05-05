@@ -3,27 +3,27 @@
 # Function to process a single question file
 process_question_file() {
     local file="$1"
+    local output_path="$2"
     local DECK_NAME=$(echo "$file" | cut -d'/' -f2)
     local card_id=$(echo "$file" | cut -d'/' -f4)
     
-    poetry run python -c "
-from src.qr_generator import generate_question_qr_code
-generate_question_qr_code('$DECK_NAME', '$card_id')
-"
+    poetry run python -m src.qr_generator "$DECK_NAME" "$card_id" --output-prefix "$output_path"
 }
 
 # Main script
 if [ "$#" -lt 1 ]; then
-    echo "Usage: $0 <event_type> [before_commit] [current_commit]"
+    echo "Usage: $0 <event_type> [before_commit] [current_commit] [output_path]"
     echo "event_type: manual or push"
     echo "before_commit: commit hash before changes (required for push)"
     echo "current_commit: current commit hash (required for push)"
+    echo "output_path: path where QR codes will be written (default: gh-pages/decks)"
     exit 1
 fi
 
 EVENT_TYPE="$1"
 BEFORE_COMMIT="$2"
 CURRENT_COMMIT="$3"
+OUTPUT_PATH="${4:-gh-pages/decks}"
 
 # Get the script directory and project root
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -39,7 +39,7 @@ export PYTHONPATH="$PROJECT_ROOT:$PYTHONPATH"
 if [ "$EVENT_TYPE" = "manual" ]; then
     # For manual triggers, process all question files
     find decks -name "content.yaml" | while read -r file; do
-        process_question_file "$file"
+        process_question_file "$file" "$OUTPUT_PATH"
     done
 else
     # For push events, only process changed files
@@ -58,7 +58,7 @@ else
     
     if [ -n "$CHANGED_FILES" ]; then
         for file in $CHANGED_FILES; do
-            process_question_file "$file"
+            process_question_file "$file" "$OUTPUT_PATH"
         done
     else
         echo "No question files to process"

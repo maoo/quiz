@@ -49,15 +49,14 @@ jobs:
           
       - name: Generate SVG files
         run: |
-          chmod +x scripts/yaml_to_svg.sh
           if [ -n "${{ github.event.inputs.deck_name }}" ]; then
-            ./scripts/yaml_to_svg.sh manual "${{ github.event.inputs.deck_name }}"
+            ./scripts/yaml_to_svg.sh "${{ github.event.inputs.deck_name }}"
           else
             # Get all deck names
             for deck in decks/*; do
               if [ -d "$deck" ]; then
                 deck_name=$(basename "$deck")
-                ./scripts/yaml_to_svg.sh manual "$deck_name"
+                ./scripts/yaml_to_svg.sh "$deck_name"
               fi
             done
           fi

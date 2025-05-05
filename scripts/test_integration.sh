@@ -36,19 +36,6 @@ echo "Created output directory: ${TEMP_DIR}/output"
 # Generate SVGs and Markdown from YAML files
 echo "Processing YAML files..."
 
-# Convert YAML to SVG for all cards
-echo "Converting YAML to SVG..."
-echo "Running command: poetry run python -m src.yaml_to_svg.generate_svg \"$DECK_NAME\" --output-dir ${TEMP_DIR}/output"
-poetry run python -m src.yaml_to_svg.generate_svg "$DECK_NAME" --output-dir ${TEMP_DIR}/output
-
-# List generated SVG files
-echo "Generated SVG files:"
-ls -la ${TEMP_DIR}/output/*.svg 2>/dev/null || echo "No SVG files found"
-
-# Convert YAML to Markdown for all cards
-echo "Converting YAML to Markdown..."
-poetry run python -m src.yaml_to_markdown.generate_markdown "${DECK_DIR}" "${TEMP_DIR}/output"
-
 # Generate QR codes if specified
 echo "Generating QR codes..."
 for card_dir in "${DECK_DIR}cards"/*/; do
@@ -57,6 +44,15 @@ for card_dir in "${DECK_DIR}cards"/*/; do
         poetry run python -m src.qr_generator.generate_qr "$DECK_NAME" --output-dir ${TEMP_DIR}/output
     fi
 done
+
+# Convert YAML to SVG for all cards
+echo "Converting YAML to SVG..."
+echo "Running command: poetry run python -m src.yaml_to_svg.generate_svg \"$DECK_NAME\" --output-dir ${TEMP_DIR}/output"
+poetry run python -m src.yaml_to_svg.generate_svg "$DECK_NAME" --output-dir ${TEMP_DIR}/output
+
+# List generated SVG files
+echo "Generated SVG files:"
+ls -la ${TEMP_DIR}/output/*.svg 2>/dev/null || echo "No SVG files found"
 
 # Verify SVGs were created
 echo "Verifying SVGs..."
@@ -82,6 +78,11 @@ else
         fi
     done
 fi
+
+# Convert YAML to Markdown for all cards
+echo "Converting YAML to Markdown..."
+echo "poetry run python -m src.yaml_to_markdown.generate_markdown ${DECK_DIR} ${TEMP_DIR}/output"
+poetry run python -m src.yaml_to_markdown.generate_markdown "${DECK_DIR}" "${TEMP_DIR}/output"
 
 # Verify Markdown files were created
 echo "Verifying Markdown files..."

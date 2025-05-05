@@ -37,13 +37,12 @@ jobs:
           
       - name: Generate QR codes
         run: |
-          chmod +x scripts/generate_qr_codes.sh
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             # For manual triggers, process all decks
-            ./scripts/generate_qr_codes.sh manual
+            ./scripts/generate_qr_codes.sh manual "" "" "gh-pages/decks"
           else
             # For push events, process changed files
-            ./scripts/generate_qr_codes.sh push "${{ github.event.before }}" "${{ github.sha }}"
+            ./scripts/generate_qr_codes.sh push "${{ github.event.before }}" "${{ github.sha }}" "gh-pages/decks"
           fi
           
       - name: Commit and push if changes

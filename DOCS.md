@@ -1,5 +1,20 @@
 # Project Documentation 📚
 
+## New proposed sw architecture
+  - triviato-code - contains all the code that powers the content transformation pipelines
+  - triviato-decks - contains all triviato decks data
+    - YAML files for the deck and its questions & answers
+    - SVG and PDF versions of the cards
+    - PNG files with the QR codes of the cards
+  - triviato-pipelines - contains all the the content transformation pipelines
+    - Uses modules from triviato-code
+    - Writes into triviato-decks
+  - triviato-web - contains the web application for triviato.session.it
+    - Pulls data from triviato-decks
+    - Uses modules from triviato-code
+  - triviato-docs - contains all docs
+
+
 ## Project Overview 🎯
 
 This project is an AI-powered quiz generation system that creates high-quality, visually appealing quiz cards for various learning and assessment purposes. The system combines the power of AI language models (Claude and ChatGPT) with automated image generation to create engaging educational content.
@@ -45,7 +60,6 @@ The system follows a modular approach:
 ## Prerequisites 🛠️
 
 ```sh
-brew install qrencode
 brew install librsvg
 ```
 

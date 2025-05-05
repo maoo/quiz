@@ -35,21 +35,37 @@ if ! command -v poetry &> /dev/null; then
     exit 1
 fi
 
+# Create temporary directory for SVGs
+TMP_DIR="/tmp/quiz-svgs"
+mkdir -p "$TMP_DIR"
+
 # Run the actual script
 echo "Testing SVG generation..."
-./scripts/yaml_to_svg.sh "$1"
+if [ -n "$1" ]; then
+    poetry run python -m src.yaml_to_svg.generate_svg "$1" --output-dir "$TMP_DIR/$1"
+else
+    # If no deck name provided, process all decks
+    for deck in decks/*/; do
+        deck_name=$(basename "$deck")
+        if [ ! -f "decks/$deck_name/index.yaml" ]; then
+            echo "Skipping deck '$deck_name': index.yaml not found"
+            continue
+        fi
+        poetry run python -m src.yaml_to_svg.generate_svg "$deck_name" --output-dir "$TMP_DIR/$deck_name"
+    done
+fi
 
 # Verify SVG files were generated
 echo "Verifying SVG files..."
 if [ -n "$1" ]; then
-    find "decks/$1/questions" -name 'card.svg' | while read -r svg_file; do
+    find "$TMP_DIR/$1" -name '*.svg' | while read -r svg_file; do
         if [ ! -s "$svg_file" ]; then
             echo "Error: Empty SVG file generated: $svg_file"
             exit 1
         fi
     done
 else
-    find decks -name 'card.svg' | while read -r svg_file; do
+    find "$TMP_DIR" -name '*.svg' | while read -r svg_file; do
         if [ ! -s "$svg_file" ]; then
             echo "Error: Empty SVG file generated: $svg_file"
             exit 1
@@ -57,4 +73,8 @@ else
     done
 fi
 
-echo "SVG generation test completed successfully!" 
+echo "SVG generation test completed successfully!"
+
+# Clean up temporary directory
+echo "Cleaning up temporary files..."
+rm -rf "$TMP_DIR" 
