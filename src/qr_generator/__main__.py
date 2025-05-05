@@ -3,7 +3,7 @@
 import argparse
 from .generator import generate_question_qr_code
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(description='Generate QR codes for quiz questions')
     parser.add_argument('deck_name', help='Name of the deck')
     parser.add_argument('card_id', help='ID of the card')

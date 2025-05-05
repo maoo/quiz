@@ -25,9 +25,10 @@ class Card:
     
     @property
     def question_text(self) -> str:
-        return self.content.get('question_content', 
-                              self.content.get('question', 
-                              self.content.get('content', 'No question content')))
+        value = self.content.get('question_content', 
+                  self.content.get('question', 
+                  self.content.get('content', 'No question content')))
+        return str(value)
 
 class CardLoader:
     """Handles loading card data from YAML files."""
@@ -42,7 +43,10 @@ class CardLoader:
             if card_file.exists():
                 try:
                     with open(card_file, 'r', encoding='utf-8') as f:
-                        return yaml.safe_load(f)
+                        data = yaml.safe_load(f)
+                        if not isinstance(data, dict):
+                            raise ValueError(f"YAML file {card_file} did not return a dict")
+                        return data
                 except yaml.YAMLError as e:
                     logger.error(f"Failed to parse YAML file {card_file}: {e}")
                     raise
@@ -199,17 +203,17 @@ def main() -> int:
         else:
             logger.warning(f"No valid deck directories found in {input_path}")
         # Process decks
-        converter = YAMLToMarkdown(args.input_path, args.output_path)
+        converter = YAMLToMarkdown(str(args.input_path), str(args.output_path))
         if len(decks) == 1:
             # If only one deck, use the output path directly
             logger.info(f"Processing single deck: {decks[0]['path']} -> Output: {args.output_path}")
-            deck_converter = YAMLToMarkdown(str(decks[0]['path']), args.output_path)
+            deck_converter = YAMLToMarkdown(str(decks[0]['path']), str(args.output_path))
             deck_converter.process_deck()
         else:
             for deck in decks:
                 output_dir = args.output_path / deck['path'].name
                 logger.info(f"Processing deck: {deck['path']} -> Output: {output_dir}")
-                deck_converter = YAMLToMarkdown(str(deck['path']), output_dir)
+                deck_converter = YAMLToMarkdown(str(deck['path']), str(output_dir))
                 deck_converter.process_deck()
             
         logger.info("Conversion completed successfully")
