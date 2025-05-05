@@ -20,10 +20,20 @@ properties:
           type: string
           description: Unique identifier for the flashcard
           required: true
-        link:
+        html:
           type: string
           description: Link to the quiz content, must follow the format https://blog.session.it/quiz/decks/<deck id>/cards/<card id>
           pattern: "^https://blog\\.session\\.it/quiz/decks/[^/]+/cards/[^/]+$"
+          required: true
+        pdf:
+          type: string
+          description: Link to the quiz content, must follow the format https://blog.session.it/quiz/decks/<deck id>/cards/<card id>.pdf
+          pattern: "^https://blog\\.session\\.it/quiz/decks/[^/]+/cards/[^/]+\\.pdf$"
+          required: true
+        svg:
+          type: string
+          description: Link to the quiz content, must follow the format https://blog.session.it/quiz/decks/<deck id>/cards/<card id>.svg
+          pattern: "^https://blog\\.session\\.it/quiz/decks/[^/]+/cards/[^/]+\\.svg$"
           required: true
 required:
   - title
