@@ -97,16 +97,13 @@ class SVGToPDFConverter:
                 os.unlink(temp_svg_path)
 
 
-def process_directory(input_dir: str, output_dir: Optional[str] = None) -> List[str]:
+def process_directory(input_dir: str, output_dir: Optional[str] = None) -> None:
     """
     Process all SVG files in a directory.
     
     Args:
         input_dir: Path to the input directory
         output_dir: Path to the output directory (optional)
-        
-    Returns:
-        List of paths to generated PDF files
     """
     input_path = Path(input_dir)
     if not input_path.is_dir():
@@ -119,17 +116,13 @@ def process_directory(input_dir: str, output_dir: Optional[str] = None) -> List[
         output_path.mkdir(parents=True, exist_ok=True)
     
     converter = SVGToPDFConverter()
-    generated_pdfs = []
     
     for svg_file in input_path.glob("*.svg"):
         try:
             output_file = str(output_path / svg_file.with_suffix('.pdf').name)
             converter.convert_svg_to_pdf(str(svg_file), output_file)
-            generated_pdfs.append(output_file)
         except Exception as e:
             logger.error(f"Failed to process {svg_file}: {e}")
-    
-    return generated_pdfs
 
 
 def main() -> int:
@@ -142,8 +135,6 @@ def main() -> int:
     parser = argparse.ArgumentParser(description='Convert SVG files to PDF with proper image support')
     parser.add_argument('input', help='Path to the SVG file or directory to convert')
     parser.add_argument('-o', '--output', help='Path to the output PDF file or directory')
-    parser.add_argument('--width', type=float, default=11, help='Width in centimeters (default: 11)')
-    parser.add_argument('--height', type=float, default=11, help='Height in centimeters (default: 11)')
     parser.add_argument('-v', '--verbose', action='store_true', help='Enable verbose output')
     parser.add_argument('--dpi', type=int, default=254, 
                       help='DPI for PDF generation (default: 254, which is ~100px per cm)')

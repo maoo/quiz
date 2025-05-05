@@ -3,7 +3,7 @@ import tempfile
 import unittest
 from pathlib import Path
 import yaml
-from src.yaml_to_markdown.generate_markdown import YAMLToMarkdown
+from src.yaml_to_markdown.generate_markdown import YAMLToMarkdown, Card, CardLoader, MarkdownGenerator
 
 class TestYAMLToMarkdown(unittest.TestCase):
     def setUp(self):
@@ -24,7 +24,8 @@ class TestYAMLToMarkdown(unittest.TestCase):
             'introduction': 'This is a test deck',
             'questions': [
                 {'id': '001'},
-                {'id': '002'}
+                {'id': '002'},
+                {'id': '003'}  # Added for testing error cases
             ]
         }
         with open(self.input_path / "index.yaml", 'w') as f:
@@ -47,90 +48,112 @@ class TestYAMLToMarkdown(unittest.TestCase):
         with open(question_001_dir / "question.yaml", 'w') as f:
             yaml.dump(question_001_data, f)
             
-        # Create question 002
+        # Create question 002 with different content format
         question_002_dir = questions_dir / "002"
         question_002_dir.mkdir()
         question_002_data = {
-            'question': 'Is this a test?',
+            'question_content': 'Is this a test?',  # Using question_content instead of question
             'question_type': 'short',
             'answers_type': 'binary'
         }
-        with open(question_002_dir / "question.yaml", 'w') as f:
+        with open(question_002_dir / "content.yaml", 'w') as f:  # Using content.yaml instead of question.yaml
             yaml.dump(question_002_data, f)
             
-    def test_load_question(self):
-        converter = YAMLToMarkdown(str(self.input_path), str(self.output_path))
-        question = converter.load_question('001')
-        self.assertEqual(question['question'], 'What is 2+2?')
-        self.assertEqual(question['options'], ['3', '4', '5'])
-        
-    def test_create_markdown_content(self):
-        converter = YAMLToMarkdown(str(self.input_path), str(self.output_path))
-        question = converter.load_question('001')
-        content = converter.create_markdown_content(question, '001')
-        
-        expected_content = """# Question 001
-
-## Question
-What is 2+2?
-
-## Options
-1. 3
-2. 4
-3. 5
-
-## Type
-short
-
-## Answer Type
-single
-
-## Sources
-- https://example.com"""
-        
-        self.assertEqual(content, expected_content)
-        
-    def test_create_markdown_file(self):
-        converter = YAMLToMarkdown(str(self.input_path), str(self.output_path))
-        question = converter.load_question('001')
-        converter.create_markdown_file(question, '001')
-        
-        # Check if markdown file was created
-        md_path = self.output_path / "001.md"
-        self.assertTrue(md_path.exists())
-        
-        # Verify content
-        with open(md_path, 'r') as f:
-            content = f.read()
-            self.assertIn('# Question 001', content)
-            self.assertIn('What is 2+2?', content)
+        # Create invalid YAML for question 003
+        question_003_dir = questions_dir / "003"
+        question_003_dir.mkdir()
+        with open(question_003_dir / "question.yaml", 'w') as f:
+            f.write("invalid: yaml: content: [")
             
-    def test_create_index_markdown(self):
-        converter = YAMLToMarkdown(str(self.input_path), str(self.output_path))
-        with open(self.input_path / "index.yaml", 'r') as f:
-            deck_meta = yaml.safe_load(f)
-        converter.create_index_markdown(deck_meta)
+    def test_card_question_text_property(self):
+        # Test different content formats
+        card1 = Card('001', {'question': 'Test question'})
+        self.assertEqual(card1.question_text, 'Test question')
         
-        # Check if index file was created
-        index_path = self.output_path / "index.md"
-        self.assertTrue(index_path.exists())
+        card2 = Card('002', {'question_content': 'Test content'})
+        self.assertEqual(card2.question_text, 'Test content')
         
-        # Verify content
-        with open(index_path, 'r') as f:
-            content = f.read()
-            self.assertIn('# Test Deck', content)
-            self.assertIn('This is a test deck', content)
-            self.assertIn('- [Question 001](001.md)', content)
-            self.assertIn('- [Question 002](002.md)', content)
+        card3 = Card('003', {'content': 'Test content'})
+        self.assertEqual(card3.question_text, 'Test content')
+        
+        card4 = Card('004', {})  # Test missing content
+        self.assertEqual(card4.question_text, 'No question content')
+        
+    def test_card_loader_error_handling(self):
+        loader = CardLoader(self.input_path / "cards")
+        
+        # Test invalid YAML
+        with self.assertRaises(Exception):
+            loader.load_card('003')
             
-    def test_process_deck(self):
+        # Test non-existent card
+        with self.assertRaises(FileNotFoundError):
+            loader.load_card('999')
+            
+    def test_markdown_generator_variations(self):
+        # Test card with all fields
+        card1 = Card('001', {
+            'question': 'What is 2+2?',
+            'options': ['3', '4', '5'],
+            'question_type': 'short',
+            'answers_type': 'single',
+            'sources': ['https://example.com']
+        })
+        
+        content1 = MarkdownGenerator.card_to_markdown(card1)
+        self.assertIn('## Question', content1)
+        self.assertIn('## Options', content1)
+        self.assertIn('## Question Type', content1)
+        self.assertIn('## Answer Type', content1)
+        self.assertIn('## Sources', content1)
+        
+        # Test card with minimal fields
+        card2 = Card('002', {
+            'question': 'Simple question'
+        })
+        
+        content2 = MarkdownGenerator.card_to_markdown(card2)
+        self.assertIn('## Question', content2)
+        self.assertNotIn('## Options', content2)
+        self.assertNotIn('## Question Type', content2)
+        self.assertNotIn('## Answer Type', content2)
+        self.assertNotIn('## Sources', content2)
+        
+    def test_create_index_content(self):
+        deck_meta = {
+            'title': 'Test Deck',
+            'introduction': 'Test introduction'
+        }
+        
+        cards = [
+            Card('001', {'question': 'Q1'}),
+            Card('002', {'question': 'Q2'})
+        ]
+        
+        content = MarkdownGenerator.create_index_content(deck_meta, cards)
+        self.assertIn('# Test Deck', content)
+        self.assertIn('Test introduction', content)
+        self.assertIn('- [Question 001](001.md)', content)
+        self.assertIn('- [Question 002](002.md)', content)
+        
+    def test_yaml_to_markdown_error_handling(self):
+        converter = YAMLToMarkdown(str(self.input_path), str(self.output_path))
+        
+        # Test processing invalid card
+        converter.process_card('003')  # Should log error but not raise exception
+        
+        # Test processing non-existent card
+        converter.process_card('999')  # Should log error but not raise exception
+        
+    def test_process_deck_with_errors(self):
         converter = YAMLToMarkdown(str(self.input_path), str(self.output_path))
         converter.process_deck()
         
-        # Check if all files were created
+        # Should still create index and valid cards
         self.assertTrue((self.output_path / "index.md").exists())
         self.assertTrue((self.output_path / "001.md").exists())
         self.assertTrue((self.output_path / "002.md").exists())
+        self.assertFalse((self.output_path / "003.md").exists())  # Invalid card should not be created
         
     def tearDown(self):
         # Clean up temporary directory

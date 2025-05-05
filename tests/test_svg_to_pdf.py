@@ -1,8 +1,16 @@
 import pytest
 import os
 import sys
+import tempfile
+from pathlib import Path
 from src.svg_to_pdf.converter import SVGToPDFConverter
 from unittest.mock import patch
+
+@pytest.fixture
+def tmp_path():
+    """Fixture to create a new temporary directory for each test"""
+    with tempfile.TemporaryDirectory() as temp_dir:
+        yield Path(temp_dir)
 
 def test_converter_initialization():
     converter = SVGToPDFConverter()
