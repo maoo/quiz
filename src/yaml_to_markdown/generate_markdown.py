@@ -125,10 +125,10 @@ class YAMLToMarkdown:
     def process_card(self, card_id: str) -> None:
         """Process a single card."""
         try:
+            logger.info(f"Processing card: {card_id} -> Output: {self.output_path / f'{card_id}.md'}")
             card_data = self.card_loader.load_card(card_id)
             card = Card(card_id, card_data)
             content = self.markdown_gen.card_to_markdown(card)
-            
             output_file = self.output_path / f"{card_id}.md"
             output_file.write_text(content, encoding='utf-8')
             logger.info(f"Created markdown file for card {card_id}")
@@ -138,29 +138,29 @@ class YAMLToMarkdown:
     def process_deck(self) -> None:
         """Process all cards in the deck."""
         try:
+            logger.info(f"Processing deck at: {self.input_path}")
             readme_path = self.input_path / "index.yaml"
             if not readme_path.exists():
                 logger.warning(f"Skipping deck {self.input_path} - index.yaml not found")
                 return
-                
             deck_meta = yaml.safe_load(readme_path.read_text(encoding='utf-8'))
             items = deck_meta.get('questions', deck_meta.get('cards', []))
-            
             # Process cards
             cards = []
             for item in items:
                 card_id = str(item['id']).zfill(3)
+                logger.info(f"Preparing to process card: {card_id}")
                 try:
                     card_data = self.card_loader.load_card(card_id)
                     cards.append(Card(card_id, card_data))
                     self.process_card(card_id)
                 except Exception as e:
                     logger.error(f"Failed to process card {card_id}: {e}")
-                    
             # Create index
             index_content = self.markdown_gen.create_index_content(deck_meta, cards)
-            (self.output_path / "index.md").write_text(index_content, encoding='utf-8')
-            
+            index_path = self.output_path / "index.md"
+            logger.info(f"Writing deck index to: {index_path}")
+            index_path.write_text(index_content, encoding='utf-8')
         except Exception as e:
             logger.error(f"Failed to process deck: {e}")
             raise
@@ -174,28 +174,43 @@ def main() -> int:
     parser.add_argument('output_path', help='Path to output directory')
     
     args = parser.parse_args()
+    args.output_path = Path(args.output_path)
     
     try:
         input_path = Path(args.input_path)
         decks = []
-        
+        logger.info(f"Input path: {input_path}")
+        logger.info(f"Output path: {args.output_path}")
         # Collect deck metadata
         if input_path.is_dir():
             for deck_dir in input_path.iterdir():
                 if deck_dir.is_dir() and (deck_dir / "index.yaml").exists():
+                    logger.info(f"Found deck directory: {deck_dir}")
                     deck_meta = yaml.safe_load((deck_dir / "index.yaml").read_text(encoding='utf-8'))
                     deck_meta['path'] = deck_dir
                     decks.append(deck_meta)
-        elif (input_path / "index.yaml").exists():
+        logger.info(f"Checking if single deck index exists: {(input_path / 'index.yaml')}")
+        logger.info(f"Exists: {(input_path / 'index.yaml').exists()}")
+        if (input_path / "index.yaml").exists():
+            logger.info(f"Found single deck directory: {input_path}")
             deck_meta = yaml.safe_load((input_path / "index.yaml").read_text(encoding='utf-8'))
             deck_meta['path'] = input_path
             decks.append(deck_meta)
-            
+        else:
+            logger.warning(f"No valid deck directories found in {input_path}")
         # Process decks
         converter = YAMLToMarkdown(args.input_path, args.output_path)
-        for deck in decks:
-            deck_converter = YAMLToMarkdown(str(deck['path']), args.output_path / deck['path'].name)
+        if len(decks) == 1:
+            # If only one deck, use the output path directly
+            logger.info(f"Processing single deck: {decks[0]['path']} -> Output: {args.output_path}")
+            deck_converter = YAMLToMarkdown(str(decks[0]['path']), args.output_path)
             deck_converter.process_deck()
+        else:
+            for deck in decks:
+                output_dir = args.output_path / deck['path'].name
+                logger.info(f"Processing deck: {deck['path']} -> Output: {output_dir}")
+                deck_converter = YAMLToMarkdown(str(deck['path']), output_dir)
+                deck_converter.process_deck()
             
         logger.info("Conversion completed successfully")
         return 0
