@@ -4,6 +4,8 @@ import shutil
 import tempfile
 from pathlib import Path
 from src.qr_generator import generate_qr_code, generate_question_qr_code
+import subprocess
+import sys
 
 @pytest.fixture
 def tmp_path():
@@ -44,7 +46,7 @@ def test_generate_question_qr_code(tmp_path, monkeypatch):
     result = generate_question_qr_code(
         deck_name, 
         card_id,
-        output_prefix=str(tmp_path)
+        output_dir=str(tmp_path + "/" + deck_name + "/cards/" + card_id)
     )
     
     expected_path = os.path.join(tmp_path, deck_name, "cards", card_id, "qr.png")
@@ -86,8 +88,8 @@ def test_generate_question_qr_code_custom_prefixes(tmp_path, monkeypatch):
     result = generate_question_qr_code(
         deck_name,
         card_id,
-        url_prefix=custom_url_prefix,
         output_prefix=custom_output_prefix
+        url_prefix=custom_url_prefix,
     )
     
     expected_path = os.path.join(custom_output_prefix, deck_name, "cards", card_id, "qr.png")
@@ -107,8 +109,54 @@ def test_generate_question_qr_code_default_prefixes(tmp_path, monkeypatch):
     result = generate_question_qr_code(
         deck_name, 
         card_id,
-        output_prefix=str(tmp_path)
+        output_dir=str(tmp_path + "/" + deck_name + "/cards/" + card_id)
     )
     
     expected_path = os.path.join(tmp_path, deck_name, "cards", card_id, "qr.png")
-    assert result == expected_path 
+    assert result == expected_path
+
+def create_content_yaml_structure(base_dir, deck_name, card_ids):
+    deck_dir = Path(base_dir) / "decks" / deck_name / "cards"
+    paths = []
+    for card_id in card_ids:
+        card_dir = deck_dir / card_id
+        card_dir.mkdir(parents=True, exist_ok=True)
+        content_path = card_dir / "content.yaml"
+        content_path.write_text(f"card_id: '{card_id}'\nquestion_type: short\nquestion_content: test\n")
+        paths.append(str(content_path))
+    return paths
+
+def test_batch_qr_generation(tmp_path):
+    # Create a mock deck with two cards
+    deck_name = "batch-deck"
+    card_ids = ["001", "002"]
+    content_paths = create_content_yaml_structure(tmp_path, deck_name, card_ids)
+    output_dir = tmp_path / "gh-pages" / "decks"
+    # Call the CLI as a subprocess
+    result = subprocess.run([
+        sys.executable, "-m", "src.qr_generator", str(tmp_path / "decks")],
+        cwd=Path(__file__).parent.parent,
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 0, result.stderr
+    for card_id in card_ids:
+        qr_path = output_dir / deck_name / "cards" / card_id / "qr.png"
+        assert qr_path.exists(), f"QR code not generated for card {card_id}"
+
+def test_batch_qr_generation_single_file(tmp_path):
+    # Create a mock deck with one card
+    deck_name = "singlefile-deck"
+    card_ids = ["003"]
+    content_paths = create_content_yaml_structure(tmp_path, deck_name, card_ids)
+    output_dir = tmp_path / "gh-pages" / "decks"
+    # Call the CLI with a single content.yaml file
+    result = subprocess.run([
+        sys.executable, "-m", "src.qr_generator", content_paths[0]],
+        cwd=Path(__file__).parent.parent,
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 0, result.stderr
+    qr_path = output_dir / deck_name / "cards" / card_ids[0] / "qr.png"
+    assert qr_path.exists(), f"QR code not generated for card {card_ids[0]}" 

@@ -2,30 +2,54 @@
 
 import argparse
 from .generator import generate_question_qr_code
+from src.file_processor import get_question_folders, extract_deck_and_card_id
+import os
+
+def process_questions(questionFolders, generate_question_qr_code, url_prefix):
+    generated = []
+    errors = []
+    for questionFolder in questionFolders:
+        deck_name, card_id = extract_deck_and_card_id(questionFolder)
+        print(f"Processing {questionFolder} for deck {deck_name} and card {card_id}")
+        if not deck_name or not card_id:
+            print(f"Skipping {questionFolder}: could not extract deck_name/card_id")
+            errors.append(questionFolder)
+            continue
+        result = generate_question_qr_code(
+            deck_name,
+            card_id,
+            output_dir=questionFolder,
+            url_prefix=url_prefix
+        )
+        if result:
+            print(f"Generated QR code at: {result}")
+            generated.append(result)
+        else:
+            print(f"Failed to generate QR code for {questionFolder}")
+            errors.append(questionFolder)
+    print(f"\nSummary: {len(generated)} QR codes generated, {len(errors)} errors.")
+    if errors:
+        print("Errors for files:")
+        for e in errors:
+            print(f"  {e}")
+    return generated, errors 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description='Generate QR codes for quiz questions')
-    parser.add_argument('deck_name', help='Name of the deck')
-    parser.add_argument('card_id', help='ID of the card')
+    parser.add_argument('input_paths', nargs='+', help='List of folders or content.yaml files to process')
     parser.add_argument('--url-prefix', default='https://blog.session.it/quiz/decks',
                       help='Prefix for the URL (default: https://blog.session.it/quiz/decks)')
-    parser.add_argument('--output-prefix', default='gh-pages/decks',
-                      help='Prefix for the output path (default: gh-pages/decks)')
-    
     args = parser.parse_args()
-    
-    result = generate_question_qr_code(
-        args.deck_name,
-        args.card_id,
-        url_prefix=args.url_prefix,
-        output_prefix=args.output_prefix
-    )
-    
-    if result:
-        print(f"Generated QR code at: {result}")
-    else:
-        print("Failed to generate QR code")
-        exit(1)
+
+    questions = get_question_folders(args.input_paths)
+    if not questions:
+        print("No question folders found in the provided input paths.")
+        return
+
+    process_questions(
+        questions,
+        generate_question_qr_code,
+        url_prefix=args.url_prefix)
 
 if __name__ == '__main__':
     main() 

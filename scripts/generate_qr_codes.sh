@@ -1,29 +1,11 @@
 #!/bin/bash
 
-# Function to process a single question file
-process_question_file() {
-    local file="$1"
-    local output_path="$2"
-    local DECK_NAME=$(echo "$file" | cut -d'/' -f2)
-    local card_id=$(echo "$file" | cut -d'/' -f4)
-    
-    poetry run python -m src.qr_generator "$DECK_NAME" "$card_id" --output-prefix "$output_path"
-}
+# Usage: ./scripts/generate_qr_codes.sh <input_path1> [<input_path2> ...] [--url-prefix URL] [--output-prefix PATH]
 
-# Main script
 if [ "$#" -lt 1 ]; then
-    echo "Usage: $0 <event_type> [before_commit] [current_commit] [output_path]"
-    echo "event_type: manual or push"
-    echo "before_commit: commit hash before changes (required for push)"
-    echo "current_commit: current commit hash (required for push)"
-    echo "output_path: path where QR codes will be written (default: gh-pages/decks)"
+    echo "Usage: $0 <input_path1> [<input_path2> ...] [--url-prefix URL] [--output_path PATH]"
     exit 1
 fi
-
-EVENT_TYPE="$1"
-BEFORE_COMMIT="$2"
-CURRENT_COMMIT="$3"
-OUTPUT_PATH="${4:-gh-pages/decks}"
 
 # Get the script directory and project root
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -36,33 +18,7 @@ poetry install
 # Add src directory to PYTHONPATH
 export PYTHONPATH="$PROJECT_ROOT:$PYTHONPATH"
 
-if [ "$EVENT_TYPE" = "manual" ]; then
-    # For manual triggers, process all question files
-    find decks -name "content.yaml" | while read -r file; do
-        process_question_file "$file" "$OUTPUT_PATH"
-    done
-else
-    # For push events, only process changed files
-    if [ -z "$BEFORE_COMMIT" ] || [ -z "$CURRENT_COMMIT" ]; then
-        echo "Error: before_commit and current_commit are required for push events"
-        exit 1
-    fi
-    
-    # Check if we have a valid before commit
-    if git rev-parse --verify --quiet "$BEFORE_COMMIT" >/dev/null; then
-        CHANGED_FILES=$(git diff --name-only "$BEFORE_COMMIT" "$CURRENT_COMMIT" | grep "decks/.*/cards/.*/content.yaml")
-    else
-        # If no before commit, get all files in the current commit
-        CHANGED_FILES=$(git ls-tree -r --name-only "$CURRENT_COMMIT" | grep "decks/.*/cards/.*/content.yaml")
-    fi
-    
-    if [ -n "$CHANGED_FILES" ]; then
-        for file in $CHANGED_FILES; do
-            process_question_file "$file" "$OUTPUT_PATH"
-        done
-    else
-        echo "No question files to process"
-    fi
-fi
+# Call the Python CLI with all arguments
+poetry run python -m src.qr_generator "$@"
 
 echo "QR code generation completed" 

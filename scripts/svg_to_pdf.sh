@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# TODO
+# - All bash scripts in the scripts/ directory must accept an input_path as parameter, not an output_path
+# - Go case by case and update the script to make sure the folder structure is unique
+# - Create a common bash script to handle manual and workflow events
+
 # Function to get SVG files based on event type
 get_svg_files() {
     if [ "$1" == "manual" ]; then
