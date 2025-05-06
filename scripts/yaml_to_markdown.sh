@@ -24,7 +24,4 @@ export PYTHONPATH="$PROJECT_ROOT:$PYTHONPATH"
 
 poetry run python -m src.yaml_to_markdown.generate_markdown "$DECK_DIR" "$OUTPUT_DIR"
 
-# List generated files
-ls -lRt "$OUTPUT_DIR"
-
 echo "YAML to Markdown conversion completed" 

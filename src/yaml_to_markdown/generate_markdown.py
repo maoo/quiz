@@ -12,6 +12,7 @@ from pathlib import Path
 from typing import Dict, List, Optional, Any
 
 import yaml
+from src.file_utils import get_question_folders
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
@@ -31,27 +32,23 @@ class Card:
         return str(value)
 
 class CardLoader:
-    """Handles loading card data from YAML files."""
-    
-    def __init__(self, cards_path: Path):
-        self.cards_path = cards_path
-        
-    def load_card(self, card_id: str) -> Dict[str, Any]:
-        """Load a card from its YAML file."""
-        for filename in ["content.yaml", "question.yaml"]:
-            card_file = self.cards_path / card_id / filename
-            if card_file.exists():
-                try:
-                    with open(card_file, 'r', encoding='utf-8') as f:
-                        data = yaml.safe_load(f)
-                        if not isinstance(data, dict):
-                            raise ValueError(f"YAML file {card_file} did not return a dict")
-                        return data
-                except yaml.YAMLError as e:
-                    logger.error(f"Failed to parse YAML file {card_file}: {e}")
-                    raise
-                    
-        raise FileNotFoundError(f"No content.yaml or question.yaml found for card: {card_id}")
+    """Handles loading card data from YAML files in question folders."""
+    def __init__(self, question_folders: list[str]):
+        self.question_folders = question_folders
+
+    def load_card(self, folder: str) -> dict:
+        """Load a card from its YAML file in the corresponding question folder."""
+        card_file = Path(folder) / "content.yaml"
+        with open(card_file, 'r', encoding='utf-8') as f:
+            data = yaml.safe_load(f)
+            if not isinstance(data, dict):  
+                raise ValueError(f"YAML file {card_file} did not return a dict")
+            answers_file = Path(folder) / "answers.yaml"
+            with open(answers_file, 'r', encoding='utf-8') as f:
+                data['answers'] = yaml.safe_load(f)
+            data['question_folder'] = folder
+            data['id'] = Path(folder).name
+            return data
 
 class MarkdownGenerator:
     """Handles generation of markdown content."""
@@ -116,53 +113,50 @@ class MarkdownGenerator:
 
 class YAMLToMarkdown:
     """Main YAML to Markdown conversion class."""
-    
-    def __init__(self, input_path: str, output_path: str):
-        self.input_path = Path(input_path)
-        self.output_path = Path(output_path)
-        self.cards_path = self.input_path / "cards"
-        self.output_path.mkdir(parents=True, exist_ok=True)
-        
-        self.card_loader = CardLoader(self.cards_path)
+    def __init__(self, input_paths: list[str]):
+        self.input_paths = input_paths
+        self.question_folders = get_question_folders(self.input_paths)
+        self.card_loader = CardLoader(self.question_folders)
         self.markdown_gen = MarkdownGenerator()
-        
-    def process_card(self, card_id: str) -> None:
-        """Process a single card."""
+
+    def process_card(self, card_data: dict) -> None:
         try:
-            logger.info(f"Processing card: {card_id} -> Output: {self.output_path / f'{card_id}.md'}")
-            card_data = self.card_loader.load_card(card_id)
+            card_id = card_data['id']
+            logger.info(f"Processing card: {card_id} -> Output: {Path(card_data['question_folder']) / f'content.md'}")
             card = Card(card_id, card_data)
             content = self.markdown_gen.card_to_markdown(card)
-            output_file = self.output_path / f"{card_id}.md"
+            output_file = Path(card_data['question_folder']) / f"content.md"
             output_file.write_text(content, encoding='utf-8')
             logger.info(f"Created markdown file for card {card_id}")
         except Exception as e:
             logger.error(f"Failed to process card {card_id}: {e}")
-            
+
     def process_deck(self) -> None:
-        """Process all cards in the deck."""
         try:
-            logger.info(f"Processing deck at: {self.input_path}")
-            readme_path = self.input_path / "index.yaml"
-            if not readme_path.exists():
-                logger.warning(f"Skipping deck {self.input_path} - index.yaml not found")
+            if not self.question_folders:
+                logger.warning(f"No question folders found in the provided input paths.")
                 return
-            deck_meta = yaml.safe_load(readme_path.read_text(encoding='utf-8'))
-            items = deck_meta.get('questions', deck_meta.get('cards', []))
-            # Process cards
+            # Try to find deck meta (index.yaml) in any parent of the question folders
+            deck_meta = None
+            for folder in self.input_paths:
+                index_path = Path(folder) / "index.yaml"
+                if index_path.exists():
+                    deck_meta = yaml.safe_load(index_path.read_text(encoding='utf-8'))
+                    break
+            if not deck_meta:
+                deck_meta = {"title": "Quiz Deck", "introduction": "", "questions": []}
             cards = []
-            for item in items:
-                card_id = str(item['id']).zfill(3)
-                logger.info(f"Preparing to process card: {card_id}")
+            for folder in self.question_folders:
+                card_id = Path(folder).name
                 try:
-                    card_data = self.card_loader.load_card(card_id)
+                    card_data = self.card_loader.load_card(folder)
                     cards.append(Card(card_id, card_data))
-                    self.process_card(card_id)
+                    self.process_card(card_data)
                 except Exception as e:
                     logger.error(f"Failed to process card {card_id}: {e}")
             # Create index
             index_content = self.markdown_gen.create_index_content(deck_meta, cards)
-            index_path = self.output_path / "index.md"
+            index_path = Path(folder) / "index.md"
             logger.info(f"Writing deck index to: {index_path}")
             index_path.write_text(index_content, encoding='utf-8')
         except Exception as e:
@@ -172,50 +166,12 @@ class YAMLToMarkdown:
 def main() -> int:
     """Main entry point for the script."""
     import argparse
-    
     parser = argparse.ArgumentParser(description='Convert YAML cards to Markdown')
-    parser.add_argument('input_path', help='Path to the deck directory')
-    parser.add_argument('output_path', help='Path to output directory')
-    
+    parser.add_argument('input_paths', nargs='+', help='List of folders or content.yaml files to process')
     args = parser.parse_args()
-    args.output_path = Path(args.output_path)
-    
     try:
-        input_path = Path(args.input_path)
-        decks = []
-        logger.info(f"Input path: {input_path}")
-        logger.info(f"Output path: {args.output_path}")
-        # Collect deck metadata
-        if input_path.is_dir():
-            for deck_dir in input_path.iterdir():
-                if deck_dir.is_dir() and (deck_dir / "index.yaml").exists():
-                    logger.info(f"Found deck directory: {deck_dir}")
-                    deck_meta = yaml.safe_load((deck_dir / "index.yaml").read_text(encoding='utf-8'))
-                    deck_meta['path'] = deck_dir
-                    decks.append(deck_meta)
-        logger.info(f"Checking if single deck index exists: {(input_path / 'index.yaml')}")
-        logger.info(f"Exists: {(input_path / 'index.yaml').exists()}")
-        if (input_path / "index.yaml").exists():
-            logger.info(f"Found single deck directory: {input_path}")
-            deck_meta = yaml.safe_load((input_path / "index.yaml").read_text(encoding='utf-8'))
-            deck_meta['path'] = input_path
-            decks.append(deck_meta)
-        else:
-            logger.warning(f"No valid deck directories found in {input_path}")
-        # Process decks
-        converter = YAMLToMarkdown(str(args.input_path), str(args.output_path))
-        if len(decks) == 1:
-            # If only one deck, use the output path directly
-            logger.info(f"Processing single deck: {decks[0]['path']} -> Output: {args.output_path}")
-            deck_converter = YAMLToMarkdown(str(decks[0]['path']), str(args.output_path))
-            deck_converter.process_deck()
-        else:
-            for deck in decks:
-                output_dir = args.output_path / deck['path'].name
-                logger.info(f"Processing deck: {deck['path']} -> Output: {output_dir}")
-                deck_converter = YAMLToMarkdown(str(deck['path']), str(output_dir))
-                deck_converter.process_deck()
-            
+        converter = YAMLToMarkdown(args.input_paths)
+        converter.process_deck()
         logger.info("Conversion completed successfully")
         return 0
     except Exception as e:

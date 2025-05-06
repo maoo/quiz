@@ -5,7 +5,7 @@ import svgwrite
 import argparse
 import logging
 from typing import Dict, List, Optional, Any, cast, Union
-from src.file_processor import get_question_folders
+from src.file_utils import get_question_folders
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)

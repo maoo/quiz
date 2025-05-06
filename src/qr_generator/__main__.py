@@ -2,7 +2,7 @@
 
 import argparse
 from .generator import generate_question_qr_code
-from src.file_processor import get_question_folders, extract_deck_and_card_id
+from src.file_utils import get_question_folders, extract_deck_and_card_id
 import os
 
 def process_questions(questionFolders, generate_question_qr_code, url_prefix):

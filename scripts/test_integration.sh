@@ -76,9 +76,9 @@ else
     done
 fi
 
-# # Convert YAML to Markdown for all cards
-# echo "Converting YAML to Markdown..."
-# ./scripts/yaml_to_markdown.sh "${DECK_DIR}" "${TEMP_DIR}/output"
+# Convert YAML to Markdown for all cards
+echo "Converting YAML to Markdown..."
+./scripts/yaml_to_markdown.sh "${DECK_DIR}" "${TEMP_DIR}/output"
 
 # # Verify Markdown files were created
 # echo "Verifying Markdown files..."

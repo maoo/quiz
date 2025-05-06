@@ -1,5 +1,5 @@
 """
-file_processor: Utilities for finding, extracting, and processing quiz content.yaml files for QR code generation and other purposes. Can be reused across modules in the src folder.
+file_utils: Utilities for finding, extracting, and processing quiz content.yaml files for QR code generation and other purposes. Can be reused across modules in the src folder.
 """
 import os
 from pathlib import Path
