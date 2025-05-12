@@ -10,6 +10,8 @@ jobs:
   generate-qr:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
       - name: Checkout branches
         uses: ./.github/actions/checkout-branches
       - name: Setup Python and Poetry

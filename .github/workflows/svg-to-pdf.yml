@@ -21,6 +21,8 @@ jobs:
       contents: write
       packages: read
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
       - name: Checkout branches
         uses: ./.github/actions/checkout-branches
         with:

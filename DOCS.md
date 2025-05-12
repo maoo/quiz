@@ -181,6 +181,9 @@ cd quiz-tools
 
 # Install dependencies
 poetry install
+
+# Install act
+brew install act
 ```
 
 ## Technical Usage
