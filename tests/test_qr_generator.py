@@ -6,6 +6,9 @@ from pathlib import Path
 from src.qr_generator import generate_qr_code, generate_question_qr_code
 import subprocess
 import sys
+import logging
+
+logger = logging.getLogger(__name__)
 
 @pytest.fixture
 def tmp_path():
@@ -116,25 +119,35 @@ def test_generate_question_qr_code_default_prefixes(tmp_path, monkeypatch):
     assert result == expected_path
 
 def create_content_yaml_structure(base_dir, deck_name, card_ids):
-    deck_dir = Path(base_dir) / "decks" / deck_name / "cards"
+    deck_root = Path(base_dir) / "decks" / deck_name
+    deck_root.mkdir(parents=True, exist_ok=True)
+    (deck_root / "index.yaml").write_text("title: Test Deck\n")
+    deck_dir = deck_root / "cards"
     paths = []
     for card_id in card_ids:
         card_dir = deck_dir / card_id
         card_dir.mkdir(parents=True, exist_ok=True)
         content_path = card_dir / "content.yaml"
         content_path.write_text(f"card_id: '{card_id}'\nquestion_type: short\nquestion_content: test\n")
+        answers_path = card_dir / "answers.yaml"
+        answers_path.write_text("[]\n")
         paths.append(str(content_path))
+
+    logger.info(f"Generated deck in root folder: {deck_root}, with the following contents...")
+    logger.info(f"Deck root: {deck_root}")
+    logger.info(f"Deck dir: {deck_dir}")
+    logger.info(f"Paths: {paths}")
     return paths
 
 def test_batch_qr_generation(tmp_path):
     # Create a mock deck with two cards
     deck_name = "batch-deck"
     card_ids = ["001", "002"]
-    content_paths = create_content_yaml_structure(tmp_path, deck_name, card_ids)
-    output_dir = tmp_path / "gh-pages" / "decks"
+    create_content_yaml_structure(tmp_path, deck_name, card_ids)
+    output_dir = tmp_path / "decks"
     # Call the CLI as a subprocess
     result = subprocess.run([
-        sys.executable, "-m", "src.qr_generator", str(tmp_path / "decks")],
+        sys.executable, "-m", "src.qr_generator", str(tmp_path / "decks" / "batch-deck")],
         cwd=Path(__file__).parent.parent,
         capture_output=True,
         text=True,
@@ -149,7 +162,7 @@ def test_batch_qr_generation_single_file(tmp_path):
     deck_name = "singlefile-deck"
     card_ids = ["003"]
     content_paths = create_content_yaml_structure(tmp_path, deck_name, card_ids)
-    output_dir = tmp_path / "gh-pages" / "decks"
+    output_dir = tmp_path / "decks"
     # Call the CLI with a single content.yaml file
     result = subprocess.run([
         sys.executable, "-m", "src.qr_generator", content_paths[0]],
