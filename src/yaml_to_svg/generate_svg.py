@@ -28,12 +28,19 @@ class YAMLToSVG:
     ) -> None:
         if input_paths is not None:
             self.input_paths = input_paths
+            logger.info(f"Input paths: {self.input_paths}")
+            # Check that all input paths exist and are directories
+            for path in self.input_paths:
+                p = Path(path)
+                if not p.is_dir():
+                    raise FileNotFoundError(f"Deck path does not exist or is not a directory: {path}")
+                if not (p / "index.yaml").exists():
+                    raise FileNotFoundError(f"Deck path {path} is missing index.yaml")
             self.card_size = card_size if card_size is not None else (210, 297)
             self.font_size = font_size if font_size is not None else 12
             self.font_family = font_family if font_family is not None else 'Arial'
-            # Deck path logic
-            self.deck_path = Path(input_paths[0])
-            self.output_dir = getattr(self, 'output_dir', self.deck_path)
+            # Set default output_dir to the first input path if not set later
+            self.output_dir = str(self.input_paths[0])
         else:
             parser = argparse.ArgumentParser(description='Convert YAML questions to SVG cards')
             parser.add_argument('input_paths', nargs='+', help='List of folders or content.yaml files to process')
@@ -51,36 +58,27 @@ class YAMLToSVG:
             self.card_size = (args.card_width, args.card_height)
             self.font_size = args.font_size
             self.font_family = args.font_family
-            # Deck path logic
-            self.deck_path = Path(self.input_paths[0])
-            self.output_dir = getattr(self, 'output_dir', self.deck_path)
-        if not self.deck_path.exists():
-            raise FileNotFoundError(f"Deck path {self.deck_path} does not exist")
-        if not (self.deck_path / "index.yaml").exists():
-            raise FileNotFoundError(f"index.yaml not found in {self.deck_path}")
-
+            # Set default output_dir to the first input path if not set later
+            self.output_dir = str(self.input_paths[0])
 
     @property
     def output_path(self) -> Path:
         return Path(self.output_dir)
 
     def load_question(self, question_folder: str) -> dict[str, Any]:
+        # If question_folder is not absolute, treat it as relative to self.deck_path/cards
         folder = Path(question_folder)
-        if not folder.is_dir():
-            for subdir in ["questions", "cards"]:
-                candidate = self.deck_path / subdir / question_folder
-                if candidate.is_dir():
-                    folder = candidate
-                    break
-        for filename in ["question.yaml", "content.yaml"]:
+        if not folder.is_absolute() and hasattr(self, 'deck_path'):
+            folder = self.deck_path / "cards" / question_folder
+        # Try content.yaml first, then answers.yaml
+        for filename in ["content.yaml", "answers.yaml"]:
             question_file = folder / filename
             if question_file.exists():
                 with open(question_file, 'r') as f:
                     data = yaml.safe_load(f)
-                    if not isinstance(data, dict):
-                        raise ValueError(f"YAML file {question_file} did not return a dict")
-                    data['question_folder'] = str(folder)
-                    return data
+                    if isinstance(data, dict):
+                        data['question_folder'] = str(folder)
+                        return data
         raise FileNotFoundError(f"No question file found in folder {folder}")
             
     def create_svg_card(self, question: dict, card_id: str) -> None:
@@ -135,8 +133,6 @@ class YAMLToSVG:
         if not question_folders:
             logger.warning(f"No question folders found in the provided input paths.")
             return
-        with open(self.deck_path / "index.yaml", 'r') as f:
-            meta = yaml.safe_load(f)
         for question_folder in question_folders:
             try:
                 card_id = Path(question_folder).name

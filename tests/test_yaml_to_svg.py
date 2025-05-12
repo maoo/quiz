@@ -52,7 +52,7 @@ def create_test_deck(base_path, index_data=None):
     with open(question_001_dir / "content.yaml", 'w') as f:
         yaml.dump(question_001_data, f)
     with open(question_001_dir / "answers.yaml", 'w') as f:
-        yaml.dump([], f)
+        yaml.dump({'answers': []}, f)
         
     # Create question 002
     question_002_dir = questions_dir / "002"
@@ -65,7 +65,7 @@ def create_test_deck(base_path, index_data=None):
     with open(question_002_dir / "content.yaml", 'w') as f:
         yaml.dump(question_002_data, f)
     with open(question_002_dir / "answers.yaml", 'w') as f:
-        yaml.dump([], f)
+        yaml.dump({'answers': []}, f)
         
     # Create question 003 with content.yaml instead of question.yaml
     question_003_dir = questions_dir / "003"
@@ -79,7 +79,7 @@ def create_test_deck(base_path, index_data=None):
     with open(question_003_dir / "content.yaml", 'w') as f:
         yaml.dump(question_003_data, f)
     with open(question_003_dir / "answers.yaml", 'w') as f:
-        yaml.dump([], f)
+        yaml.dump({'answers': []}, f)
     
     return deck_path
 
