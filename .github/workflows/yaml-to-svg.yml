@@ -25,6 +25,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Checkout branches
         uses: ./.github/actions/checkout-branches
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Setup Python and Poetry
         uses: ./.github/actions/setup-python-poetry
         with:

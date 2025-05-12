@@ -26,7 +26,8 @@ jobs:
       - name: Checkout branches
         uses: ./.github/actions/checkout-branches
         with:
-          deck-name: '${{ github.event.inputs.deck_name }}'
+          deck_name: '${{ github.event.inputs.deck_name }}'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Setup Python and Poetry
         uses: ./.github/actions/setup-python-poetry
         with:
