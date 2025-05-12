@@ -13,6 +13,6 @@ poetry install
 # Add src directory to PYTHONPATH
 export PYTHONPATH="$PROJECT_ROOT:$PYTHONPATH"
 
-poetry run python -m src.yaml_to_svg.generate_svg "${INPUT_PATHS}"
+poetry run python -m src.yaml_to_svg.generate_svg "$INPUT_PATHS"
 
 echo "YAML to SVG conversion completed" 
