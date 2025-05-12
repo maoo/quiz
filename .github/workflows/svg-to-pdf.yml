@@ -1,6 +1,7 @@
 name: Convert SVG to PDF
 
 on:
+  # Run when Convert YAML to SVG workflow completes successfully
   workflow_run:
     workflows: ["Convert YAML to SVG"]
     types:
@@ -14,6 +15,7 @@ on:
 
 jobs:
   convert-svg:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }} 
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -45,4 +47,4 @@ jobs:
         with:
           commit-message: "Convert SVG to PDF"
           user-name: "maoo"
-          user-email: "maoo@apache.org" 
+          user-email: "maoo@apache.org"
