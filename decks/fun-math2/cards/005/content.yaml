@@ -1,0 +1,18 @@
+card_id: '005'
+question_type: short
+question_content: ¿Cuál es el perímetro de cada rectángulo dado?
+options:
+- 8x5 cm
+- 7x3 cm
+- 6x4 cm
+- 9x5 cm
+- 12x2 cm
+- 8x8 cm
+- 10x3 cm
+- 14x2 cm
+- 5x5 cm
+- 11x4 cm
+sources:
+- https://es.khanacademy.org/math/geometry-home/geometry
+url: https://blog.session.it/quiz/decks/fun-math/cards/005
+answer_type: free_text

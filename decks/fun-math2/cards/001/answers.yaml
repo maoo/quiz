@@ -1,0 +1,30 @@
+- order: 1
+  option: 64 + 27
+  answer: '91'
+- order: 2
+  option: 58 - 19
+  answer: '39'
+- order: 3
+  option: 13 × 5
+  answer: '65'
+- order: 4
+  option: 81 ÷ 9
+  answer: '9'
+- order: 5
+  option: 45 + 36
+  answer: '81'
+- order: 6
+  option: 72 - 18
+  answer: '54'
+- order: 7
+  option: 9 × 7
+  answer: '63'
+- order: 8
+  option: 100 ÷ 4
+  answer: '25'
+- order: 9
+  option: 23 + 54
+  answer: '77'
+- order: 10
+  option: 49 - 17
+  answer: '32'
