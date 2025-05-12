@@ -25,7 +25,8 @@ jobs:
       - name: Generate QR codes
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            ./scripts/generate_qr_codes.sh "gh-pages/decks"
+            DECKS_PATHS=$(ls -d gh-pages/decks/*/)
+            ./scripts/generate_qr_codes.sh $DECKS_PATHS
           else
             ./scripts/generate_qr_codes.sh "gh-pages/decks/${{ github.event.inputs.deck_name }}"
           fi
