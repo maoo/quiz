@@ -106,11 +106,18 @@ class MarkdownGenerator:
             
         lines.extend([
             "## Questions",
-            *[f"- [Question {card.id}]({card.id}.md)" for card in cards]
+            *[MarkdownGenerator.get_card_item(card.id) for card in cards]
         ])
-        
         return "\n".join(lines)
-
+    
+    @staticmethod
+    def get_card_item(card_id: str) -> str:
+        return (
+            f"- [Question {card_id}](cards/{card_id}/content) "
+            f"[PDF](cards/{card_id}/content.pdf) "
+            f"[SVG](cards/{card_id}/content.svg)"
+        )
+    
 class YAMLToMarkdown:
     """Main YAML to Markdown conversion class."""
     def __init__(self, input_paths: list[str]):
