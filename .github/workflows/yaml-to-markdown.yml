@@ -40,6 +40,7 @@ jobs:
             ./scripts/yaml_to_markdown.sh "gh-pages/decks/${{ github.event.inputs.deck_name }}"
           else
             DECKS_PATHS=$(ls -d gh-pages/decks/*/)
+            echo "DECKS_PATHS: $DECKS_PATHS"
             ./scripts/yaml_to_markdown.sh $DECKS_PATHS
           fi
       - name: Change to gh-pages directory
