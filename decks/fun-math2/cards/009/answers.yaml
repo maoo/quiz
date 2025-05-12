@@ -1,0 +1,30 @@
+- order: 1
+  option: Paso 1
+  answer: 'True'
+- order: 2
+  option: Paso 2
+  answer: 'True'
+- order: 3
+  option: Paso 3
+  answer: 'False'
+- order: 4
+  option: Paso 4
+  answer: 'True'
+- order: 5
+  option: Paso 5
+  answer: 'False'
+- order: 6
+  option: Paso 6
+  answer: 'True'
+- order: 7
+  option: Paso 7
+  answer: 'False'
+- order: 8
+  option: Paso 8
+  answer: 'True'
+- order: 9
+  option: Paso 9
+  answer: 'False'
+- order: 10
+  option: Paso 10
+  answer: 'True'
