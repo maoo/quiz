@@ -23,8 +23,5 @@ runs:
         fetch-depth: 0
         token: ${{ inputs.github_token }}
     - name: Copy deck to gh-pages
-      run: |
-        if [ -n "${{ inputs.deck_name }}" ]; then
-          cp -r decks/${{ inputs.deck_name }} gh-pages/decks/
-        fi
+      run: cp -Rf decks/* gh-pages/decks/
       shell: bash
