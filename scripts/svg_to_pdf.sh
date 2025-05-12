@@ -16,8 +16,6 @@ if [ "$#" -lt 1 ]; then
     exit 1
 fi
 
-INPUT_PATHS="$@"
-
 # Get the script directory and project root
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PROJECT_ROOT="$( cd "$SCRIPT_DIR/.." && pwd )"
@@ -31,18 +29,24 @@ export PYTHONPATH="$PROJECT_ROOT:$PYTHONPATH"
 
 # Process each SVG file
 failed_files=()
-for svg_file in $(get_svg_files "$INPUT_PATHS"); do
-    echo "Processing $svg_file"
-    if [ -f "$svg_file" ] && [[ "$svg_file" == *.svg ]]; then
+
+# Iterate over all input paths
+for input_path in "$@"; do
+    echo "Processing $input_path"
+    for svg_file in $(get_svg_files "$input_path"); do
+        echo "Processing $svg_file"
+        if [ -f "$svg_file" ] && [[ "$svg_file" == *.svg ]]; then
         echo "Converting $svg_file to PDF"
         output_file="${svg_file%.svg}.pdf"
+        # TODO - why width and height is not working?
         # if ! poetry run python -m src.svg_to_pdf.converter "$svg_file" --width 11 --height 11; then
         if ! poetry run python -m src.svg_to_pdf.converter "$svg_file"; then
             failed_files+=("$svg_file")
         fi
-    else
-        echo "Warning: $svg_file not found or not an SVG file"
-    fi
+        else
+            echo "Warning: $svg_file not found or not an SVG file"
+        fi
+    done
 done
 
 # Fail the script if any conversions failed
