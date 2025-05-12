@@ -1,13 +1,15 @@
 name: QR Code Generator
 
 on:
-  push:
-    paths:
-      - 'decks/**/*.yaml'
+  workflow_run:
+    workflows: ["Convert YAML to Markdown"]
+    types:
+      - completed
   workflow_dispatch:
 
 jobs:
   generate-qr:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }} 
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -34,5 +36,5 @@ jobs:
         uses: ./.github/actions/commit-and-push
         with:
           commit-message: "Generate QR codes"
-          user-name: "maoo"
-          user-email: "maoo@apache.org"
+          user-name: "github-actions[bot]"
+          user-email: "41898282+github-actions[bot]@users.noreply.github.com"          

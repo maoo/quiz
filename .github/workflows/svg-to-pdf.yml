@@ -1,7 +1,6 @@
 name: Convert SVG to PDF
 
 on:
-  # Run when Convert YAML to SVG workflow completes successfully
   workflow_run:
     workflows: ["Convert YAML to SVG"]
     types:
