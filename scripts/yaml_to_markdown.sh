@@ -3,12 +3,12 @@
 # yaml_to_markdown.sh - Convert YAML cards to Markdown for a given deck
 # Usage: ./scripts/yaml_to_markdown.sh <deck_dir>
 
-if [ "$#" -ne 1 ]; then
+if [ "$#" -eq 0 ]; then
     echo "Usage: $0 <input_path> [<input_path> ...]"
     exit 1
 fi
 
-INPUT_PATHS="$1"
+INPUT_PATHS="$@"
 
 # Set up Python environment
 cd "$PROJECT_ROOT"

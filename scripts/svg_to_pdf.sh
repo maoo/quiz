@@ -16,7 +16,7 @@ if [ "$#" -lt 1 ]; then
     exit 1
 fi
 
-INPUT_PATHS="$1"
+INPUT_PATHS="$@"
 
 # Get the script directory and project root
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"

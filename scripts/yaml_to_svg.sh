@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DECK_NAME="$1"
+INPUT_PATHS="$@"
 
 # Get the script directory and project root
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -13,6 +13,6 @@ poetry install
 # Add src directory to PYTHONPATH
 export PYTHONPATH="$PROJECT_ROOT:$PYTHONPATH"
 
-poetry run python -m src.yaml_to_svg.generate_svg "${DECK_NAME}"
+poetry run python -m src.yaml_to_svg.generate_svg "${INPUT_PATHS}"
 
 echo "YAML to SVG conversion completed" 
