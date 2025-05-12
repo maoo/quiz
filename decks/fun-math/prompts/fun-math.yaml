@@ -1,0 +1,83 @@
+title: "🚀 Matemáticas Divertidas"
+deck_id: "fun-math"
+language: "Spanish"
+difficulty_levels:
+  easy: 0%
+  easy_medium: 5%
+  medium: 10%
+  medium_hard: 50%
+  hard: 35%
+
+introduction: |
+  Matemáticas Divertidas es un mazo de cartas para ayudar a estudiantes de 5º grado (10-11 años) a aprender matemáticas de una manera divertida. Las preguntas están diseñadas para ser inteligentes, a veces desafiantes y siempre intrigantes para despertar el interés de los estudiantes en los conceptos matemáticos. Este mazo tiene como objetivo desarrollar el pensamiento crítico y las habilidades de resolución de problemas a través de acertijos atractivos que combinan geometría, sistema métrico, problemas de lógica y otras áreas matemáticas. Las preguntas deben animar a los estudiantes a pensar creativamente y aplicar principios matemáticos a situaciones novedosas.
+
+question_examples:
+  extended:
+    - question: "En el laberinto que se muestra en la imagen de abajo, hay diferentes caminos; ordénalos de más largo a más corto (el más largo es 1)"
+      embedded_media: "Imagen - muestra un laberinto, y letras de A a L marcando el inicio y el final de caminos invisibles en el laberinto"
+      options: "10 letras diferentes (A a L)"
+      answers: "10 números que representan el rango de la solución (del más largo al más corto)"
+    - question: "Ordena estas formas geométricas de mayor a menor (la mayor es 1)"
+      embedded_media: "Imagen - muestra diferentes formas"
+      options: "los nombres de las 10 formas geométricas mostradas en la imagen"
+      answers: "10 números que representan el rango de la solución (de mayor a menor)"
+    - question: "Calcula el área de cada región coloreada en la figura y ordénalas de mayor a menor (la mayor es 1)"
+      embedded_media: "Imagen - muestra una figura compleja dividida en diferentes regiones coloreadas con dimensiones etiquetadas"
+      options: "10 regiones coloreadas diferentes etiquetadas con letras"
+      answers: "10 números que representan el rango de la solución (de mayor a menor)"
+    - question: "Estas formas se pliegan en objetos 3D. Relaciona cada patrón 2D con la forma 3D correcta que crea."
+      embedded_media: "Imagen - muestra varios patrones/redes 2D que se pliegan en formas 3D"
+      options: "10 formas 3D diferentes (cubo, pirámide, prisma rectangular, etc.)"
+      answers: "10 letras correspondientes a la forma 3D correcta para cada patrón"
+
+  short:
+    - question: "¿Cuál es el resultado correcto de las operaciones?"
+      options: "10 operaciones matemáticas diferentes"
+      answers: "10 soluciones numéricas para las 10 operaciones definidas como opciones"
+    - question: "Ordena los resultados de las operaciones (el más alto es 1)"
+      options: "10 operaciones matemáticas diferentes"
+      answers: "10 números que representan el rango de la solución (de mayor a menor)"
+    - question: "Si un patrón continúa, ¿cuál será el valor en la posición X?"
+      options: "10 secuencias numéricas diferentes con un valor faltante"
+      answers: "10 números que completan cada secuencia correctamente"
+    - question: "Resuelve estos problemas de palabras y relaciónalos con el método de solución correcto"
+      options: "10 problemas de palabras diferentes que involucran fracciones, porcentajes y proporciones"
+      answers: "10 enfoques matemáticos (proporción directa, multiplicación cruzada, etc.) que resuelven cada problema"
+
+subject_matter:
+  - "Números de 4 y 5 cifras"
+  - "Cálculo mental"
+  - "Resolución de problemas"
+  - "Mapas, planos y croquis"
+  - "Sumar y restar"
+  - "Multiplicar por una y dos cifras"
+  - "Jerarquía de operaciones"
+  - "El punto, la recta, la semirrecta, el segmento y sus posiciones"
+  - "Simetrías"
+  - "Estadística"
+  - "Multiplicar por 2 y 3 cifras"
+  - "Multiplicar por la unidad seguida de ceros"
+  - "Dividir entre 1, 2 y 3 cifras"
+  - "Circunferencia y círculo"
+  - "Ángulos"
+  - "Polígonos"
+  - "Perímetros"
+  - "Cuerpos geométricos"
+  - "Poliedros"
+  - "Cuerpos redondos"
+  - "Dividir por la unidad seguida de ceros"
+  - "Unidades de tiempo"
+  - "Monedas y billetes"
+  - "Resolución de problemas"
+  - "Las fracciones"
+  - "Unidades de medida de longitud, de masa y de capacidad"
+  - "Probabilidad"
+
+quiz_types:
+  examples:
+    - "https://play.howstuffworks.com/quiz/can-you-ace-this-5th-grade-math-quiz"
+    - "https://quizizz.com/admin/search/5%20grade%20math?term=5+grade+math&source=SearchHeader&arid=6095d7e1-2b15-46ea-9d2c-364e1f1ed009&apos=-1&page=SearchPage"
+    - "https://mp.moonpreneur.com/math-quiz-for-kids/grade-5/mental-maths/"
+    - "https://www.mathplayground.com/grade_5_games.html"
+    - "https://www.education.com/worksheets/fifth-grade/math/"
+    - "https://es.khanacademy.org/math/arithmetic-home/arithmetic"

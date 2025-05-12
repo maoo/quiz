@@ -1,0 +1,30 @@
+- order: 1
+  option: Fin del siglo XX
+  answer: '2000'
+- order: 2
+  option: Inicio del siglo XXI
+  answer: '2001'
+- order: 3
+  option: Uso del euro
+  answer: '2002'
+- order: 4
+  option: Lanzamiento iPhone
+  answer: '2007'
+- order: 5
+  option: Milenio 2000
+  answer: '2000'
+- order: 6
+  option: Crisis 2008
+  answer: '2008'
+- order: 7
+  option: Juegos Olímpicos 2012
+  answer: '2012'
+- order: 8
+  option: Facebook 2004
+  answer: '2004'
+- order: 9
+  option: YouTube 2005
+  answer: '2005'
+- order: 10
+  option: Copa Mundo 2010
+  answer: '2010'

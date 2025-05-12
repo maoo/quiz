@@ -1,0 +1,30 @@
+- order: 1
+  option: Rectángulo A
+  answer: '1'
+- order: 2
+  option: Rectángulo B
+  answer: '5'
+- order: 3
+  option: Rectángulo C
+  answer: '3'
+- order: 4
+  option: Rectángulo D
+  answer: '2'
+- order: 5
+  option: Rectángulo E
+  answer: '4'
+- order: 6
+  option: Rectángulo F
+  answer: '6'
+- order: 7
+  option: Rectángulo G
+  answer: '7'
+- order: 8
+  option: Rectángulo H
+  answer: '9'
+- order: 9
+  option: Rectángulo I
+  answer: '8'
+- order: 10
+  option: Rectángulo J
+  answer: '10'
