@@ -145,9 +145,9 @@ def test_batch_qr_generation(tmp_path):
     card_ids = ["001", "002"]
     create_content_yaml_structure(tmp_path, deck_name, card_ids)
     output_dir = tmp_path / "decks"
-    # Call the CLI as a subprocess
+    # Call the CLI as a subprocess, passing the actual deck directory
     result = subprocess.run([
-        sys.executable, "-m", "src.qr_generator", str(tmp_path / "decks" / "batch-deck")],
+        sys.executable, "-m", "src.qr_generator", str(output_dir / deck_name)],
         cwd=Path(__file__).parent.parent,
         capture_output=True,
         text=True,

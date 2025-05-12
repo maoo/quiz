@@ -10,13 +10,12 @@ class TestYAMLToMarkdown(unittest.TestCase):
         # Create a temporary directory for testing
         self.test_dir = tempfile.mkdtemp()
         self.input_path = Path(self.test_dir) / "test_deck"
-        self.output_path = Path(self.test_dir) / "output"
         self.input_path.mkdir()
-        self.output_path.mkdir()
         
         # Create test YAML files
         self._create_test_yaml_files()
-        
+    
+    # also create a test_deck/cards/<id>/answers.yaml file , following the format of the schemas/answers.yaml file, generate random answers
     def _create_test_yaml_files(self):
         # Create index.yaml
         readme_data = {
@@ -34,7 +33,61 @@ class TestYAMLToMarkdown(unittest.TestCase):
         # Create questions directory
         questions_dir = self.input_path / "cards"
         questions_dir.mkdir()
-        
+
+        # Create answers data
+        answers_data = [
+                {
+                    'order': 1,
+                    'option': '64 + 27',
+                    'answer': '91'
+                },
+                {
+                    'order': 2,
+                    'option': '58 - 19',
+                    'answer': '39'
+                },
+                {
+                    'order': 3,
+                    'option': '13 × 5',
+                    'answer': '65'
+                },
+                {
+                    'order': 4,
+                    'option': '81 ÷ 9',
+                    'answer': '9'
+                },
+                {
+                    'order': 5,
+                    'option': '45 + 36',
+                    'answer': '81'
+                },
+                {
+                    'order': 6,
+                    'option': '72 - 18',
+                    'answer': '54'
+                },
+                {
+                    'order': 7,
+                    'option': '9 × 7',
+                    'answer': '63'
+                },
+                {
+                    'order': 8,
+                    'option': '100 ÷ 4',
+                    'answer': '25'
+                },
+                {
+                    'order': 9,
+                    'option': '23 + 54',
+                    'answer': '77'
+                },
+                {
+                    'order': 10,
+                    'option': '49 - 17',
+                    'answer': '32'
+                }
+        ]
+
         # Create question 001
         question_001_dir = questions_dir / "001"
         question_001_dir.mkdir()
@@ -45,9 +98,10 @@ class TestYAMLToMarkdown(unittest.TestCase):
             'answers_type': 'single',
             'sources': ['https://example.com']
         }
-        with open(question_001_dir / "question.yaml", 'w') as f:
+        with open(question_001_dir / "content.yaml", 'w') as f:
             yaml.dump(question_001_data, f)
-            
+        with open(question_001_dir / "answers.yaml", 'w') as f:
+            yaml.dump(answers_data, f)
         # Create question 002 with different content format
         question_002_dir = questions_dir / "002"
         question_002_dir.mkdir()
@@ -58,12 +112,16 @@ class TestYAMLToMarkdown(unittest.TestCase):
         }
         with open(question_002_dir / "content.yaml", 'w') as f:  # Using content.yaml instead of question.yaml
             yaml.dump(question_002_data, f)
-            
+        with open(question_002_dir / "answers.yaml", 'w') as f:
+            yaml.dump(answers_data, f)
+
         # Create invalid YAML for question 003
         question_003_dir = questions_dir / "003"
         question_003_dir.mkdir()
-        with open(question_003_dir / "question.yaml", 'w') as f:
+        with open(question_003_dir / "content.yaml", 'w') as f:
             f.write("invalid: yaml: content: [")
+        with open(question_003_dir / "answers.yaml", 'w') as f:
+            yaml.dump(answers_data, f)
             
     def test_card_question_text_property(self):
         # Test different content formats
@@ -149,11 +207,15 @@ class TestYAMLToMarkdown(unittest.TestCase):
         converter = YAMLToMarkdown([str(self.input_path)])
         converter.process_deck()
         
+# /var/folders/ky/7b9535s17b1b4kxd3k1bv00r0000gn/T/tmppljf4sq6/output/index.md
+
+
         # Should still create index and valid cards
-        self.assertTrue((self.output_path / "index.md").exists())
-        self.assertTrue((self.output_path / "001.md").exists())
-        self.assertTrue((self.output_path / "002.md").exists())
-        self.assertFalse((self.output_path / "003.md").exists())  # Invalid card should not be created
+        print(f"Index file: {self.input_path / 'index.md'}")
+        self.assertTrue((self.input_path / "index.md").exists())
+        self.assertTrue((self.input_path / "cards/001/content.md").exists())
+        self.assertTrue((self.input_path / "cards/002/content.md").exists())
+        self.assertFalse((self.input_path / "cards/003/content.md").exists())  # Invalid card should not be created
         
     def tearDown(self):
         # Clean up temporary directory

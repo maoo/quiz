@@ -31,7 +31,7 @@ def test_convert_svg_to_pdf(tmp_path):
     svg_file.write_text(svg_content)
     
     # Test the conversion
-    converter.convert_svg_to_pdf(str(svg_file))
+    converter.convert_svg_to_pdf(str(svg_file), str(output_path))
     
     # Verify the output file exists
     assert output_path.exists()
