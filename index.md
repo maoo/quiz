@@ -10,5 +10,6 @@ Each deck contains a set of questions to test your knowledge.
 
 ## Available Decks
 
+- [DevOps Hero](decks/devops-hero)
 - [Fun Math](decks/fun-math)
-- - [Fun Math 2](decks/fun-math2)
+- [Fun Math 2](decks/fun-math2)
