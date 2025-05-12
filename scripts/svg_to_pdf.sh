@@ -7,29 +7,16 @@
 
 # Function to get SVG files based on event type
 get_svg_files() {
-    if [ "$1" == "manual" ]; then
-        if [ -n "$2" ]; then
-            find gh-pages/decks/$2/cards -name '*.svg'
-        else
-            find gh-pages/decks -name '*.svg'
-        fi
-    else
-        echo "$3"
-    fi
+    find $1 -name '*.svg'
 }
 
 # Main script
-if [ "$#" -lt 2 ]; then
-    echo "Usage: $0 <event_type> <deck_name> [changed_files]"
-    echo "event_type: manual or workflow"
-    echo "deck_name: name of the deck to process (optional for manual)"
-    echo "changed_files: list of changed files (required for workflow)"
+if [ "$#" -lt 1 ]; then
+    echo "Usage: $0 <input_paths>"
     exit 1
 fi
 
-EVENT_TYPE="$1"
-DECK_NAME="$2"
-CHANGED_FILES="$3"
+INPUT_PATHS="$1"
 
 # Get the script directory and project root
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -44,10 +31,13 @@ export PYTHONPATH="$PROJECT_ROOT:$PYTHONPATH"
 
 # Process each SVG file
 failed_files=()
-for svg_file in $(get_svg_files "$EVENT_TYPE" "$DECK_NAME" "$CHANGED_FILES"); do
+for svg_file in $(get_svg_files "$INPUT_PATHS"); do
+    echo "Processing $svg_file"
     if [ -f "$svg_file" ] && [[ "$svg_file" == *.svg ]]; then
+        echo "Converting $svg_file to PDF"
         output_file="${svg_file%.svg}.pdf"
-        if ! poetry run python -m src.svg_to_pdf.converter "$svg_file" -o "$output_file" --width 11 --height 11; then
+        # if ! poetry run python -m src.svg_to_pdf.converter "$svg_file" --width 11 --height 11; then
+        if ! poetry run python -m src.svg_to_pdf.converter "$svg_file"; then
             failed_files+=("$svg_file")
         fi
     else

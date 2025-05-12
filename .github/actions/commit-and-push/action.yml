@@ -1,0 +1,27 @@
+name: 'Commit and Push to gh-pages'
+description: 'Commits and pushes changes to the gh-pages branch.'
+inputs:
+  commit-message:
+    description: 'Commit message'
+    required: true
+  user-name:
+    description: 'Git user name'
+    required: true
+  user-email:
+    description: 'Git user email'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - name: Set git user
+      run: |
+        git config --local user.email "${{ inputs.user-email }}"
+        git config --local user.name "${{ inputs.user-name }}"
+      shell: bash
+    - name: Commit and push changes
+      run: |
+        cd gh-pages
+        git add decks/*
+        git commit -m "${{ inputs.commit-message }}" || exit 0
+        git push origin gh-pages
+      shell: bash 

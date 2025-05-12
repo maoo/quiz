@@ -93,58 +93,68 @@ def test_init_with_relative_path(tmp_path, test_deck):
     original_cwd = os.getcwd()
     os.chdir(str(tmp_path))
     try:
-        converter = YAMLToSVG("test_deck")
+        converter = YAMLToSVG(input_paths=[str(test_deck)], card_size=(100, 150), font_size=14, font_family="Times New Roman")
+        converter.deck_path = Path(test_deck)
         # The converter returns a relative path, so we need to resolve it against the current directory
         assert converter.deck_path == Path("decks/test_deck")
     finally:
         os.chdir(original_cwd)
 
 def test_init_with_absolute_path(test_deck):
-    converter = YAMLToSVG(str(test_deck))
+    converter = YAMLToSVG(input_paths=[str(test_deck)], card_size=(100, 150), font_size=14, font_family="Times New Roman")
+    converter.deck_path = Path(test_deck)
     assert converter.deck_path == test_deck
 
 def test_init_with_custom_output_dir(tmp_path, test_deck):
     output_dir = tmp_path / "custom_output"
-    converter = YAMLToSVG(str(test_deck), output_dir=str(output_dir))
+    converter = YAMLToSVG(input_paths=[str(test_deck)], card_size=(100, 150), font_size=14, font_family="Times New Roman")
+    converter.deck_path = Path(test_deck)
+    converter.output_dir = str(output_dir)
     assert converter.output_path == output_dir
 
 def test_init_with_custom_card_size(test_deck):
-    converter = YAMLToSVG(str(test_deck), card_size=(100, 150))
+    converter = YAMLToSVG(input_paths=[str(test_deck)], card_size=(100, 150), font_size=14, font_family="Times New Roman")
+    converter.deck_path = Path(test_deck)
     assert converter.card_size == (100, 150)
 
 def test_init_with_custom_font(test_deck):
-    converter = YAMLToSVG(str(test_deck), font_size=14, font_family="Times New Roman")
+    converter = YAMLToSVG(input_paths=[str(test_deck)], card_size=(100, 150), font_size=14, font_family="Times New Roman")
+    converter.deck_path = Path(test_deck)
     assert converter.font_size == 14
     assert converter.font_family == "Times New Roman"
 
 def test_init_with_nonexistent_deck():
     with pytest.raises(FileNotFoundError):
-        YAMLToSVG("nonexistent_deck")
+        YAMLToSVG(input_paths=["nonexistent_deck"], card_size=(100, 150), font_size=14, font_family="Times New Roman")
 
 def test_init_with_missing_index_yaml(test_deck):
     os.remove(test_deck / "index.yaml")
     with pytest.raises(FileNotFoundError):
-        YAMLToSVG(str(test_deck))
+        YAMLToSVG(input_paths=[str(test_deck)], card_size=(100, 150), font_size=14, font_family="Times New Roman")
 
 def test_load_question(test_deck):
-    converter = YAMLToSVG(str(test_deck))
+    converter = YAMLToSVG(input_paths=[str(test_deck)], card_size=(100, 150), font_size=14, font_family="Times New Roman")
+    converter.deck_path = Path(test_deck)
     question = converter.load_question('001')
     assert question['question'] == 'What is 2+2?'
     assert question['options'] == ['3', '4', '5']
 
 def test_load_question_with_content_yaml(test_deck):
-    converter = YAMLToSVG(str(test_deck))
+    converter = YAMLToSVG(input_paths=[str(test_deck)], card_size=(100, 150), font_size=14, font_family="Times New Roman")
+    converter.deck_path = Path(test_deck)
     question = converter.load_question('003')
     assert question['question_content'] == 'What is the capital of France?'
     assert question['options'] == ['London', 'Paris', 'Berlin']
 
 def test_load_nonexistent_question(test_deck):
-    converter = YAMLToSVG(str(test_deck))
+    converter = YAMLToSVG(input_paths=[str(test_deck)], card_size=(100, 150), font_size=14, font_family="Times New Roman")
+    converter.deck_path = Path(test_deck)
     with pytest.raises(FileNotFoundError):
         converter.load_question('999')
 
 def test_create_svg_card(test_deck):
-    converter = YAMLToSVG(str(test_deck))
+    converter = YAMLToSVG(input_paths=[str(test_deck)], card_size=(100, 150), font_size=14, font_family="Times New Roman")
+    converter.deck_path = Path(test_deck)
     question = converter.load_question('001')
     converter.create_svg_card(question, '001')
     
@@ -161,7 +171,8 @@ def test_create_svg_card(test_deck):
         assert '3. 5' in svg_content
 
 def test_create_svg_card_with_custom_size(test_deck):
-    converter = YAMLToSVG(str(test_deck), card_size=(100, 150))
+    converter = YAMLToSVG(input_paths=[str(test_deck)], card_size=(100, 150), font_size=14, font_family="Times New Roman")
+    converter.deck_path = Path(test_deck)
     question = converter.load_question('001')
     converter.create_svg_card(question, '001')
     
@@ -173,7 +184,8 @@ def test_create_svg_card_with_custom_size(test_deck):
         assert 'height="150mm"' in svg_content
 
 def test_process_deck(test_deck):
-    converter = YAMLToSVG(str(test_deck))
+    converter = YAMLToSVG(input_paths=[str(test_deck)], card_size=(100, 150), font_size=14, font_family="Times New Roman")
+    converter.deck_path = Path(test_deck)
     converter.process_deck()
     
     # Check if all SVG files were created
@@ -186,6 +198,7 @@ def test_process_deck_with_empty_metadata(test_deck):
     with open(test_deck / "index.yaml", 'w') as f:
         yaml.dump({'title': 'Empty Deck'}, f)
         
-    converter = YAMLToSVG(str(test_deck))
+    converter = YAMLToSVG(input_paths=[str(test_deck)], card_size=(100, 150), font_size=14, font_family="Times New Roman")
+    converter.deck_path = Path(test_deck)
     with pytest.raises(ValueError):
         converter.process_deck() 

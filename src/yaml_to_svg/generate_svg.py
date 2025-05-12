@@ -5,7 +5,7 @@ import svgwrite
 import argparse
 import logging
 from typing import Dict, List, Optional, Any, cast, Union
-from src.file_utils import get_question_folders
+from src.file_utils import get_question_folders, get_deck_folders
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -19,53 +19,73 @@ class YAMLToSVG:
     for input decks.
     """
     
-    def __init__(self):
-        parser = argparse.ArgumentParser(description='Convert YAML questions to SVG cards')
-        parser.add_argument('input_paths', nargs='+', help='List of folders or content.yaml files to process')
-        parser.add_argument('--card-width', type=float, default=210,
-                          help='Card width in millimeters (default: 210)')
-        parser.add_argument('--card-height', type=float, default=297,
-                          help='Card height in millimeters (default: 297)')
-        parser.add_argument('--font-size', type=int, default=12,
-                          help='Font size for card text (default: 12)')
-        parser.add_argument('--font-family', default='Arial',
-                          help='Font family for card text (default: Arial)')
-        args = parser.parse_args()
+    def __init__(
+        self,
+        input_paths: Optional[List[str]] = None,
+        card_size: Optional[tuple] = None,
+        font_size: Optional[int] = None,
+        font_family: Optional[str] = None
+    ) -> None:
+        if input_paths is not None:
+            self.input_paths = input_paths
+            self.card_size = card_size if card_size is not None else (210, 297)
+            self.font_size = font_size if font_size is not None else 12
+            self.font_family = font_family if font_family is not None else 'Arial'
+            # Deck path logic
+            self.deck_path = Path(input_paths[0])
+            if not self.deck_path.exists():
+                raise FileNotFoundError(f"Deck path {self.deck_path} does not exist")
+            if not (self.deck_path / "index.yaml").exists():
+                raise FileNotFoundError(f"index.yaml not found in {self.deck_path}")
+            self.output_dir = getattr(self, 'output_dir', self.deck_path)
+        else:
+            parser = argparse.ArgumentParser(description='Convert YAML questions to SVG cards')
+            parser.add_argument('input_paths', nargs='+', help='List of folders or content.yaml files to process')
+            parser.add_argument('--card-width', type=float, default=210,
+                              help='Card width in millimeters (default: 210)')
+            parser.add_argument('--card-height', type=float, default=297,
+                              help='Card height in millimeters (default: 297)')
+            parser.add_argument('--font-size', type=int, default=12,
+                              help='Font size for card text (default: 12)')
+            parser.add_argument('--font-family', default='Arial',
+                              help='Font family for card text (default: Arial)')
+            args = parser.parse_args()
+            self.input_paths = args.input_paths
+            self.card_size = (args.card_width, args.card_height)
+            self.font_size = args.font_size
+            self.font_family = args.font_family
+            # Deck path logic
+            self.deck_path = Path(self.input_paths[0])
+            if not self.deck_path.exists():
+                raise FileNotFoundError(f"Deck path {self.deck_path} does not exist")
+            if not (self.deck_path / "index.yaml").exists():
+                raise FileNotFoundError(f"index.yaml not found in {self.deck_path}")
+            self.output_dir = getattr(self, 'output_dir', self.deck_path)
 
-        self.input_paths = args.input_paths
-        self.card_size = (args.card_width, args.card_height)
-        self.font_size = args.font_size
-        self.font_family = args.font_family
+    @property
+    def output_path(self) -> Path:
+        return Path(self.output_dir)
 
-    def load_question(self, question_folder: str) -> Dict[str, Any]:
-        """Load a question from its YAML file.
-        
-        Args:
-            question_folder: The folder containing the question files
-            
-        Returns:
-            Dict containing the question data, with an added 'question_folder' key
-            
-        Raises:
-            FileNotFoundError: If no question file is found
-        """
+    def load_question(self, question_folder: str) -> dict[str, Any]:
         folder = Path(question_folder)
+        if not folder.is_dir():
+            for subdir in ["questions", "cards"]:
+                candidate = self.deck_path / subdir / question_folder
+                if candidate.is_dir():
+                    folder = candidate
+                    break
         for filename in ["question.yaml", "content.yaml"]:
             question_file = folder / filename
             if question_file.exists():
                 with open(question_file, 'r') as f:
-                    data = cast(Dict[str, Any], yaml.safe_load(f))
+                    data = yaml.safe_load(f)
+                    if not isinstance(data, dict):
+                        raise ValueError(f"YAML file {question_file} did not return a dict")
                     data['question_folder'] = str(folder)
                     return data
-        raise FileNotFoundError(f"No question file found in folder {question_folder}")
+        raise FileNotFoundError(f"No question file found in folder {folder}")
             
-    def create_svg_card(self, question: Dict[str, Any], card_id: str) -> None:
-        """Create an SVG card for a question.
-        
-        Args:
-            question: Dictionary containing the question data
-            card_id: The ID of the card to create
-        """
+    def create_svg_card(self, question: dict, card_id: str) -> None:
         logger.info(f"Creating SVG for card {card_id} at {question['question_folder']}")
         output_file = os.path.join(question['question_folder'], "content.svg")
         logger.info(f"Output file: {output_file}")
@@ -112,23 +132,20 @@ class YAMLToSVG:
         logger.info(f"Saved SVG to {output_file}")
         
     def process_deck(self) -> None:
-        """Process all questions in the deck.
-        
-        Raises:
-            ValueError: If no questions or cards are found in the deck metadata
-        """
-        question_folders = get_question_folders(self.input_paths)
+        deck_folders = get_deck_folders(self.input_paths)
+        question_folders = get_question_folders(deck_folders)
         if not question_folders:
             logger.warning(f"No question folders found in the provided input paths.")
             return
+        with open(self.deck_path / "index.yaml", 'r') as f:
+            meta = yaml.safe_load(f)
         for question_folder in question_folders:
             try:
-                question_data = self.load_question(question_folder)
-                card_id = str(Path(question_folder).name)
-                self.create_svg_card(question_data, card_id)
-                logger.info(f"Created SVG for card {card_id}")
+                card_id = Path(question_folder).name
+                question = self.load_question(question_folder)
+                self.create_svg_card(question, card_id)
             except Exception as e:
-                logger.error(f"Error processing card in {question_folder}: {str(e)}")
+                logger.error(f"Failed to process question {question_folder}: {e}")
             
 def main() -> None:
     try:

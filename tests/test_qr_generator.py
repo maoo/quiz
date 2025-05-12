@@ -46,7 +46,7 @@ def test_generate_question_qr_code(tmp_path, monkeypatch):
     result = generate_question_qr_code(
         deck_name, 
         card_id,
-        output_dir=str(tmp_path + "/" + deck_name + "/cards/" + card_id)
+        output_dir=str(tmp_path / deck_name / "cards" / card_id)
     )
     
     expected_path = os.path.join(tmp_path, deck_name, "cards", card_id, "qr.png")
@@ -88,7 +88,7 @@ def test_generate_question_qr_code_custom_prefixes(tmp_path, monkeypatch):
     result = generate_question_qr_code(
         deck_name,
         card_id,
-        output_prefix=custom_output_prefix
+        output_dir=str(custom_output_prefix),
         url_prefix=custom_url_prefix,
     )
     
@@ -109,7 +109,7 @@ def test_generate_question_qr_code_default_prefixes(tmp_path, monkeypatch):
     result = generate_question_qr_code(
         deck_name, 
         card_id,
-        output_dir=str(tmp_path + "/" + deck_name + "/cards/" + card_id)
+        output_dir=str(tmp_path / deck_name / "cards" / card_id)
     )
     
     expected_path = os.path.join(tmp_path, deck_name, "cards", card_id, "qr.png")

@@ -19,61 +19,30 @@ jobs:
       contents: write
       packages: read
     steps:
-      - name: Wait for push to be processed
-        if: github.event_name == 'workflow_run'
-        run: |
-          echo "Waiting 10 seconds to ensure push is processed..."
-          sleep 10
-
-      - name: Checkout main branch
-        uses: actions/checkout@v4
+      - name: Checkout branches
+        uses: ./.github/actions/checkout-branches
         with:
-          fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Checkout gh-pages branch
-        uses: actions/checkout@v4
-        with:
-          ref: gh-pages
-          path: gh-pages
-          fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
+          deck-name: '${{ github.event.inputs.deck_name }}'
+      - name: Setup Python and Poetry
+        uses: ./.github/actions/setup-python-poetry
         with:
           python-version: '3.11'
-
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
-        with:
-          version: latest
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-
       - name: Install dependencies
-        run: poetry install
-
+        uses: ./.github/actions/install-dependencies
       - name: Convert SVG to PDF
         run: |
-          chmod +x scripts/svg_to_pdf.sh
           if [ -n "${{ github.event.inputs.deck_name }}" ]; then
-            ./scripts/svg_to_pdf.sh manual "${{ github.event.inputs.deck_name }}"
+            ./scripts/svg_to_pdf.sh "gh-pages/decks/${{ github.event.inputs.deck_name }}"
           else
-            # Get all deck names
             for deck in gh-pages/decks/*; do
               if [ -d "$deck" ]; then
-                deck_name=$(basename "$deck")
-                ./scripts/svg_to_pdf.sh manual "$deck_name"
+                ./scripts/svg_to_pdf.sh "gh-pages/decks/$deck_name"
               fi
             done
           fi
-
       - name: Commit and push changes
-        run: |
-          cd gh-pages
-          git config --local user.email "maoo@apache.org"
-          git config --local user.name "maoo"
-          git add decks/*
-          git commit -m "Convert SVG to PDF" || exit 0
-          git push origin gh-pages 
+        uses: ./.github/actions/commit-and-push
+        with:
+          commit-message: "Convert SVG to PDF"
+          user-name: "maoo"
+          user-email: "maoo@apache.org" 

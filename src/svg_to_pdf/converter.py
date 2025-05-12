@@ -17,7 +17,13 @@ from src.svg_to_pdf.converters.cairo_converter import CairoConverter
 from src.svg_to_pdf.image_handler import ImageHandler
 
 # Configure logging
-logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
+for handler in logging.root.handlers[:]:
+    logging.root.removeHandler(handler)
+logging.basicConfig(
+    level=logging.INFO,
+    stream=sys.stdout,
+    format='%(levelname)s: %(message)s'
+)
 logger = logging.getLogger(__name__)
 
 
@@ -40,7 +46,7 @@ class SVGToPDFConverter:
         self.dpi = dpi
         self.converter = CairoConverter(self.dpi)
         
-    def convert_svg_to_pdf(self, svg_file: str, output_file: Optional[str] = None) -> str:
+    def convert_svg_to_pdf(self, svg_file: str, output_file: str) -> None:
         """
         Convert SVG file to PDF with proper image handling.
         
@@ -48,17 +54,10 @@ class SVGToPDFConverter:
             svg_file: Path to the SVG file
             output_file: Path to the output PDF file
             
-        Returns:
-            Path to the generated PDF file
-            
         Raises:
             Exception: If conversion fails
         """
         svg_path = Path(svg_file)
-        
-        # Default output path if not provided
-        if output_file is None:
-            output_file = str(svg_path.with_suffix('.pdf'))
         
         # Create a temporary file for the modified SVG
         with tempfile.NamedTemporaryFile(suffix='.svg', delete=False) as temp_svg:
@@ -86,43 +85,20 @@ class SVGToPDFConverter:
                 raise Exception("Conversion failed")
                 
             logger.info(f"Successfully created PDF: {output_file}")
-            return output_file
-            
         except Exception as e:
             logger.error(f"Conversion failed: {e}")
-            raise
         finally:
             # Clean up the temporary file
             if os.path.exists(temp_svg_path):
                 os.unlink(temp_svg_path)
 
-
-def process_directory(input_dir: str, output_dir: Optional[str] = None) -> None:
-    """
-    Process all SVG files in a directory.
-    
-    Args:
-        input_dir: Path to the input directory
-        output_dir: Path to the output directory (optional)
-    """
-    input_path = Path(input_dir)
-    if not input_path.is_dir():
-        raise ValueError(f"{input_dir} is not a directory")
-        
-    if output_dir is None:
-        output_path = input_path
-    else:
-        output_path = Path(output_dir)
-        output_path.mkdir(parents=True, exist_ok=True)
-    
-    converter = SVGToPDFConverter()
-    
-    for svg_file in input_path.glob("*.svg"):
-        try:
-            output_file = str(output_path / svg_file.with_suffix('.pdf').name)
-            converter.convert_svg_to_pdf(str(svg_file), output_file)
-        except Exception as e:
-            logger.error(f"Failed to process {svg_file}: {e}")
+    def process_directory(self, input_path: Path, output_path: Path) -> None:
+        for svg_file in input_path.glob("*.svg"):
+            try:
+                output_file = str(output_path / svg_file.with_suffix('.pdf').name)
+                self.convert_svg_to_pdf(str(svg_file), output_file)
+            except Exception as e:
+                logger.error(f"Failed to process {svg_file}: {e}")
 
 
 def main() -> int:
@@ -134,7 +110,6 @@ def main() -> int:
     """
     parser = argparse.ArgumentParser(description='Convert SVG files to PDF with proper image support')
     parser.add_argument('input', help='Path to the SVG file or directory to convert')
-    parser.add_argument('-o', '--output', help='Path to the output PDF file or directory')
     parser.add_argument('-v', '--verbose', action='store_true', help='Enable verbose output')
     parser.add_argument('--dpi', type=int, default=254, 
                       help='DPI for PDF generation (default: 254, which is ~100px per cm)')
@@ -148,20 +123,21 @@ def main() -> int:
         for name in logging.root.manager.loggerDict:
             logging.getLogger(name).setLevel(logging.DEBUG)
     
+    logger.info(f"Processing {args.input}")
+    
     try:
         input_path = Path(args.input)
         
         if input_path.is_dir():
             # Process directory
-            process_directory(str(input_path), args.output)
+            converter = SVGToPDFConverter(dpi=args.dpi)
+            converter.process_directory(input_path, input_path)
             return 0
         elif input_path.suffix.lower() == '.svg':
             # Process single file
             converter = SVGToPDFConverter(dpi=args.dpi)
-            output_file = converter.convert_svg_to_pdf(
-                str(input_path), 
-                args.output
-            )
+            output_file = str(input_path.with_suffix('.pdf'))
+            converter.convert_svg_to_pdf(str(input_path), output_file)
             logger.info(f"Conversion complete: {output_file}")
             return 0
         else:

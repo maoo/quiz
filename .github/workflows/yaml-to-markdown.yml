@@ -14,60 +14,32 @@ permissions:
 jobs:
   convert-yaml-to-markdown:
     runs-on: ubuntu-latest
-    
     steps:
-    - name: Checkout main branch
-      uses: actions/checkout@v3
-    
-    - name: Checkout gh-pages branch
-      uses: actions/checkout@v3
-      with:
-        ref: gh-pages
-        path: gh-pages
-        fetch-depth: 0
-    
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.9'
-        
-    - name: Install Poetry
-      uses: snok/install-poetry@v1
-      with:
-        version: latest
-        virtualenvs-create: true
-        virtualenvs-in-project: true
-        
-    - name: Load cached venv
-      id: cached-poetry-dependencies
-      uses: actions/cache@v3
-      with:
-        path: .venv
-        key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
-        
-    - name: Install dependencies
-      if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-      run: poetry install --no-interaction --no-root
-      
-    - name: Convert YAML to Markdown
-      run: |
-        # Process each deck in the decks directory
-        for deck in decks/*; do
-          if [ -d "$deck" ]; then
-            deck_name=$(basename "$deck")
-            output_dir="gh-pages/decks/$deck_name"
-            mkdir -p "$output_dir"
-            poetry run python src/yaml_to_markdown/generate_markdown.py "$deck" "$output_dir"
-          fi
-        done
-        
-    - name: Commit and push if changed
-      run: |
-        cd gh-pages
-        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git add decks/*
-        git commit -m "Convert YAML to Markdown" || exit 0
-        git push "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout branches
+        uses: ./.github/actions/checkout-branches
+      - name: Setup Python and Poetry
+        uses: ./.github/actions/setup-python-poetry
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        uses: ./.github/actions/install-dependencies
+        with:
+          use-cache: 'true'
+      - name: Convert YAML to Markdown
+        run: |
+          for deck in decks/*; do
+            if [ -d "$deck" ]; then
+              deck_name=$(basename "$deck")
+              output_dir="gh-pages/decks/$deck_name"
+              mkdir -p "$output_dir"
+              poetry run python src/yaml_to_markdown/generate_markdown.py "$deck" "$output_dir"
+            fi
+          done
+      - name: Change to gh-pages directory
+        run: cd gh-pages
+      - name: Commit and push if changed
+        uses: ./.github/actions/commit-and-push
+        with:
+          commit-message: "Convert YAML to Markdown"
+          user-name: "github-actions[bot]"
+          user-email: "41898282+github-actions[bot]@users.noreply.github.com"

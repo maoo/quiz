@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Dict, List, Optional, Any
 
 import yaml
-from src.file_utils import get_question_folders
+from src.file_utils import get_question_folders, get_deck_folders
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
@@ -115,11 +115,15 @@ class YAMLToMarkdown:
     """Main YAML to Markdown conversion class."""
     def __init__(self, input_paths: list[str]):
         self.input_paths = input_paths
-        self.question_folders = get_question_folders(self.input_paths)
-        self.card_loader = CardLoader(self.question_folders)
+        logger.info(f"Input paths: {self.input_paths}")
+        self.deck_folders = get_deck_folders(self.input_paths)
+        logger.info(f"Deck folders: {self.deck_folders}")
         self.markdown_gen = MarkdownGenerator()
 
     def process_card(self, card_data: dict) -> None:
+        if not isinstance(card_data, dict):
+            logger.error(f"Invalid card_data: {card_data}")
+            return
         try:
             card_id = card_data['id']
             logger.info(f"Processing card: {card_id} -> Output: {Path(card_data['question_folder']) / f'content.md'}")
@@ -129,36 +133,37 @@ class YAMLToMarkdown:
             output_file.write_text(content, encoding='utf-8')
             logger.info(f"Created markdown file for card {card_id}")
         except Exception as e:
-            logger.error(f"Failed to process card {card_id}: {e}")
+            logger.error(f"Failed to process card: {e}")
 
     def process_deck(self) -> None:
         try:
-            if not self.question_folders:
-                logger.warning(f"No question folders found in the provided input paths.")
+            if not self.deck_folders:
+                logger.warning(f"No deck folders found in the provided input paths.")
                 return
-            # Try to find deck meta (index.yaml) in any parent of the question folders
-            deck_meta = None
-            for folder in self.input_paths:
+            logger.info(f"Processing {len(self.deck_folders)} decks")
+            for folder in self.deck_folders:
+                # Process cards
+                cards = []
+                logger.info(f"Processing deck: {folder}")
+                question_folders = get_question_folders([folder])
+                card_loader = CardLoader(question_folders)
+                logger.info(f"Processing {len(question_folders)} cards")
+                for question_folder in question_folders:
+                    card_id = Path(question_folder).name
+                    try:
+                        card_data = card_loader.load_card(question_folder)
+                        cards.append(Card(card_id, card_data))
+                        self.process_card(card_data)
+                    except Exception as e:
+                        logger.error(f"Failed to process card {card_id}: {e}")
+                # Create index.md deck page
+                logger.info(f"Processing deck index: {folder}")
                 index_path = Path(folder) / "index.yaml"
-                if index_path.exists():
-                    deck_meta = yaml.safe_load(index_path.read_text(encoding='utf-8'))
-                    break
-            if not deck_meta:
-                deck_meta = {"title": "Quiz Deck", "introduction": "", "questions": []}
-            cards = []
-            for folder in self.question_folders:
-                card_id = Path(folder).name
-                try:
-                    card_data = self.card_loader.load_card(folder)
-                    cards.append(Card(card_id, card_data))
-                    self.process_card(card_data)
-                except Exception as e:
-                    logger.error(f"Failed to process card {card_id}: {e}")
-            # Create index
-            index_content = self.markdown_gen.create_index_content(deck_meta, cards)
-            index_path = Path(folder) / "index.md"
-            logger.info(f"Writing deck index to: {index_path}")
-            index_path.write_text(index_content, encoding='utf-8')
+                deck_meta = yaml.safe_load(index_path.read_text(encoding='utf-8'))
+                index_content = self.markdown_gen.create_index_content(deck_meta, cards)
+                index_path = Path(folder) / "index.md"
+                logger.info(f"Writing deck index to: {index_path}")
+                index_path.write_text(index_content, encoding='utf-8')
         except Exception as e:
             logger.error(f"Failed to process deck: {e}")
             raise

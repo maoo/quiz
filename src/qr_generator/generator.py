@@ -1,8 +1,6 @@
 import os
-import tempfile
 from typing import Optional
 import qrcode
-from pathlib import Path
 
 def generate_qr_code(
     url: str,
@@ -56,7 +54,8 @@ def generate_question_qr_code(
     deck_name: str,
     card_id: str,
     output_dir: str,
-    url_prefix: str = "https://blog.session.it/quiz/decks") -> Optional[str]:
+    url_prefix: str = "https://blog.session.it/quiz/decks"
+) -> Optional[str]:
     """
     Generate a QR code for a quiz question.
     
@@ -64,13 +63,18 @@ def generate_question_qr_code(
         deck_name (str): The name of the deck
         card_id (str): The question ID
         url_prefix (str): The prefix for the URL (default: "https://blog.session.it/quiz/decks")
-        output_dir (Optional[str]): The directory where the QR code PNG should be saved. If None, uses a temporary directory.
+        output_dir (str): The directory where the QR code PNG should be saved.
         
     Returns:
         Optional[str]: The path to the generated QR code if successful, None otherwise
     """
     url = f"{url_prefix}/{deck_name}/cards/{card_id}"
 
-    output_path = os.path.join(output_dir, "qr.png")
-
+    # If output_dir already ends with deck_name/cards/card_id, use as is
+    expected_suffix = os.path.join(deck_name, "cards", card_id)
+    if output_dir.endswith(expected_suffix):
+        qr_dir = output_dir
+    else:
+        qr_dir = os.path.join(output_dir, deck_name, "cards", card_id)
+    output_path = os.path.join(qr_dir, "qr.png")
     return generate_qr_code(url, output_path) 

@@ -1,0 +1,26 @@
+name: 'Checkout main and gh-pages branches'
+description: 'Checks out the main branch and the gh-pages branch.'
+inputs:
+  deck-name:
+    description: 'Deck name to checkout'
+    required: false
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout main branch
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Checkout gh-pages branch
+      uses: actions/checkout@v4
+      with:
+        ref: gh-pages
+        path: gh-pages
+        fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }} 
+    - name: Copy deck to gh-pages
+      run: |
+        if [ -n "${{ inputs.deck_name }}" ]; then
+          cp -r decks/${{ inputs.deck_name }} gh-pages/decks/
+        fi

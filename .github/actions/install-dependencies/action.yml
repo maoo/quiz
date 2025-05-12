@@ -1,0 +1,25 @@
+name: 'Install dependencies'
+description: 'Installs dependencies using Poetry, with optional cache.'
+inputs:
+  use-cache:
+    description: 'Whether to use cache for dependencies'
+    required: false
+    default: 'false'
+runs:
+  using: 'composite'
+  steps:
+    - name: Load cached venv
+      if: ${{ inputs.use-cache == 'true' }}
+      id: cached-poetry-dependencies
+      uses: actions/cache@v3
+      with:
+        path: .venv
+        key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+    - name: Install dependencies (no root)
+      if: ${{ inputs.use-cache == 'true' && steps.cached-poetry-dependencies.outputs.cache-hit != 'true' }}
+      run: poetry install --no-interaction --no-root
+      shell: bash
+    - name: Install dependencies
+      if: ${{ inputs.use-cache != 'true' || steps.cached-poetry-dependencies.outputs.cache-hit == 'true' }}
+      run: poetry install --no-interaction
+      shell: bash 

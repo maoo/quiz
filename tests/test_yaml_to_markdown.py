@@ -137,7 +137,7 @@ class TestYAMLToMarkdown(unittest.TestCase):
         self.assertIn('- [Question 002](002.md)', content)
         
     def test_yaml_to_markdown_error_handling(self):
-        converter = YAMLToMarkdown(str(self.input_path), str(self.output_path))
+        converter = YAMLToMarkdown([str(self.input_path)])
         
         # Test processing invalid card
         converter.process_card('003')  # Should log error but not raise exception
@@ -146,7 +146,7 @@ class TestYAMLToMarkdown(unittest.TestCase):
         converter.process_card('999')  # Should log error but not raise exception
         
     def test_process_deck_with_errors(self):
-        converter = YAMLToMarkdown(str(self.input_path), str(self.output_path))
+        converter = YAMLToMarkdown([str(self.input_path)])
         converter.process_deck()
         
         # Should still create index and valid cards
