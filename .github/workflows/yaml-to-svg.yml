@@ -35,7 +35,7 @@ jobs:
         uses: ./.github/actions/install-dependencies
       - name: Generate SVG files
         run: |
-          if [ -n "${{ github.event.inputs.deck_name }}" ]; then
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             ./scripts/yaml_to_svg.sh "${{ github.event.inputs.deck_name }}"
           else
             DECKS_PATHS=$(ls -d gh-pages/decks/*/)
