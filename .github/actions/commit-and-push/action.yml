@@ -13,14 +13,11 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Set git user
-      run: |
-        git config --local user.email "${{ inputs.user-email }}"
-        git config --local user.name "${{ inputs.user-name }}"
-      shell: bash
     - name: Commit and push changes
       run: |
         cd gh-pages
+        git config user.email "${{ inputs.user-email }}"
+        git config user.name "${{ inputs.user-name }}"
         git add decks/*
         git commit -m "${{ inputs.commit-message }}" || exit 0
         git push origin gh-pages
