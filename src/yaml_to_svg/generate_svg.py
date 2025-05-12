@@ -33,10 +33,6 @@ class YAMLToSVG:
             self.font_family = font_family if font_family is not None else 'Arial'
             # Deck path logic
             self.deck_path = Path(input_paths[0])
-            if not self.deck_path.exists():
-                raise FileNotFoundError(f"Deck path {self.deck_path} does not exist")
-            if not (self.deck_path / "index.yaml").exists():
-                raise FileNotFoundError(f"index.yaml not found in {self.deck_path}")
             self.output_dir = getattr(self, 'output_dir', self.deck_path)
         else:
             parser = argparse.ArgumentParser(description='Convert YAML questions to SVG cards')
@@ -51,16 +47,18 @@ class YAMLToSVG:
                               help='Font family for card text (default: Arial)')
             args = parser.parse_args()
             self.input_paths = args.input_paths
+            logger.info(f"Input paths: {self.input_paths}")
             self.card_size = (args.card_width, args.card_height)
             self.font_size = args.font_size
             self.font_family = args.font_family
             # Deck path logic
             self.deck_path = Path(self.input_paths[0])
-            if not self.deck_path.exists():
-                raise FileNotFoundError(f"Deck path {self.deck_path} does not exist")
-            if not (self.deck_path / "index.yaml").exists():
-                raise FileNotFoundError(f"index.yaml not found in {self.deck_path}")
             self.output_dir = getattr(self, 'output_dir', self.deck_path)
+        if not self.deck_path.exists():
+            raise FileNotFoundError(f"Deck path {self.deck_path} does not exist")
+        if not (self.deck_path / "index.yaml").exists():
+            raise FileNotFoundError(f"index.yaml not found in {self.deck_path}")
+
 
     @property
     def output_path(self) -> Path:
