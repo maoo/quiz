@@ -5,6 +5,11 @@ on:
     paths:
       - 'decks/**/*.yaml'
   workflow_dispatch:
+    inputs:
+      deck_name:
+        description: 'Name of the deck to process (e.g., "deck1"). Leave empty to process all decks.'
+        required: false
+        type: string
 
 # Add explicit permissions
 permissions:
@@ -31,14 +36,12 @@ jobs:
           use-cache: 'true'
       - name: Convert YAML to Markdown
         run: |
-          for deck in decks/*; do
-            if [ -d "$deck" ]; then
-              deck_name=$(basename "$deck")
-              output_dir="gh-pages/decks/$deck_name"
-              mkdir -p "$output_dir"
-              poetry run python src/yaml_to_markdown/generate_markdown.py "$deck" "$output_dir"
-            fi
-          done
+          if [ -n "${{ github.event.inputs.deck_name }}" ]; then
+            ./scripts/yaml_to_markdown.sh "gh-pages/decks/${{ github.event.inputs.deck_name }}"
+          else
+            DECKS_PATHS=$(ls -d gh-pages/decks/*/)
+            ./scripts/yaml_to_markdown.sh $DECKS_PATHS
+          fi
       - name: Change to gh-pages directory
         run: cd gh-pages
       - name: Commit and push if changed

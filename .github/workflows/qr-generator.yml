@@ -6,6 +6,11 @@ on:
     types:
       - completed
   workflow_dispatch:
+    inputs:
+      deck_name:
+        description: 'Name of the deck to process (e.g., "deck1"). Leave empty to process all decks.'
+        required: false
+        type: string
 
 jobs:
   generate-qr:
@@ -27,10 +32,10 @@ jobs:
       - name: Generate QR codes
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            ./scripts/generate_qr_codes.sh "gh-pages/decks/${{ github.event.inputs.deck_name }}"
+          else
             DECKS_PATHS=$(ls -d gh-pages/decks/*/)
             ./scripts/generate_qr_codes.sh $DECKS_PATHS
-          else
-            ./scripts/generate_qr_codes.sh "gh-pages/decks/${{ github.event.inputs.deck_name }}"
           fi
       - name: Commit and push if changes
         uses: ./.github/actions/commit-and-push

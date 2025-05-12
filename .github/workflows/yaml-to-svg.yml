@@ -38,12 +38,8 @@ jobs:
           if [ -n "${{ github.event.inputs.deck_name }}" ]; then
             ./scripts/yaml_to_svg.sh "${{ github.event.inputs.deck_name }}"
           else
-            for deck in decks/*; do
-              if [ -d "$deck" ]; then
-                deck_name=$(basename "$deck")
-                ./scripts/yaml_to_svg.sh "$deck_name"
-              fi
-            done
+            DECKS_PATHS=$(ls -d gh-pages/decks/*/)
+            ./scripts/yaml_to_svg.sh $DECKS_PATHS
           fi
       - name: Change to gh-pages directory
         run: cd gh-pages

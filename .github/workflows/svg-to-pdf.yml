@@ -38,11 +38,8 @@ jobs:
           if [ -n "${{ github.event.inputs.deck_name }}" ]; then
             ./scripts/svg_to_pdf.sh "gh-pages/decks/${{ github.event.inputs.deck_name }}"
           else
-            for deck in gh-pages/decks/*; do
-              if [ -d "$deck" ]; then
-                ./scripts/svg_to_pdf.sh "gh-pages/decks/$deck_name"
-              fi
-            done
+            DECKS_PATHS=$(ls -d gh-pages/decks/*/)
+            ./scripts/svg_to_pdf.sh $DECKS_PATHS
           fi
       - name: Commit and push changes
         uses: ./.github/actions/commit-and-push
