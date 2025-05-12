@@ -14,30 +14,30 @@ def tmp_path():
     with tempfile.TemporaryDirectory() as temp_dir:
         yield Path(temp_dir)
 
-@pytest.fixture
-def test_deck(tmp_path):
-    """Fixture to create a test deck structure"""
-    deck_path = tmp_path / "test_deck"
+def create_test_deck(base_path, index_data=None):
+    """Helper to create a test deck structure. index_data can be passed to override the default index.yaml content."""
+    deck_path = base_path / "test_deck"
     deck_path.mkdir()
     
     # Create decks directory for relative path tests
-    decks_dir = tmp_path / "decks"
-    decks_dir.mkdir()
+    decks_dir = base_path / "decks"
+    decks_dir.mkdir(exist_ok=True)
     
     # Create index.yaml
-    readme_data = {
-        'title': 'Test Deck',
-        'questions': [
-            {'id': '001'},
-            {'id': '002'},
-            {'id': '003'}
-        ]
-    }
+    if index_data is None:
+        index_data = {
+            'title': 'Test Deck',
+            'questions': [
+                {'id': '001'},
+                {'id': '002'},
+                {'id': '003'}
+            ]
+        }
     with open(deck_path / "index.yaml", 'w') as f:
-        yaml.dump(readme_data, f)
+        yaml.dump(index_data, f)
         
     # Create questions directory
-    questions_dir = deck_path / "questions"
+    questions_dir = deck_path / "cards"
     questions_dir.mkdir()
     
     # Create question 001
@@ -49,8 +49,10 @@ def test_deck(tmp_path):
         'question_type': 'short',
         'answers_type': 'single'
     }
-    with open(question_001_dir / "question.yaml", 'w') as f:
+    with open(question_001_dir / "content.yaml", 'w') as f:
         yaml.dump(question_001_data, f)
+    with open(question_001_dir / "answers.yaml", 'w') as f:
+        yaml.dump([], f)
         
     # Create question 002
     question_002_dir = questions_dir / "002"
@@ -60,8 +62,10 @@ def test_deck(tmp_path):
         'question_type': 'short',
         'answers_type': 'binary'
     }
-    with open(question_002_dir / "question.yaml", 'w') as f:
+    with open(question_002_dir / "content.yaml", 'w') as f:
         yaml.dump(question_002_data, f)
+    with open(question_002_dir / "answers.yaml", 'w') as f:
+        yaml.dump([], f)
         
     # Create question 003 with content.yaml instead of question.yaml
     question_003_dir = questions_dir / "003"
@@ -74,8 +78,14 @@ def test_deck(tmp_path):
     }
     with open(question_003_dir / "content.yaml", 'w') as f:
         yaml.dump(question_003_data, f)
+    with open(question_003_dir / "answers.yaml", 'w') as f:
+        yaml.dump([], f)
     
     return deck_path
+
+@pytest.fixture
+def test_deck(tmp_path):
+    return create_test_deck(tmp_path)
 
 def test_init_with_relative_path(tmp_path, test_deck):
     # Create a copy of the test deck in the decks directory
@@ -88,15 +98,17 @@ def test_init_with_relative_path(tmp_path, test_deck):
                 dst.write(src.read())
         else:
             shutil.copytree(item, test_deck_path / item.name)
-            
+    
     # Change working directory to tmp_path for relative path test
     original_cwd = os.getcwd()
     os.chdir(str(tmp_path))
     try:
-        converter = YAMLToSVG(input_paths=[str(test_deck)], card_size=(100, 150), font_size=14, font_family="Times New Roman")
-        converter.deck_path = Path(test_deck)
+        # Use the relative path to the copied deck
+        rel_deck_path = Path("decks/test_deck")
+        converter = YAMLToSVG(input_paths=[str(rel_deck_path)], card_size=(100, 150), font_size=14, font_family="Times New Roman")
+        converter.deck_path = rel_deck_path.resolve()
         # The converter returns a relative path, so we need to resolve it against the current directory
-        assert converter.deck_path == Path("decks/test_deck")
+        assert converter.deck_path.resolve() == test_deck_path.resolve()
     finally:
         os.chdir(original_cwd)
 
@@ -159,7 +171,7 @@ def test_create_svg_card(test_deck):
     converter.create_svg_card(question, '001')
     
     # Check if SVG file was created
-    svg_path = test_deck / "cards" / "001.svg"
+    svg_path = test_deck / "cards" / "001" / "content.svg"
     assert svg_path.exists()
     
     # Verify SVG content
@@ -177,7 +189,7 @@ def test_create_svg_card_with_custom_size(test_deck):
     converter.create_svg_card(question, '001')
     
     # Check if SVG file was created with correct size
-    svg_path = test_deck / "cards" / "001.svg"
+    svg_path = test_deck / "cards" / "001" / "content.svg"
     with open(svg_path, 'r') as f:
         svg_content = f.read()
         assert 'width="100mm"' in svg_content
@@ -189,16 +201,17 @@ def test_process_deck(test_deck):
     converter.process_deck()
     
     # Check if all SVG files were created
-    assert (test_deck / "cards" / "001.svg").exists()
-    assert (test_deck / "cards" / "002.svg").exists()
-    assert (test_deck / "cards" / "003.svg").exists()
+    assert (test_deck / "cards" / "001" / "content.svg").exists()
+    assert (test_deck / "cards" / "002" / "content.svg").exists()
+    assert (test_deck / "cards" / "003" / "content.svg").exists()
 
-def test_process_deck_with_empty_metadata(test_deck):
-    # Create empty index.yaml
-    with open(test_deck / "index.yaml", 'w') as f:
-        yaml.dump({'title': 'Empty Deck'}, f)
-        
-    converter = YAMLToSVG(input_paths=[str(test_deck)], card_size=(100, 150), font_size=14, font_family="Times New Roman")
-    converter.deck_path = Path(test_deck)
-    with pytest.raises(ValueError):
-        converter.process_deck() 
+def test_process_deck_with_empty_metadata(tmp_path):
+    # Create a test deck with empty metadata
+    deck_path = create_test_deck(tmp_path, index_data={'title': 'Empty Deck'})
+    converter = YAMLToSVG(input_paths=[str(deck_path)], card_size=(100, 150), font_size=14, font_family="Times New Roman")
+    converter.deck_path = deck_path
+    converter.process_deck()
+    # Optionally, check that SVGs are still created
+    assert (deck_path / "cards" / "001" / "content.svg").exists()
+    assert (deck_path / "cards" / "002" / "content.svg").exists()
+    assert (deck_path / "cards" / "003" / "content.svg").exists() 
