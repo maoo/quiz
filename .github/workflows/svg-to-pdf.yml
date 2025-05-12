@@ -12,6 +12,11 @@ on:
         required: false
         type: string
 
+# Add explicit permissions
+permissions:
+  contents: write
+  pages: write
+
 jobs:
   convert-svg:
     if: ${{ github.event.workflow_run.conclusion == 'success' }} 

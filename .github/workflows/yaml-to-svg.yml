@@ -13,8 +13,10 @@ on:
         required: false
         type: string
 
+# Add explicit permissions
 permissions:
   contents: write
+  pages: write
 
 jobs:
   generate-svg:
