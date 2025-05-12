@@ -11,3 +11,4 @@ Each deck contains a set of questions to test your knowledge.
 ## Available Decks
 
 - [Fun Math](decks/fun-math)
+- - [Fun Math 2](decks/fun-math2)
