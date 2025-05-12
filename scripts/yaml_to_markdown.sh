@@ -8,8 +8,6 @@ if [ "$#" -eq 0 ]; then
     exit 1
 fi
 
-INPUT_PATHS="$@"
-
 # Set up Python environment
 cd "$PROJECT_ROOT"
 poetry install
@@ -17,6 +15,6 @@ poetry install
 # Add src directory to PYTHONPATH
 export PYTHONPATH="$PROJECT_ROOT:$PYTHONPATH"
 
-poetry run python -m src.yaml_to_markdown.generate_markdown "$INPUT_PATHS"
+poetry run python -m src.yaml_to_markdown.generate_markdown "$@"
 
 echo "YAML to Markdown conversion completed" 
