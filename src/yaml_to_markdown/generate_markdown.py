@@ -113,8 +113,8 @@ class MarkdownGenerator:
     @staticmethod
     def get_card_item(card_id: str) -> str:
         return (
-            f"- [Question {card_id}](cards/{card_id}/content) "
-            f"[PDF](cards/{card_id}/content.pdf) "
+            f"- [Question {card_id}](cards/{card_id}/content) - "
+            f"[PDF](cards/{card_id}/content.pdf) - "
             f"[SVG](cards/{card_id}/content.svg)"
         )
     
