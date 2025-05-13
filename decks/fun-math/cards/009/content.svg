@@ -1,2 +1,93 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<svg baseProfile="full" height="297mm" version="1.1" viewBox="0 0 210 297" width="210mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs /><rect fill="white" height="297" width="210" x="0" y="0" /><g font-family="Arial" font-size="12"><text fill="black" x="20" y="40">Sigue el video y decide si cada paso es correcto (True/False)</text><text fill="black" x="20" y="60">1. Paso 1</text><text fill="black" x="20" y="80">2. Paso 2</text><text fill="black" x="20" y="100">3. Paso 3</text><text fill="black" x="20" y="120">4. Paso 4</text><text fill="black" x="20" y="140">5. Paso 5</text><text fill="black" x="20" y="160">6. Paso 6</text><text fill="black" x="20" y="180">7. Paso 7</text><text fill="black" x="20" y="200">8. Paso 8</text><text fill="black" x="20" y="220">9. Paso 9</text><text fill="black" x="20" y="240">10. Paso 10</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" height="297mm" version="1.1" viewBox="0 0 1109 1110" width="210mm">
+  <defs/>
+  <rect fill="#f5f5f5" height="1110" rx="277" ry="277" width="1109" x="0" y="0"/>
+  <path d="M 832,0 L 1109,0 L 1109,277 Q 1054,55 832,0 Z" fill="#f5f5f5"/>
+  <path d="M 832,1110 L 1109,1110 L 1109,833 Q 1054,1055 832,1110 Z" fill="#f5f5f5"/>
+  <circle cx="554" cy="555" fill="#dcdcdc" r="166"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
+    <text x="554" y="529">Sigue el video y decide si</text>
+    <text x="554" y="555">cada paso es correcto</text>
+    <text x="554" y="581">(True/False)</text>
+  </g>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-90">1. Paso 1</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-80">2. Paso 2</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-70">3. Paso 3</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-60">4. Paso 4</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-50">5. Paso 5</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-40">6. Paso 6</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-30">7. Paso 7</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-20">8. Paso 8</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-10">9. Paso 9</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="0">10. Paso 10</text>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="554.0" y="263.0">Paso</text>
+    <text x="554.0" y="293.0">1</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="554.0" y="106.0">True</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="716.8165148850151" y="315.90229255813955">Paso</text>
+    <text x="716.8165148850151" y="345.90229255813955">2</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="817.9155782793205" y="191.7513695256486">True</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="817.4426550137575" y="454.4022925581396">Paso</text>
+    <text x="817.4426550137575" y="484.4022925581396">3</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="981.024375816524" y="416.2513695256486">False</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="817.4426550137575" y="625.5977074418604">Paso</text>
+    <text x="817.4426550137575" y="655.5977074418604">4</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="981.024375816524" y="693.7486304743513">True</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="716.8165148850151" y="764.0977074418604">Paso</text>
+    <text x="716.8165148850151" y="794.0977074418604">5</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="817.9155782793205" y="918.2486304743513">False</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="554.0" y="817.0">Paso</text>
+    <text x="554.0" y="847.0">6</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="554.0" y="1004.0">True</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="391.18348511498493" y="764.0977074418604">Paso</text>
+    <text x="391.18348511498493" y="794.0977074418604">7</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="290.0844217206796" y="918.2486304743513">False</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="290.55734498624247" y="625.5977074418605">Paso</text>
+    <text x="290.55734498624247" y="655.5977074418605">8</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="126.97562418347604" y="693.7486304743514">True</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="290.55734498624247" y="454.4022925581396">Paso</text>
+    <text x="290.55734498624247" y="484.4022925581396">9</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="126.97562418347604" y="416.25136952564867">False</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="391.18348511498493" y="315.9022925581396">Paso</text>
+    <text x="391.18348511498493" y="345.9022925581396">10</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="290.08442172067953" y="191.75136952564867">True</text>
+  </g>
+</svg>

@@ -1,2 +1,71 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<svg baseProfile="full" height="297mm" version="1.1" viewBox="0 0 210 297" width="210mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs /><rect fill="white" height="297" width="210" x="0" y="0" /><g font-family="Arial" font-size="12"><text fill="black" x="20" y="40">Placeholder question 004?</text><text fill="black" x="20" y="60">1. OptionA</text><text fill="black" x="20" y="80">2. OptionB</text><text fill="black" x="20" y="100">3. OptionC</text><text fill="black" x="20" y="120">4. OptionD</text><text fill="black" x="20" y="140">5. OptionE</text><text fill="black" x="20" y="160">6. OptionF</text><text fill="black" x="20" y="180">7. OptionG</text><text fill="black" x="20" y="200">8. OptionH</text><text fill="black" x="20" y="220">9. OptionI</text><text fill="black" x="20" y="240">10. OptionJ</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" height="297mm" version="1.1" viewBox="0 0 1109 1110" width="210mm">
+  <defs/>
+  <rect fill="#f5f5f5" height="1110" rx="277" ry="277" width="1109" x="0" y="0"/>
+  <path d="M 832,0 L 1109,0 L 1109,277 Q 1054,55 832,0 Z" fill="#f5f5f5"/>
+  <path d="M 832,1110 L 1109,1110 L 1109,833 Q 1054,1055 832,1110 Z" fill="#f5f5f5"/>
+  <circle cx="554" cy="555" fill="#dcdcdc" r="166"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
+    <text x="554" y="555">Placeholder question 004?</text>
+  </g>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-90">1. OptionA</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-80">2. OptionB</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-70">3. OptionC</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-60">4. OptionD</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-50">5. OptionE</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-40">6. OptionF</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-30">7. OptionG</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-20">8. OptionH</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-10">9. OptionI</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="0">10. OptionJ</text>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="554.0" y="263.0"/>
+    <text x="554.0" y="293.0">OptionA</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="716.8165148850151" y="315.90229255813955"/>
+    <text x="716.8165148850151" y="345.90229255813955">OptionB</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="817.4426550137575" y="454.4022925581396"/>
+    <text x="817.4426550137575" y="484.4022925581396">OptionC</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="817.4426550137575" y="625.5977074418604"/>
+    <text x="817.4426550137575" y="655.5977074418604">OptionD</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="716.8165148850151" y="764.0977074418604"/>
+    <text x="716.8165148850151" y="794.0977074418604">OptionE</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="554.0" y="817.0"/>
+    <text x="554.0" y="847.0">OptionF</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="391.18348511498493" y="764.0977074418604"/>
+    <text x="391.18348511498493" y="794.0977074418604">OptionG</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="290.55734498624247" y="625.5977074418605"/>
+    <text x="290.55734498624247" y="655.5977074418605">OptionH</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="290.55734498624247" y="454.4022925581396"/>
+    <text x="290.55734498624247" y="484.4022925581396">OptionI</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="391.18348511498493" y="315.9022925581396"/>
+    <text x="391.18348511498493" y="345.9022925581396">OptionJ</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle"/>
+</svg>
