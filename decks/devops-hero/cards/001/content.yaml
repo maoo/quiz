@@ -1,0 +1,20 @@
+deck_id: devops-hero
+card_id: "001"
+question_type: short
+question_content: "Which tool is used for container orchestration?"
+embedded_contents: []
+options:
+  - Docker
+  - Kubernetes
+  - Ansible
+  - Terraform
+  - Jenkins
+  - Helm
+  - Vault
+  - Prometheus
+  - Grafana
+  - Consul
+sources:
+  - "https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/"
+url: "https://blog.session.it/quiz/decks/devops-hero/cards/001/content"
+answers_type: free_text
