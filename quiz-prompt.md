@@ -66,10 +66,10 @@ For each question generated, create the following files in the `decks/<deck_name
   - **Answers type** (smaller font)
 2. `answers.yaml`: Lists all **options** and related **answers** as a table with 10 lines and 3 columns: Order number, Option, Answer
 
-All YAML files must comply with it's related schema in https://github.com/maoo/quiz/tree/main/schemas :
-- `decks/<deck_name>/index.yaml` -> `schemas/deck-index.yaml`
-- `decks/<deck_name>/cards/<card_id>/content.yaml` -> `schemas/card.yaml`
-- `decks/<deck_name>/cards/<card_id>/answers.yaml` -> `schemas/answers.yaml`
+**IMPORTANT!** All YAML files must comply with it's related schema:
+- `decks/<deck_name>/index.yaml` -> https://github.com/maoo/quiz/blob/main/schemas/deck-index.yaml
+- `decks/<deck_name>/cards/<card_id>/content.yaml` -> https://github.com/maoo/quiz/blob/main/schemas/card.yaml
+- `decks/<deck_name>/cards/<card_id>/answers.yaml` -> https://github.com/maoo/quiz/blob/main/schemas/answers.yaml
 
 ## ✅ Content Quality
 
@@ -119,7 +119,7 @@ All external content must be validated and follow these guidelines:
 All output content (all card.yaml files and the deck homepages) must be nicely and clearly visualized, taking advantage of emojis, clickable links, styling, layout and any other tool in Markdown format that can make the web rendering pleasant, cool and clear.
 
 ## ✅ Content Checklist
-
+- Are all generated YAML files complying with their related YAML schema definition, listed above in the "Output File Structure" section?
 - Are there exactly 10 well-formed, independent options?
 - For binary questions: Are there 3–7 correct (True) answers?
 - Is each option STRICTLY 20 characters or less?

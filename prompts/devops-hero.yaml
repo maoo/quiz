@@ -1,46 +1,115 @@
-title: 🚀 DevOps Hero
-deck_id: devops-hero
-question_types:
-  qr_questions:
-  - name: Code Snippets
-    items: []
-  - name: Multimedia Content
-    items: []
-  text_questions:
-    format: Free text (max 80 characters)
-    examples: []
-knowledge_sources:
-- name: 🌐 CNCF & Cloud Native
-  subcategories:
-  - name: Kubernetes Certifications
-    items: []
-  - name: Service Mesh
-    items: []
-- name: ☁️ AWS
-  subcategories:
-  - name: Professional Certifications
-    items: []
-  - name: Specialty Certifications
-    items: []
-- name: 🛠️ DevOps & Infrastructure
-  subcategories:
-  - name: HashiCorp
-    items: []
-  - name: Linux Foundation
-    items: []
-  - name: Cloud Providers
-    items: []
-  - name: Red Hat
-    items: []
-- name: 🔒 Security Certifications
-  subcategories: []
-- name: ⚙️ Core DevOps Toolchain
-  subcategories:
-  - name: Container & Orchestration
-    items: []
-  - name: CI/CD
-    items: []
-  - name: Monitoring & Logging
-    items: []
-  - name: Infrastructure & Service Mesh
-    items: []
+title: "🚀 DevOps Hero"
+deck_id: "devops-hero"
+language: "English"
+difficulty_levels:
+  easy: 0%
+  easy_medium: 5%
+  medium: 10%
+  medium_hard: 50%
+  hard: 35%
+
+introduction: |
+  # TODO - add introduction
+
+question_examples:
+  extended:
+    - question: "Which of these tools are CNCF projects?"
+      options: "10 CNCF projects"
+      answers: "10 true/false answers"
+    - question: "What's wrong with this Dockerfile?"
+      options: |
+        ```dockerfile
+        FROM ubuntu:latest
+        ADD . /app
+        RUN apt-get update
+        RUN apt-get install python3
+        CMD python3 app.py
+        ```
+      answers: "Multiple issues to identify (layer caching, security, best practices)"
+    - question: "Fix the syntax in this Terraform configuration"
+      options: |
+        ```hcl
+        resource "aws_instance" "web {
+          ami           = "ami-123456"
+          instance_type = t2.micro
+          tags = {
+            Name = web-server
+          }
+        ```
+      answers: "Missing quotes, brackets, and proper syntax highlighting"
+    - question: "Analyze this Kubernetes deployment manifest"
+      options: |
+        ```yaml
+        apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: nginx
+        spec:
+          replicas: 3
+          template:
+            spec:
+              containers:
+              - name: nginx
+                image: nginx:latest
+        ```
+      answers: "Missing selector labels and security context"
+    - question: "Debug this CI pipeline script"
+      options: |
+        ```bash
+        #!/bin/bash
+        docker build -t myapp .
+        docker push myapp
+        kubectl apply -f deploy.yaml
+        ```
+      answers: "Missing registry URL, versioning, and error handling"
+    - question: "Watch this Kubernetes deployment demo (0:45)"
+      options: "YouTube: Quick demonstration of rolling updates in Kubernetes"
+      answers: "Identify the deployment strategy and potential issues"
+    - question: "Review this StackOverflow solution for Docker networking"
+      options: "Link to highly-voted answer about Docker bridge networking"
+      answers: "Evaluate the proposed solution and suggest improvements"
+
+  short:
+    - question: "What is GitOps?"
+      options: "4 definitions of GitOps"
+      answers: "Correct definition highlighting Git as source of truth"
+    - question: "Which tools are commonly used for Infrastructure as Code?"
+      options: "8 popular IaC tools"
+      answers: "Identify correct IaC tools"
+    - question: "Match these monitoring tools with their primary use cases"
+      options: "6 monitoring tools and use cases"
+      answers: "Correct tool-use case pairs"
+    - question: "Identify the core components of a service mesh"
+      options: "5 service mesh components"
+      answers: "Key components and their functions"
+    - question: "Which security practices are essential for cloud native apps?"
+      options: "8 security best practices"
+      answers: "Critical security measures"
+    - question: "Order these steps in a typical CI/CD pipeline"
+      options: "6 pipeline stages"
+      answers: "Correct order of pipeline stages"
+    - question: "Which of these tools are CNCF projects?"
+      options: "10 CNCF projects"
+      answers: "10 true/false answers"
+
+subject_matter:
+  - "CNCF & Cloud Native"
+  - "AWS"
+  - "Kubernetes"
+  - "Docker"
+  - "CI/CD"
+  - "DevOps"
+  - "Cloud"
+  - "Containers"
+  - "Service Mesh"
+  - "Monitoring"
+  - "Logging"
+  - "Tracing"
+  - "Security"
+  - "GitOps"
+  - "Cloud Native"
+  - "Infrastructure as Code"
+  - "Security"
+
+quiz_types:
+  examples:

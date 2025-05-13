@@ -74,6 +74,10 @@ Build and return a ZIP file containing a list of 10 questions and answers, follo
 
 ## Hardware Requirements 🖨️
 
+### Printing services
+- https://www.alibaba.com/product-detail/Customizable-Playing-Card-Deck-in-Rigid_1601224318368.html?spm=a2700.shop_plgr.41413.75.655a7121mlWGlO (custom size, 3.50 per deck, for 2 decks, down to 0.41€ per deck for more)
+- https://cardsandbanners.com/print/Postcards/4x-4-Postcards (10x10cm, 7.1$ per deck, for 10 decks printed ; 4.16$ for 50 decks printed)
+
 ### Recommended Printer Setup
 - [Canon Pixma G650 Megatank](https://www.amazon.es/Canon-4620C006-PIXMA-G650/dp/B093QG1Y8C) - Impresora Fotográfica 3 en 1 (233€)
 - [Papel Fotográfico Láser Brillante](https://www.amazon.es/Fotogr%C3%A1fico-Brillante-impresoras-Certificados-Calendarios/dp/B07VVDM9FJ) - Doble cara, A4, 250 g/m², 100 hojas
