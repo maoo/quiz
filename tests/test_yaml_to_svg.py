@@ -164,7 +164,39 @@ def test_load_nonexistent_question(test_deck):
     with pytest.raises(FileNotFoundError):
         converter.load_question('999')
 
+def test_create_svg_card_with_answers(test_deck):
+    # Add answers to answers.yaml for question 001, using the correct schema (list of dicts)
+    answers_path = test_deck / "cards" / "001" / "answers.yaml"
+    with open(answers_path, 'w') as f:
+        yaml.dump([
+            { 'order': 1, 'option': 'foo', 'answer': 'foo'},
+            { 'order': 2, 'option': 'bar', 'answer': 'bar'},
+            { 'order': 3, 'option': 'baz', 'answer': 'baz'}
+        ], f)
+
+    converter = YAMLToSVG(input_paths=[str(test_deck)], card_size=(100, 150), font_size=14, font_family="Times New Roman")
+    converter.deck_path = Path(test_deck)
+    question = converter.load_question('001')
+    converter.create_svg_card(question, '001')
+
+    svg_path = test_deck / "cards" / "001" / "content.svg"
+    assert svg_path.exists()
+    with open(svg_path, 'r') as f:
+        svg_content = f.read()
+        assert 'foo' in svg_content
+        assert 'bar' in svg_content
+        assert 'baz' in svg_content
+
 def test_create_svg_card(test_deck):
+    # Add answers to answers.yaml for question 001, using the correct schema (list of dicts)
+    answers_path = test_deck / "cards" / "001" / "answers.yaml"
+    with open(answers_path, 'w') as f:
+        yaml.dump([
+            { 'order': 1, 'option': 'foo', 'answer': 'foo'},
+            { 'order': 2, 'option': 'bar', 'answer': 'bar'},
+            { 'order': 3, 'option': 'baz', 'answer': 'baz'}
+        ], f)
+
     converter = YAMLToSVG(input_paths=[str(test_deck)], card_size=(100, 150), font_size=14, font_family="Times New Roman")
     converter.deck_path = Path(test_deck)
     question = converter.load_question('001')
@@ -181,6 +213,9 @@ def test_create_svg_card(test_deck):
         assert '1. 3' in svg_content
         assert '2. 4' in svg_content
         assert '3. 5' in svg_content
+        assert 'foo' in svg_content
+        assert 'bar' in svg_content
+        assert 'baz' in svg_content
 
 def test_create_svg_card_with_custom_size(test_deck):
     converter = YAMLToSVG(input_paths=[str(test_deck)], card_size=(100, 150), font_size=14, font_family="Times New Roman")
