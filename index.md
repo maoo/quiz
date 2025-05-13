@@ -1,6 +1,6 @@
-# Quiz Game 🎮
+Welcome to our interactive quiz game!  🎮
 
-Welcome to our interactive quiz game! This is a fun and educational way to test your knowledge across various topics. Each quiz deck contains carefully crafted questions designed to challenge and entertain you.
+This is a fun and educational way to test your knowledge across various topics. Each quiz deck contains carefully crafted questions designed to challenge and entertain you.
 
 ## How to Play 🎲
 
