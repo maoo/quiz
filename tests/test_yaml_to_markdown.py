@@ -191,8 +191,8 @@ class TestYAMLToMarkdown(unittest.TestCase):
         content = MarkdownGenerator.create_index_content(deck_meta, cards)
         self.assertIn('# Test Deck', content)
         self.assertIn('Test introduction', content)
-        self.assertIn('- [Question 001](001.md)', content)
-        self.assertIn('- [Question 002](002.md)', content)
+        self.assertIn('- [Question 001](cards/001/content) [PDF](cards/001/content.pdf) [SVG](cards/001/content.svg)', content)
+        self.assertIn('- [Question 002](cards/002/content) [PDF](cards/002/content.pdf) [SVG](cards/002/content.svg)', content)
         
     def test_yaml_to_markdown_error_handling(self):
         converter = YAMLToMarkdown([str(self.input_path)])
