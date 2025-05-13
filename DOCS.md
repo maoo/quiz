@@ -69,7 +69,7 @@ brew install librsvg
 
 To generate new questions:
 ```
-Build and return a ZIP file containing a list of 10 questions and answers, following instructions on https://raw.githubusercontent.com/maoo/quiz/refs/heads/main/quiz-prompt.md and using the deck specification contained in https://raw.githubusercontent.com/maoo/quiz/refs/heads/main/decks/fun-math/prompts/fun-math.yaml
+Build and return a ZIP file containing a list of 10 questions and answers, following instructions on https://raw.githubusercontent.com/maoo/quiz/refs/heads/main/quiz-prompt.md and using the deck specification contained in https://raw.githubusercontent.com/maoo/quiz/refs/heads/main/prompts/fun-math.yaml
 ```
 
 ## Hardware Requirements 🖨️
