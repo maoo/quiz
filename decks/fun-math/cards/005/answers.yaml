@@ -1,0 +1,30 @@
+- order: 1
+  option: 8x5 cm
+  answer: 26 cm
+- order: 2
+  option: 7x3 cm
+  answer: 20 cm
+- order: 3
+  option: 6x4 cm
+  answer: 20 cm
+- order: 4
+  option: 9x5 cm
+  answer: 28 cm
+- order: 5
+  option: 12x2 cm
+  answer: 28 cm
+- order: 6
+  option: 8x8 cm
+  answer: 32 cm
+- order: 7
+  option: 10x3 cm
+  answer: 26 cm
+- order: 8
+  option: 14x2 cm
+  answer: 32 cm
+- order: 9
+  option: 5x5 cm
+  answer: 20 cm
+- order: 10
+  option: 11x4 cm
+  answer: 30 cm
