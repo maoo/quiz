@@ -1,6 +1,6 @@
-# 🚀 Fun Math
+# DevOps Hero
 
-Fun Math es un mazo de cartas para ayudar a estudiantes de 5° grado (10-11 años) a aprender matemáticas de forma divertida. Las preguntas están diseñadas para ser inteligentes, a veces desafiantes y siempre intrigantes, fomentando el pensamiento crítico y la resolución de problemas.
+A quiz deck covering core DevOps tools and certifications.
 
 ## Questions
 - [Question 008](cards/008/content) - [PDF](cards/008/content.pdf) - [SVG](cards/008/content.svg)

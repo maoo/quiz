@@ -1,0 +1,20 @@
+deck_id: devops-hero
+card_id: "005"
+question_type: short
+question_content: "Placeholder question 005?"
+embedded_contents: []
+options:
+  - OptionA
+  - OptionB
+  - OptionC
+  - OptionD
+  - OptionE
+  - OptionF
+  - OptionG
+  - OptionH
+  - OptionI
+  - OptionJ
+sources:
+  - "https://example.com"
+url: "https://blog.session.it/quiz/decks/devops-hero/cards/005/content"
+answers_type: free_text
