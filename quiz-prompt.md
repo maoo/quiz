@@ -9,7 +9,6 @@ Each deck contains 200 **quiz cards**, each containing a quiz, that are related 
 - An **introduction** of the deck subject, to understand which type of content must be used in the questions
 - **question_examples**, to get an idea of the type of questions, options and answers that can be generated
 - **subject_matter**, describing the topics that must be treated by the quiz; every question, option and answer must be related to one of these items
-- **quiz_types**, to see some quiz and take inspiration from
 - **difficulty_levels**, to specify how to mix the difficulty across quiz cards
 
 ## ⚖️ Quiz card specifications

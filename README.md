@@ -1,23 +1,19 @@
 # Project Documentation 📚
 
-## New proposed sw architecture
-  - triviato-code - contains all the code that powers the content transformation pipelines
-  - triviato-decks - contains all triviato decks data
-    - YAML files for the deck and its questions & answers
-    - SVG and PDF versions of the cards
-    - PNG files with the QR codes of the cards
-  - triviato-pipelines - contains all the the content transformation pipelines
-    - Uses modules from triviato-code
-    - Writes into triviato-decks
-  - triviato-web - contains the web application for triviato.session.it
-    - Pulls data from triviato-decks
-    - Uses modules from triviato-code
-  - triviato-docs - contains all docs
-
-
 ## Project Overview 🎯
 
 This project is an AI-powered quiz generation system that creates high-quality, visually appealing quiz cards for various learning and assessment purposes. The system combines the power of AI language models (Claude and ChatGPT) with automated image generation to create engaging educational content.
+
+## Usage Guide 🚀
+
+### Using Claude Code or ChatGPT
+
+To generate new questions:
+```
+Build and return a ZIP file containing a list of 10 questions and answers, following instructions on https://raw.githubusercontent.com/maoo/quiz/refs/heads/main/quiz-prompt.md and using the deck specification contained in https://raw.githubusercontent.com/maoo/quiz/refs/heads/main/prompts/fun-math.yaml
+```
+
+Unzip the result into the `decks/` folder and push it into main; GitHub Actions should take care of the rest, and publish the deck under https://blog.session.it/quiz (check the [`gh-pages` branch content](https://github.com/maoo/quiz/tree/gh-pages)).
 
 ### Use Cases 🎓
 - **Professional Certification Preparation**: Create study materials for technical certifications (DevOps, Cloud, Security, etc.)
@@ -56,21 +52,6 @@ The system follows a modular approach:
 - **Content Management**: Organized storage of questions and assets
 - **Visual Design**: Automated SVG generation with consistent styling
 - **Printing System**: Optimized for high-quality physical output
-
-## Prerequisites 🛠️
-
-```sh
-brew install librsvg
-```
-
-## Usage Guide 🚀
-
-### Using Claude Code or ChatGPT
-
-To generate new questions:
-```
-Build and return a ZIP file containing a list of 10 questions and answers, following instructions on https://raw.githubusercontent.com/maoo/quiz/refs/heads/main/quiz-prompt.md and using the deck specification contained in https://raw.githubusercontent.com/maoo/quiz/refs/heads/main/prompts/fun-math.yaml
-```
 
 ## Hardware Requirements 🖨️
 
@@ -170,6 +151,12 @@ This automated pipeline ensures consistent, high-quality output across all forma
 - **QR Code Generator**: Generate QR codes for linking to digital content
 - **SVG Generator**: Create SVG images for quiz questions with QR codes and answers
 - **SVG to PDF Converter**: Convert SVG files to PDF with proper image handling and scaling
+
+## Prerequisites 🛠️
+
+```sh
+brew install librsvg
+```
 
 ## Technical Installation
 
@@ -311,3 +298,15 @@ MIT License
 3. Commit your changes
 4. Push to the branch
 5. Create a Pull Request
+
+## New proposed sw architecture
+  - triviato-api - contains all the code that powers the content transformation pipelines
+  - triviato-data - contains all triviato decks data
+    - YAML files for the deck and its questions & answers
+    - SVG and PDF versions of the cards
+    - PNG files with the QR codes of the cards
+    - contains all the the content transformation pipelines
+  - triviato-web - contains the web application for triviato.session.it
+    - Pulls data from triviato-data
+    - Uses modules from triviato-api
+  - triviato-docs - contains all docs
