@@ -1,0 +1,21 @@
+answers_type: free_text
+card_id: '007'
+embedded_contents:
+- image
+options:
+- Artista A
+- Artista B
+- Artista C
+- Artista D
+- Artista E
+- Artista F
+- Artista G
+- Artista H
+- Artista I
+- Artista J
+question_content: Osserva l'immagine del logo di Sfera Ebbasta e indovina chi l'ha
+  disegnato
+question_type: extended
+sources:
+- https://www.italianoautomatico.com/quiz/quiz-9
+url: https://blog.session.it/quiz/decks/italian-trap/cards/007

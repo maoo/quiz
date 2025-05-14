@@ -1,0 +1,20 @@
+answers_type: binary
+card_id: '006'
+embedded_contents:
+- image
+options:
+- Mahmood
+- Elodie
+- Guè Pequeno
+- Salmo
+- Fabri Fibra
+- Clementino
+- Luchè
+- Noyz Narcos
+- MadMan
+- Izi
+question_content: Quale di questi artisti ha collaborato con Ghali?
+question_type: extended
+sources:
+- https://www.italianoautomatico.com/quiz/quiz-9
+url: https://blog.session.it/quiz/decks/italian-trap/cards/006

@@ -1,0 +1,19 @@
+answers_type: binary
+card_id: '003'
+embedded_contents: []
+options:
+- Teschio
+- Cuore
+- Frecce
+- Stella
+- Occhio
+- Pistola
+- Diamante
+- Microfono
+- Onda
+- Fiamma
+question_content: Quale simbolo è associato alla Dark Polo Gang?
+question_type: short
+sources:
+- https://www.italianoautomatico.com/quiz/quiz-9
+url: https://blog.session.it/quiz/decks/italian-trap/cards/003
