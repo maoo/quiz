@@ -1,0 +1,21 @@
+answers_type: date
+card_id: 008
+embedded_contents:
+- image
+options:
+- '2018'
+- '2019'
+- '2020'
+- '2021'
+- '2022'
+- '2023'
+- '2017'
+- '2016'
+- '2015'
+- '2024'
+question_content: 'Guarda il seguente grafico sulle vendite: Quale anno ha il picco
+  maggiore?'
+question_type: extended
+sources:
+- https://www.italianoautomatico.com/quiz/quiz-9
+url: https://blog.session.it/quiz/decks/italian-trap/cards/008
