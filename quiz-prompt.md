@@ -58,14 +58,14 @@ For each question generated, create the following files in the `decks/<deck_name
 1. `content.yaml`: Contains all content related to a quiz card, listed in "Quiz card specifications", except for the 10 answers:
   - The **Question**
   - The **Embedded Contents**
-  - The **10 Options**
+  - The **10 Options**, in a random order
   - **Sources** , list of links to sources to certify the answer
   - The **URL** to the current card - `https://blog.session.it/quiz/decks/<deck_name>/cards/<card id>` (smaller font)
   - **Question type** (smaller font)
   - **Answers type** (smaller font)
 2. `answers.yaml`: Lists all **options** and related **answers** as a table with 10 lines and 3 columns: Order number, Option, Answer
 
-**IMPORTANT!** All YAML files must comply with it's related schema:
+**IMPORTANT!** All YAML files MUST comply with it's related schema:
 - `decks/<deck_name>/index.yaml` -> https://github.com/maoo/quiz/blob/main/schemas/deck-index.yaml
 - `decks/<deck_name>/cards/<card_id>/content.yaml` -> https://github.com/maoo/quiz/blob/main/schemas/card.yaml
 - `decks/<deck_name>/cards/<card_id>/answers.yaml` -> https://github.com/maoo/quiz/blob/main/schemas/answers.yaml
@@ -73,10 +73,11 @@ For each question generated, create the following files in the `decks/<deck_name
 ## ✅ Content Quality
 
 The content of the quiz cards must be:
-  - Challenging, fair, precise, and undisputable DevOps quiz questions, based on widely adopted technologies and real-world best practices. Every card must:
-  - Grounded in fact-checked, verifiable documentation.
-  - Clear, stand-alone, and unambiguous.
-  - Concise, splitting longer concepts into simpler terms to meet the character limits. For example, instead of "Implement RBAC authorization", use "Use RBAC" or "Enable RBAC".
+  - Challenging
+  - Fair, precise, and undisputable
+  - Grounded in fact-checked, verifiable
+  - Clear, stand-alone, and unambiguous
+  - Concise, splitting longer concepts into simpler terms to meet the character limits
 
 ## 🔍 Content Validation
 
@@ -109,6 +110,8 @@ All external content must be validated and follow these guidelines:
 
 ### Content Testing
 - Before finalizing any card:
+  - All YAML files comply with their related YAML schema definition, listed above in the "Output File Structure" section
+  - All YAML fields must be defined; no field can be empty or null
   - Test all links for availability
   - Verify image accessibility
   - Check content licensing
@@ -119,7 +122,8 @@ All output content (all card.yaml files and the deck homepages) must be nicely a
 
 ## ✅ Content Checklist
 - Are all generated YAML files complying with their related YAML schema definition, listed above in the "Output File Structure" section?
-- Are there exactly 10 well-formed, independent options?
+- Are there exactly 10 well-formed, independent options, reported in a random order?
+- Are there exactly 10 well-formed, answers that are related to the questions and are not empty?
 - For binary questions: Are there 3–7 correct (True) answers?
 - Is each option STRICTLY 20 characters or less?
 - Are answers undisputable, based on trusted sources?
