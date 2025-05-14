@@ -10,7 +10,7 @@ This project is an AI-powered quiz generation system that creates high-quality, 
 
 To generate new questions:
 ```
-Build and return a ZIP file containing a list of 10 questions and answers, following instructions on https://raw.githubusercontent.com/maoo/quiz/refs/heads/main/quiz-prompt.md and using the deck specification contained in https://raw.githubusercontent.com/maoo/quiz/refs/heads/main/prompts/fun-math.yaml
+Build and return a ZIP file (check that the download link is valid!) containing a list of 10 questions and answers, following instructions on https://raw.githubusercontent.com/maoo/quiz/refs/heads/main/quiz-prompt.md and using the deck specification contained in https://raw.githubusercontent.com/maoo/quiz/refs/heads/main/prompts/fun-math.yaml
 ```
 
 Unzip the result into the `decks/` folder and push it into main; GitHub Actions should take care of the rest, and publish the deck under https://blog.session.it/quiz (check the [`gh-pages` branch content](https://github.com/maoo/quiz/tree/gh-pages)).
