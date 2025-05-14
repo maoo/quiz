@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" height="297mm" version="1.1" viewBox="0 0 1109 1110" width="210mm">
+  <defs/>
+  <rect fill="#f5f5f5" height="1110" rx="277" ry="277" width="1109" x="0" y="0"/>
+  <path d="M 832,0 L 1109,0 L 1109,277 Q 1054,55 832,0 Z" fill="#f5f5f5"/>
+  <path d="M 832,1110 L 1109,1110 L 1109,833 Q 1054,1055 832,1110 Z" fill="#f5f5f5"/>
+  <circle cx="554" cy="555" fill="#dcdcdc" r="166"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
+    <text x="554" y="542">Chi è considerato il pioniere</text>
+    <text x="554" y="568">del trap italiano?</text>
+  </g>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-90">1. Sfera Ebbasta</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-80">2. Izi</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-70">3. Dark Polo Gang</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-60">4. Capo Plaza</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-50">5. Tedua</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-40">6. MadMan</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-30">7. Ghali</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-20">8. Rkomi</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-10">9. Gemitaiz</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="0">10. DrefGold</text>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="554.0" y="263.0">Sfera</text>
+    <text x="554.0" y="293.0">Ebbasta</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="716.8165148850151" y="315.90229255813955"/>
+    <text x="716.8165148850151" y="345.90229255813955">Izi</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="817.4426550137575" y="454.4022925581396">Dark</text>
+    <text x="817.4426550137575" y="484.4022925581396">Polo Gang</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="817.4426550137575" y="625.5977074418604">Capo</text>
+    <text x="817.4426550137575" y="655.5977074418604">Plaza</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="716.8165148850151" y="764.0977074418604"/>
+    <text x="716.8165148850151" y="794.0977074418604">Tedua</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="554.0" y="817.0"/>
+    <text x="554.0" y="847.0">MadMan</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="391.18348511498493" y="764.0977074418604"/>
+    <text x="391.18348511498493" y="794.0977074418604">Ghali</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="290.55734498624247" y="625.5977074418605"/>
+    <text x="290.55734498624247" y="655.5977074418605">Rkomi</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="290.55734498624247" y="454.4022925581396"/>
+    <text x="290.55734498624247" y="484.4022925581396">Gemitaiz</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="391.18348511498493" y="315.9022925581396"/>
+    <text x="391.18348511498493" y="345.9022925581396">DrefGold</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle"/>
+</svg>
