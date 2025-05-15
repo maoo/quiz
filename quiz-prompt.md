@@ -46,6 +46,20 @@ All questions and answers in a deck MUST be randomly shuffled and MUST follow th
 
 The order of the quiz cards across the deck MUST be random.
 
+**Validation**: make sure every:
+ - `decks/<deck_name>/index.yaml` complies with https://raw.githubusercontent.com/maoo/quiz/refs/heads/main/schemas/deck-index.yaml schema
+
+### Card Specifications
+ 1. `question_content`: the text of the question.
+ 2. `options`: exactly 10 non-empty options for each question ; **No** string may be empty or missing.
+ 3. `answers`: exactly 10 answers, aligned with `options` ; **no** field may be left blank.
+ 4. `answers_type`: one of “binary,” “ordering_number,” “date,” or “free_text.”
+ 5. `sources`: a list of reference URLs.
+
+ **Validation**: make sure every:
+- `decks/<deck_name>/cards/<card_id>/content.yaml` complies with https://raw.githubusercontent.com/maoo/quiz/refs/heads/main/schemas/card.yaml schema
+- `decks/<deck_name>/cards/<card_id>/answers.yaml` complies with https://raw.githubusercontent.com/maoo/quiz/refs/heads/main/schemas/answers.yaml schema
+
 ## 📁 Output File Structure
 
 The folder `decks/<deck_name>` MUST contain:
@@ -64,11 +78,6 @@ For each question generated, create the following files in the `decks/<deck_name
   - **Question type** (smaller font)
   - **Answers type** (smaller font)
 2. `answers.yaml`: Lists all **options** and related **answers** as a table with 10 lines and 3 columns: Order number, Option, Answer
-
-**IMPORTANT!** All YAML files MUST comply with it's related schema:
-- `decks/<deck_name>/index.yaml` -> https://raw.githubusercontent.com/maoo/quiz/refs/heads/main/schemas/deck-index.yaml
-- `decks/<deck_name>/cards/<card_id>/content.yaml` -> https://raw.githubusercontent.com/maoo/quiz/refs/heads/main/schemas/card.yaml
-- `decks/<deck_name>/cards/<card_id>/answers.yaml` -> https://raw.githubusercontent.com/maoo/quiz/refs/heads/main/schemas/answers.yaml
 
 ## ✅ Content Quality
 
