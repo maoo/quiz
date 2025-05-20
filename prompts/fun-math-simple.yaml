@@ -1,0 +1,56 @@
+title: "🚀 Matemáticas Divertidas"
+deck_id: "fun-math"
+language: "Spanish"
+difficulty_levels:
+  easy: 0%
+  easy_medium: 5%
+  medium: 10%
+  medium_hard: 50%
+  hard: 35%
+
+introduction: |
+  Matemáticas Divertidas es un mazo de cartas para ayudar a estudiantes de 5º grado (10-11 años) a aprender matemáticas de una manera divertida. Las preguntas están diseñadas para ser inteligentes, a veces desafiantes y siempre intrigantes para despertar el interés de los estudiantes en los conceptos matemáticos. Este mazo tiene como objetivo desarrollar el pensamiento crítico y las habilidades de resolución de problemas a través de acertijos atractivos que combinan geometría, sistema métrico, problemas de lógica y otras áreas matemáticas. Las preguntas deben animar a los estudiantes a pensar creativamente y aplicar principios matemáticos a situaciones novedosas.
+
+question_examples:
+  short:
+    - question: "¿Cuál es el resultado correcto de las operaciones?"
+      options: "10 operaciones matemáticas diferentes"
+      answers: "10 soluciones numéricas para las 10 operaciones definidas como opciones"
+    - question: "Ordena los resultados de las operaciones (el más alto es 1)"
+      options: "10 operaciones matemáticas diferentes"
+      answers: "10 números que representan el rango de la solución (de mayor a menor)"
+    - question: "Si un patrón continúa, ¿cuál será el valor en la posición X?"
+      options: "10 secuencias numéricas diferentes con un valor faltante"
+      answers: "10 números que completan cada secuencia correctamente"
+    - question: "Resuelve estos problemas de palabras y relaciónalos con el método de solución correcto"
+      options: "10 problemas de palabras diferentes que involucran fracciones, porcentajes y proporciones"
+      answers: "10 enfoques matemáticos (proporción directa, multiplicación cruzada, etc.) que resuelven cada problema"
+
+subject_matter:
+  - "Números de 4 y 5 cifras"
+  - "Cálculo mental"
+  - "Resolución de problemas"
+  - "Mapas, planos y croquis"
+  - "Sumar y restar"
+  - "Multiplicar por una y dos cifras"
+  - "Jerarquía de operaciones"
+  - "El punto, la recta, la semirrecta, el segmento y sus posiciones"
+  - "Simetrías"
+  - "Estadística"
+  - "Multiplicar por 2 y 3 cifras"
+  - "Multiplicar por la unidad seguida de ceros"
+  - "Dividir entre 1, 2 y 3 cifras"
+  - "Circunferencia y círculo"
+  - "Ángulos"
+  - "Polígonos"
+  - "Perímetros"
+  - "Cuerpos geométricos"
+  - "Poliedros"
+  - "Cuerpos redondos"
+  - "Dividir por la unidad seguida de ceros"
+  - "Unidades de tiempo"
+  - "Monedas y billetes"
+  - "Resolución de problemas"
+  - "Las fracciones"
+  - "Unidades de medida de longitud, de masa y de capacidad"
+  - "Probabilidad"

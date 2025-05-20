@@ -12,6 +12,8 @@ The output folder MUST contain:
   - `cards/<card_id>/content.yaml`
   - `cards/<card_id>/answers.yaml`
 
+`<card_id>` is a 3-digit sequential number, starting from `001`
+
 Card contents must be:
   - Challenging
   - Fair, precise, and undisputable
