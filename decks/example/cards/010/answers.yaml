@@ -1,0 +1,24 @@
+- order: 1
+  option: 'Pelmeni'
+  answer: 'Rusia'
+- order: 2
+  option: 'Doner Kebab'
+  answer: 'Turquía'
+- order: 3
+  option: 'Risotto'
+  answer: 'Italia'
+- order: 4
+  option: 'Goulash'
+  answer: 'Hungria'
+- order: 5
+  option: 'Tom yum'
+  answer: 'Tailandia'
+- order: 6
+  option: 'Paella'
+  answer: 'España'
+- order: 7
+  option: 'Tajin'
+  answer: 'Marruecos'
+- order: 8
+  option: 'Kimchi'
+  answer: 'Corea'

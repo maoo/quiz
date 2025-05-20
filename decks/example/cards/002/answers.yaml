@@ -1,0 +1,24 @@
+- order: 1
+  option: 'De tal palo,'
+  answer: 'tal astilla'
+- order: 2
+  option: 'Al mal tiempo,'
+  answer: 'buena cara'
+- order: 3
+  option: 'No es oro'
+  answer: 'todo lo que reluce'
+- order: 4
+  option: 'A la tercera'
+  answer: 'va la vencida'
+- order: 5
+  option: 'El habito'
+  answer: 'no hace el monje'
+- order: 6
+  option: 'Mas vale tarde'
+  answer: 'que nunca'
+- order: 7
+  option: 'Preguntando'
+  answer: 'se llega a Roma'
+- order: 8
+  option: 'Mucho ruido'
+  answer: 'y pocas nueces'

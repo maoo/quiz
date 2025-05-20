@@ -1,0 +1,16 @@
+card_id: '007'
+question_type: short
+question_content: '¿Ordena estas peliculas del MCU segun fecha de estreno (1a la mas antigua)? '
+options:
+- 'Guardianes de la galaxia'
+- 'Ant man'
+- 'Capitan America'
+- 'Black Panther'
+- 'SpiderMan: Homecoming'
+- 'Thor'
+- 'Doctor Strange'
+- 'Iron Man'
+sources:
+- TODO
+url: https://blog.session.it/quiz/decks/example/cards/007
+answer_type: order

@@ -1,0 +1,24 @@
+- order: 1
+  option: 'Rosa Parks'
+  answer: 'XX'
+- order: 2
+  option: 'Juana de Arco'
+  answer: 'XV'
+- order: 3
+  option: 'Pedro i de Rusia'
+  answer: 'XVII'
+- order: 4
+  option: 'Madre Teresa'
+  answer: 'XX'
+- order: 5
+  option: 'Gengis Kan'
+  answer: 'XII'
+- order: 6
+  option: 'Julio Cesar'
+  answer: 'I a.C.'
+- order: 7
+  option: 'Cardenal Richelieu'
+  answer: 'XVI'
+- order: 8
+  option: 'Charles Dickens'
+  answer: 'XIX'

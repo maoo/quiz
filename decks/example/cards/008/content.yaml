@@ -1,0 +1,16 @@
+card_id: '008'
+question_type: short
+question_content: 'Decada de su lanzamiento'
+options:
+- 'Black or White/Michael Jackson'
+- 'Back to Black/Amy Winehouse'
+- 'Staying Alive/Bee Gees'
+- 'Sexy and I Know It/LMFAO'
+- 'Hey Jude/The Beatles'
+- 'Toxic/Britney Spears'
+- 'Happy/Pharrell Williams'
+- 'Call Me/Blondie'
+sources:
+- TODO
+url: https://blog.session.it/quiz/decks/example/cards/008
+answer_type: time

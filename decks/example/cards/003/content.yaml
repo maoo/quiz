@@ -1,0 +1,16 @@
+card_id: '003'
+question_type: short
+question_content: '¿En que siglo nacio?'
+options:
+- 'Rosa Parks'
+- 'Juana de Arco'
+- 'Pedro i de Rusia'
+- 'Madre Teresa'
+- 'Gengis Kan'
+- 'Julio Cesar'
+- 'Cardenal Richelieu'
+- 'Charles Dickens'
+sources:
+- TODO
+url: https://blog.session.it/quiz/decks/example/cards/003
+answer_type: time

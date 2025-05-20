@@ -1,0 +1,16 @@
+card_id: '010'
+question_type: short
+question_content: '¿Qué pais es famoso por su...?'
+options:
+- 'Pelmeni'
+- 'Doner Kebab'
+- 'Risotto'
+- 'Goulash'
+- 'Tom yum'
+- 'Paella'
+- 'Tajin'
+- 'Kimchi'
+sources:
+- TODO
+url: https://blog.session.it/quiz/decks/example/cards/010
+answer_type: free_text

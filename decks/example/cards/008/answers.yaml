@@ -1,0 +1,24 @@
+- order: 1
+  option: 'Black or White/Michael Jackson'
+  answer: '1990'
+- order: 2
+  option: 'Back to Black/Amy Winehouse'
+  answer: '2000'
+- order: 3
+  option: 'Staying Alive/Bee Gees'
+  answer: '1970'
+- order: 4
+  option: 'Sexy and I Know It/LMFAO'
+  answer: '2010'
+- order: 5
+  option: 'Hey Jude/The Beatles'
+  answer: '1960'
+- order: 6
+  option: 'Toxic/Britney Spears'
+  answer: '2000'
+- order: 7
+  option: 'Happy/Pharrell Williams'
+  answer: '2010'
+- order: 8
+  option: 'Call Me/Blondie'
+  answer: '1980'

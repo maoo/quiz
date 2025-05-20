@@ -1,0 +1,16 @@
+card_id: '002'
+question_type: short
+question_content: '¿Como acaban estos refranes?'
+options:
+- 'De tal palo,'
+- 'Al mal tiempo,'
+- 'No es oro'
+- 'A la tercera'
+- 'El habito'
+- 'Mas vale tarde'
+- 'Preguntando'
+- 'Mucho ruido'
+sources:
+- TODO
+url: https://blog.session.it/quiz/decks/example/cards/002
+answer_type: free_text

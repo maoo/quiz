@@ -1,0 +1,24 @@
+- order: 1
+  option: 'Guardianes de la galaxia'
+  answer: '4'
+- order: 2
+  option: 'Ant man'
+  answer: '5'
+- order: 3
+  option: 'Capitan America'
+  answer: '3'
+- order: 4
+  option: 'Black Panther'
+  answer: '8'
+- order: 5
+  option: 'SpiderMan: Homecoming'
+  answer: '7'
+- order: 6
+  option: 'Thor'
+  answer: '2'
+- order: 7
+  option: 'Doctor Strange'
+  answer: '6'
+- order: 8
+  option: 'Iron Man'
+  answer: '1'
