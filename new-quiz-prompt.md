@@ -4,6 +4,8 @@ Generate the contents for a quiz card deck, following exactly the same folder st
 
 There must be 10 cards in the generated deck, with all type of answer_type values: binary, order, time, free_text, color; all equally distributed and shuffled across the deck.
 
+Each card content must include exactly 1 question, 8 options and 8 answers; questions must be generated so that the 8 answers related to the 8 options are pertinent to the question and diverse
+
 Card contents must be:
   - Challenging
   - Fair, precise, and undisputable
@@ -31,3 +33,5 @@ For each question generated, create the following files in the `decks/<deck_name
   - **Question type** (smaller font)
   - **Answers type** (smaller font)
 2. `answers.yaml`: Lists all **options** and related **answers** as a table with 10 lines and 3 columns: Order number, Option, Answer
+
+If a card does not comply with the requirements above, it must be discarded and regenerated.
