@@ -59,6 +59,19 @@ The system follows a modular approach:
 - https://www.alibaba.com/product-detail/Customizable-Playing-Card-Deck-in-Rigid_1601224318368.html?spm=a2700.shop_plgr.41413.75.655a7121mlWGlO (custom size, 3.50 per deck, for 2 decks, down to 0.41€ per deck for more)
 - https://cardsandbanners.com/print/Postcards/4x-4-Postcards (10x10cm, 7.1$ per deck, for 10 decks printed ; 4.16$ for 50 decks printed)
 
+#### Request for quote
+```
+Hi there,
+We're interested in your product. 
+We would like to print 500 cards. 9x9cm square, 300gsm, double sided, 
+with rounded corners, in color with gloss finish.
+We would provide the design for the card and there is no packaging necessary. 
+Could you please tell me price and delivery times for Spain.
+Thanks!
+```
+
+[Alibaba search for "card printing"](https://www.alibaba.com/trade/search?spm=a2700.galleryofferlist.the-new-header_fy23_pc_search_bar.keydown__Enter&tab=all&SearchText=card+printing)
+
 ### Recommended Printer Setup
 - [Canon Pixma G650 Megatank](https://www.amazon.es/Canon-4620C006-PIXMA-G650/dp/B093QG1Y8C) - Impresora Fotográfica 3 en 1 (233€)
 - [Papel Fotográfico Láser Brillante](https://www.amazon.es/Fotogr%C3%A1fico-Brillante-impresoras-Certificados-Calendarios/dp/B07VVDM9FJ) - Doble cara, A4, 250 g/m², 100 hojas
