@@ -1,0 +1,16 @@
+card_id: '005'
+question_type: short
+question_content: '¿Cual es el color principal de esta flor?'
+options:
+- 'Lavanda'
+- 'Amapola'
+- 'Arbol del amor'
+- 'Mimosa'
+- 'Girasol'
+- 'Muscaris'
+- 'Camelia'
+- 'Retama'
+sources:
+- TODO
+url: https://blog.session.it/quiz/decks/example/cards/005
+answer_type: color

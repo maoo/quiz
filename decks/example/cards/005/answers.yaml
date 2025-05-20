@@ -1,0 +1,24 @@
+- order: 1
+  option: 'Lavanda'
+  answer: 'Violeta'
+- order: 2
+  option: 'Amapola'
+  answer: 'Rojo'
+- order: 3
+  option: 'Arbol del amor'
+  answer: 'Rosa'
+- order: 4
+  option: 'Mimosa'
+  answer: 'Amarillo'
+- order: 5
+  option: 'Girasol'
+  answer: 'Amarillo'
+- order: 6
+  option: 'Muscaris'
+  answer: 'Azul'
+- order: 7
+  option: 'Camelia'
+  answer: 'Rojo/Rosa'
+- order: 8
+  option: 'Retama'
+  answer: 'Amarillo'

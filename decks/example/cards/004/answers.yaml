@@ -1,0 +1,24 @@
+- order: 1
+  option: 'Janis Joplin'
+  answer: '27'
+- order: 2
+  option: 'Jimi Hendrix'
+  answer: '27'
+- order: 3
+  option: 'Heath Ledger'
+  answer: '28'
+- order: 4
+  option: 'James Dean'
+  answer: '24'
+- order: 5
+  option: 'Amy Winehouse'
+  answer: '27'
+- order: 6
+  option: 'Diana de Gales'
+  answer: '36'
+- order: 7
+  option: 'Jim Morrison'
+  answer: '27'
+- order: 8
+  option: 'Marilyn Monroe'
+  answer: '36'

@@ -1,0 +1,16 @@
+card_id: '004'
+question_type: short
+question_content: '¿A que edad murio...?'
+options:
+- 'Janis Joplin'
+- 'Jimi Hendrix'
+- 'Heath Ledger'
+- 'James Dean'
+- 'Amy Winehouse'
+- 'Diana de Gales'
+- 'Jim Morrison'
+- 'Marilyn Monroe'
+sources:
+- TODO
+url: https://blog.session.it/quiz/decks/example/cards/004
+answer_type: number

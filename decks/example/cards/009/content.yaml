@@ -1,0 +1,16 @@
+card_id: '009'
+question_type: short
+question_content: 'Ordena estos edificios'
+options:
+- 'Burj Khalifa'
+- 'One World Trade Center'
+- 'Torre Willis'
+- 'Tokyo Skytree'
+- 'Shanghai World Financial Center'
+- 'Torre Perla Oriental'
+- 'Teipei 101'
+- 'Torres Petronas'
+sources:
+- TODO
+url: https://blog.session.it/quiz/decks/example/cards/009
+answer_type: order

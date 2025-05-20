@@ -1,0 +1,24 @@
+- order: 1
+  option: 'AFP'
+  answer: 'Francia'
+- order: 2
+  option: 'Reuters'
+  answer: 'Reino Unido'
+- order: 3
+  option: 'AP'
+  answer: 'Estados Unidos'
+- order: 4
+  option: 'Interfax'
+  answer: Rusia
+- order: 5
+  option: 'Xinhua'
+  answer: 'China'
+- order: 6
+  option: 'ANSA'
+  answer: 'Italia'
+- order: 7
+  option: 'EFE'
+  answer: 'España'
+- order: 8
+  option: 'AA (Agencia Anadolu)'
+  answer: 'Turquía'

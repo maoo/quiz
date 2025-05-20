@@ -1,0 +1,24 @@
+- order: 1
+  option: 'Burj Khalifa'
+  answer: '1'
+- order: 2
+  option: 'One World Trade Center'
+  answer: '3'
+- order: 3
+  option: 'Torre Willis'
+  answer: '8'
+- order: 4
+  option: 'Tokyo Skytree'
+  answer: '2'
+- order: 5
+  option: 'Shanghai World Financial Center'
+  answer: '5'
+- order: 6
+  option: 'Torre Perla Oriental'
+  answer: '6'
+- order: 7
+  option: 'Teipei 101'
+  answer: '4'
+- order: 8
+  option: 'Torres Petronas'
+  answer: '7'
