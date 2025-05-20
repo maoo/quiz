@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" height="297mm" version="1.1" viewBox="0 0 1109 1110" width="210mm">
+  <defs/>
+  <rect fill="#f5f5f5" height="1110" rx="277" ry="277" width="1109" x="0" y="0"/>
+  <path d="M 832,0 L 1109,0 L 1109,277 Q 1054,55 832,0 Z" fill="#f5f5f5"/>
+  <path d="M 832,1110 L 1109,1110 L 1109,833 Q 1054,1055 832,1110 Z" fill="#f5f5f5"/>
+  <circle cx="554" cy="555" fill="#dcdcdc" r="166"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
+    <text x="554" y="542">¿Es una Maravilla del Mundo</text>
+    <text x="554" y="568">Antiguo?</text>
+  </g>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-90">1. Templo de Artemisia</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-80">2. Mausoleo de Halicarnaso</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-70">3. Coloso de Rodas</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-60">4. Machu Picchu</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-50">5. Palacio de Potala</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-40">6. Coliseo</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-30">7. Gran Piramide de Guiza</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-20">8. Estatua de Zeus</text>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="554.0" y="263.0">Templo</text>
+    <text x="554.0" y="293.0">de Artemisia</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="554.0" y="106.0">True</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="749.8685783886737" y="344.13142161132635">Mausoleo</text>
+    <text x="749.8685783886737" y="374.13142161132635">de Halicarnaso</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="871.4909447527598" y="237.5090552472402">True</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="831.0" y="540.0">Coloso</text>
+    <text x="831.0" y="570.0">de Rodas</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="1003.0" y="555.0">True</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="749.8685783886737" y="735.8685783886737">Machu</text>
+    <text x="749.8685783886737" y="765.8685783886737">Picchu</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="871.4909447527598" y="872.4909447527598">False</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="554.0" y="817.0">Palacio</text>
+    <text x="554.0" y="847.0">de Potala</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="554.0" y="1004.0">False</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="358.13142161132635" y="735.8685783886737"/>
+    <text x="358.13142161132635" y="765.8685783886737">Coliseo</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="236.5090552472402" y="872.4909447527598">False</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="277.0" y="540.0">Gran Piramide</text>
+    <text x="277.0" y="570.0">de Guiza</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="105.0" y="555.0">True</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="358.1314216113263" y="344.13142161132635">Estatua</text>
+    <text x="358.1314216113263" y="374.13142161132635">de Zeus</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="236.5090552472401" y="237.5090552472402">True</text>
+  </g>
+</svg>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" height="297mm" version="1.1" viewBox="0 0 1109 1110" width="210mm">
+  <defs/>
+  <rect fill="#f5f5f5" height="1110" rx="277" ry="277" width="1109" x="0" y="0"/>
+  <path d="M 832,0 L 1109,0 L 1109,277 Q 1054,55 832,0 Z" fill="#f5f5f5"/>
+  <path d="M 832,1110 L 1109,1110 L 1109,833 Q 1054,1055 832,1110 Z" fill="#f5f5f5"/>
+  <circle cx="554" cy="555" fill="#dcdcdc" r="166"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
+    <text x="554" y="555">Ordena estos edificios</text>
+  </g>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-90">1. Burj Khalifa</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-80">2. One World Trade Center</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-70">3. Torre Willis</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-60">4. Tokyo Skytree</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-50">5. Shanghai World Financial Center</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-40">6. Torre Perla Oriental</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-30">7. Teipei 101</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-20">8. Torres Petronas</text>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="554.0" y="263.0">Burj</text>
+    <text x="554.0" y="293.0">Khalifa</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="554.0" y="106.0">1</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="749.8685783886737" y="344.13142161132635">One World</text>
+    <text x="749.8685783886737" y="374.13142161132635">Trade Center</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="871.4909447527598" y="237.5090552472402">3</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="831.0" y="540.0">Torre</text>
+    <text x="831.0" y="570.0">Willis</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="1003.0" y="555.0">8</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="749.8685783886737" y="735.8685783886737">Tokyo</text>
+    <text x="749.8685783886737" y="765.8685783886737">Skytree</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="871.4909447527598" y="872.4909447527598">2</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="554.0" y="817.0">Shanghai World</text>
+    <text x="554.0" y="847.0">Financial Center</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="554.0" y="1004.0">5</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="358.13142161132635" y="735.8685783886737">Torre</text>
+    <text x="358.13142161132635" y="765.8685783886737">Perla Oriental</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="236.5090552472402" y="872.4909447527598">6</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="277.0" y="540.0">Teipei</text>
+    <text x="277.0" y="570.0">101</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="105.0" y="555.0">4</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="358.1314216113263" y="344.13142161132635">Torres</text>
+    <text x="358.1314216113263" y="374.13142161132635">Petronas</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="236.5090552472401" y="237.5090552472402">7</text>
+  </g>
+</svg>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" height="297mm" version="1.1" viewBox="0 0 1109 1110" width="210mm">
+  <defs/>
+  <rect fill="#f5f5f5" height="1110" rx="277" ry="277" width="1109" x="0" y="0"/>
+  <path d="M 832,0 L 1109,0 L 1109,277 Q 1054,55 832,0 Z" fill="#f5f5f5"/>
+  <path d="M 832,1110 L 1109,1110 L 1109,833 Q 1054,1055 832,1110 Z" fill="#f5f5f5"/>
+  <circle cx="554" cy="555" fill="#dcdcdc" r="166"/>
+  <g dominant-baseline="middle" font-family="Arial" font-size="24" text-anchor="middle">
+    <text x="554" y="555">¿En que siglo nacio?</text>
+  </g>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-90">1. Rosa Parks</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-80">2. Juana de Arco</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-70">3. Pedro i de Rusia</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-60">4. Madre Teresa</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-50">5. Gengis Kan</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-40">6. Julio Cesar</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-30">7. Cardenal Richelieu</text>
+  <text fill="white" font-family="Arial" font-size="12" x="40" y="-20">8. Charles Dickens</text>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="554.0" y="263.0">Rosa</text>
+    <text x="554.0" y="293.0">Parks</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="554.0" y="106.0">XX</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="749.8685783886737" y="344.13142161132635">Juana</text>
+    <text x="749.8685783886737" y="374.13142161132635">de Arco</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="871.4909447527598" y="237.5090552472402">XV</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="831.0" y="540.0">Pedro i</text>
+    <text x="831.0" y="570.0">de Rusia</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="1003.0" y="555.0">XVII</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="749.8685783886737" y="735.8685783886737">Madre</text>
+    <text x="749.8685783886737" y="765.8685783886737">Teresa</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="871.4909447527598" y="872.4909447527598">XX</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="554.0" y="817.0">Gengis</text>
+    <text x="554.0" y="847.0">Kan</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="554.0" y="1004.0">XII</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="358.13142161132635" y="735.8685783886737">Julio</text>
+    <text x="358.13142161132635" y="765.8685783886737">Cesar</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="236.5090552472402" y="872.4909447527598">I a.C.</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="277.0" y="540.0">Cardenal</text>
+    <text x="277.0" y="570.0">Richelieu</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="105.0" y="555.0">XVI</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="18" text-anchor="middle">
+    <text x="358.1314216113263" y="344.13142161132635">Charles</text>
+    <text x="358.1314216113263" y="374.13142161132635">Dickens</text>
+  </g>
+  <g dominant-baseline="middle" font-family="Arial" font-size="16" text-anchor="middle">
+    <text x="236.5090552472401" y="237.5090552472402">XIX</text>
+  </g>
+</svg>
