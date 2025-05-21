@@ -11,29 +11,6 @@ difficulty_levels:
 introduction: |
   Il trap italiano e' un quiz per testare la tua conoscenza della musica trap italiana. Quali sono gli artisti piu conosciuti? Quali sono le loro canzoni piu famose? E le loro liriche? Conosci il gossip della musica trap italiana?
 
-question_examples:
-  extended:
-    - question: "Questo pezzo di musica e' stato prodotto da?"
-      embedded_media: "video - mostra un pezzo di musica trap italiana, senza titoli"
-      options: "10 nomi di produttori trap italiani"
-      answers: "10 vero/falso"
-    - question: "Quali artisti sono presenti in questa fotografia?"
-      embedded_media: "foto - mostra una fotografia di artisti trap italiani"
-      options: "10 nomi di artisti trap italiani"
-      answers: "10 vero/falso"
-    - question: "Quali di questi sono simboli di artisti trap italiani?"
-      embedded_media: "10 foto - simboli di artisti trap italiani"
-      options: "10 simboli di artisti trap italiani"
-      answers: "10 vero/falso"
-
-  short:
-    - question: "Ordina queste 10 canzoni di artisti trap italiani in base al successo di vendita"
-      options: "10 canzoni trap italiane"
-      answers: "10 numeri che rappresentano il rango di successo di vendita (dal più venduto al meno venduto)"
-    - question: "Ordina questi 10 artisti trap italiani in base alla loro età"
-      options: "10 artisti trap italiani"
-      answers: "10 numeri che rappresentano il rango di età (dal più giovane al più anziano)"
-
 subject_matter:
   - "Trap italiano"
   - "Musica trap italiana"
