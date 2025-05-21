@@ -15,7 +15,7 @@ Build and return a ZIP file (check that the download link is valid!) containing 
 
 WIP
 ```
-Parse the prompt in https://raw.githubusercontent.com/maoo/quiz/refs/heads/main/new-quiz-prompt.md and use the content guidelines in https://raw.githubusercontent.com/maoo/quiz/refs/heads/main/prompts/fun-math.yaml. to generate a ZIP file with the deck folder and its contents in it.
+Parse the prompt in https://raw.githubusercontent.com/maoo/quiz/refs/heads/main/new-quiz-prompt.md and use the content guidelines in https://raw.githubusercontent.com/maoo/quiz/refs/heads/main/prompts/fun-math-simple.yaml and return the output folder in a ZIP file.
 ```
 
 Unzip the result into the `decks/` folder and push it into main; GitHub Actions should take care of the rest, and publish the deck under https://blog.session.it/quiz (check the [`gh-pages` branch content](https://github.com/maoo/quiz/tree/gh-pages)).
@@ -64,18 +64,53 @@ The system follows a modular approach:
 - https://www.alibaba.com/product-detail/Customizable-Playing-Card-Deck-in-Rigid_1601224318368.html?spm=a2700.shop_plgr.41413.75.655a7121mlWGlO (custom size, 3.50 per deck, for 2 decks, down to 0.41€ per deck for more)
 - https://cardsandbanners.com/print/Postcards/4x-4-Postcards (10x10cm, 7.1$ per deck, for 10 decks printed ; 4.16$ for 50 decks printed)
 
+
 #### Request for quote
 ```
-Hi there,
-We're interested in your product. 
-We would like to print 500 cards. 9x9cm square, 300gsm, double sided, 
-with rounded corners, in color with gloss finish.
-We would provide the design for the card and there is no packaging necessary. 
-Could you please tell me price and delivery times for Spain.
-Thanks!
+We are producing a card game, and we need to find a partner to print the card decks; we have multiple decks to print(5 to 10 different decks, with different prints and graphics on each side of the cards); each deck will be composed by 100 cards, with:
+- double sided printing
+- color printing
+- 9x9cm square size
+- 300gsm weight
+- Rounded corners
+- Gloss finish
+- No boxing, the cheapest deck packaging is ok (for example, a small plastic bag)
+
+We would like to know:
+- The cost for a sample deck print, to check paper and print quality
+- Your MOQ
+- The cost for an order of 10 decks (100 cards), all of them different from each other (all cards are unique)
+- The cost for an order of 100 decks (1000 cards), 20 decks of each type (5 unique decks)
+- The cost for an order of 200 decks (2000 cards), 40 decks of each type (5 unique decks)
+- The cost for an order of 10 decks (100 cards), 2 decks of each type (5 unique decks)
+- The cost for an order of 10 decks (100 cards), 5 decks of each type (2 unique decks)
+
+The quote should also include shipping to Barcelona, Spain.
+
+We still cannot provide a sample card design, but we will make sure that it will be:
+1. PDF format
+2. Vector design, at least 300dpi
+3. CMYK format (not RGB), pantone color
+4. All critical information and bar codes are 3mm from edge and crease
+5. Bleeding at least 3mm
+6. Cutter, design and finishing must on separate layers
+7. ISO Coated v2 as ICC color standard
+
+I'm happy to answer any questions; thanks in advance for your time.
+
+Maurizio
 ```
 
 [Alibaba search for "card printing"](https://www.alibaba.com/trade/search?spm=a2700.galleryofferlist.the-new-header_fy23_pc_search_bar.keydown__Enter&tab=all&SearchText=card+printing)
+
+#### Printing requirements
+1. PDF or AI format
+2. Vector design, at least 300dpi
+3. CMYK format (not RGB), large range solid color better to be pantone color
+4. All critical information and bar codes must be 3mm from edge and crease
+5. Bleeding at least 3mm
+6. Cutter, design and finishing must on separate layers
+7. Please use ISO Coated v2 as ICC color standard
 
 ### Recommended Printer Setup
 - [Canon Pixma G650 Megatank](https://www.amazon.es/Canon-4620C006-PIXMA-G650/dp/B093QG1Y8C) - Impresora Fotográfica 3 en 1 (233€)

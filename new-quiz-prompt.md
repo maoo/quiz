@@ -4,15 +4,13 @@ Generate the contents for a quiz card deck, following exactly the same folder st
 
 There must be 10 cards in the generated deck, with all type of answer_type values: binary, order, time, free_text, color; all equally distributed and shuffled across the deck.
 
-Each card content must include exactly 1 question, 8 options and 8 answers; questions must be generated so that the 8 answers related to the 8 options are pertinent to the question and diverse
+Each card content must include exactly 1 question, 8 options and 8 answers; questions must be generated so that the 8 answers related to the 8 options are pertinent to the question and diverse; all card content is contained in the `cards/<card_id>` sub-folder , where `<card_id>` is a 3-digit sequential number, starting from `001`.
 
 The output folder MUST contain:
 - `index.yaml`
 - for each card
   - `cards/<card_id>/content.yaml`
   - `cards/<card_id>/answers.yaml`
-
-`<card_id>` is a 3-digit sequential number, starting from `001`
 
 Card contents must be:
   - Challenging
