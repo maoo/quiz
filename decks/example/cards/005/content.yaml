@@ -13,4 +13,4 @@ options:
 sources:
 - TODO
 url: https://blog.session.it/quiz/decks/example/cards/005
-answer_type: color
+answer_type: free_text
