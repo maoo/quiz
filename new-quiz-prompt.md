@@ -2,6 +2,8 @@
 
 Generate the contents for a quiz card deck, following exactly the same folder structure, file format and structure found in the https://github.com/maoo/quiz github repository (branch: main, folder: decks/example), but using the content described by a **content guidelines** YAML file (branch: main, folder: prompts) that is specified when invoking this prompt.
 
+The best approach to access the github repository is to fetch the raw files using the web tools available.
+
 There must be 10 cards in the generated deck, with all type of answer_type values, to keep it as balanced as possible (something like 3 binary, 2 order, 2 time, and 3 free_text).
 
 Each card content must include exactly 1 question, 8 options and 8 answers; questions must be generated so that the 8 answers related to the 8 options are pertinent to the question and diverse; all card content is contained in the `cards/<card_id>` sub-folder , where `<card_id>` is a 3-digit sequential number, starting from `001`.
@@ -19,8 +21,8 @@ Card contents must be:
   - Grounded in fact-checked, verifiable
   - Clear, stand-alone, and unambiguous
   - Concise, splitting longer concepts into simpler terms to meet the character limits:
-    - Questions: max 80 chars
-    - Options: max 35 chars
+    - Questions: mandatory; not empty; max 80 chars
+    - Options: mandatory; not empty; all different from each other; max 35 chars
     - Answers: max 35 chars
   - Sometimes enhanced with emojis and other YAML-allowed graphical elements
 
@@ -75,7 +77,7 @@ Each option will have a related answer with firstname and surname of the artist.
 
 ### Bad example 2
 
-The following content.yaml contains only 2 valid options, "Si" or "No", instead of having 8 valid options.
+The following content.yaml contains only 2 valid options, "Si" or "No", instead of having 8 valid options; it also contains 6 options ("Opzione 3", "Opzione 4", ...) which have no meaning and are definitely not related to the question.
 
 ```
 answer_type: "binary"
