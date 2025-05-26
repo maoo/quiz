@@ -1,9 +1,15 @@
 from typing import Dict, Any, Union
 import os
 import yaml
+import logging
 from pathlib import Path
 import openai
 from src.yaml_validator import validate_yaml, YAMLValidationError
+
+# Configure logging
+logger = logging.getLogger(__name__)
+
+GPT_MODEL="o4-mini"
 
 # Module-level map to store chat clients for each deck
 DECK_CHAT_CLIENTS: Dict[str, openai.OpenAI] = {}
@@ -73,16 +79,19 @@ def _generate_content_with_openai(
     """
     try:
         conversation = get_or_create_conversation(deck_name)
+        logger.info(f"Generating {content_type} content for deck '{deck_name}' (attempt {attempts + 1})")
         response = client.chat.completions.create(
-            model="gpt-4-turbo-preview",
+            model=GPT_MODEL,
             messages=conversation,
             temperature=temperature
         )
         content = response.choices[0].message.content
         conversation.append({"role": "assistant", "content": content})
+        logger.debug(f"Received response from OpenAI API for {content_type} content")
 
         # Parse the content as YAML
         parsed_content = yaml.safe_load(content)
+        logger.debug(f"Successfully parsed YAML content for {content_type}")
         
         # Validate content against the appropriate schema
         try:
@@ -97,12 +106,16 @@ def _generate_content_with_openai(
                 schema_path = "schemas/card.yaml"
             
             if schema_path:
+                logger.debug(f"Validating {content_type} content against schema: {schema_path}")
                 validate_yaml(parsed_content, schema_path)
+                logger.info(f"Successfully validated {content_type} content")
             else:
                 raise Exception(f"Invalid content type: {content_type}")
                 
         except YAMLValidationError as e:
+            logger.warning(f"YAML validation failed for {content_type} content: {str(e)}")
             if attempts < 3:
+                logger.info(f"Retrying generation (attempt {attempts + 2})")
                 user_prompt = f"The generated content failed validation: {str(e)}\nPlease generate content that adheres to the {content_type} YAML schema"
                 conversation.append({"role": "user", "content": user_prompt})
                 return _generate_content_with_openai(
@@ -114,10 +127,12 @@ def _generate_content_with_openai(
                 )
             else:
                 # Raise exception, too many attempts to generate content
-                raise Exception(f"Failed to generate valid {content_type} content after {attempts} attempts. Last error: {str(e)}")
+                logger.error(f"Failed to generate valid {content_type} content after {attempts + 1} attempts")
+                raise Exception(f"Failed to generate valid {content_type} content after {attempts + 1} attempts. Last error: {str(e)}")
             
         return parsed_content
     except Exception as e:
+        logger.error(f"Failed to generate {content_type} content: {str(e)}", exc_info=True)
         raise Exception(f"Failed to generate content: {str(e)}")
 
 def generate_deck_content(deck_name: str) -> Dict[str, Any]:
