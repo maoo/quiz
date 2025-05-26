@@ -8,8 +8,8 @@ from src.yaml_validator import validate_yaml, YAMLValidationError
 # Module-level map to store chat clients for each deck
 DECK_CHAT_CLIENTS: Dict[str, openai.OpenAI] = {}
 
-# Global conversation list
-conversation = []
+# Module-level map to store conversations for each deck
+DECK_CONVERSATIONS: Dict[str, list] = {}
 
 def get_or_create_chat_client(deck_name: str) -> openai.OpenAI:
     """
@@ -18,6 +18,14 @@ def get_or_create_chat_client(deck_name: str) -> openai.OpenAI:
     if deck_name not in DECK_CHAT_CLIENTS:
         DECK_CHAT_CLIENTS[deck_name] = openai.OpenAI()
     return DECK_CHAT_CLIENTS[deck_name]
+
+def get_or_create_conversation(deck_name: str) -> list:
+    """
+    Get an existing conversation for a deck or create a new one
+    """
+    if deck_name not in DECK_CONVERSATIONS:
+        DECK_CONVERSATIONS[deck_name] = []
+    return DECK_CONVERSATIONS[deck_name]
 
 def _read_prompt_file(file_path: Union[str, Path]) -> str:
     """
@@ -42,6 +50,7 @@ def _read_prompt_file(file_path: Union[str, Path]) -> str:
 
 def _generate_content_with_openai(
     client: Any,
+    deck_name: str,
     content_type: str,  # "deck" or "card"
     temperature: float = 0.7,
     attempts: int = 0,
@@ -51,6 +60,7 @@ def _generate_content_with_openai(
     
     Args:
         client: OpenAI client instance
+        deck_name: Name of the deck
         content_type: Type of content to generate ("deck", "content" or "answers")
         attempts: Number of retry attempts
         temperature: Temperature for generation (default: 0.7)
@@ -62,6 +72,7 @@ def _generate_content_with_openai(
         Exception: If generation or parsing fails
     """
     try:
+        conversation = get_or_create_conversation(deck_name)
         response = client.chat.completions.create(
             model="gpt-4-turbo-preview",
             messages=conversation,
@@ -96,6 +107,7 @@ def _generate_content_with_openai(
                 conversation.append({"role": "user", "content": user_prompt})
                 return _generate_content_with_openai(
                     client=client,
+                    deck_name=deck_name,
                     content_type=content_type,
                     temperature=temperature,
                     attempts=attempts + 1
@@ -115,6 +127,7 @@ def generate_deck_content(deck_name: str) -> Dict[str, Any]:
     try:      
         # Get or create chat client for this deck
         client = get_or_create_chat_client(deck_name)
+        conversation = get_or_create_conversation(deck_name)
 
         # Append messages to conversation for deck creation
         system_prompt = _read_prompt_file("prompts/system/deck.md")
@@ -126,6 +139,7 @@ def generate_deck_content(deck_name: str) -> Dict[str, Any]:
         # Generate content
         return _generate_content_with_openai(
             client=client,
+            deck_name=deck_name,
             content_type="deck"
         )
     except Exception as e:
@@ -138,6 +152,7 @@ def generate_card_content(deck_name: str, card_id: str) -> Dict[str, Any]:
     try:
         # Get the chat client for this deck
         client = get_or_create_chat_client(deck_name)
+        conversation = get_or_create_conversation(deck_name)
         
         # Append messages to conversation for content card creation
         user_prompt = _read_prompt_file("prompts/user/card-content.md")
@@ -146,6 +161,7 @@ def generate_card_content(deck_name: str, card_id: str) -> Dict[str, Any]:
         # Generate content
         content_data = _generate_content_with_openai(
             client=client,
+            deck_name=deck_name,
             content_type="card"
         )
 
@@ -155,6 +171,7 @@ def generate_card_content(deck_name: str, card_id: str) -> Dict[str, Any]:
 
         answers_data = _generate_content_with_openai(
             client=client,
+            deck_name=deck_name,
             content_type="answers"
         )
         return {
