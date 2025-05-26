@@ -118,7 +118,7 @@ def generate_deck_content(deck_name: str) -> Dict[str, Any]:
 
         # Append messages to conversation for deck creation
         system_prompt = _read_prompt_file("prompts/system/deck.md")
-        system_prompt += _read_prompt_file("prompts/"+deck_name+".yaml")
+        system_prompt += _read_prompt_file("prompts/deck/"+deck_name+".yaml")
         conversation.append({"role": "system", "content": system_prompt})
         user_prompt = _read_prompt_file("prompts/user/deck.md")
         conversation.append({"role": "user", "content": user_prompt})
