@@ -6,6 +6,7 @@ import yaml
 import base64
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
+from pathlib import Path
 
 # Ensure Django is configured for testing
 pytestmark = pytest.mark.django_db

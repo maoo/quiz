@@ -1,0 +1,7 @@
+cards:
+- answer: Test answer
+  id: 1
+  question: Test question?
+description: A test deck
+difficulty: medium
+title: Test Deck

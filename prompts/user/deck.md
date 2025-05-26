@@ -1,0 +1,1 @@
+Generate the YAML content with the deck info, following the schema defined in https://raw.githubusercontent.com/maoo/quiz/refs/heads/main/schemas/deck-index.yaml and the example defined in https://github.com/maoo/quiz/blob/main/decks/example/index.yaml

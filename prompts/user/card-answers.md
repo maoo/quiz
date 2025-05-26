@@ -1,0 +1,1 @@
+Generate the 8 answers related to the options of the last card content generated, in YAML format, following the schema defined in https://raw.githubusercontent.com/maoo/quiz/refs/heads/main/schemas/card.yaml and the examples available in https://github.com/maoo/quiz/blob/main/decks/example/cards

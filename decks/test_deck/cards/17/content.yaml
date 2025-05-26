@@ -1,0 +1,19 @@
+answer_type: binary
+card_id: '1'
+options:
+- Option 1
+- Option 2
+- Option 3
+- Option 4
+- Option 5
+- Option 6
+- Option 7
+- Option 8
+- Option 9
+- Option 10
+question_content: Test question?
+question_type: short
+sources:
+- Source 1
+- Source 2
+url: https://blog.session.it/quiz/decks/test_deck/cards/1

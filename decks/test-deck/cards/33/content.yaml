@@ -1,0 +1,11 @@
+correct: '4'
+difficulty: easy
+explanation: Basic arithmetic
+options:
+- '3'
+- '4'
+- '5'
+question_content: What is 2+2?
+tags:
+- math
+- basic
